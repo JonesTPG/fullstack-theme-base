@@ -68,7 +68,7 @@ const Content = props => {
                 color="primary"
                 className={classes.addUser}
               >
-                Add user
+                Add user!
               </Button>
               <Tooltip title="Reload">
                 <IconButton>
