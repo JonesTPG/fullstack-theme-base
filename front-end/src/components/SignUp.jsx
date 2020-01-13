@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import useField from "../hooks/input-hooks"
 
 function Copyright() {
   return (
@@ -35,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.text.primary,
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -47,7 +48,27 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SignUp() {
+  const fname = useField("text")
+  const lname = useField("text")
+  const email = useField("email")
+  const password = useField("password")
   const classes = useStyles();
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+      const userToRegister = {
+        firstName: fname.value,
+        lastName: lname.value,
+        email: email.value,
+        password: password.value,
+        checked: event.target.checkBox.checked
+      }
+      console.log(userToRegister)
+      fname.resetState()
+      lname.resetState()
+      email.resetState()
+      password.resetState()
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -59,7 +80,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -71,6 +92,7 @@ export default function SignUp() {
                 id="firstName"
                 label="First Name"
                 autoFocus
+                {...fname.inputprops()}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -82,6 +104,7 @@ export default function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
+                {...lname.inputprops()}
               />
             </Grid>
             <Grid item xs={12}>
@@ -93,6 +116,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                {...email.inputprops()}
               />
             </Grid>
             <Grid item xs={12}>
@@ -105,11 +129,12 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                {...password.inputprops()}
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                control={<Checkbox value="allowExtraEmails" name="checkBox" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>

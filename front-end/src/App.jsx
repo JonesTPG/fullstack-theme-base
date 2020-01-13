@@ -5,8 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import {
   createMuiTheme,
-  ThemeProvider,
-  withStyles
+  ThemeProvider
 } from "@material-ui/core/styles";
 
 let theme = createMuiTheme({

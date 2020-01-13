@@ -12,6 +12,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import useField from "../hooks/input-hooks";
 
 const Copyright = () => {
   return (
@@ -47,7 +48,22 @@ const styles = theme => ({
 });
 
 const SignIn = props => {
+  const email = useField("email")
+  const password = useField("password")
   const { classes } = props;
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+      const userToLogin = {
+        email: email.value,
+        password: password.value,
+        checked: event.target.checkBox.checked
+      }
+      console.log(userToLogin)
+      email.resetState()
+      password.resetState()
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -58,7 +74,7 @@ const SignIn = props => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <TextField
             data-cy="username"
             variant="outlined"
@@ -70,6 +86,7 @@ const SignIn = props => {
             name="email"
             autoComplete="email"
             autoFocus
+            {...email.inputprops()}
           />
           <TextField
             data-cy="password"
@@ -82,9 +99,10 @@ const SignIn = props => {
             type="password"
             id="password"
             autoComplete="current-password"
+            {...password.inputprops()}
           />
           <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
+            control={<Checkbox value="remember" name="checkBox" color="primary" />}
             label="Remember me"
           />
           <Button
