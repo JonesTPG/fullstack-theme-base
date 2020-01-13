@@ -20,6 +20,28 @@ import { withRouter } from "react-router-dom";
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
+const styles = theme => ({
+  secondaryBar: {
+    zIndex: 0
+  },
+  menuButton: {
+    marginLeft: -theme.spacing(1)
+  },
+  iconButtonAvatar: {
+    padding: 4
+  },
+  link: {
+    textDecoration: "none",
+    color: lightColor,
+    "&:hover": {
+      color: theme.palette.common.white
+    }
+  },
+  button: {
+    borderColor: lightColor
+  }
+});
+
 const Header = props => {
   const { classes, onDrawerToggle } = props;
 
@@ -123,26 +145,5 @@ Header.propTypes = {
   onDrawerToggle: PropTypes.func.isRequired
 };
 
-export default withRouter(
-  withStyles(theme => ({
-    secondaryBar: {
-      zIndex: 0
-    },
-    menuButton: {
-      marginLeft: -theme.spacing(1)
-    },
-    iconButtonAvatar: {
-      padding: 4
-    },
-    link: {
-      textDecoration: "none",
-      color: lightColor,
-      "&:hover": {
-        color: theme.palette.common.white
-      }
-    },
-    button: {
-      borderColor: lightColor
-    }
-  }))(Header)
-);
+const styledHeader = withStyles(styles)(Header);
+export default withRouter(styledHeader);
