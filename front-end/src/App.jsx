@@ -1,10 +1,10 @@
 import React from "react";
-import logo from "./logo.svg";
+import Paperbase from "./components/Paperbase";
 
 const App = () => {
   return (
     <div className="App">
-      <p>es</p>
+      <Paperbase></Paperbase>
     </div>
   );
 };
