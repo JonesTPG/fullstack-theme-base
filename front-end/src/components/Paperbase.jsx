@@ -26,119 +26,9 @@ const Copyright = () => {
   );
 };
 
-let theme = createMuiTheme({
-  palette: {
-    primary: {
-      light: "#63ccff",
-      main: "#111",
-      dark: "#006db3"
-    }
-  },
-  typography: {
-    h5: {
-      fontWeight: 500,
-      fontSize: 26,
-      letterSpacing: 0.5
-    }
-  },
-  shape: {
-    borderRadius: 8
-  },
-  props: {
-    MuiTab: {
-      disableRipple: true
-    }
-  },
-  mixins: {
-    toolbar: {
-      minHeight: 48
-    }
-  }
-});
-
-theme = {
-  ...theme,
-  overrides: {
-    MuiDrawer: {
-      paper: {
-        backgroundColor: "#18202c"
-      }
-    },
-    MuiButton: {
-      label: {
-        textTransform: "none"
-      },
-      contained: {
-        boxShadow: "none",
-        "&:active": {
-          boxShadow: "none"
-        }
-      }
-    },
-    MuiTabs: {
-      root: {
-        marginLeft: theme.spacing(1)
-      },
-      indicator: {
-        height: 3,
-        borderTopLeftRadius: 3,
-        borderTopRightRadius: 3,
-        backgroundColor: theme.palette.common.white
-      }
-    },
-    MuiTab: {
-      root: {
-        textTransform: "none",
-        margin: "0 16px",
-        minWidth: 0,
-        padding: 0,
-        [theme.breakpoints.up("md")]: {
-          padding: 0,
-          minWidth: 0
-        }
-      }
-    },
-    MuiIconButton: {
-      root: {
-        padding: theme.spacing(1)
-      }
-    },
-    MuiTooltip: {
-      tooltip: {
-        borderRadius: 4
-      }
-    },
-    MuiDivider: {
-      root: {
-        backgroundColor: "#404854"
-      }
-    },
-    MuiListItemText: {
-      primary: {
-        fontWeight: theme.typography.fontWeightMedium
-      }
-    },
-    MuiListItemIcon: {
-      root: {
-        color: "inherit",
-        marginRight: 0,
-        "& svg": {
-          fontSize: 20
-        }
-      }
-    },
-    MuiAvatar: {
-      root: {
-        width: 32,
-        height: 32
-      }
-    }
-  }
-};
-
 const drawerWidth = 256;
 
-const styles = {
+const styles = theme => ({
   root: {
     display: "flex",
     minHeight: "100vh"
@@ -163,7 +53,7 @@ const styles = {
     padding: theme.spacing(2),
     background: "#eaeff1"
   }
-};
+});
 
 const Paperbase = props => {
   const { classes } = props;
@@ -174,33 +64,31 @@ const Paperbase = props => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <div className={classes.root}>
-        <CssBaseline />
-        <nav className={classes.drawer}>
-          <Hidden smUp implementation="js">
-            <Navigator
-              PaperProps={{ style: { width: drawerWidth } }}
-              variant="temporary"
-              open={mobileOpen}
-              onClose={handleDrawerToggle}
-            />
-          </Hidden>
-          <Hidden xsDown implementation="css">
-            <Navigator PaperProps={{ style: { width: drawerWidth } }} />
-          </Hidden>
-        </nav>
-        <div className={classes.app}>
-          <Header onDrawerToggle={handleDrawerToggle} />
-          <main className={classes.main}>
-            <Content />
-          </main>
-          <footer className={classes.footer}>
-            <Copyright />
-          </footer>
-        </div>
+    <div className={classes.root}>
+      <CssBaseline />
+      <nav className={classes.drawer}>
+        <Hidden smUp implementation="js">
+          <Navigator
+            PaperProps={{ style: { width: drawerWidth } }}
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+          />
+        </Hidden>
+        <Hidden xsDown implementation="css">
+          <Navigator PaperProps={{ style: { width: drawerWidth } }} />
+        </Hidden>
+      </nav>
+      <div className={classes.app}>
+        <Header onDrawerToggle={handleDrawerToggle} />
+        <main className={classes.main}>
+          <Content />
+        </main>
+        <footer className={classes.footer}>
+          <Copyright />
+        </footer>
       </div>
-    </ThemeProvider>
+    </div>
   );
 };
 
