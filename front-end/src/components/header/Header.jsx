@@ -16,33 +16,16 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Tooltip from "@material-ui/core/Tooltip";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
+import { withRouter } from "react-router-dom";
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
-const styles = theme => ({
-  secondaryBar: {
-    zIndex: 0
-  },
-  menuButton: {
-    marginLeft: -theme.spacing(1)
-  },
-  iconButtonAvatar: {
-    padding: 4
-  },
-  link: {
-    textDecoration: "none",
-    color: lightColor,
-    "&:hover": {
-      color: theme.palette.common.white
-    }
-  },
-  button: {
-    borderColor: lightColor
-  }
-});
-
 const Header = props => {
   const { classes, onDrawerToggle } = props;
+
+  const handleSubmit = () => {
+    props.history.push("/login");
+  };
 
   return (
     <React.Fragment>
@@ -98,12 +81,13 @@ const Header = props => {
             </Grid>
             <Grid item>
               <Button
+                onClick={handleSubmit}
                 className={classes.button}
                 variant="outlined"
                 color="inherit"
                 size="small"
               >
-                Web setup
+                Sign-in
               </Button>
             </Grid>
             <Grid item>
@@ -139,4 +123,26 @@ Header.propTypes = {
   onDrawerToggle: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(Header);
+export default withRouter(
+  withStyles(theme => ({
+    secondaryBar: {
+      zIndex: 0
+    },
+    menuButton: {
+      marginLeft: -theme.spacing(1)
+    },
+    iconButtonAvatar: {
+      padding: 4
+    },
+    link: {
+      textDecoration: "none",
+      color: lightColor,
+      "&:hover": {
+        color: theme.palette.common.white
+      }
+    },
+    button: {
+      borderColor: lightColor
+    }
+  }))(Header)
+);

@@ -1,10 +1,15 @@
 import React from "react";
 import Paperbase from "./components/Paperbase";
+import Login from "./components/Login";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const App = () => {
   return (
     <div className="App">
-      <Paperbase></Paperbase>
+      <Router>
+        <Route exact path="/login" render={() => <Login />} />
+        <Route exact path="/" render={() => <Paperbase />} />
+      </Router>
     </div>
   );
 };
