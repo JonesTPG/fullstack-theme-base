@@ -13,7 +13,7 @@ import Navigator from "./side-nav/Navigator";
 import Content from "./front-page/Content";
 import Header from "./header/Header";
 
-function Copyright() {
+const Copyright = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
@@ -24,7 +24,7 @@ function Copyright() {
       {"."}
     </Typography>
   );
-}
+};
 
 let theme = createMuiTheme({
   palette: {
@@ -165,7 +165,7 @@ const styles = {
   }
 };
 
-function Paperbase(props) {
+const Paperbase = props => {
   const { classes } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -202,7 +202,7 @@ function Paperbase(props) {
       </div>
     </ThemeProvider>
   );
-}
+};
 
 Paperbase.propTypes = {
   classes: PropTypes.object.isRequired

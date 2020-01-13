@@ -36,7 +36,7 @@ const styles = theme => ({
   }
 });
 
-function Content(props) {
+const Content = props => {
   const { classes } = props;
 
   return (
@@ -86,7 +86,7 @@ function Content(props) {
       </div>
     </Paper>
   );
-}
+};
 
 Content.propTypes = {
   classes: PropTypes.object.isRequired

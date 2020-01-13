@@ -82,7 +82,7 @@ const styles = theme => ({
   }
 });
 
-function Navigator(props) {
+const Navigator = props => {
   const { classes, ...other } = props;
 
   return (
@@ -139,7 +139,7 @@ function Navigator(props) {
       </List>
     </Drawer>
   );
-}
+};
 
 Navigator.propTypes = {
   classes: PropTypes.object.isRequired

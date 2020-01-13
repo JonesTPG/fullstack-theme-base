@@ -41,7 +41,7 @@ const styles = theme => ({
   }
 });
 
-function Header(props) {
+const Header = props => {
   const { classes, onDrawerToggle } = props;
 
   return (
@@ -132,7 +132,7 @@ function Header(props) {
       </AppBar>
     </React.Fragment>
   );
-}
+};
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,
