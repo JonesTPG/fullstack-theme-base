@@ -7,6 +7,7 @@ import {
   createMuiTheme,
   ThemeProvider
 } from "@material-ui/core/styles";
+import HomePage from "./components/HomePage"
 
 let theme = createMuiTheme({
   palette: {
@@ -125,7 +126,8 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/signup" render={() => <SignUp />} />
-          <Route exact path="/" render={() => <Paperbase />} />
+          <Route exact path="/" render={() => <HomePage />} />
+          <Route exact path="/paperbase" render={() => <Paperbase />} />
         </ThemeProvider>
       </Router>
     </div>
