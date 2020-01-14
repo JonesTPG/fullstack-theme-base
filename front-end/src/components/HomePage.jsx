@@ -14,8 +14,8 @@ import {
     ListItemIcon,
     ListItemText,
     Container,
-    Link,
-    Divider
+    Divider,
+    Grid,
  } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -27,19 +27,8 @@ import {
     InfoRounded,
 
 } from '@material-ui/icons';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import Feedback from "./Feedback";
+import Copyright from "./Copyright";
 
 const drawerWidth = 240;
 
@@ -182,7 +171,7 @@ export default function HomePage() {
             <MenuRounded />
           </IconButton>
         </div>
-        <Divider light="true"/>
+        <Divider light={true}/>
         <List component="nav">
           <ListItemLink href="/contact">
               <ListItemIcon><PeopleAltRounded /></ListItemIcon>
@@ -193,11 +182,21 @@ export default function HomePage() {
               <ListItemText primary="About us" />
           </ListItemLink>
         </List>
-        <Divider light="true"/>
+        <Divider light={true}/>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+          <Container maxWidth="lg" className={classes.container}>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+          >
+            <Grid item >
+              <Feedback />
+            </Grid>
+          </Grid>
           <Box pt={4}>
             <Copyright />
           </Box>
