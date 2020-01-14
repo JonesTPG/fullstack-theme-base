@@ -4,40 +4,15 @@ import { withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Hidden from "@material-ui/core/Hidden";
 
-import Navigator from "./side-nav/Navigator";
-import Content from "./front-page/Content";
-import Header from "./header/Header";
+import Navigator from "../side-nav/Navigator";
+import UserSearch from "./usersearch/UserSearch";
+import Header from "../header/Header";
 
-import Copyright from "./Copyright";
+import Copyright from "../Copyright";
 
-const drawerWidth = 256;
-
-const styles = theme => ({
-  root: {
-    display: "flex",
-    minHeight: "100vh"
-  },
-  drawer: {
-    [theme.breakpoints.up("sm")]: {
-      width: drawerWidth,
-      flexShrink: 0
-    }
-  },
-  app: {
-    flex: 1,
-    display: "flex",
-    flexDirection: "column"
-  },
-  main: {
-    flex: 1,
-    padding: theme.spacing(6, 4),
-    background: "#eaeff1"
-  },
-  footer: {
-    padding: theme.spacing(2),
-    background: "#eaeff1"
-  }
-});
+import styles from "./AdminStyles";
+import { drawerWidth } from "./AdminConstants";
+import ItemList from "./itemlist/ItemList";
 
 const Admin = props => {
   const { classes } = props;
@@ -66,7 +41,8 @@ const Admin = props => {
       <div className={classes.app}>
         <Header onDrawerToggle={handleDrawerToggle} />
         <main className={classes.main}>
-          <Content />
+          <ItemList></ItemList>
+          <UserSearch />
         </main>
         <footer className={classes.footer}>
           <Copyright />
