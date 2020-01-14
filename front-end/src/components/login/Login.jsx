@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -20,6 +20,7 @@ import LoginStyles from "./LoginStyles";
 const Login = props => {
   const email = useField("email");
   const password = useField("password");
+  const [errorText, setErrorText] = useState("");
 
   const [login] = useMutation(LOGIN, {
     onCompleted({ login }) {
@@ -27,13 +28,18 @@ const Login = props => {
       props.history.push("/");
     },
     onError({ error }) {
-      console.log("error");
+      console.log("Error, wrong credentials probably");
+      setErrorText("*The username or password you entered is incorrect.");
+      setTimeout(() => {
+        setErrorText(null);
+      }, 4000);
     }
   });
 
   const { classes } = props;
 
   const handleSubmit = async event => {
+    console.log("klik");
     event.preventDefault();
 
     await login({
@@ -83,6 +89,7 @@ const Login = props => {
             id="password"
             autoComplete="current-password"
             {...password.inputprops()}
+            helperText={errorText}
           />
           <FormControlLabel
             control={
