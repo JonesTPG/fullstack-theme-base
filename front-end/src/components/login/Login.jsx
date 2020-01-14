@@ -12,9 +12,14 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import useField from "../hooks/input-hooks";
+import useField from "../../hooks/input-hooks";
 
-import Copyright from "./Copyright";
+import Copyright from "../Copyright";
+
+import { withRouter } from "react-router-dom";
+
+import { LOGIN } from "../../queries/login";
+import { useMutation } from "@apollo/react-hooks";
 
 const styles = theme => ({
   paper: {
@@ -36,19 +41,32 @@ const styles = theme => ({
   }
 });
 
-const SignIn = props => {
+const Login = props => {
   const email = useField("email");
   const password = useField("password");
+
+  const [login] = useMutation(LOGIN, {
+    onCompleted({ login }) {
+      window.localStorage.setItem("theme-base-token", login.value);
+      props.history.push("/");
+    },
+    onError({ error }) {
+      console.log("error");
+    }
+  });
+
   const { classes } = props;
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
-    const userToLogin = {
-      email: email.value,
-      password: password.value,
-      checked: event.target.checkBox.checked
-    };
-    console.log(userToLogin);
+
+    await login({
+      variables: {
+        username: email.value,
+        password: password.value
+      }
+    });
+
     email.resetState();
     password.resetState();
   };
@@ -126,4 +144,5 @@ const SignIn = props => {
   );
 };
 
-export default withStyles(styles)(SignIn);
+const styledLogin = withStyles(styles)(Login);
+export default withRouter(styledLogin);
