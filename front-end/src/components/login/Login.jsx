@@ -20,26 +20,7 @@ import { withRouter } from "react-router-dom";
 
 import { LOGIN } from "../../queries/login";
 import { useMutation } from "@apollo/react-hooks";
-
-const styles = theme => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
-});
+import LoginStyles from "./LoginStyles";
 
 const Login = props => {
   const email = useField("email");
@@ -115,6 +96,7 @@ const Login = props => {
             label="Remember me"
           />
           <Button
+            data-cy="signIn"
             color="primary"
             type="submit"
             fullWidth
@@ -144,5 +126,5 @@ const Login = props => {
   );
 };
 
-const styledLogin = withStyles(styles)(Login);
+const styledLogin = withStyles(LoginStyles)(Login);
 export default withRouter(styledLogin);
