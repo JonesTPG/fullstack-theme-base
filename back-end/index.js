@@ -7,7 +7,13 @@ const context = require("./context");
 
 const config = require("./utils/config");
 
-const mongoUrl = config.MONGODB_URI;
+let mongoUrl = config.MONGODB_URI;
+
+if (process.env.NODE_ENV === "test") {
+  mongoUrl = config.MONGODB_TEST_URI;
+}
+
+console.log(mongoUrl);
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useFindAndModify: false,

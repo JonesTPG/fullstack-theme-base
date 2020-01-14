@@ -43,6 +43,15 @@ const resolvers = {
       };
 
       return { value: jwt.sign(userForToken, config.JWT_SECRET) };
+    },
+    deleteUsers: async () => {
+      if (process.env.NODE_ENV === "test") {
+        await User.deleteMany({});
+        return true;
+      } else {
+        throw new Error("user deleting prohibited in production");
+        return false;
+      }
     }
   },
   Subscription: {
