@@ -2,7 +2,7 @@ import React from "react";
 import Admin from "./components/admin/Admin";
 import Login from "./components/login/Login";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import SignUpPage from "./components/register/SignUpPage";
+import SignUpPage from "./components/signup/SignUpPage";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import HomePage from "./components/HomePage";
 

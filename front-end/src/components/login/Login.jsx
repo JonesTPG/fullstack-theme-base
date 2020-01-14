@@ -13,7 +13,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import useField from "../../hooks/input-hooks";
 
-import { withRouter } from "react-router-dom";
+import { withRouter, Link as RouterLink } from "react-router-dom";
 import { LOGIN } from "../../queries/login";
 import { useMutation } from "@apollo/react-hooks";
 import LoginStyles from "./LoginStyles";
@@ -103,14 +103,14 @@ const Login = props => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
+              <RouterLink to="#" style={{ textDecoration: "none" }}>
+                <Link variant="body2">Forgot password?</Link>
+              </RouterLink>
             </Grid>
             <Grid item>
-              <Link href="/signup" variant="body2">
-                Don't have an account? Sign Up
-              </Link>
+              <RouterLink to="/signup" style={{ textDecoration: "none" }}>
+                <Link variant="body2">Don't have an account? Sign Up</Link>
+              </RouterLink>
             </Grid>
           </Grid>
         </form>
