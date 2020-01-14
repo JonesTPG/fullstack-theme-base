@@ -1,13 +1,13 @@
-import React from 'react';
-import PageBase from "../PageBase"
-import SignUp from './SignUp';
+import React from "react";
+import Main from "../main/Main";
+import SignUp from "./SignUp";
 
 export default function SignUpPage() {
   return (
     <>
-      <PageBase >
+      <Main>
         <SignUp />
-      </PageBase>
+      </Main>
     </>
-  )
+  );
 }

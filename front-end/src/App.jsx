@@ -4,7 +4,7 @@ import Login from "./components/login/Login";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import SignUpPage from "./components/signup/SignUpPage";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import HomePage from "./components/HomePage";
+import HomePage from "./components/main/homepage/HomePage";
 
 let theme = createMuiTheme({
   palette: {

@@ -5,7 +5,6 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
@@ -13,7 +12,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import useField from "../../hooks/input-hooks";
 
-import { withRouter, Link as RouterLink } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { LOGIN } from "../../queries/login";
 import { useMutation } from "@apollo/react-hooks";
 import LoginStyles from "./LoginStyles";
@@ -25,7 +24,7 @@ const Login = props => {
   const [login] = useMutation(LOGIN, {
     onCompleted({ login }) {
       window.localStorage.setItem("theme-base-token", login.value);
-      props.history.push("/login");
+      props.history.push("/");
     },
     onError({ error }) {
       console.log("error");
@@ -103,14 +102,14 @@ const Login = props => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <RouterLink to="#" style={{ textDecoration: "none" }}>
-                <Link variant="body2">Forgot password?</Link>
-              </RouterLink>
+              <Link to="#">
+                <p variant="body2">Forgot password?</p>
+              </Link>
             </Grid>
             <Grid item>
-              <RouterLink to="/signup" style={{ textDecoration: "none" }}>
-                <Link variant="body2">Don't have an account? Sign Up</Link>
-              </RouterLink>
+              <Link to="/signup">
+                <p>Don't have an account? Sign Up</p>
+              </Link>
             </Grid>
           </Grid>
         </form>
