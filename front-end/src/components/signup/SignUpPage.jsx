@@ -4,10 +4,8 @@ import SignUp from "./SignUp";
 
 export default function SignUpPage() {
   return (
-    <>
-      <Main>
-        <SignUp />
-      </Main>
-    </>
+    <Main pageName="Sign up">
+      <SignUp />
+    </Main>
   );
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { 
     Container,
-    CssBaseline,
     Paper,
  } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,7 +23,6 @@ export default function Feedback() {
 
   return (
     <Container component="main" maxWidth="xs">
-        <CssBaseline />
             <Paper className={classes.paper}>
                 <FeedbackForm />
             </Paper>

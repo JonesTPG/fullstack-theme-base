@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Feedback from "../../feedback/Feedback";
 import Main from "../Main";
 
-export default function HomePage() {
+const HomePage = () => {
+  useEffect(() => {
+    const user = window.localStorage.getItem("theme-base-token")
+    if (user) {
+      // User found from localStorage
+    }
+  }, [])
+
   return (
-    <>
-      <Main>
+      <Main pageName="Homepage" >
         <Feedback />
       </Main>
-    </>
   );
 }
+
+export default HomePage
