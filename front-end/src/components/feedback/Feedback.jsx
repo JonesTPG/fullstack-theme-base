@@ -5,7 +5,7 @@ import {
     Paper,
  } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import FeedbackForm from "./feedback/FeedbackForm"
+import FeedbackForm from "./FeedbackForm"
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -22,12 +22,11 @@ const useStyles = makeStyles(theme => ({
 export default function Feedback() {
   const classes = useStyles();
 
-
   return (
     <Container component="main" maxWidth="xs">
         <CssBaseline />
             <Paper className={classes.paper}>
-                <FeedbackForm></FeedbackForm>
+                <FeedbackForm />
             </Paper>
     </Container>
   );

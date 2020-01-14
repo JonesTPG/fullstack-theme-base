@@ -7,17 +7,13 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import useField from "../../hooks/input-hooks";
 
-import Copyright from "../Copyright";
-
 import { withRouter } from "react-router-dom";
-
 import { LOGIN } from "../../queries/login";
 import { useMutation } from "@apollo/react-hooks";
 
@@ -137,9 +133,6 @@ const Login = props => {
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
-        <Copyright />
-      </Box>
     </Container>
   );
 };
