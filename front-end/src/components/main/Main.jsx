@@ -23,6 +23,7 @@ import SettingsRounded from "@material-ui/icons/SettingsRounded";
 import PeopleAltRounded from "@material-ui/icons/PeopleAltRounded";
 import InfoRounded from "@material-ui/icons/InfoRounded";
 import Copyright from "../Copyright";
+import { withRouter } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -109,11 +110,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
-export default function HomePage(props) {
+const Main = props => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const handleDrawerOpen = () => {
@@ -142,7 +139,7 @@ export default function HomePage(props) {
           >
             <MenuRounded />
           </IconButton>
-          <IconButton href="/" color="inherit">
+          <IconButton onClick={() => props.history.push("/")} color="inherit">
             <HomeRounded />
           </IconButton>
           <Typography
@@ -154,12 +151,12 @@ export default function HomePage(props) {
           >
             Homepage
           </Typography>
-          <IconButton href="/login" color="inherit">
+          <IconButton onClick={() => props.history.push("/login")} color="inherit">
             <Badge badgeContent={4} color="secondary">
               <AccountCircleRounded />
             </Badge>
           </IconButton>
-          <IconButton href="/settings" color="inherit">
+          <IconButton onClick={() => props.history.push("/settings")} color="inherit">
             <SettingsRounded />
           </IconButton>
         </Toolbar>
@@ -178,18 +175,18 @@ export default function HomePage(props) {
         </div>
         <Divider light={true} />
         <List component="nav">
-          <ListItemLink href="/contact">
+          <ListItem button onClick={() => props.history.push("/contact")}>
             <ListItemIcon>
               <PeopleAltRounded />
             </ListItemIcon>
             <ListItemText primary="Contact us" />
-          </ListItemLink>
-          <ListItemLink href="/about">
+          </ListItem>
+          <ListItem button onClick={() => props.history.push("/about")}>
             <ListItemIcon>
               <InfoRounded />
             </ListItemIcon>
             <ListItemText primary="About us" />
-          </ListItemLink>
+          </ListItem>
         </List>
         <Divider light={true} />
       </Drawer>
@@ -207,3 +204,6 @@ export default function HomePage(props) {
     </div>
   );
 }
+
+
+export default withRouter(Main)

@@ -5,40 +5,24 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import useField from "../../hooks/input-hooks";
+import { withRouter, Link } from "react-router-dom";
+import SignUpStyles from "./SignUpStyles";
 
-const useStyles = makeStyles(theme => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center"
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main
-  },
-  form: {
-    width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3)
-  },
-  submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
-}));
 
-export default function SignUp() {
+
+const SignUp = props => {
   const fname = useField("text");
   const lname = useField("text");
   const email = useField("email");
   const password = useField("password");
-  const classes = useStyles();
+  const { classes } = props
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -142,7 +126,7 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
+              <Link to="/login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
@@ -152,3 +136,6 @@ export default function SignUp() {
     </Container>
   );
 }
+
+const styledSignUp = withStyles(SignUpStyles)(SignUp);
+export default withRouter(styledSignUp);
