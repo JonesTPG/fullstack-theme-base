@@ -1,6 +1,6 @@
 import React from "react";
 import Admin from "./components/admin/Admin";
-import LoginPage from "./components/login/LoginPage";
+import Login from "./components/login/Login";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import SignUpPage from "./components/register/SignUpPage";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -121,7 +121,7 @@ const App = () => {
     <div className="App">
       <Router>
         <ThemeProvider theme={theme}>
-          <Route exact path="/login" render={() => <LoginPage />} />
+          <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/signup" render={() => <SignUpPage />} />
           <Route exact path="/" render={() => <HomePage />} />
           <Route exact path="/admin" render={() => <Admin />} />

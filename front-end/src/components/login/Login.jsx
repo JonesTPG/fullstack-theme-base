@@ -25,7 +25,7 @@ const Login = props => {
   const [login] = useMutation(LOGIN, {
     onCompleted({ login }) {
       window.localStorage.setItem("theme-base-token", login.value);
-      props.history.push("/");
+      props.history.push("/login");
     },
     onError({ error }) {
       console.log("error");
