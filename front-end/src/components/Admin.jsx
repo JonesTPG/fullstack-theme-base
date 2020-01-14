@@ -1,28 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {
-  withStyles
-} from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Hidden from "@material-ui/core/Hidden";
-import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
+
 import Navigator from "./side-nav/Navigator";
 import Content from "./front-page/Content";
 import Header from "./header/Header";
 
-const Copyright = () => {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-};
+import Copyright from "./Copyright";
 
 const drawerWidth = 256;
 
@@ -53,7 +39,7 @@ const styles = theme => ({
   }
 });
 
-const Paperbase = props => {
+const Admin = props => {
   const { classes } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -90,8 +76,8 @@ const Paperbase = props => {
   );
 };
 
-Paperbase.propTypes = {
+Admin.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(Paperbase);
+export default withStyles(styles)(Admin);

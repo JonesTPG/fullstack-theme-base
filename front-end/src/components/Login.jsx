@@ -14,18 +14,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import useField from "../hooks/input-hooks";
 
-const Copyright = () => {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-};
+import Copyright from "./Copyright";
 
 const styles = theme => ({
   paper: {
@@ -36,7 +25,7 @@ const styles = theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -48,21 +37,21 @@ const styles = theme => ({
 });
 
 const SignIn = props => {
-  const email = useField("email")
-  const password = useField("password")
+  const email = useField("email");
+  const password = useField("password");
   const { classes } = props;
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-      const userToLogin = {
-        email: email.value,
-        password: password.value,
-        checked: event.target.checkBox.checked
-      }
-      console.log(userToLogin)
-      email.resetState()
-      password.resetState()
-  }
+  const handleSubmit = event => {
+    event.preventDefault();
+    const userToLogin = {
+      email: email.value,
+      password: password.value,
+      checked: event.target.checkBox.checked
+    };
+    console.log(userToLogin);
+    email.resetState();
+    password.resetState();
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -102,7 +91,9 @@ const SignIn = props => {
             {...password.inputprops()}
           />
           <FormControlLabel
-            control={<Checkbox value="remember" name="checkBox" color="primary" />}
+            control={
+              <Checkbox value="remember" name="checkBox" color="primary" />
+            }
             label="Remember me"
           />
           <Button

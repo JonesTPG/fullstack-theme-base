@@ -1,74 +1,62 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import useField from "../hooks/input-hooks"
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Snaegis
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import React from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import Box from "@material-ui/core/Box";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import useField from "../hooks/input-hooks";
+import Copyright from "./Copyright";
 
 const useStyles = makeStyles(theme => ({
   paper: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center"
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.main
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(3)
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
-  },
+    margin: theme.spacing(3, 0, 2)
+  }
 }));
 
 export default function SignUp() {
-  const fname = useField("text")
-  const lname = useField("text")
-  const email = useField("email")
-  const password = useField("password")
+  const fname = useField("text");
+  const lname = useField("text");
+  const email = useField("email");
+  const password = useField("password");
   const classes = useStyles();
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-      const userToRegister = {
-        firstName: fname.value,
-        lastName: lname.value,
-        email: email.value,
-        password: password.value,
-        checked: event.target.checkBox.checked
-      }
-      console.log(userToRegister)
-      fname.resetState()
-      lname.resetState()
-      email.resetState()
-      password.resetState()
-  }
+  const handleSubmit = event => {
+    event.preventDefault();
+    const userToRegister = {
+      firstName: fname.value,
+      lastName: lname.value,
+      email: email.value,
+      password: password.value,
+      checked: event.target.checkBox.checked
+    };
+    console.log(userToRegister);
+    fname.resetState();
+    lname.resetState();
+    email.resetState();
+    password.resetState();
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -134,7 +122,13 @@ export default function SignUp() {
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" name="checkBox" color="primary" />}
+                control={
+                  <Checkbox
+                    value="allowExtraEmails"
+                    name="checkBox"
+                    color="primary"
+                  />
+                }
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>

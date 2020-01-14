@@ -1,13 +1,10 @@
 import React from "react";
-import Paperbase from "./components/Paperbase";
+import Admin from "./components/Admin";
 import Login from "./components/Login";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import SignUp from "./components/SignUp";
-import {
-  createMuiTheme,
-  ThemeProvider
-} from "@material-ui/core/styles";
-import HomePage from "./components/HomePage"
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import HomePage from "./components/HomePage";
 
 let theme = createMuiTheme({
   palette: {
@@ -127,7 +124,7 @@ const App = () => {
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/signup" render={() => <SignUp />} />
           <Route exact path="/" render={() => <HomePage />} />
-          <Route exact path="/paperbase" render={() => <Paperbase />} />
+          <Route exact path="/admin" render={() => <Admin />} />
         </ThemeProvider>
       </Router>
     </div>
