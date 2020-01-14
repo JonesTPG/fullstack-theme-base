@@ -28,7 +28,7 @@ const Login = props => {
       props.history.push("/");
     },
     onError({ error }) {
-      console.log("Error, wrong credentials probably");
+      console.log("Error, wrong credentials probably.");
       setErrorText("*The username or password you entered is incorrect.");
       setTimeout(() => {
         setErrorText(null);
