@@ -8,8 +8,10 @@ import HomePage from "./components/main/homepage/HomePage";
 import Counter from "./components/counter/Counter";
 
 import theme from "./AppStyles";
+import useRoles from "./hooks/auth";
 
 const App = () => {
+  //const roles = useRoles();
   return (
     <>
       <Router>
