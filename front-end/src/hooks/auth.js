@@ -5,14 +5,17 @@ import { ME } from "../queries/login";
 
 export const useRoles = () => {
   let [roles, setRoles] = useState(null);
+  let token = useToken();
+
   useQuery(ME, {
     onCompleted(data) {
-      if (!data.me === null) {
+      if (data.me) {
         setRoles(data.me.roles);
+      } else {
+        setRoles(null);
       }
     }
   });
-
   return roles;
 };
 

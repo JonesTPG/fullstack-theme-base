@@ -44,15 +44,15 @@ const Login = props => {
   const handleSubmit = async event => {
     event.preventDefault();
 
+    email.resetState();
+    password.resetState();
+
     await login({
       variables: {
         username: email.value,
         password: password.value
       }
     });
-
-    email.resetState();
-    password.resetState();
   };
 
   return (

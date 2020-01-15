@@ -7,7 +7,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import HomePage from "./components/main/homepage/HomePage";
 import Counter from "./components/counter/Counter";
 
-import {mainTheme, darkTheme} from "./AppStyles";
+import { mainTheme, darkTheme } from "./AppStyles";
 
 const App = () => {
   return (
