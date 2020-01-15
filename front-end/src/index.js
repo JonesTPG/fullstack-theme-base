@@ -13,6 +13,7 @@ import { getMainDefinition } from "apollo-utilities";
 
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { useToken } from "./hooks/auth";
 
 const wsLink = new WebSocketLink({
   uri: `ws://localhost:4000/graphql`,
@@ -24,7 +25,7 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem("theme-base-token");
+  const token = useToken();
   return {
     headers: {
       ...headers,

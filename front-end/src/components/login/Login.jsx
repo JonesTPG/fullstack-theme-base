@@ -10,7 +10,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import useField from "../../hooks/input-hooks";
+import useField from "../../hooks/input";
 
 import { withRouter, Link } from "react-router-dom";
 import { LOGIN } from "../../queries/login";

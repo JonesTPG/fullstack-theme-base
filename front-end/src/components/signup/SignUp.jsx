@@ -9,18 +9,16 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import useField from "../../hooks/input-hooks";
+import useField from "../../hooks/input";
 import { withRouter, Link } from "react-router-dom";
 import SignUpStyles from "./SignUpStyles";
-
-
 
 const SignUp = props => {
   const fname = useField("text");
   const lname = useField("text");
   const email = useField("email");
   const password = useField("password");
-  const { classes } = props
+  const { classes } = props;
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -132,7 +130,7 @@ const SignUp = props => {
       </div>
     </Container>
   );
-}
+};
 
 const styledSignUp = withStyles(SignUpStyles)(SignUp);
 export default withRouter(styledSignUp);

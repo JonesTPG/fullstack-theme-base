@@ -1,20 +1,24 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Feedback from "../../feedback/Feedback";
 import Main from "../Main";
+import { useToken } from "../../../hooks/auth";
 
 const HomePage = () => {
-  useEffect(() => {
-    const user = window.localStorage.getItem("theme-base-token")
-    if (user) {
-      // User found from localStorage
-    }
-  }, [])
+  const token = useToken();
 
-  return (
-      <Main pageName="Homepage" >
+  if (!token) {
+    return (
+      <Main pageName="Homepage">
+        <p>you are not logged in</p>
+      </Main>
+    );
+  } else {
+    return (
+      <Main pageName="Homepage">
         <Feedback />
       </Main>
-  );
-}
+    );
+  }
+};
 
-export default HomePage
+export default HomePage;
