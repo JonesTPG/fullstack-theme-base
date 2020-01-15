@@ -10,14 +10,14 @@ import Badge from "@material-ui/core/Badge";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 
-// import MenuRounded from "@material-ui/icons/MenuRounded";
+import MenuRounded from "@material-ui/icons/MenuRounded";
 import HomeRounded from "@material-ui/icons/HomeRounded";
 import AccountCircleRounded from "@material-ui/icons/AccountCircleRounded";
 import AddCircleOutlineRounded from "@material-ui/icons/AddCircleOutlineRounded";
 
 import Copyright from "../Copyright";
 import { withRouter } from "react-router-dom";
-import MainStyles from "./MainStyles";
+import { MainStyles } from "../AllStyles";
 import { withStyles } from "@material-ui/core/styles";
 
 const Main = props => {
@@ -27,13 +27,13 @@ const Main = props => {
       <CssBaseline />
       <AppBar position="absolute" >
         <Toolbar >
-          {/* <IconButton
+          <IconButton
             edge="start"
             color="inherit"
             className={classes.menuButton}
           >
             <MenuRounded />
-          </IconButton> */}
+          </IconButton>
           <IconButton onClick={() => props.history.push("/")} color="inherit">
             <HomeRounded />
           </IconButton>
