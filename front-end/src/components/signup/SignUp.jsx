@@ -11,7 +11,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import useField from "../../hooks/input";
 import { withRouter, Link } from "react-router-dom";
-import SignUpStyles from "./SignUpStyles";
+import {SignUpStyles} from "../AllStyles";
 
 const SignUp = props => {
   const fname = useField("text");

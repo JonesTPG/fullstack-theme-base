@@ -7,13 +7,13 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import HomePage from "./components/main/homepage/HomePage";
 import Counter from "./components/counter/Counter";
 
-import theme from "./AppStyles";
+import {mainTheme, darkTheme} from "./AppStyles";
 
 const App = () => {
   return (
     <>
       <Router>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={mainTheme}>
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/signup" render={() => <SignUpPage />} />
           <Route exact path="/" render={() => <HomePage />} />

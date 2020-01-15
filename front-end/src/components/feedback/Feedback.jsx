@@ -1,8 +1,6 @@
 import React from 'react';
-import { 
-    Container,
-    Paper,
- } from '@material-ui/core';
+import { Container } from '@material-ui/core';
+import { Paper} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import FeedbackForm from "./FeedbackForm"
 
@@ -23,9 +21,9 @@ export default function Feedback() {
 
   return (
     <Container component="main" maxWidth="xs">
-            <Paper className={classes.paper}>
-                <FeedbackForm />
-            </Paper>
+      <Paper className={classes.paper}>
+        <FeedbackForm />
+      </Paper>
     </Container>
   );
 }
