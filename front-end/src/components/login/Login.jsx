@@ -25,10 +25,13 @@ const Login = props => {
   const [login] = useMutation(LOGIN, {
     onCompleted({ login }) {
       window.localStorage.setItem("theme-base-token", login.value);
-      props.history.push("/");
+      if (login.roles.includes("ADMIN")) {
+        props.history.push("/admin");
+      } else {
+        props.history.push("/");
+      }
     },
     onError({ error }) {
-      console.log("Error, wrong credentials probably.");
       setErrorText("*The username or password you entered is incorrect.");
       setTimeout(() => {
         setErrorText(null);
@@ -39,7 +42,6 @@ const Login = props => {
   const { classes } = props;
 
   const handleSubmit = async event => {
-    console.log("klik");
     event.preventDefault();
 
     await login({

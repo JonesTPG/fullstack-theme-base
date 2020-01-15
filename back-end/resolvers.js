@@ -57,12 +57,14 @@ const resolvers = {
         throw new UserInputError("wrong credentials");
       }
 
-      const userForToken = {
+      const tokenData = {
         username: user.username,
         id: user._id
       };
-
-      return { value: jwt.sign(userForToken, config.JWT_SECRET) };
+      return {
+        value: jwt.sign(tokenData, config.JWT_SECRET),
+        roles: user.roles
+      };
     },
     deleteUsers: async () => {
       if (process.env.NODE_ENV === "test") {

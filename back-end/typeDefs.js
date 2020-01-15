@@ -7,8 +7,9 @@ const typeDefs = gql`
     id: ID!
   }
 
-  type Token {
+  type UserData {
     value: String!
+    roles: [String]!
   }
 
   type Query {
@@ -20,7 +21,7 @@ const typeDefs = gql`
     createUser(username: String!): User
     createAdminUser(username: String!): User
     deleteUsers: Boolean!
-    login(username: String!, password: String!): Token
+    login(username: String!, password: String!): UserData
   }
 
   type Subscription {
