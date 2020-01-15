@@ -1,10 +1,12 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
+import {CopyrightStyles} from "./AllStyles";
+import { withStyles } from "@material-ui/core/styles";
 
-const Copyright = () => {
+const Copyright = ({classes}) => {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" className={classes.typography} align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
         you guessed it
@@ -15,4 +17,4 @@ const Copyright = () => {
   );
 };
 
-export default Copyright;
+export default withStyles(CopyrightStyles)(Copyright);

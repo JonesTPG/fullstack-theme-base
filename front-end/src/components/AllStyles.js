@@ -7,7 +7,7 @@ export const SignUpStyles = theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -15,6 +15,13 @@ export const SignUpStyles = theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+    color: theme.palette.secondary.main,
+  },
+  text: {
+    color: theme.palette.common.black,
+  },
+  checBox: {
+    color: theme.palette.secondary.main,
   },
 })
 
@@ -40,5 +47,11 @@ export const MainStyles = theme => ({
   },
   fixedHeight: {
     height: 240,
+  },
+})
+
+export const CopyrightStyles = theme => ({
+  typography: {
+    color: theme.palette.secondary.contrastText,
   },
 })

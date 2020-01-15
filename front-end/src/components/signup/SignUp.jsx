@@ -11,7 +11,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import useField from "../../hooks/input";
 import { withRouter, Link } from "react-router-dom";
-import {SignUpStyles} from "../AllStyles";
+import { SignUpStyles } from "../AllStyles";
 
 const SignUp = props => {
   const fname = useField("text");
@@ -42,7 +42,7 @@ const SignUp = props => {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h5" className={classes.text}>
           Sign up
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit} noValidate>
@@ -58,6 +58,7 @@ const SignUp = props => {
                 label="First Name"
                 autoFocus
                 {...fname.inputprops()}
+                className={classes.text}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -70,6 +71,7 @@ const SignUp = props => {
                 name="lastName"
                 autoComplete="lname"
                 {...lname.inputprops()}
+                className={classes.text}
               />
             </Grid>
             <Grid item xs={12}>
@@ -82,6 +84,7 @@ const SignUp = props => {
                 name="email"
                 autoComplete="email"
                 {...email.inputprops()}
+                className={classes.text}
               />
             </Grid>
             <Grid item xs={12}>
@@ -95,15 +98,17 @@ const SignUp = props => {
                 id="password"
                 autoComplete="current-password"
                 {...password.inputprops()}
+                className={classes.text}
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
+                className={classes.text}
                 control={
                   <Checkbox
                     value="allowExtraEmails"
                     name="checkBox"
-                    color="primary"
+                    className={classes.checkBox}
                   />
                 }
                 label="I want to receive inspiration, marketing promotions and updates via email."
@@ -114,7 +119,6 @@ const SignUp = props => {
             type="submit"
             fullWidth
             variant="contained"
-            color="primary"
             className={classes.submit}
           >
             Sign Up

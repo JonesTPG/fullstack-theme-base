@@ -4,11 +4,11 @@ export const mainTheme = createMuiTheme({
   palette: {
     primary: {
       main: "#009be5",
-      contrastText: "#ffff",
+      contrastText: "#fff",
     },
     secondary: {
       main: "#15AA30",
-      contrastText: "#ffff",
+      contrastText: "#000",
     },
   },
   typography: {
@@ -36,12 +36,15 @@ export const mainTheme = createMuiTheme({
 export const darkTheme = createMuiTheme({
   palette: {
     primary: {
-      main: "#081C30",
+      main: "#262626",
       contrastText: "#ffff",
     },
     secondary: {
-      main: "#15AA30",
+      main: "#34a7d7",
       contrastText: "#ffff",
+    },
+    background: {
+      default: "#262626",
     },
   },
 })
