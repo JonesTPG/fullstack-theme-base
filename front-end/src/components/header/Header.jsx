@@ -18,35 +18,14 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 
-const lightColor = "rgba(255, 255, 255, 0.7)";
-
-const styles = theme => ({
-  secondaryBar: {
-    zIndex: 0
-  },
-  menuButton: {
-    marginLeft: -theme.spacing(1)
-  },
-  iconButtonAvatar: {
-    padding: 4
-  },
-  link: {
-    textDecoration: "none",
-    color: lightColor,
-    "&:hover": {
-      color: theme.palette.common.white
-    }
-  },
-  button: {
-    borderColor: lightColor
-  }
-});
+import { styles } from "./HeaderStyles";
+import { logOut } from "../../services/authService";
 
 const Header = props => {
   const { classes, onDrawerToggle } = props;
 
-  const handleSubmit = () => {
-    props.history.push("/login");
+  const handleClick = () => {
+    logOut();
   };
 
   return (
@@ -103,13 +82,13 @@ const Header = props => {
             </Grid>
             <Grid item>
               <Button
-                onClick={handleSubmit}
+                onClick={handleClick}
                 className={classes.button}
                 variant="outlined"
                 color="inherit"
                 size="small"
               >
-                Sign-in
+                Sign Out
               </Button>
             </Grid>
             <Grid item>

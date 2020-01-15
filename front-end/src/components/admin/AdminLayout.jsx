@@ -13,6 +13,7 @@ import Copyright from "../Copyright";
 import styles from "./AdminStyles";
 import { drawerWidth } from "./AdminConstants";
 import ItemList from "./itemlist/ItemList";
+import AdminContent from "./AdminContent";
 
 const Admin = props => {
   const { classes } = props;
@@ -41,8 +42,7 @@ const Admin = props => {
       <div className={classes.app}>
         <Header onDrawerToggle={handleDrawerToggle} />
         <main className={classes.main}>
-          <ItemList></ItemList>
-          <UserSearch />
+          <AdminContent></AdminContent>
         </main>
         <footer className={classes.footer}>
           <Copyright />

@@ -2,6 +2,7 @@ const { UserInputError, PubSub } = require("apollo-server");
 const jwt = require("jsonwebtoken");
 
 const User = require("./models/user");
+
 const config = require("./utils/config");
 
 const pubsub = new PubSub();
@@ -18,7 +19,8 @@ const resolvers = {
   Mutation: {
     createUser: async (root, args) => {
       const user = new User({
-        username: args.username
+        username: args.username,
+        roles: ["DEFAULT"]
       });
 
       await user.save().catch(error => {
@@ -29,6 +31,25 @@ const resolvers = {
 
       pubsub.publish("USER_ADDED", { userAdded: user });
       return user;
+    },
+    createAdminUser: async (root, args) => {
+      if (process.env.NODE_ENV === "test") {
+        const adminUser = new User({
+          username: args.username,
+          roles: ["ADMIN"]
+        });
+
+        await adminUser.save().catch(error => {
+          throw new UserInputError(error.message, {
+            invalidArgs: args
+          });
+        });
+
+        pubsub.publish("USER_ADDED", { userAdded: adminUser });
+        return adminUser;
+      } else {
+        throw new Error("Admin user cannot be created in production.");
+      }
     },
     login: async (root, args) => {
       const user = await User.findOne({ username: args.username });
