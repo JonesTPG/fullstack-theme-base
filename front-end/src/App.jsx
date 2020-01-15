@@ -13,7 +13,7 @@ const App = () => {
   return (
     <>
       <Router>
-        <ThemeProvider theme={mainTheme}>
+        <ThemeProvider theme={darkTheme}>
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/signup" render={() => <SignUpPage />} />
           <Route exact path="/" render={() => <HomePage />} />

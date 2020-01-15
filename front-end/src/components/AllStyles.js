@@ -4,6 +4,7 @@ export const SignUpStyles = theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    padding: theme.spacing(2),
   },
   avatar: {
     margin: theme.spacing(1),
@@ -15,13 +16,39 @@ export const SignUpStyles = theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    color: theme.palette.secondary.main,
-  },
-  text: {
-    color: theme.palette.common.black,
+    color: theme.palette.primary.contrastText,
+    backgroundColor: theme.palette.secondary.main,
   },
   checBox: {
     color: theme.palette.secondary.main,
+    outlineColor: theme.palette.secondary.main,
+  },
+})
+
+export const LoginStyles = theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: theme.spacing(2),
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+    color: theme.palette.primary.contrastText,
+    backgroundColor: theme.palette.secondary.main,
+  },
+  checBox: {
+    color: theme.palette.secondary.main,
+    outlineColor: theme.palette.secondary.main,
   },
 })
 

@@ -10,12 +10,14 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
 import useField from "../../hooks/input";
-
+import Copyright from "../Copyright";
 import { withRouter, Link } from "react-router-dom";
 import { LOGIN } from "../../queries/login";
 import { useMutation } from "@apollo/react-hooks";
-import LoginStyles from "./LoginStyles";
+import { LoginStyles } from "../AllStyles";
 
 const Login = props => {
   const email = useField("email");
@@ -58,7 +60,7 @@ const Login = props => {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}>
+      <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -101,7 +103,6 @@ const Login = props => {
           />
           <Button
             data-cy="signIn"
-            color="primary"
             type="submit"
             fullWidth
             variant="contained"
@@ -122,7 +123,10 @@ const Login = props => {
             </Grid>
           </Grid>
         </form>
-      </div>
+      </Paper>
+      <Box pt={4}>
+        <Copyright />
+      </Box>
     </Container>
   );
 };

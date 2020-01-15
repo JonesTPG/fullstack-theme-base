@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
@@ -38,11 +39,11 @@ const SignUp = props => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
+      <Paper className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5" className={classes.text}>
+        <Typography component="h1" variant="h5">
           Sign up
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit} noValidate>
@@ -58,7 +59,6 @@ const SignUp = props => {
                 label="First Name"
                 autoFocus
                 {...fname.inputprops()}
-                className={classes.text}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -71,7 +71,6 @@ const SignUp = props => {
                 name="lastName"
                 autoComplete="lname"
                 {...lname.inputprops()}
-                className={classes.text}
               />
             </Grid>
             <Grid item xs={12}>
@@ -84,7 +83,6 @@ const SignUp = props => {
                 name="email"
                 autoComplete="email"
                 {...email.inputprops()}
-                className={classes.text}
               />
             </Grid>
             <Grid item xs={12}>
@@ -98,12 +96,10 @@ const SignUp = props => {
                 id="password"
                 autoComplete="current-password"
                 {...password.inputprops()}
-                className={classes.text}
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                className={classes.text}
                 control={
                   <Checkbox
                     value="allowExtraEmails"
@@ -131,7 +127,7 @@ const SignUp = props => {
             </Grid>
           </Grid>
         </form>
-      </div>
+      </Paper>
     </Container>
   );
 };
