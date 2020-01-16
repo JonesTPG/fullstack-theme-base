@@ -10,11 +10,11 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
+import Link from "@material-ui/core/Link";
 import useField from "../../hooks/input";
 import Copyright from "../Copyright";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { LOGIN } from "../../queries/login";
 import { useMutation } from "@apollo/react-hooks";
 import { LoginStyles } from "../AllStyles";
@@ -60,7 +60,7 @@ const Login = props => {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <Paper className={classes.paper}>
+      <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -97,7 +97,7 @@ const Login = props => {
           />
           <FormControlLabel
             control={
-              <Checkbox value="remember" name="checkBox" color="primary" />
+              <Checkbox value="remember" name="checkBox" className={classes.checkBox} />
             }
             label="Remember me"
           />
@@ -112,18 +112,22 @@ const Login = props => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link to="#">
-                <p variant="body2">Forgot password?</p>
-              </Link>
+              <Typography className={classes.typography}>
+                <Link onClick={() => props.history.push("/voivoi")} color="inherit">
+                  <p variant="body2">Forgot password?</p>
+                </Link>
+              </Typography>
             </Grid>
             <Grid item>
-              <Link to="/signup">
-                <p>Don't have an account? Sign Up</p>
-              </Link>
+              <Typography className={classes.typography}>
+                <Link onClick={() => props.history.push("/signup")} color="inherit">
+                  <p>Don't have an account? Sign Up</p>
+                </Link>
+              </Typography>
             </Grid>
           </Grid>
         </form>
-      </Paper>
+      </div>
       <Box pt={4}>
         <Copyright />
       </Box>

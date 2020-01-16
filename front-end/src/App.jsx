@@ -14,6 +14,7 @@ const App = () => {
     <>
       <Router>
         <ThemeProvider theme={mainTheme}>
+          <Route exact path="/voivoi" render={() => <h1>Voi Voi</h1>} />
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/signup" render={() => <SignUpPage />} />
           <Route exact path="/" render={() => <HomePage />} />

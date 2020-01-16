@@ -5,13 +5,13 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import Link from "@material-ui/core/Link";
 import useField from "../../hooks/input";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { SignUpStyles } from "../AllStyles";
 
 const SignUp = props => {
@@ -39,7 +39,7 @@ const SignUp = props => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Paper className={classes.paper} elevation={0}>
+      <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
@@ -121,13 +121,15 @@ const SignUp = props => {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link to="/login" variant="body2">
-                Already have an account? Sign in
-              </Link>
+              <Typography className={classes.typography}>
+                <Link onClick={() => props.history.push("/login")} variant="body2" color="inherit">
+                  Already have an account? Sign in
+                </Link>
+              </Typography>
             </Grid>
           </Grid>
         </form>
-      </Paper>
+      </div>
     </Container>
   );
 };
