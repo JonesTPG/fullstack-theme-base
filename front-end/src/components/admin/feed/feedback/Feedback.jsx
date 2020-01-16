@@ -37,17 +37,13 @@ const Feedback = ({ data }) => {
           Feedback from the site
         </Typography>
 
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
         <Typography variant="body2" component="p">
-          well meaning and kindly.
+          {data.user.username} gave the site a grade of {data.type}.
           <br />
-          {'"a benevolent smile"'}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small">Remove feedback</Button>
       </CardActions>
     </Card>
   );

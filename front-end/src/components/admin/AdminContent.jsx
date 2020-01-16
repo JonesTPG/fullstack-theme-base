@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import UserSearch from "./usersearch/UserSearch";
+import React from "react";
 import Feed from "./feed/Feed";
 import { useRoles } from "../../hooks/auth";
+import { Route } from "react-router-dom";
 
 const AdminContent = () => {
   let roles = useRoles();
@@ -10,8 +10,7 @@ const AdminContent = () => {
   } else {
     return (
       <>
-        <Feed></Feed>
-        <UserSearch></UserSearch>
+        <Route path="/admin/feedback" render={() => <Feed />} />
       </>
     );
   }

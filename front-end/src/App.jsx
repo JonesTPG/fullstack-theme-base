@@ -14,12 +14,12 @@ const App = () => {
     <>
       <Router>
         <ThemeProvider theme={mainTheme}>
-          <Route exact path="/voivoi" render={() => <h1>Voi Voi</h1>} />
-          <Route exact path="/login" render={() => <Login />} />
-          <Route exact path="/signup" render={() => <SignUpPage />} />
+          <Route path="/voivoi" render={() => <h1>Voi Voi</h1>} />
+          <Route path="/login" render={() => <Login />} />
+          <Route path="/signup" render={() => <SignUpPage />} />
           <Route exact path="/" render={() => <HomePage />} />
-          <Route exact path="/admin" render={() => <AdminLayout />} />
-          <Route exact path="/counter" render={() => <Counter />} />
+          <Route path="/admin" render={() => <AdminLayout />} />
+          <Route path="/counter" render={() => <Counter />} />
         </ThemeProvider>
       </Router>
     </>

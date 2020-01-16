@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -13,29 +12,7 @@ import { withStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import RefreshIcon from "@material-ui/icons/Refresh";
 
-const styles = theme => ({
-  paper: {
-    maxWidth: 936,
-    margin: "auto",
-    overflow: "hidden",
-  },
-  searchBar: {
-    borderBottom: "1px solid rgba(0, 0, 0, 0.12)"
-  },
-  searchInput: {
-    fontSize: theme.typography.fontSize
-  },
-  block: {
-    display: "block"
-  },
-  addUser: {
-    marginRight: theme.spacing(1)
-  },
-  contentWrapper: {
-    margin: "40px 16px"
-  }
-});
-
+import { styles } from "./UserSearchStyles";
 const Content = props => {
   const { classes } = props;
 
@@ -55,7 +32,7 @@ const Content = props => {
             <Grid item xs>
               <TextField
                 fullWidth
-                placeholder="Search by email address, phone number, or user UID"
+                placeholder="Search..."
                 InputProps={{
                   disableUnderline: true,
                   className: classes.searchInput
@@ -79,11 +56,6 @@ const Content = props => {
           </Grid>
         </Toolbar>
       </AppBar>
-      <div className={classes.contentWrapper}>
-        <Typography color="textSecondary" align="center">
-          No users for this project yet
-        </Typography>
-      </div>
     </Paper>
   );
 };
