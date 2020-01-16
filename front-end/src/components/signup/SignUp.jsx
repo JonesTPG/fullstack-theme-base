@@ -39,7 +39,7 @@ const SignUp = props => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} elevation={0}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>

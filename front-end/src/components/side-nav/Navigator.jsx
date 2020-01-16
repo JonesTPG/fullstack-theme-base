@@ -17,8 +17,8 @@ const Navigator = props => {
   const { classes, ...other } = props;
 
   return (
-    <Drawer variant="permanent" {...other}>
-      <List disablePadding>
+    <Drawer variant="permanent" className={classes.drawer} {...other}>
+      <List disablePadding className={classes.list}>
         <ListItem
           className={clsx(classes.firebase, classes.item, classes.itemCategory)}
         >

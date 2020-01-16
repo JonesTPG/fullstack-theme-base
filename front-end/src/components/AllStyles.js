@@ -35,7 +35,7 @@ export const LoginStyles = theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -44,11 +44,10 @@ export const LoginStyles = theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
     color: theme.palette.primary.contrastText,
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   checBox: {
-    color: theme.palette.secondary.main,
-    outlineColor: theme.palette.secondary.main,
+    color: theme.palette.primary.main,
   },
 })
 
@@ -79,6 +78,6 @@ export const MainStyles = theme => ({
 
 export const CopyrightStyles = theme => ({
   typography: {
-    color: theme.palette.secondary.contrastText,
+    color: theme.palette.background.contrastText,
   },
 })

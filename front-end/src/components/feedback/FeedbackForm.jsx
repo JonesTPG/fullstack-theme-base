@@ -24,20 +24,20 @@ export default function Feedback() {
 
   return (
     <>
-        <Typography component="h1" variant="h6" color="inherit">
+        <Typography component="h1" variant="h6" color="primary">
             Please let us know how you feel
         </Typography>
         <Toolbar>
-            <IconButton onClick={handleSadClick} color="inherit">
+            <IconButton onClick={handleSadClick}>
                 <SentimentDissatisfiedRounded />
             </IconButton>
-            <IconButton onClick={handleOkClick} color="inherit">
+            <IconButton onClick={handleOkClick}>
                 <SentimentDissatisfied />
             </IconButton>
-            <IconButton onClick={handleOkClick} color="inherit">
+            <IconButton onClick={handleOkClick}>
                 <SentimentSatisfied />
             </IconButton>
-            <IconButton onClick={handleGladClick} color="inherit">
+            <IconButton onClick={handleGladClick}>
                 <SentimentSatisfiedRounded />
             </IconButton>
         </Toolbar>

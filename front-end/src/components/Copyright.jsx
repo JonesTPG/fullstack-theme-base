@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
-import {CopyrightStyles} from "./AllStyles";
+import { CopyrightStyles } from "./AllStyles";
 import { withStyles } from "@material-ui/core/styles";
 
 const Copyright = ({classes}) => {

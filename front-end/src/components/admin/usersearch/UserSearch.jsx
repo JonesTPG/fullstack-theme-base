@@ -17,7 +17,7 @@ const styles = theme => ({
   paper: {
     maxWidth: 936,
     margin: "auto",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   searchBar: {
     borderBottom: "1px solid rgba(0, 0, 0, 0.12)"
@@ -40,7 +40,7 @@ const Content = props => {
   const { classes } = props;
 
   return (
-    <Paper className={classes.paper}>
+    <Paper className={classes.paper} elevation={0}>
       <AppBar
         className={classes.searchBar}
         position="static"
