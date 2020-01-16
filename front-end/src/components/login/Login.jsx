@@ -97,7 +97,11 @@ const Login = props => {
           />
           <FormControlLabel
             control={
-              <Checkbox value="remember" name="checkBox" className={classes.checkBox} />
+              <Checkbox
+                value="remember"
+                name="checkBox"
+                className={classes.checkBox}
+              />
             }
             label="Remember me"
           />
@@ -113,15 +117,21 @@ const Login = props => {
           <Grid container>
             <Grid item xs>
               <Typography className={classes.typography}>
-                <Link onClick={() => props.history.push("/voivoi")} color="inherit">
-                  <p variant="body2">Forgot password?</p>
+                <Link
+                  onClick={() => props.history.push("/voivoi")}
+                  color="inherit"
+                >
+                  Forgot password?
                 </Link>
               </Typography>
             </Grid>
             <Grid item>
               <Typography className={classes.typography}>
-                <Link onClick={() => props.history.push("/signup")} color="inherit">
-                  <p>Don't have an account? Sign Up</p>
+                <Link
+                  onClick={() => props.history.push("/signup")}
+                  color="inherit"
+                >
+                  Don't have an account? Sign Up
                 </Link>
               </Typography>
             </Grid>
