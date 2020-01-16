@@ -1,10 +1,23 @@
 import { gql } from "apollo-boost";
 
-//TODO: get all feedback items
-// export const GET_ALL = gql`
-//   {
-//     feedback
-//       {
+export const GET_ALL = gql`
+  query {
+    feedback {
+      type
+      user {
+        username
+      }
+    }
+  }
+`;
 
-//       }
-//   }import { gql } from "apollo-boost";
+export const FEEDBACK_ADDED = gql`
+  subscription {
+    feedbackAdded {
+      type
+      user {
+        username
+      }
+    }
+  }
+`;

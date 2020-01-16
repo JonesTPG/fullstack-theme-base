@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import UserSearch from "./usersearch/UserSearch";
-import ItemList from "./itemlist/ItemList";
+import Feed from "./feed/Feed";
 import { useRoles } from "../../hooks/auth";
 
 const AdminContent = () => {
@@ -10,7 +10,7 @@ const AdminContent = () => {
   } else {
     return (
       <>
-        <ItemList></ItemList>
+        <Feed></Feed>
         <UserSearch></UserSearch>
       </>
     );

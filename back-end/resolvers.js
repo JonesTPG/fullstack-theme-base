@@ -17,7 +17,7 @@ const resolvers = {
       return context.currentUser;
     },
     feedback: () => {
-      return Feedback.find({});
+      return Feedback.find({}).populate("user");
     }
   },
   Mutation: {
@@ -55,10 +55,10 @@ const resolvers = {
         throw new Error("Admin user cannot be created in production.");
       }
     },
-    createFeedback: async args => {
-      const feedback = new Feedback({
+    createFeedback: async (root, args, context) => {
+      let feedback = new Feedback({
         type: args.type,
-        user: args.userId
+        user: context.currentUser._id
       });
 
       await feedback.save().catch(error => {
@@ -67,7 +67,11 @@ const resolvers = {
         });
       });
 
-      pubsub.publish("FEEDBACK_ADDED", { feedbackAdded: feedback });
+      await Feedback.populate(feedback, "user");
+
+      pubsub.publish("FEEDBACK_ADDED", {
+        feedbackAdded: feedback
+      });
       return feedback;
     },
     login: async (root, args) => {
