@@ -12,20 +12,28 @@ const typeDefs = gql`
     roles: [String]!
   }
 
+  type Feedback {
+    type: Int!
+    user: User!
+  }
+
   type Query {
     me: User
     hello: String
+    feedback: [Feedback]
   }
 
   type Mutation {
     createUser(username: String!): User
     createAdminUser(username: String!): User
+    createFeedback(type: Int!, user: ID!): Feedback
     deleteUsers: Boolean!
     login(username: String!, password: String!): UserData
   }
 
   type Subscription {
     userAdded: User!
+    feedbackAdded: Feedback!
   }
 `;
 

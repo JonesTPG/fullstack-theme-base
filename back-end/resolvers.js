@@ -2,6 +2,7 @@ const { UserInputError, PubSub } = require("apollo-server");
 const jwt = require("jsonwebtoken");
 
 const User = require("./models/user");
+const Feedback = require("./models/feedback");
 
 const config = require("./utils/config");
 
@@ -14,6 +15,9 @@ const resolvers = {
     },
     me: (root, args, context) => {
       return context.currentUser;
+    },
+    feedback: () => {
+      return Feedback.find({});
     }
   },
   Mutation: {
@@ -51,6 +55,21 @@ const resolvers = {
         throw new Error("Admin user cannot be created in production.");
       }
     },
+    createFeedback: async args => {
+      const feedback = new Feedback({
+        type: args.type,
+        user: args.userId
+      });
+
+      await feedback.save().catch(error => {
+        throw new UserInputError(error.message, {
+          invalidArgs: args
+        });
+      });
+
+      pubsub.publish("FEEDBACK_ADDED", { feedbackAdded: feedback });
+      return feedback;
+    },
     login: async (root, args) => {
       const user = await User.findOne({ username: args.username });
       if (!user || args.password !== "secret") {
@@ -79,6 +98,9 @@ const resolvers = {
   Subscription: {
     userAdded: {
       subscribe: () => pubsub.asyncIterator(["USER_ADDED"])
+    },
+    feedbackAdded: {
+      subscribe: () => pubsub.asyncIterator(["FEEDBACK_ADDED"])
     }
   }
 };
