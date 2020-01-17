@@ -1,4 +1,4 @@
-const lightColor = "rgba(255, 255, 255, 0.7)";
+const lightColor = 'rgba(255, 255, 255, 0.7)';
 
 export const styles = theme => ({
   secondaryBar: {
@@ -11,9 +11,9 @@ export const styles = theme => ({
     padding: 4
   },
   link: {
-    textDecoration: "none",
+    textDecoration: 'none',
     color: lightColor,
-    "&:hover": {
+    '&:hover': {
       color: theme.palette.common.white
     }
   },

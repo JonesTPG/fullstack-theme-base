@@ -1,32 +1,32 @@
-import React from "react";
+import React from 'react';
 
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Box from "@material-ui/core/Box";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Box from '@material-ui/core/Box';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
-import MenuRounded from "@material-ui/icons/MenuRounded";
-import HomeRounded from "@material-ui/icons/HomeRounded";
-import AccountCircleRounded from "@material-ui/icons/AccountCircleRounded";
-import AddCircleOutlineRounded from "@material-ui/icons/AddCircleOutlineRounded";
+import MenuRounded from '@material-ui/icons/MenuRounded';
+import HomeRounded from '@material-ui/icons/HomeRounded';
+import AccountCircleRounded from '@material-ui/icons/AccountCircleRounded';
+import AddCircleOutlineRounded from '@material-ui/icons/AddCircleOutlineRounded';
 
-import Copyright from "../Copyright";
-import { withRouter } from "react-router-dom";
-import { MainStyles } from "../AllStyles";
-import { withStyles } from "@material-ui/core/styles";
+import Copyright from '../Copyright';
+import { withRouter } from 'react-router-dom';
+import { MainStyles } from '../AllStyles';
+import { withStyles } from '@material-ui/core/styles';
 
 const Main = props => {
-  const { classes } = props
+  const { classes } = props;
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" >
-        <Toolbar >
+      <AppBar position="absolute">
+        <Toolbar>
           <IconButton
             edge="start"
             color="inherit"
@@ -34,7 +34,7 @@ const Main = props => {
           >
             <MenuRounded />
           </IconButton>
-          <IconButton onClick={() => props.history.push("/")} color="inherit">
+          <IconButton onClick={() => props.history.push('/')} color="inherit">
             <HomeRounded />
           </IconButton>
           <Typography
@@ -46,12 +46,18 @@ const Main = props => {
           >
             {props.pageName}
           </Typography>
-          <IconButton onClick={() => props.history.push("/login")} color="inherit">
+          <IconButton
+            onClick={() => props.history.push('/login')}
+            color="inherit"
+          >
             <Badge badgeContent={10} color="secondary">
               <AccountCircleRounded />
             </Badge>
           </IconButton>
-          <IconButton onClick={() => props.history.push("/counter")} color="inherit">
+          <IconButton
+            onClick={() => props.history.push('/counter')}
+            color="inherit"
+          >
             <AddCircleOutlineRounded />
           </IconButton>
         </Toolbar>
@@ -68,7 +74,7 @@ const Main = props => {
       </main>
     </div>
   );
-}
+};
 
 const styledMain = withStyles(MainStyles)(Main);
-export default withRouter(styledMain)
+export default withRouter(styledMain);

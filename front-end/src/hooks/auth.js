@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { useQuery } from "@apollo/react-hooks";
-import { ME } from "../queries/login";
+import { useQuery } from '@apollo/react-hooks';
+import { ME } from '../queries/login';
 
 export const useRoles = () => {
   let [roles, setRoles] = useState(null);
@@ -20,6 +20,6 @@ export const useRoles = () => {
 };
 
 export const useToken = () => {
-  const token = window.localStorage.getItem("theme-base-token");
+  const token = window.localStorage.getItem('theme-base-token');
   return token;
 };

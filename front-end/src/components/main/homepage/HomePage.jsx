@@ -1,7 +1,7 @@
-import React from "react";
-import Feedback from "../../feedback/Feedback";
-import Main from "../Main";
-import { useToken } from "../../../hooks/auth";
+import React from 'react';
+import Feedback from '../../feedback/Feedback';
+import Main from '../Main';
+import { useToken } from '../../../hooks/auth';
 
 const HomePage = () => {
   const token = useToken();

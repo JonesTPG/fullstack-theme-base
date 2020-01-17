@@ -1,18 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
-import clsx from "clsx";
-import { withStyles } from "@material-ui/core/styles";
-import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import HomeIcon from "@material-ui/icons/Home";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import { withStyles } from '@material-ui/core/styles';
+import Divider from '@material-ui/core/Divider';
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import HomeIcon from '@material-ui/icons/Home';
+import { Link } from 'react-router-dom';
 
-import { styles } from "./NavigatorStyles";
-import { categories } from "./NavigatorConstants";
+import { styles } from './NavigatorStyles';
+import { categories } from './NavigatorConstants';
 
 const Navigator = props => {
   const { classes, ...other } = props;
@@ -51,7 +51,7 @@ const Navigator = props => {
               </ListItemText>
             </ListItem>
             {children.map(({ id: childId, icon, active, link }) => (
-              <Link to={"/admin" + link} key={childId}>
+              <Link to={'/admin' + link} key={childId}>
                 <ListItem
                   button
                   className={clsx(
