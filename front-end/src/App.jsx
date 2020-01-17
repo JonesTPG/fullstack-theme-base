@@ -1,13 +1,13 @@
-import React from "react";
-import AdminLayout from "./components/admin/AdminLayout";
-import Login from "./components/login/Login";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import SignUpPage from "./components/signup/SignUpPage";
-import { ThemeProvider } from "@material-ui/core/styles";
-import HomePage from "./components/main/homepage/HomePage";
-import Counter from "./components/counter/Counter";
+import React from 'react';
+import AdminLayout from './components/admin/AdminLayout';
+import Login from './components/login/Login';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import SignUpPage from './components/signup/SignUpPage';
+import { ThemeProvider } from '@material-ui/core/styles';
+import HomePage from './components/main/homepage/HomePage';
+import Counter from './components/counter/Counter';
 
-import { mainTheme, darkTheme } from "./AppStyles";
+import { mainTheme, darkTheme } from './AppStyles';
 
 const App = () => {
   return (
