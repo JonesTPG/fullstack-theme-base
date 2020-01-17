@@ -1,30 +1,30 @@
-const { UserInputError, PubSub } = require("apollo-server");
-const jwt = require("jsonwebtoken");
+const { UserInputError, PubSub } = require('apollo-server');
+const jwt = require('jsonwebtoken');
 
-const User = require("./models/user");
-const Feedback = require("./models/feedback");
+const User = require('./models/user');
+const Feedback = require('./models/feedback');
 
-const config = require("./utils/config");
+const config = require('./utils/config');
 
 const pubsub = new PubSub();
 
 const resolvers = {
   Query: {
     hello: () => {
-      return "world";
+      return 'world';
     },
     me: (root, args, context) => {
       return context.currentUser;
     },
     feedback: () => {
-      return Feedback.find({}).populate("user");
+      return Feedback.find({}).populate('user');
     }
   },
   Mutation: {
     createUser: async (root, args) => {
       const user = new User({
         username: args.username,
-        roles: ["DEFAULT"]
+        roles: ['DEFAULT']
       });
 
       await user.save().catch(error => {
@@ -33,14 +33,14 @@ const resolvers = {
         });
       });
 
-      pubsub.publish("USER_ADDED", { userAdded: user });
+      pubsub.publish('USER_ADDED', { userAdded: user });
       return user;
     },
     createAdminUser: async (root, args) => {
-      if (process.env.NODE_ENV === "test") {
+      if (process.env.NODE_ENV === 'test') {
         const adminUser = new User({
           username: args.username,
-          roles: ["ADMIN"]
+          roles: ['ADMIN']
         });
 
         await adminUser.save().catch(error => {
@@ -49,10 +49,10 @@ const resolvers = {
           });
         });
 
-        pubsub.publish("USER_ADDED", { userAdded: adminUser });
+        pubsub.publish('USER_ADDED', { userAdded: adminUser });
         return adminUser;
       } else {
-        throw new Error("Admin user cannot be created in production.");
+        throw new Error('Admin user cannot be created in production.');
       }
     },
     createFeedback: async (root, args, context) => {
@@ -67,17 +67,17 @@ const resolvers = {
         });
       });
 
-      await Feedback.populate(feedback, "user");
+      await Feedback.populate(feedback, 'user');
 
-      pubsub.publish("FEEDBACK_ADDED", {
+      pubsub.publish('FEEDBACK_ADDED', {
         feedbackAdded: feedback
       });
       return feedback;
     },
     login: async (root, args) => {
       const user = await User.findOne({ username: args.username });
-      if (!user || args.password !== "secret") {
-        throw new UserInputError("wrong credentials");
+      if (!user || args.password !== 'secret') {
+        throw new UserInputError('wrong credentials');
       }
 
       const tokenData = {
@@ -90,21 +90,20 @@ const resolvers = {
       };
     },
     deleteUsers: async () => {
-      if (process.env.NODE_ENV === "test") {
+      if (process.env.NODE_ENV === 'test') {
         await User.deleteMany({});
         return true;
       } else {
-        throw new Error("user deleting prohibited in production");
-        return false;
+        throw new Error('user deleting prohibited in production');
       }
     }
   },
   Subscription: {
     userAdded: {
-      subscribe: () => pubsub.asyncIterator(["USER_ADDED"])
+      subscribe: () => pubsub.asyncIterator(['USER_ADDED'])
     },
     feedbackAdded: {
-      subscribe: () => pubsub.asyncIterator(["FEEDBACK_ADDED"])
+      subscribe: () => pubsub.asyncIterator(['FEEDBACK_ADDED'])
     }
   }
 };
