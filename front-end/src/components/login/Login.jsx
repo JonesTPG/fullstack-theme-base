@@ -38,7 +38,7 @@ const Login = props => {
       setTimeout(() => {
         setErrorText(null);
       }, 4000);
-    },
+    }
   });
 
   const { classes } = props;
@@ -52,8 +52,8 @@ const Login = props => {
     await login({
       variables: {
         username: email.value,
-        password: password.value,
-      },
+        password: password.value
+      }
     });
   };
 

@@ -1,15 +1,15 @@
-const { ApolloServer } = require("apollo-server");
-const mongoose = require("mongoose");
+const { ApolloServer } = require('apollo-server');
+const mongoose = require('mongoose');
 
-const typeDefs = require("./typeDefs");
-const resolvers = require("./resolvers");
-const context = require("./context");
+const typeDefs = require('./typeDefs');
+const resolvers = require('./resolvers');
+const context = require('./context');
 
-const config = require("./utils/config");
+const config = require('./utils/config');
 
 let mongoUrl = config.MONGODB_URI;
 
-if (process.env.NODE_ENV === "test") {
+if (process.env.NODE_ENV === 'test') {
   mongoUrl = config.MONGODB_TEST_URI;
 }
 

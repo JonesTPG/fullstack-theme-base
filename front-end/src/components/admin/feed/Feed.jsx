@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { useQuery, useSubscription } from "@apollo/react-hooks";
-import { GET_ALL, FEEDBACK_ADDED } from "../../../queries/feedback";
-import Feedback from "./feedback/Feedback";
-import UserSearch from "../usersearch/UserSearch";
+import { useQuery, useSubscription } from '@apollo/react-hooks';
+import { GET_ALL, FEEDBACK_ADDED } from '../../../queries/feedback';
+import Feedback from './feedback/Feedback';
+import UserSearch from '../usersearch/UserSearch';
 
 const Feed = () => {
   const [feedbackList, setFeedbackList] = useState([]);
