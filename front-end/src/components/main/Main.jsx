@@ -64,7 +64,7 @@ const Main = props => {
           <IconButton onClick={handleThemeChange} color="inherit">
             <ColorLensIcon />
           </IconButton>
-          <IconButton onClick={logOut} color="inherit">
+          <IconButton data-cy="logout" onClick={logOut} color="inherit">
             <ExitToAppIcon />
           </IconButton>
           <IconButton

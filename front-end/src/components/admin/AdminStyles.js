@@ -3,7 +3,7 @@ import { drawerWidth } from './AdminConstants';
 const styles = theme => ({
   root: {
     display: 'flex',
-    minHeight: '100vh'
+    minHeight: '100%'
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
