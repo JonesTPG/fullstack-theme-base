@@ -55,7 +55,7 @@ const Feedback = props => {
             placeholder="Write feedback..."
             multiline
             variant="outlined"
-            fullWidth="true"
+            fullWidth={true}
           />
         </Grid>
       </Grid>

@@ -25,17 +25,17 @@ import { logOut } from '../../services/authService';
 const Main = props => {
   const { classes } = props;
 
-  const handleThemeChange = (event) => {
-    event.preventDefault()
+  const handleThemeChange = event => {
+    event.preventDefault();
     console.log('theme page');
   };
 
-  const handleLogOut = (event) => {
-    event.preventDefault()
+  const handleLogOut = event => {
+    event.preventDefault();
     console.log('log out');
-    logOut()
-    props.history.push("/login")
-  }
+    logOut();
+    props.history.push('/login');
+  };
 
   return (
     <div className={classes.root}>
