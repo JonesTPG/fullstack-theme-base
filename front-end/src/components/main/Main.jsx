@@ -15,7 +15,6 @@ import HomeRounded from '@material-ui/icons/HomeRounded';
 import AccountCircleRounded from '@material-ui/icons/AccountCircleRounded';
 import AddCircleOutlineRounded from '@material-ui/icons/AddCircleOutlineRounded';
 
-import Copyright from '../Copyright';
 import { withRouter } from 'react-router-dom';
 import { MainStyles } from '../AllStyles';
 import { withStyles } from '@material-ui/core/styles';
@@ -67,9 +66,6 @@ const Main = props => {
           <Grid container direction="row" justify="center" alignItems="center">
             {props.children}
           </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
         </Container>
       </main>
     </div>

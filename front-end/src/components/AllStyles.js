@@ -111,3 +111,20 @@ export const CopyrightStyles = theme => ({
     color: theme.palette.background.contrastText
   }
 });
+
+export const FooterStyles = theme => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100%'
+  },
+
+  footer: {
+    padding: theme.spacing(6),
+    marginTop: 'auto',
+    backgroundColor:
+      theme.palette.type === 'dark'
+        ? theme.palette.grey[800]
+        : theme.palette.grey[200]
+  }
+});
