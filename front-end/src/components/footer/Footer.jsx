@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
     bottom: 0,
     width: "100%",
     alignItems: "center",
-    justifyContent: 'center',
+    justify: 'center',
     backgroundColor:
       theme.palette.type === 'dark'
         ? theme.palette.grey[800]
@@ -49,7 +49,7 @@ export default function StickyFooter() {
     <div className={classes.root}>
       <CssBaseline />
       <footer className={classes.footer}>
-        <Container maxWidth="sm">
+        <Container maxWidth="xs">
           <Typography variant="body1">
             My sticky footer can be found here.
           </Typography>
