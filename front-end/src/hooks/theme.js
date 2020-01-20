@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { ME } from '../queries/login';
 
 export const useTheme = () => {
-  let [theme, setTheme] = useState(null);
+  let [theme, setTheme] = useState(mainTheme);
 
   useQuery(ME, {
     onCompleted(data) {

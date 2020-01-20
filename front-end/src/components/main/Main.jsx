@@ -25,8 +25,16 @@ import { logOut } from '../../services/authService';
 const Main = props => {
   const { classes } = props;
 
-  const handleThemeChange = () => {
+  const handleThemeChange = event => {
+    event.preventDefault();
     console.log('theme page');
+  };
+
+  const handleLogOut = event => {
+    event.preventDefault();
+    console.log('log out');
+    logOut();
+    props.history.push('/login');
   };
 
   return (
@@ -65,6 +73,7 @@ const Main = props => {
             <ColorLensIcon />
           </IconButton>
           <IconButton data-cy="logout" onClick={logOut} color="inherit">
+
             <ExitToAppIcon />
           </IconButton>
           <IconButton
