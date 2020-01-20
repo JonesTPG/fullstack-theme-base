@@ -44,7 +44,7 @@ const client = new ApolloClient({
   cache: cache,
   clientState: {
     defaults: {
-      theme: 'mainTheme',
+      darkTheme: false,
       feedback: {
         feedbackList: [],
         feedbackAmount: 0,

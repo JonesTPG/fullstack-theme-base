@@ -101,7 +101,7 @@ const resolvers = {
       const user = await User.findById(context.currentUser._id);
       user.darkTheme = !user.darkTheme;
       await user.save();
-      return true;
+      return user.darkTheme;
     }
   },
   Subscription: {

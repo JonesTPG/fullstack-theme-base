@@ -1,11 +1,22 @@
 import { useState } from 'react';
 import { mainTheme, darkTheme } from '../AppStyles';
 
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { ME } from '../queries/login';
+import { CHANGE_THEME } from '../queries/theme';
 
 export const useTheme = () => {
   let [theme, setTheme] = useState(null);
+
+  const [changeTheme] = useMutation(CHANGE_THEME, {
+    onCompleted({ data }) {
+      console.log(data);
+    },
+    onError() {
+      console.log('error');
+    },
+    refetchQueries: [ME]
+  });
 
   useQuery(ME, {
     onCompleted(data) {
@@ -24,5 +35,5 @@ export const useTheme = () => {
   const setDarkTheme = () => {
     setTheme(darkTheme);
   };
-  return { theme, setMainTheme, setDarkTheme };
+  return { theme, setMainTheme, setDarkTheme, changeTheme };
 };
