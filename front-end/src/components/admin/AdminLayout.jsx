@@ -4,8 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
 import Navigator from '../side-nav/Navigator';
-import Header from './header/Header';
-import Copyright from '../Copyright';
+import Header from '../header/Header';
 import styles from './AdminStyles';
 import { drawerWidth } from './AdminConstants';
 import AdminContent from './AdminContent';
@@ -39,9 +38,6 @@ const Admin = props => {
         <main className={classes.main}>
           <AdminContent></AdminContent>
         </main>
-        <footer className={classes.footer}>
-          <Copyright />
-        </footer>
       </div>
     </div>
   );

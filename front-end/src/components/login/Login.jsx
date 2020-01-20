@@ -13,7 +13,6 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import useField from '../../hooks/input';
-import Copyright from '../Copyright';
 import { withRouter } from 'react-router-dom';
 import { LOGIN } from '../../queries/login';
 import { useMutation } from '@apollo/react-hooks';
@@ -138,9 +137,6 @@ const Login = props => {
           </Grid>
         </form>
       </div>
-      <Box pt={4}>
-        <Copyright />
-      </Box>
     </Container>
   );
 };

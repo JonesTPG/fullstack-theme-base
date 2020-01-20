@@ -6,6 +6,7 @@ import SignUpPage from './components/signup/SignUpPage';
 import { ThemeProvider } from '@material-ui/core/styles';
 import HomePage from './components/main/homepage/HomePage';
 import Counter from './components/counter/Counter';
+import Footer from './components/footer/Footer';
 
 import { useTheme } from './hooks/theme';
 
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/admin" render={() => <AdminLayout />} />
           <Route path="/counter" render={() => <Counter />} />
         </ThemeProvider>
+        <Footer />
       </Router>
     </>
   );
