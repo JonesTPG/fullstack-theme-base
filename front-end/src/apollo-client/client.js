@@ -41,17 +41,16 @@ const cache = new InMemoryCache({});
 
 const client = new ApolloClient({
   link,
-  cache: cache,
-  clientState: {
-    defaults: {
-      darkTheme: false,
-      feedback: {
-        feedbackList: [],
-        feedbackAmount: 0,
-        __typename: 'Feedback'
-      }
-    }
-  }
+  cache
 });
+
+const data = {
+  feedbackList: [],
+  darkTheme: false
+};
+
+cache.writeData({ data });
+
+client.onResetStore(() => cache.writeData({ data }));
 
 export default client;
