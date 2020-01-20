@@ -27,8 +27,11 @@ const Feedback = props => {
 
   return (
     <Container component="main" maxWidth="xs" className={classes.paper}>
-      <h2>Please let us know how you feel</h2>
       <Grid container spacing={2} justify="center">
+        <Grid item>
+          <h2>Please let us know how you feel</h2>
+        </Grid>
+        <Divider variant="middle"></Divider>
         <Grid item>
           <IconButton className={classes.iconbutton} onClick={handleSadClick}>
             <SentimentDissatisfiedRounded />
@@ -44,17 +47,18 @@ const Feedback = props => {
             <SentimentSatisfiedRounded />
           </IconButton>
         </Grid>
+        <Divider variant="middle"></Divider>
+        <Grid item>
+          <TextField
+            id="filled-textarea"
+            label="Feedback"
+            placeholder="Write feedback..."
+            multiline
+            variant="outlined"
+            fullWidth="true"
+          />
+        </Grid>
       </Grid>
-
-      <Divider variant="middle"></Divider>
-
-      <TextField
-        id="filled-textarea"
-        label="Feedback"
-        placeholder="Write feedback..."
-        multiline
-        variant="filled"
-      />
     </Container>
   );
 };
