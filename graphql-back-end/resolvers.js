@@ -1,5 +1,6 @@
 const { UserInputError, PubSub } = require('apollo-server');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 const User = require('./models/user');
 const Feedback = require('./models/feedback');
@@ -22,9 +23,19 @@ const resolvers = {
   },
   Mutation: {
     createUser: async (root, args) => {
+      let password = args.password;
+      if (args.password == undefined) {
+        password = 'secret';
+      }
+
+      const saltRounds = 10;
+      const passwordHash = await bcrypt.hash(password, saltRounds);
       const user = new User({
         username: args.username,
-        roles: ['DEFAULT']
+        roles: ['DEFAULT'],
+        passwordHash: passwordHash,
+        firstName: args.firstName,
+        lastName: args.lastName
       });
 
       await user.save().catch(error => {
@@ -76,7 +87,13 @@ const resolvers = {
     },
     login: async (root, args) => {
       const user = await User.findOne({ username: args.username });
-      if (!user || args.password !== 'secret') {
+
+      const passwordCorrect =
+        user === null
+          ? false
+          : await bcrypt.compare(args.password, user.passwordHash);
+
+      if (!(user && passwordCorrect)) {
         throw new UserInputError('wrong credentials');
       }
 

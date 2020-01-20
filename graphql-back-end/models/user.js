@@ -15,6 +15,17 @@ const schema = new mongoose.Schema({
   darkTheme: {
     type: Boolean,
     default: false
+  },
+  firstName: {
+    type: String,
+    minlength: 3
+  },
+  lastName: {
+    type: String,
+    minlength: 3
+  },
+  passwordHash: {
+    type: String
   }
 });
 
