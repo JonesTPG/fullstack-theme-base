@@ -10,9 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
+
 import useField from '../../hooks/input';
 import { withRouter } from 'react-router-dom';
+import { useMutation } from '@apollo/react-hooks';
 import { SignUpStyles } from '../AllStyles';
+import { SIGNUP } from '../../queries/signup';
 
 const SignUp = props => {
   const fname = useField('text');
@@ -21,16 +24,35 @@ const SignUp = props => {
   const password = useField('password');
   const { classes } = props;
 
-  const handleSubmit = event => {
+  const [signup] = useMutation(SIGNUP, {
+    onCompleted() {
+      props.history.push('/login');
+    },
+    onError(error) {
+      console.log(error);
+    }
+  });
+
+  const handleSubmit = async event => {
     event.preventDefault();
-    const userToRegister = {
-      firstName: fname.value,
-      lastName: lname.value,
-      email: email.value,
-      password: password.value,
-      checked: event.target.checkBox.checked
-    };
-    console.log(userToRegister);
+
+    if (
+      email.value === '' ||
+      fname.value === '' ||
+      lname.value === '' ||
+      password.value === ''
+    ) {
+      return;
+    }
+
+    await signup({
+      variables: {
+        username: email.value,
+        password: password.value,
+        firstName: fname.value,
+        lastName: lname.value
+      }
+    });
     fname.resetState();
     lname.resetState();
     email.resetState();
@@ -107,7 +129,7 @@ const SignUp = props => {
                     className={classes.checkBox}
                   />
                 }
-                label="I want to receive inspiration, marketing promotions and updates via email."
+                label="I allow my activities in the app to be tracked and shown in the admin page in real time."
               />
             </Grid>
           </Grid>
