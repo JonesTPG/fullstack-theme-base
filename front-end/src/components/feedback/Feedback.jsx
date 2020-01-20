@@ -1,12 +1,12 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
+import TextField from '@material-ui/core/TextField';
 import { FeedbackStyles } from '../AllStyles';
-import { withStyles } from '@material-ui/core';
+import { withStyles, Divider } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import SentimentDissatisfiedRounded from '@material-ui/icons/SentimentDissatisfiedRounded';
 import SentimentSatisfiedRounded from '@material-ui/icons/SentimentSatisfiedRounded';
-import SentimentDissatisfied from '@material-ui/icons/SentimentDissatisfied';
 import SentimentSatisfied from '@material-ui/icons/SentimentSatisfied';
 
 const Feedback = props => {
@@ -36,11 +36,6 @@ const Feedback = props => {
         </Grid>
         <Grid item>
           <IconButton className={classes.iconbutton} onClick={handleOkClick}>
-            <SentimentDissatisfied />
-          </IconButton>
-        </Grid>
-        <Grid item>
-          <IconButton className={classes.iconbutton} onClick={handleOkClick}>
             <SentimentSatisfied />
           </IconButton>
         </Grid>
@@ -50,6 +45,16 @@ const Feedback = props => {
           </IconButton>
         </Grid>
       </Grid>
+
+      <Divider variant="middle"></Divider>
+
+      <TextField
+        id="filled-textarea"
+        label="Feedback"
+        placeholder="Write feedback..."
+        multiline
+        variant="filled"
+      />
     </Container>
   );
 };

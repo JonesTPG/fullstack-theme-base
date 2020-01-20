@@ -14,6 +14,7 @@ export const ME = gql`
     me {
       username
       roles
+      darkTheme
     }
   }
 `;
