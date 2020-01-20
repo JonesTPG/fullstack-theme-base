@@ -4,6 +4,7 @@ const typeDefs = gql`
   type User {
     username: String!
     roles: [String]
+    darkTheme: Boolean
     id: ID!
   }
 
@@ -29,6 +30,7 @@ const typeDefs = gql`
     createFeedback(type: Int!): Feedback
     deleteUsers: Boolean!
     login(username: String!, password: String!): UserData
+    changeTheme: Boolean!
   }
 
   type Subscription {

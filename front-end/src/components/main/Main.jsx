@@ -1,7 +1,6 @@
 import React from 'react';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -14,13 +13,22 @@ import MenuRounded from '@material-ui/icons/MenuRounded';
 import HomeRounded from '@material-ui/icons/HomeRounded';
 import AccountCircleRounded from '@material-ui/icons/AccountCircleRounded';
 import AddCircleOutlineRounded from '@material-ui/icons/AddCircleOutlineRounded';
+import ColorLensIcon from '@material-ui/icons/ColorLens';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import { withRouter } from 'react-router-dom';
 import { MainStyles } from '../AllStyles';
 import { withStyles } from '@material-ui/core/styles';
 
+import { logOut } from '../../services/authService';
+
 const Main = props => {
   const { classes } = props;
+
+  const handleThemeChange = () => {
+    console.log('theme page');
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -52,6 +60,12 @@ const Main = props => {
             <Badge badgeContent={10} color="secondary">
               <AccountCircleRounded />
             </Badge>
+          </IconButton>
+          <IconButton onClick={handleThemeChange} color="inherit">
+            <ColorLensIcon />
+          </IconButton>
+          <IconButton onClick={logOut} color="inherit">
+            <ExitToAppIcon />
           </IconButton>
           <IconButton
             onClick={() => props.history.push('/counter')}

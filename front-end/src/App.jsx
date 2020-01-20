@@ -8,13 +8,14 @@ import HomePage from './components/main/homepage/HomePage';
 import Counter from './components/counter/Counter';
 import Footer from './components/footer/Footer';
 
-import { mainTheme, darkTheme } from './AppStyles';
+import { useTheme } from './hooks/theme';
 
 const App = () => {
+  const { theme, setMainTheme, setDarkTheme } = useTheme();
   return (
     <>
       <Router>
-        <ThemeProvider theme={mainTheme}>
+        <ThemeProvider theme={theme}>
           <Route path="/voivoi" render={() => <h1>Voi Voi</h1>} />
           <Route path="/login" render={() => <Login />} />
           <Route path="/signup" render={() => <SignUpPage />} />

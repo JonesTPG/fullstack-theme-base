@@ -96,6 +96,12 @@ const resolvers = {
       } else {
         throw new Error('user deleting prohibited in production');
       }
+    },
+    changeTheme: async (root, args, context) => {
+      const user = await User.findById(context.currentUser._id);
+      user.darkTheme = !user.darkTheme;
+      await user.save();
+      return true;
     }
   },
   Subscription: {

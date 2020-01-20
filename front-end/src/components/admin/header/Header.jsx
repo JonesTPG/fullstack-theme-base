@@ -4,10 +4,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import HelpIcon from '@material-ui/icons/Help';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Tab from '@material-ui/core/Tab';
@@ -18,14 +16,20 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 
+import { Link } from 'react-router-dom';
+
 import { styles } from './HeaderStyles';
-import { logOut } from '../../services/authService';
+import { logOut } from '../../../services/authService';
 
 const Header = props => {
   const { classes, onDrawerToggle } = props;
 
   const handleClick = () => {
     logOut();
+  };
+
+  const handleThemeChange = () => {
+    console.log('theme change');
   };
 
   return (
@@ -47,9 +51,7 @@ const Header = props => {
             </Hidden>
             <Grid item xs />
             <Grid item>
-              <Link className={classes.link} href="#" variant="body2">
-                Go to docs
-              </Link>
+              <Link to="/">Go to user screen</Link>
             </Grid>
             <Grid item>
               <Tooltip title="Alerts • No alerts">
@@ -93,9 +95,15 @@ const Header = props => {
             </Grid>
             <Grid item>
               <Tooltip title="Help">
-                <IconButton color="inherit">
-                  <HelpIcon />
-                </IconButton>
+                <Button
+                  onClick={handleThemeChange}
+                  className={classes.button}
+                  variant="outlined"
+                  color="inherit"
+                  size="small"
+                >
+                  Change theme
+                </Button>
               </Tooltip>
             </Grid>
           </Grid>
