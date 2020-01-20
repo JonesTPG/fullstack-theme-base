@@ -29,8 +29,12 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(2)
   },
   footer: {
-    padding: theme.spacing(3, 2),
-    marginTop: 'auto',
+    padding: theme.spacing(3),
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: 'center',
     backgroundColor:
       theme.palette.type === 'dark'
         ? theme.palette.grey[800]
