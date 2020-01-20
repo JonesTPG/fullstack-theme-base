@@ -49,9 +49,15 @@ const resolvers = {
     },
     createAdminUser: async (root, args) => {
       if (process.env.NODE_ENV === 'test') {
+        const ADMIN_PASSWORD = 'admin';
+
+        const saltRounds = 10;
+        const passwordHash = await bcrypt.hash(ADMIN_PASSWORD, saltRounds);
+
         const adminUser = new User({
           username: args.username,
-          roles: ['ADMIN']
+          roles: ['ADMIN'],
+          passwordHash: passwordHash
         });
 
         await adminUser.save().catch(error => {
