@@ -15,3 +15,9 @@ export const ME = gql`
     }
   }
 `;
+
+export const GET_DEFAULT_THEME = gql`
+  {
+    darkTheme @client
+  }
+`;

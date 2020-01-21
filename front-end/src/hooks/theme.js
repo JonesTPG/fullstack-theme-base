@@ -3,7 +3,7 @@ import { mainTheme, darkTheme } from '../AppStyles';
 
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { ME } from '../queries/login';
-import { CHANGE_THEME } from '../queries/theme';
+import { CHANGE_THEME, GET_DEFAULT_THEME } from '../queries/theme';
 
 export const useTheme = () => {
   let [theme, setTheme] = useState(mainTheme);
@@ -18,7 +18,7 @@ export const useTheme = () => {
     refetchQueries: [ME]
   });
 
-  useQuery(ME, {
+  useQuery(GET_DEFAULT_THEME, {
     onCompleted(data) {
       console.log(data);
       if (data.me) {

@@ -8,6 +8,7 @@ import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 
 import { useToken } from '../hooks/auth';
+import { resolvers } from './resolvers';
 
 const wsLink = new WebSocketLink({
   uri: 'ws://localhost:4000/graphql',
@@ -41,7 +42,8 @@ const cache = new InMemoryCache({});
 
 const client = new ApolloClient({
   link,
-  cache
+  cache,
+  resolvers
 });
 
 const data = {

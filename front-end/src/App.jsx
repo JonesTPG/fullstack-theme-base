@@ -12,7 +12,7 @@ import { useTheme } from './hooks/theme';
 import { mainTheme } from './AppStyles';
 
 const App = () => {
-  //const { theme, setMainTheme, setDarkTheme } = useTheme();
+  const { theme, setMainTheme, setDarkTheme } = useTheme();
   return (
     <>
       <Router>
