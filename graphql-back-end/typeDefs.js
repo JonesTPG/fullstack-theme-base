@@ -44,6 +44,7 @@ const typeDefs = gql`
     userAdded: User!
     feedbackAdded: Feedback!
     userLoggedin: User!
+    userChangedTheme: User!
   }
 `;
 

@@ -107,6 +107,9 @@ const resolvers = {
         username: user.username,
         id: user._id
       };
+      pubsub.publish('USER_LOGGED_IN', {
+        userLoggedIn: user
+      });
       return {
         value: jwt.sign(tokenData, config.JWT_SECRET),
         roles: user.roles
@@ -124,6 +127,9 @@ const resolvers = {
       const user = await User.findById(context.currentUser._id);
       user.darkTheme = !user.darkTheme;
       await user.save();
+      pubsub.publish('USER_CHANGED_THEME', {
+        userChangedTheme: user
+      });
       return true;
     }
   },
@@ -133,6 +139,12 @@ const resolvers = {
     },
     feedbackAdded: {
       subscribe: () => pubsub.asyncIterator(['FEEDBACK_ADDED'])
+    },
+    userLoggedIn: {
+      subscribe: () => pubsub.asyncIterator(['USER_LOGGED_IN'])
+    },
+    userChangedTheme: {
+      subscribe: () => pubsub.asyncIterator(['USER_CHANGED_THEME'])
     }
   }
 };
