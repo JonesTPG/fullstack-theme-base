@@ -20,7 +20,6 @@ import { Link } from 'react-router-dom';
 
 import { styles } from './HeaderStyles';
 import { logOut } from '../../../services/authService';
-import { useTheme } from '../../../hooks/theme';
 
 const Header = props => {
   const { classes, onDrawerToggle } = props;
@@ -96,7 +95,7 @@ const Header = props => {
               </Button>
             </Grid>
             <Grid item>
-              <Tooltip title="Help">
+              <Tooltip title="change the color scheme of the application">
                 <Button
                   onClick={handleThemeChange}
                   className={classes.button}
