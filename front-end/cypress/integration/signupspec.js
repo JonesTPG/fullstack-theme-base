@@ -11,7 +11,7 @@ describe('Fullstack-theme-base sign up page ', function() {
           url: 'http://localhost:4000/graphql/',
           body: deleteUsers
         });
-        cy.visit('http://localhost:3000/login');
+        cy.visit(Cypress.env('BASE_URL') + '/login');
         cy.contains("Don't have an account? Sign Up");
         cy.get('[data-cy=signUp]').click();
         cy.contains('Sign up');
@@ -25,13 +25,25 @@ describe('Fullstack-theme-base sign up page ', function() {
     });
     describe('User can log in with created creadentials', function() {
       it('User can create a new account in sign up page', function() {
-        cy.visit('http://localhost:3000/login');
+        cy.visit(Cypress.env('BASE_URL') + '/login');
         cy.contains('Sign in');
         cy.get('[data-cy=username]').type('username');
         cy.get('[data-cy=password]').type('password');
         cy.contains('Sign in').click();
         cy.get('[data-cy=signIn]').click();
-        cy.contains('know how you feel');
+        cy.url().should('eq', Cypress.env('BASE_URL') + '/');
+        cy.contains('Please let us know how you feel');
+      });
+    });
+    describe('Trying to log in with invalid creadentials', function() {
+      it("User can't log in with non-existing credentials", function() {
+        cy.visit(Cypress.env('BASE_URL') + '/login');
+        cy.contains('Sign in');
+        cy.get('[data-cy=username]').type('non-existingUsername');
+        cy.get('[data-cy=password]').type('non-existingPassword');
+        cy.contains('Sign in').click();
+        cy.get('[data-cy=signIn]').click();
+        cy.url().should('eq', Cypress.env('BASE_URL') + '/login');
       });
     });
   });

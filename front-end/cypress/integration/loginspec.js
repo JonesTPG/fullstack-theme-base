@@ -23,7 +23,7 @@ describe('Fullstack-theme-base ', function() {
     });
 
     it("User can't login with invalid credentials", function() {
-      cy.visit('http://localhost:3000/login');
+      cy.visit(Cypress.env('BASE_URL') + '/login');
       cy.contains('Sign in');
       cy.get('[data-cy=username]').type('InvalidUsername');
       cy.get('[data-cy=password]').type('InvalidPassword');
@@ -33,7 +33,7 @@ describe('Fullstack-theme-base ', function() {
     });
 
     it('Front page can be opened', function() {
-      cy.visit('http://localhost:3000/login');
+      cy.visit(Cypress.env('BASE_URL') + '/login');
       cy.contains('Sign in');
       cy.get('[data-cy=username]').type('username');
       cy.get('[data-cy=password]').type('password');
@@ -43,7 +43,7 @@ describe('Fullstack-theme-base ', function() {
     });
     it('Theme-base-token can be found in local storage after login', function() {
       cy.clearLocalStorage('theme-base-token');
-      cy.visit('http://localhost:3000/login');
+      cy.visit(Cypress.env('BASE_URL') + '/login');
       cy.contains('Sign in');
       cy.get('[data-cy=username]').type('username');
       cy.get('[data-cy=password]').type('password');
@@ -56,7 +56,7 @@ describe('Fullstack-theme-base ', function() {
     });
     it('Theme-base-token will be deleted after logout', function() {
       cy.clearLocalStorage('theme-base-token');
-      cy.visit('http://localhost:3000/login');
+      cy.visit(Cypress.env('BASE_URL') + '/login');
       cy.contains('Sign in');
       cy.get('[data-cy=username]').type('username');
       cy.get('[data-cy=password]').type('password');
@@ -65,7 +65,6 @@ describe('Fullstack-theme-base ', function() {
       cy.get('[data-cy=logout]')
         .click()
         .should(() => {
-          console.log(localStorage.getItem('theme-base-token'));
           expect(localStorage.getItem('theme-base-token')).to.be.null;
         });
     });
