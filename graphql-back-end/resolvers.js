@@ -128,14 +128,11 @@ const resolvers = {
       user.darkTheme = !user.darkTheme;
       await user.save();
 
- 
-
       pubsub.publish('USER_CHANGED_THEME', {
         userChangedTheme: user
       });
-      
-      return user.darkTheme;
 
+      return user.darkTheme;
     }
   },
   Subscription: {

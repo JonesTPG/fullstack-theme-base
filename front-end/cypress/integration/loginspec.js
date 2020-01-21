@@ -6,6 +6,9 @@ const createUser = {
   query:
     'mutation {createUser(username:"username", password:"password"){username}}'
 };
+const createAdminUser = {
+  query: 'mutation {createAdminUser(username:"admin"){username}}'
+};
 
 describe('Fullstack-theme-base ', function() {
   describe('Fullstack app login', function() {
@@ -19,6 +22,11 @@ describe('Fullstack-theme-base ', function() {
         method: 'POST',
         url: 'http://localhost:4000/graphql/',
         body: createUser
+      });
+      cy.request({
+        method: 'POST',
+        url: 'http://localhost:4000/graphql/',
+        body: createAdminUser
       });
     });
 
@@ -44,7 +52,7 @@ describe('Fullstack-theme-base ', function() {
     it('Admin page will be opened when logging in as a admin', function() {
       cy.visit(Cypress.env('BASE_URL') + '/login');
       cy.contains('Sign in');
-      cy.get('[data-cy=username]').type('testadmin');
+      cy.get('[data-cy=username]').type('admin');
       cy.get('[data-cy=password]').type('admin');
       cy.contains('Sign in').click();
       cy.get('[data-cy=signIn]').click();
