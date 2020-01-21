@@ -20,6 +20,7 @@ import { Link } from 'react-router-dom';
 
 import { styles } from './HeaderStyles';
 import { logOut } from '../../../services/authService';
+import { useTheme } from '../../../hooks/theme';
 
 const Header = props => {
   const { classes, onDrawerToggle } = props;

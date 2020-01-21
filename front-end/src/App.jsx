@@ -9,13 +9,14 @@ import Counter from './components/counter/Counter';
 import Footer from './components/footer/Footer';
 
 import { useTheme } from './hooks/theme';
+import { mainTheme } from './AppStyles';
 
 const App = () => {
-  const { theme, setMainTheme, setDarkTheme } = useTheme();
+  //const { theme, setMainTheme, setDarkTheme } = useTheme();
   return (
     <>
       <Router>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={mainTheme}>
           <Route path="/voivoi" render={() => <h1>Voi Voi</h1>} />
           <Route path="/login" render={() => <Login />} />
           <Route path="/signup" render={() => <SignUpPage />} />

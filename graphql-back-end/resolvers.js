@@ -127,10 +127,15 @@ const resolvers = {
       const user = await User.findById(context.currentUser._id);
       user.darkTheme = !user.darkTheme;
       await user.save();
+
+ 
+
       pubsub.publish('USER_CHANGED_THEME', {
         userChangedTheme: user
       });
-      return true;
+      
+      return user.darkTheme;
+
     }
   },
   Subscription: {
