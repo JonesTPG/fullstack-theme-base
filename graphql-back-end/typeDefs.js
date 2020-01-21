@@ -13,6 +13,7 @@ const typeDefs = gql`
   type UserData {
     value: String!
     roles: [String]!
+    darkTheme: Boolean!
   }
 
   type Feedback {

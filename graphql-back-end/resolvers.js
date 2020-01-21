@@ -112,7 +112,8 @@ const resolvers = {
       });
       return {
         value: jwt.sign(tokenData, config.JWT_SECRET),
-        roles: user.roles
+        roles: user.roles,
+        darkTheme: user.darkTheme
       };
     },
     deleteUsers: async () => {
@@ -128,14 +129,11 @@ const resolvers = {
       user.darkTheme = !user.darkTheme;
       await user.save();
 
- 
-
       pubsub.publish('USER_CHANGED_THEME', {
         userChangedTheme: user
       });
-      
-      return user.darkTheme;
 
+      return user.darkTheme;
     }
   },
   Subscription: {
