@@ -49,6 +49,7 @@ describe('Fullstack-theme-base ', function() {
       cy.get('[data-cy=signIn]').click();
       cy.url().should('eq', Cypress.env('BASE_URL') + '/');
     });
+
     it('Admin page will be opened when logging in as a admin', function() {
       cy.visit(Cypress.env('BASE_URL') + '/login');
       cy.contains('Sign in');
