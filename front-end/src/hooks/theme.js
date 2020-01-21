@@ -6,7 +6,7 @@ import { ME } from '../queries/login';
 import { CHANGE_THEME } from '../queries/theme';
 
 export const useTheme = () => {
-  let [theme, setTheme] = useState(null);
+  let [theme, setTheme] = useState(mainTheme);
 
   const [changeTheme] = useMutation(CHANGE_THEME, {
     onCompleted({ data }) {

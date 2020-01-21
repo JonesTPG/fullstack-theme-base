@@ -6,6 +6,8 @@ const typeDefs = gql`
     roles: [String]
     darkTheme: Boolean
     id: ID!
+    firstName: String
+    lastName: String
   }
 
   type UserData {
@@ -25,7 +27,12 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    createUser(username: String!): User
+    createUser(
+      username: String!
+      firstName: String
+      lastName: String
+      password: String
+    ): User
     createAdminUser(username: String!): User
     createFeedback(type: Int!): Feedback
     deleteUsers: Boolean!
@@ -36,6 +43,8 @@ const typeDefs = gql`
   type Subscription {
     userAdded: User!
     feedbackAdded: Feedback!
+    userLoggedin: User!
+    userChangedTheme: User!
   }
 `;
 

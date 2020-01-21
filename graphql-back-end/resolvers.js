@@ -1,5 +1,6 @@
 const { UserInputError, PubSub } = require('apollo-server');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 const User = require('./models/user');
 const Feedback = require('./models/feedback');
@@ -22,9 +23,19 @@ const resolvers = {
   },
   Mutation: {
     createUser: async (root, args) => {
+      let password = args.password;
+      if (args.password == undefined) {
+        password = 'secret';
+      }
+
+      const saltRounds = 10;
+      const passwordHash = await bcrypt.hash(password, saltRounds);
       const user = new User({
         username: args.username,
-        roles: ['DEFAULT']
+        roles: ['DEFAULT'],
+        passwordHash: passwordHash,
+        firstName: args.firstName,
+        lastName: args.lastName
       });
 
       await user.save().catch(error => {
@@ -38,9 +49,15 @@ const resolvers = {
     },
     createAdminUser: async (root, args) => {
       if (process.env.NODE_ENV === 'test') {
+        const ADMIN_PASSWORD = 'admin';
+
+        const saltRounds = 10;
+        const passwordHash = await bcrypt.hash(ADMIN_PASSWORD, saltRounds);
+
         const adminUser = new User({
           username: args.username,
-          roles: ['ADMIN']
+          roles: ['ADMIN'],
+          passwordHash: passwordHash
         });
 
         await adminUser.save().catch(error => {
@@ -76,7 +93,13 @@ const resolvers = {
     },
     login: async (root, args) => {
       const user = await User.findOne({ username: args.username });
-      if (!user || args.password !== 'secret') {
+
+      const passwordCorrect =
+        user === null
+          ? false
+          : await bcrypt.compare(args.password, user.passwordHash);
+
+      if (!(user && passwordCorrect)) {
         throw new UserInputError('wrong credentials');
       }
 
@@ -84,6 +107,9 @@ const resolvers = {
         username: user.username,
         id: user._id
       };
+      pubsub.publish('USER_LOGGED_IN', {
+        userLoggedIn: user
+      });
       return {
         value: jwt.sign(tokenData, config.JWT_SECRET),
         roles: user.roles
@@ -101,7 +127,15 @@ const resolvers = {
       const user = await User.findById(context.currentUser._id);
       user.darkTheme = !user.darkTheme;
       await user.save();
+
+ 
+
+      pubsub.publish('USER_CHANGED_THEME', {
+        userChangedTheme: user
+      });
+      
       return user.darkTheme;
+
     }
   },
   Subscription: {
@@ -110,6 +144,12 @@ const resolvers = {
     },
     feedbackAdded: {
       subscribe: () => pubsub.asyncIterator(['FEEDBACK_ADDED'])
+    },
+    userLoggedIn: {
+      subscribe: () => pubsub.asyncIterator(['USER_LOGGED_IN'])
+    },
+    userChangedTheme: {
+      subscribe: () => pubsub.asyncIterator(['USER_CHANGED_THEME'])
     }
   }
 };

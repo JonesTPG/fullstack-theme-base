@@ -103,6 +103,11 @@ export const FeedbackStyles = theme => ({
       backgroundColor: theme.palette.secondary.light
     },
     color: theme.palette.secondary.contrastText
+  },
+  submit: {
+    padding: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.contrastText
   }
 });
 

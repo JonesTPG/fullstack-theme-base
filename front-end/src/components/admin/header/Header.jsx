@@ -25,8 +25,9 @@ import { useTheme } from '../../../hooks/theme';
 const Header = props => {
   const { classes, onDrawerToggle } = props;
 
-  const handleClick = () => {
+  const handleSignOut = () => {
     logOut();
+    props.history.push('/login');
   };
 
   const handleThemeChange = () => {
@@ -85,7 +86,7 @@ const Header = props => {
             </Grid>
             <Grid item>
               <Button
-                onClick={handleClick}
+                onClick={handleSignOut}
                 className={classes.button}
                 variant="outlined"
                 color="inherit"

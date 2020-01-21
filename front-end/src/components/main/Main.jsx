@@ -25,8 +25,16 @@ import { logOut } from '../../services/authService';
 const Main = props => {
   const { classes } = props;
 
-  const handleThemeChange = () => {
+  const handleThemeChange = event => {
+    event.preventDefault();
     console.log('theme page');
+  };
+
+  const handleLogOut = event => {
+    event.preventDefault();
+    console.log('log out');
+    logOut();
+    props.history.push('/login');
   };
 
   return (
@@ -53,10 +61,7 @@ const Main = props => {
           >
             {props.pageName}
           </Typography>
-          <IconButton
-            onClick={() => props.history.push('/login')}
-            color="inherit"
-          >
+          <IconButton onClick={handleLogOut} color="inherit">
             <Badge badgeContent={10} color="secondary">
               <AccountCircleRounded />
             </Badge>
@@ -64,7 +69,7 @@ const Main = props => {
           <IconButton onClick={handleThemeChange} color="inherit">
             <ColorLensIcon />
           </IconButton>
-          <IconButton onClick={logOut} color="inherit">
+          <IconButton data-cy="logout" onClick={handleLogOut} color="inherit">
             <ExitToAppIcon />
           </IconButton>
           <IconButton
