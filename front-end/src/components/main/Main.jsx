@@ -20,19 +20,45 @@ import { withRouter } from 'react-router-dom';
 import { MainStyles } from '../AllStyles';
 import { withStyles } from '@material-ui/core/styles';
 
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { CHANGE_THEME, GET_LOCAL_THEME } from '../../queries/theme';
+
 import { logOut } from '../../services/authService';
 
 const Main = props => {
   const { classes } = props;
 
-  const handleThemeChange = event => {
-    event.preventDefault();
-    console.log('theme page');
+  const client = useApolloClient();
+  const [changeTheme] = useMutation(CHANGE_THEME, {
+    onCompleted() {
+      console.log('theme changed');
+    },
+    onError(error) {
+      console.log(error);
+    },
+
+    update: cache => {
+      const data = cache.readQuery({
+        query: GET_LOCAL_THEME
+      });
+      console.log(data);
+      const dataCopy = { ...data, darkTheme: !data.darkTheme };
+      cache.writeQuery({
+        query: GET_LOCAL_THEME,
+        data: dataCopy
+      });
+    }
+  });
+
+  const handleThemeChange = async () => {
+    await changeTheme();
   };
 
   const handleLogOut = event => {
     event.preventDefault();
     console.log('log out');
+    client.resetStore();
+
     logOut();
     props.history.push('/login');
   };

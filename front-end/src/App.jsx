@@ -11,30 +11,19 @@ import Footer from './components/footer/Footer';
 import { useQuery } from '@apollo/react-hooks';
 import { GET_LOCAL_THEME } from './queries/theme';
 
-import { useTheme } from './hooks/theme';
 import { mainTheme, darkTheme } from './AppStyles';
 
 const App = () => {
-  const [theme, setTheme] = useState(mainTheme);
-  const { changeTheme } = useTheme();
-
-  //changeTheme();
-
-  useQuery(GET_LOCAL_THEME, {
+  const { data } = useQuery(GET_LOCAL_THEME, {
     onCompleted(data) {
       console.log(data);
-      if (data.darkTheme) {
-        data.darkTheme === true ? setTheme(darkTheme) : setTheme(mainTheme);
-      } else {
-        setTheme(mainTheme);
-      }
     }
   });
 
   return (
     <>
       <Router>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={data.darkTheme === false ? mainTheme : darkTheme}>
           <Route path="/voivoi" render={() => <h1>Voi Voi</h1>} />
           <Route path="/login" render={() => <Login />} />
           <Route path="/signup" render={() => <SignUpPage />} />
