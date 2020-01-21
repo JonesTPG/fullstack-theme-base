@@ -41,6 +41,15 @@ describe('Fullstack-theme-base ', function() {
       cy.get('[data-cy=signIn]').click();
       cy.url().should('eq', Cypress.env('BASE_URL') + '/');
     });
+    it('Admin page will be opened when logging in as a admin', function() {
+      cy.visit(Cypress.env('BASE_URL') + '/login');
+      cy.contains('Sign in');
+      cy.get('[data-cy=username]').type('testadmin');
+      cy.get('[data-cy=password]').type('admin');
+      cy.contains('Sign in').click();
+      cy.get('[data-cy=signIn]').click();
+      cy.url().should('eq', Cypress.env('BASE_URL') + '/admin');
+    });
     it('Theme-base-token can be found in local storage after login', function() {
       cy.clearLocalStorage('theme-base-token');
       cy.visit(Cypress.env('BASE_URL') + '/login');
