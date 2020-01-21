@@ -43,7 +43,7 @@ const typeDefs = gql`
   type Subscription {
     userAdded: User!
     feedbackAdded: Feedback!
-    userLoggedin: User!
+    userLoggedIn: User!
     userChangedTheme: User!
   }
 `;
