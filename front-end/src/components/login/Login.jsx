@@ -126,6 +126,7 @@ const Login = props => {
             <Grid item>
               <Typography className={classes.typography}>
                 <Link
+                  data-cy="signUp"
                   onClick={() => props.history.push('/signup')}
                   color="inherit"
                 >

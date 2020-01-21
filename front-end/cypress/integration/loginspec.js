@@ -3,7 +3,8 @@ const deleteUsers = {
 };
 
 const createUser = {
-  query: 'mutation {createUser(username:"test"){username}}'
+  query:
+    'mutation {createUser(username:"username", password:"password"){username}}'
 };
 
 describe('Fullstack-theme-base ', function() {
@@ -24,9 +25,9 @@ describe('Fullstack-theme-base ', function() {
     it("User can't login with invalid credentials", function() {
       cy.visit('http://localhost:3000/login');
       cy.contains('Sign in');
-      cy.get('[data-cy=username]').type('Username');
-      cy.get('[data-cy=password]').type('Password');
-      cy.contains('Sign in').click();
+      cy.get('[data-cy=username]').type('InvalidUsername');
+      cy.get('[data-cy=password]').type('InvalidPassword');
+      cy.contains('Sign in');
       cy.get('[data-cy=signIn]').click();
       cy.contains('*The username or password you entered is incorrect.');
     });
@@ -34,18 +35,18 @@ describe('Fullstack-theme-base ', function() {
     it('Front page can be opened', function() {
       cy.visit('http://localhost:3000/login');
       cy.contains('Sign in');
-      cy.get('[data-cy=username]').type('test');
-      cy.get('[data-cy=password]').type('secret');
+      cy.get('[data-cy=username]').type('username');
+      cy.get('[data-cy=password]').type('password');
       cy.contains('Sign in').click();
       cy.get('[data-cy=signIn]').click();
-      cy.contains('Please let us know how you feel');
+      cy.url().should('eq', Cypress.env('BASE_URL') + '/');
     });
     it('Theme-base-token can be found in local storage after login', function() {
       cy.clearLocalStorage('theme-base-token');
       cy.visit('http://localhost:3000/login');
       cy.contains('Sign in');
-      cy.get('[data-cy=username]').type('test');
-      cy.get('[data-cy=password]').type('secret');
+      cy.get('[data-cy=username]').type('username');
+      cy.get('[data-cy=password]').type('password');
       cy.contains('Sign in').click();
       cy.get('[data-cy=signIn]')
         .click()
@@ -57,8 +58,8 @@ describe('Fullstack-theme-base ', function() {
       cy.clearLocalStorage('theme-base-token');
       cy.visit('http://localhost:3000/login');
       cy.contains('Sign in');
-      cy.get('[data-cy=username]').type('test');
-      cy.get('[data-cy=password]').type('secret');
+      cy.get('[data-cy=username]').type('username');
+      cy.get('[data-cy=password]').type('password');
       cy.get('[data-cy=signIn]').click();
       cy.contains('Please let us know how you feel');
       cy.get('[data-cy=logout]')

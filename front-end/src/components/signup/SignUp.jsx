@@ -72,6 +72,7 @@ const SignUp = props => {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+                data-cy="firstName"
                 autoComplete="fname"
                 name="firstName"
                 variant="outlined"
@@ -85,6 +86,7 @@ const SignUp = props => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                data-cy="lastName"
                 variant="outlined"
                 required
                 fullWidth
@@ -97,6 +99,7 @@ const SignUp = props => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                data-cy="email"
                 variant="outlined"
                 required
                 fullWidth
@@ -109,6 +112,7 @@ const SignUp = props => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                data-cy="password"
                 variant="outlined"
                 required
                 fullWidth
@@ -134,6 +138,7 @@ const SignUp = props => {
             </Grid>
           </Grid>
           <Button
+            data-cy="signUp"
             type="submit"
             fullWidth
             variant="contained"
@@ -145,6 +150,7 @@ const SignUp = props => {
             <Grid item>
               <Typography className={classes.typography}>
                 <Link
+                  data-cy="signIn"
                   onClick={() => props.history.push('/login')}
                   variant="body2"
                   color="inherit"
