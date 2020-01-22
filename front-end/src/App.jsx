@@ -7,6 +7,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import Main from './components/main/Main';
 import Counter from './components/counter/Counter';
 import Footer from './components/footer/Footer';
+import ContactForm from './components/contact/ContactForm';
 
 import { useQuery } from '@apollo/react-hooks';
 import { GET_LOCAL_THEME } from './queries/theme';
@@ -31,6 +32,7 @@ const App = () => {
             <Route path="/admin" render={() => <AdminLayout />} />
             <Route path="/counter" render={() => <Counter />} />
             <Route path="/" render={() => <Main />} />
+            <Route path="/contact-us" render={() => <ContactForm />} />
           </Switch>
         </ThemeProvider>
       </Router>

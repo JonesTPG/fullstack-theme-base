@@ -35,7 +35,8 @@ import { ME } from '../../queries/login';
 import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
 import PageInfo from './page-info/PageInfo';
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch } from 'react-router-dom';
+import ContactForm from '../contact/ContactForm';
 
 const drawerWidth = 240;
 
@@ -156,11 +157,11 @@ const Main = props => {
     return (
       <Switch>
         <Route path="/feedback" render={() => <Feedback />} />
-        {/* <Route path="/contact-us" render={() => <Contacts />} /> */}
+        <Route path="/contact-us" render={() => <ContactForm />} />
         <Route path="/" render={() => <PageInfo />} />
       </Switch>
-    )
-  }
+    );
+  };
 
   return (
     <div className={classes.root}>
@@ -217,21 +218,13 @@ const Main = props => {
         </div>
         <Divider />
         <List>
-          {/* {['Home', 'Contact Us'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))} */}
-          <ListItem button onClick={() => props.history.push("/")}>
+          <ListItem button onClick={() => props.history.push('/')}>
             <ListItemIcon>
               <MailIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button onClick={() => props.history.push("/contact-us")}>
+          <ListItem button onClick={() => props.history.push('/contact-us')}>
             <ListItemIcon>
               <InboxIcon />
             </ListItemIcon>
