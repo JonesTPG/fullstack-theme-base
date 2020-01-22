@@ -2,6 +2,7 @@ import React from 'react';
 import Feedback from '../../feedback/Feedback';
 import Main from '../Main';
 import { useToken } from '../../../hooks/auth';
+import PageInfo from '../page-info/PageInfo';
 
 const HomePage = () => {
   const token = useToken();
@@ -15,6 +16,7 @@ const HomePage = () => {
   } else {
     return (
       <Main pageName="Homepage">
+        <PageInfo />
         <Feedback />
       </Main>
     );

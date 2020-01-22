@@ -21,15 +21,12 @@ import Button from '@material-ui/core/Button';
 
 import Brightness from '@material-ui/icons/Brightness4';
 
-
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import { CHANGE_THEME, GET_LOCAL_THEME } from '../../queries/theme';
 
 import { logOut } from '../../services/authService';
 
-
 const drawerWidth = 240;
-
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -92,18 +89,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-
-export default function Main() {
+export default function Main(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
 
   const client = useApolloClient();
   const [changeTheme] = useMutation(CHANGE_THEME, {
@@ -127,6 +116,14 @@ export default function Main() {
     }
   });
 
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
   const handleThemeChange = async () => {
     await changeTheme();
   };
@@ -138,7 +135,6 @@ export default function Main() {
 
     logOut();
     props.history.push('/login');
-
   };
 
   return (

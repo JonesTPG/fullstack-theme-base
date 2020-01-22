@@ -5,15 +5,15 @@ import { FeedbackStyles } from '../AllStyles';
 import { withStyles } from '@material-ui/core/';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Tooltip from "@material-ui/core/Tooltip"
+import Tooltip from '@material-ui/core/Tooltip';
 import IconButton from '@material-ui/core/IconButton';
 import SentimentDissatisfiedRounded from '@material-ui/icons/SentimentDissatisfiedRounded';
 import SentimentSatisfiedRounded from '@material-ui/icons/SentimentSatisfiedRounded';
 import SentimentSatisfied from '@material-ui/icons/SentimentSatisfied';
-import useField from "../../hooks/input";
+import useField from '../../hooks/input';
 
 const Feedback = props => {
-  const textFeedback = useField("text")
+  const textFeedback = useField('text');
   const { classes } = props;
 
   const handleSadClick = event => {
@@ -29,11 +29,11 @@ const Feedback = props => {
     console.log('Happy');
   };
   const handleFeedback = event => {
-    event.preventDefault()
-    console.log("Feedback", textFeedback.value)
+    event.preventDefault();
+    console.log('Feedback', textFeedback.value);
     // sendFeedback(textFeedback.value)
-    textFeedback.resetState()
-  }
+    textFeedback.resetState();
+  };
 
   return (
     <Container component="main" maxWidth="xs" className={classes.paper}>
@@ -63,7 +63,10 @@ const Feedback = props => {
         </Grid>
         <Grid item>
           <Tooltip title="Good">
-            <IconButton className={classes.iconbutton} onClick={handleGladClick}>
+            <IconButton
+              className={classes.iconbutton}
+              onClick={handleGladClick}
+            >
               <SentimentSatisfiedRounded />
             </IconButton>
           </Tooltip>
@@ -80,7 +83,9 @@ const Feedback = props => {
           </Tooltip>
         </Grid>
         <Grid item>
-          <Button onClick={handleFeedback} className={classes.submit} >Send</Button>
+          <Button onClick={handleFeedback} className={classes.submit}>
+            Send
+          </Button>
         </Grid>
       </Grid>
     </Container>
