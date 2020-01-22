@@ -27,6 +27,10 @@ import { CHANGE_THEME, GET_LOCAL_THEME } from '../../queries/theme';
 import { logOut } from '../../services/authService';
 import Feedback from '../feedback/Feedback';
 
+import { ME } from '../../queries/login';
+import { useQuery } from '@apollo/react-hooks';
+import { useToken } from '../../hooks/auth';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -116,6 +120,11 @@ export default function Main(props) {
       });
     }
   });
+
+  const { data, loading } = useQuery(ME);
+  const token = useToken();
+
+  console.log(data);
 
   const handleDrawerOpen = () => {
     setOpen(true);
