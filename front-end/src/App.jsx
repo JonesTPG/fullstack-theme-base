@@ -31,7 +31,6 @@ const App = () => {
           <Route path="/admin" render={() => <AdminLayout />} />
           <Route path="/counter" render={() => <Counter />} />
         </ThemeProvider>
-        <Footer />
       </Router>
     </>
   );
