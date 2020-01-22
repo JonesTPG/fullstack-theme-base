@@ -35,7 +35,8 @@ import { ME } from '../../queries/login';
 import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
 import PageInfo from './page-info/PageInfo';
-import { Route } from 'react-router-dom';
+
+import { Route, Switch } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -147,6 +148,16 @@ const Main = props => {
     props.history.push('/login');
   };
 
+  const Content = () => {
+    return (
+      <Switch>
+        <Route path="/feedback" render={() => <Feedback />} />
+        {/* <Route path="/contact-us" render={() => <Contacts />} /> */}
+        <Route path="/" render={() => <PageInfo />} />
+      </Switch>
+    );
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -202,18 +213,30 @@ const Main = props => {
         </div>
         <Divider />
         <List>
-          {['Home', 'Contact Us'].map((text, index) => (
+          {/* {['Home', 'Contact Us'].map((text, index) => (
             <ListItem button key={text}>
               <ListItemIcon>
                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItem>
-          ))}
+          ))} */}
+          <ListItem button onClick={() => props.history.push('/')}>
+            <ListItemIcon>
+              <MailIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button onClick={() => props.history.push('/contact-us')}>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText primary="Contact Us" />
+          </ListItem>
         </List>
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem button onClick={handleAuthClick}>
             <ListItemIcon>
               <ExitToAppIcon></ExitToAppIcon>
             </ListItemIcon>
@@ -228,9 +251,8 @@ const Main = props => {
           [classes.contentShift]: open
         })}
       >
-        {/* {token ? <PageInfo /> : <p>you are not logged in</p>} */}
-        <Route exact path="/" render={() => <PageInfo />} />
-        <Route path="/feedback" render={() => <Feedback />} />
+        {/* {token ? Content() : <p>you are not logged in</p>} */}
+        {Content()}
       </main>
     </div>
   );

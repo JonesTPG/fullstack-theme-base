@@ -7,7 +7,7 @@ import TechCard from './TechCard';
 import FeatureCard from './FeatureCard';
 import Button from '@material-ui/core/Button';
 
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import { frontPage } from './pagedata';
 
@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const PageInfo = () => {
+const PageInfo = props => {
   const classes = useStyles();
 
   return (
@@ -56,19 +56,16 @@ const PageInfo = () => {
               <FeatureCard data={data}></FeatureCard>
             </Grid>
           ))}
-          <Grid item xs={12}>
+          <Grid item xs={12} >
             <Paper className={classes.paper}>
               <h1> Interested to hear more? </h1>
-              <Link to="/feedback">
-                <Button variant="contained" color="primary">
-                  Give feedback
-                </Button>
-              </Link>
-              <Link to="/contact-us">
-                <Button variant="contained" color="primary">
-                  Contact us
-                </Button>
-              </Link>
+              <Button variant="contained" onClick={() => props.history.push("/feedback")} color="primary">
+                Give feedback
+              </Button>
+              {" "}
+              <Button variant="contained" onClick={() => props.history.push("/contact-us")} color="primary">
+                Contact us
+              </Button>
             </Paper>
           </Grid>
         </Grid>
@@ -77,4 +74,4 @@ const PageInfo = () => {
   );
 };
 
-export default PageInfo;
+export default withRouter(PageInfo);
