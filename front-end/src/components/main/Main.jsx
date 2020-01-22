@@ -37,8 +37,6 @@ import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
 import PageInfo from './page-info/PageInfo';
 
-import { Route, Switch } from 'react-router-dom';
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -153,7 +151,7 @@ const Main = props => {
     return (
       <Switch>
         <Route path="/feedback" render={() => <Feedback />} />
-        {/* <Route path="/contact-us" render={() => <Contacts />} /> */}
+        <Route path="/contact-us" render={() => <ContactForm />} />
         <Route path="/" render={() => <PageInfo />} />
       </Switch>
     );

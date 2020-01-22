@@ -28,6 +28,7 @@ const App = () => {
             <Route path="/admin" render={() => <AdminLayout />} />
             <Route path="/counter" render={() => <Counter />} />
             <Route path="/" render={() => <Main />} />
+            <Route path="/contact-us" render={() => <ContactForm />} />
           </Switch>
         </ThemeProvider>
       </Router>
