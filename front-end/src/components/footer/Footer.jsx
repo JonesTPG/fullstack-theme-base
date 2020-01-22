@@ -23,14 +23,14 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100%',
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(8)
   },
   footer: {
     padding: theme.spacing(3),
-    display: "block",
+    display: 'block',
     bottom: 0,
-    width: "100%",
-    alignItems: "center",
+    width: '100%',
+    alignItems: 'center',
     justify: 'center',
     backgroundColor:
       theme.palette.type === 'dark'
