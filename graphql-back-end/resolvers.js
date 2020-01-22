@@ -33,6 +33,7 @@ const resolvers = {
       const user = new User({
         username: args.username,
         roles: ['DEFAULT'],
+        darkTheme: false,
         passwordHash: passwordHash,
         firstName: args.firstName,
         lastName: args.lastName
@@ -57,6 +58,7 @@ const resolvers = {
         const adminUser = new User({
           username: args.username,
           roles: ['ADMIN'],
+          darkTheme: false,
           passwordHash: passwordHash
         });
 
