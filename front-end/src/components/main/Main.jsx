@@ -71,10 +71,10 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: '#f0f0f0'
+    backgroundColor: theme.palette.background.default
   },
   drawerHeader: {
-    backgroundColor: '#009be5',
+    backgroundColor: theme.palette.primary.main,
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
