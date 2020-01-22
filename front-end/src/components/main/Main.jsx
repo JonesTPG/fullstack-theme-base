@@ -47,6 +47,9 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen
     })
   },
+  chevronLeftButton: {
+    color: '#FFFFFF'
+  },
   menuButton: {
     marginRight: theme.spacing(2)
   },
@@ -175,7 +178,10 @@ export default function Main(props) {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton
+            onClick={handleDrawerClose}
+            className={classes.chevronLeftButton}
+          >
             {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />
             ) : (
