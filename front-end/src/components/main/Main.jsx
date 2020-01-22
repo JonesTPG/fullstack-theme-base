@@ -35,7 +35,7 @@ import { ME } from '../../queries/login';
 import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
 import PageInfo from './page-info/PageInfo';
-import { Route } from "react-router-dom"
+import { Route } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -109,9 +109,7 @@ const Main = props => {
 
   const client = useApolloClient();
   const [changeTheme] = useMutation(CHANGE_THEME, {
-    onCompleted() {
-      console.log('theme changed');
-    },
+    onCompleted() {},
     onError(error) {
       console.log(error);
     },
@@ -120,7 +118,6 @@ const Main = props => {
       const data = cache.readQuery({
         query: GET_LOCAL_THEME
       });
-      console.log(data);
       const dataCopy = { ...data, darkTheme: !data.darkTheme };
       cache.writeQuery({
         query: GET_LOCAL_THEME,
@@ -131,8 +128,6 @@ const Main = props => {
 
   const token = useToken();
   const { data } = useQuery(ME);
-
-  console.log(data);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -146,8 +141,8 @@ const Main = props => {
     await changeTheme();
   };
 
-  const handleAuthClick = event => {
-    token == undefined ? props.history.push('/login') : client.resetStore();
+  const handleAuthClick = () => {
+    token ? props.history.push('/login') : client.resetStore();
     logOut();
     props.history.push('/login');
   };
@@ -180,7 +175,7 @@ const Main = props => {
             <Brightness />
           </IconButton>
           <Button data-cy="logout" onClick={handleAuthClick} color="inherit">
-            {token == undefined ? 'Login' : 'Logout'}
+            {token ? 'Login' : 'Logout'}
           </Button>
         </Toolbar>
       </AppBar>
@@ -223,7 +218,7 @@ const Main = props => {
               <ExitToAppIcon></ExitToAppIcon>
             </ListItemIcon>
 
-            <ListItemText primary={token == undefined ? 'Log In' : 'Log Out'} />
+            <ListItemText primary={token ? 'Log In' : 'Log Out'} />
           </ListItem>
         </List>
       </Drawer>

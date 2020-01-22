@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import TechCard from './TechCard';
 import FeatureCard from './FeatureCard';
 import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
 
 import { Link } from 'react-router-dom';
 
