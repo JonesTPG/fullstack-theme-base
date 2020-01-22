@@ -55,6 +55,9 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.enteringScreen
     })
   },
+  chevronLeftButton: {
+    color: '#FFFFFF'
+  },
   menuButton: {
     marginRight: theme.spacing(2)
   },
@@ -78,20 +81,19 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-end'
   },
   content: {
-    flexGrow: 2,
+    flexGrow: 1,
     padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
-    }),
-    marginLeft: -drawerWidth
+    })
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     }),
-    marginLeft: 0
+    marginLeft: drawerWidth
   },
   title: {
     flexGrow: 1
@@ -190,7 +192,10 @@ const Main = props => {
         }}
       >
         <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton
+            onClick={handleDrawerClose}
+            className={classes.chevronLeftButton}
+          >
             {theme.direction === 'ltr' ? (
               <ChevronLeftIcon />
             ) : (
@@ -213,13 +218,16 @@ const Main = props => {
         <List>
           <ListItem button>
             <ListItemIcon>
+
               <ExitToAppIcon></ExitToAppIcon>
             </ListItemIcon>
 
             <ListItemText primary={token == undefined ? 'Log In' : 'Log Out'} />
+
           </ListItem>
         </List>
       </Drawer>
+
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open
@@ -240,7 +248,7 @@ const Main = props => {
           lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
           faucibus et molestie ac.
         </Typography>
-        <Typography paragraph>TÄHÄN FEEDI</Typography>
+
         <Feedback></Feedback>
       </main>
     </div>
