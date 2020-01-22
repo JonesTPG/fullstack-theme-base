@@ -85,32 +85,6 @@ export const MainStyles = theme => ({
   }
 });
 
-export const FeedbackStyles = theme => ({
-  paper: {
-    marginTop: theme.spacing(8),
-    padding: theme.spacing(3),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 400,
-    height: 100
-  },
-  iconbutton: {
-    padding: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-    '&:hover,&:focus': {
-      backgroundColor: theme.palette.secondary.light
-    },
-    color: theme.palette.secondary.contrastText
-  },
-  submit: {
-    padding: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.secondary.contrastText
-  }
-});
-
 export const CopyrightStyles = theme => ({
   typography: {
     color: theme.palette.background.contrastText

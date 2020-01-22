@@ -6,7 +6,8 @@ export const frontPage = {
       img: 'react.jpg',
       shortDesc:
         'Full Stack Theme Base utilizes the newest version of React.js (the one with hooks!).',
-      longDesc: 'TBD'
+      longDesc: 'TBD',
+      url: 'https://reactjs.org/'
     },
     {
       title: 'GraphQL',
@@ -14,7 +15,8 @@ export const frontPage = {
       img: 'graphql.jpg',
       shortDesc:
         'The primary back-end of the application is Apollo GraphQL Server, which provides structured and real-time data to the React front-end.',
-      longDesc: 'TBD'
+      longDesc: 'TBD',
+      url: 'https://graphql.org/'
     },
     {
       title: 'Material UI',
@@ -22,7 +24,8 @@ export const frontPage = {
       img: 'material-ui.png',
       shortDesc:
         'The application scales beautifully to different screen sizes, thanks to React Material UI, a state-of-the-art UI framework.',
-      longDesc: 'TBD'
+      longDesc: 'TBD',
+      url: 'https://material-ui.com/'
     },
     {
       title: 'Cypress.io',
@@ -30,7 +33,8 @@ export const frontPage = {
       img: 'cypress.png',
       shortDesc:
         'Cypress.io is a modern tool to test robust SPA applications like this one. Efficient testing makes sure a broken version of the software is not pushed to production.',
-      longDesc: 'TBD'
+      longDesc: 'TBD',
+      url: 'https://www.cypress.io/'
     }
   ],
   featureCards: [

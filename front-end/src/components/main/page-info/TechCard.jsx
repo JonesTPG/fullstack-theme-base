@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles(theme => ({
   card: { height: '400px' },
@@ -29,6 +30,12 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     backgroundColor: red[500]
+  },
+  link: {
+    textDecoration: 'none',
+    '&:hover,&:focus': {
+      textDecoration: 'none'
+    }
   }
 }));
 
@@ -37,19 +44,21 @@ const TechCard = ({ data }) => {
 
   return (
     <>
-      <Card className={classes.card}>
-        <CardHeader title={data.title} subheader={data.subtitle} />
-        <CardMedia
-          className={classes.media}
-          image={'img/' + data.img}
-          title={data.title}
-        />
-        <CardContent>
-          <Typography variant="body2" color="textPrimary" component="p">
-            {data.shortDesc}
-          </Typography>
-        </CardContent>
-      </Card>
+      <Link className={classes.link} href={data.url} target="_blank">
+        <Card className={classes.card}>
+          <CardHeader title={data.title} subheader={data.subtitle} />
+          <CardMedia
+            className={classes.media}
+            image={'img/' + data.img}
+            title={data.title}
+          />
+          <CardContent>
+            <Typography variant="body2" color="textPrimary" component="p">
+              {data.shortDesc}
+            </Typography>
+          </CardContent>
+        </Card>
+      </Link>
     </>
   );
 };

@@ -186,7 +186,7 @@ const Main = props => {
             <Brightness />
           </IconButton>
           <Button data-cy="logout" onClick={handleAuthClick} color="inherit">
-            {token ? 'Login' : 'Logout'}
+            {token ? 'Log Out' : 'Log In'}
           </Button>
         </Toolbar>
       </AppBar>
@@ -239,7 +239,7 @@ const Main = props => {
               <ExitToAppIcon></ExitToAppIcon>
             </ListItemIcon>
 
-            <ListItemText primary={token ? 'Log In' : 'Log Out'} />
+            <ListItemText primary={token ? 'Log Out' : 'Log In'} />
           </ListItem>
         </List>
       </Drawer>
