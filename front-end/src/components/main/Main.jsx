@@ -206,6 +206,12 @@ export default function Main(props) {
             </ListItemIcon>
             <ListItemText> Kirjaudu ulos</ListItemText>
           </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <InboxIcon />
+            </ListItemIcon>
+            <ListItemText> Kirjaudu ulos</ListItemText>
+          </ListItem>
         </List>
       </Drawer>
       <main
