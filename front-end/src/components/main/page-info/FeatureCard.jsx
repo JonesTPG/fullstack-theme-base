@@ -38,7 +38,6 @@ const FeatureCard = ({ data }) => {
     <>
       <Card className={classes.card}>
         <CardHeader title={data.title} subheader={data.subtitle} />
-
         <CardContent>
           <Typography variant="body2" color="textPrimary" component="p">
             {data.shortDesc}
