@@ -3,6 +3,17 @@
 This is a Full-Stack Base Application for rapid development. The application includes a React.js front-end,
 Apollo GraphQL back-end and a MongoDB database.
 
+## Apollo Client for Local State Management
+
+The local state of the application is handled with Apollo Client. The initial state is set in src/apollo-client/client.js.
+Local resolvers can be set at src/apollo-client/resolvers.js
+
+Local state can be queried similarly as you would query a external graphql server. Example query below:
+
+export const GET_DEFAULT_THEME = gql`{ darkTheme @client }`;
+
+The @client directive tells apollo to query the local state instead of the external server. If the searched field cannot be found from the local state, apollo will then try to use a local resolver.
+
 ## Available Scripts
 
 In the project directory, you can run:

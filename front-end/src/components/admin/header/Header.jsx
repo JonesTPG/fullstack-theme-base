@@ -15,23 +15,47 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
-
 import { Link } from 'react-router-dom';
+
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { CHANGE_THEME, GET_LOCAL_THEME } from '../../../queries/theme';
 
 import { styles } from './HeaderStyles';
 import { logOut } from '../../../services/authService';
-import { useTheme } from '../../../hooks/theme';
 
 const Header = props => {
   const { classes, onDrawerToggle } = props;
 
+  const client = useApolloClient();
+  const [changeTheme] = useMutation(CHANGE_THEME, {
+    onCompleted() {
+      console.log('theme changed');
+    },
+    onError(error) {
+      console.log(error);
+    },
+
+    update: cache => {
+      const data = cache.readQuery({
+        query: GET_LOCAL_THEME
+      });
+      console.log(data);
+      const dataCopy = { ...data, darkTheme: !data.darkTheme };
+      cache.writeQuery({
+        query: GET_LOCAL_THEME,
+        data: dataCopy
+      });
+    }
+  });
+
   const handleSignOut = () => {
     logOut();
+    client.resetStore();
     props.history.push('/login');
   };
 
-  const handleThemeChange = () => {
-    console.log('theme change');
+  const handleThemeChange = async () => {
+    await changeTheme();
   };
 
   return (
@@ -96,7 +120,7 @@ const Header = props => {
               </Button>
             </Grid>
             <Grid item>
-              <Tooltip title="Help">
+              <Tooltip title="change the color scheme of the application">
                 <Button
                   onClick={handleThemeChange}
                   className={classes.button}
