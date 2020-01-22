@@ -21,10 +21,21 @@ const typeDefs = gql`
     user: User!
   }
 
+  type Contact {
+    firstName: String!
+    lastName: String!
+    email: String!
+    phone: String
+    company: String
+    message: String
+    user: User!
+  }
+
   type Query {
     me: User
     hello: String
     feedback: [Feedback]
+    contact: [Contact]
   }
 
   type Mutation {
@@ -39,6 +50,11 @@ const typeDefs = gql`
     deleteUsers: Boolean!
     login(username: String!, password: String!): UserData
     changeTheme: Boolean!
+    createContact(
+      firstName: String!
+      lastName: String!
+      email: String!
+    ): Contact
   }
 
   type Subscription {
@@ -46,6 +62,7 @@ const typeDefs = gql`
     feedbackAdded: Feedback!
     userLoggedIn: User!
     userChangedTheme: User!
+    contactAdded: Contact!
   }
 `;
 

@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 
 const User = require('./models/user');
 const Feedback = require('./models/feedback');
+const Contact = require('./models/contact');
 
 const config = require('./utils/config');
 
@@ -19,6 +20,9 @@ const resolvers = {
     },
     feedback: () => {
       return Feedback.find({}).populate('user');
+    },
+    contact: () => {
+      return Contact.find({}).populate('user');
     }
   },
   Mutation: {
@@ -93,6 +97,29 @@ const resolvers = {
       });
       return feedback;
     },
+    createContact: async (root, args, context) => {
+      let contact = new Contact({
+        firstName: args.firstName,
+        lastName: args.lastName,
+        email: args.email,
+        phone: args.phone,
+        company: args.company,
+        message: args.message,
+        privacy: args.privacy,
+        user: context.currentUser._id
+      });
+      await contact.save().catch(error => {
+        throw new UserInputError(error.message, {
+          invalidArgs: args
+        });
+      });
+
+      await Contact.populate(contact, 'user');
+      pubsub.publish('CONTACT_ADDED', {
+        contactAdded: contact
+      });
+      return contact;
+    },
     login: async (root, args) => {
       const user = await User.findOne({ username: args.username });
 
@@ -150,6 +177,9 @@ const resolvers = {
     },
     userChangedTheme: {
       subscribe: () => pubsub.asyncIterator(['USER_CHANGED_THEME'])
+    },
+    contactAdded: {
+      subscribe: () => pubsub.asyncIterator(['CONTACT_ADDED'])
     }
   }
 };
