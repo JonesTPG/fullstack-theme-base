@@ -233,7 +233,8 @@ const Main = props => {
           [classes.contentShift]: open
         })}
       >
-        {token ? <PageInfo /> : <p>you are not logged in</p>}
+        {/* {token ? <PageInfo /> : <p>you are not logged in</p>} */}
+        <Route exact path="/" render={() => <PageInfo />} />
         <Route path="/feedback" render={() => <Feedback />} />
       </main>
     </div>
