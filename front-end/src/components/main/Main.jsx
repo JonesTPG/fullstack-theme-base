@@ -34,6 +34,7 @@ import Feedback from '../feedback/Feedback';
 import { ME } from '../../queries/login';
 import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
+import PageInfo from './page-info/PageInfo';
 
 const drawerWidth = 240;
 
@@ -174,7 +175,7 @@ const Main = props => {
               ? 'Welcome'
               : 'Welcome ' + data.me.username + '!'}
           </Typography>
-          <IconButton color="inherit">
+          <IconButton onClick={handleThemeChange} color="inherit">
             <Brightness />
           </IconButton>
           <Button onClick={handleAuthClick} color="inherit">
@@ -218,12 +219,10 @@ const Main = props => {
         <List>
           <ListItem button>
             <ListItemIcon>
-
               <ExitToAppIcon></ExitToAppIcon>
             </ListItemIcon>
 
             <ListItemText primary={token == undefined ? 'Log In' : 'Log Out'} />
-
           </ListItem>
         </List>
       </Drawer>
@@ -233,21 +232,7 @@ const Main = props => {
           [classes.contentShift]: open
         })}
       >
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Rhoncus
-          dolor purus non enim praesent elementum facilisis leo vel. Risus at
-          ultrices mi tempus imperdiet. Semper risus in hendrerit gravida rutrum
-          quisque non tellus. Convallis convallis tellus id interdum velit
-          laoreet id donec ultrices. Odio morbi quis commodo odio aenean sed
-          adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate
-          eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo
-          quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat
-          vivamus at augue. At augue eget arcu dictum varius duis at consectetur
-          lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
-          faucibus et molestie ac.
-        </Typography>
+        <PageInfo />
 
         <Feedback></Feedback>
       </main>

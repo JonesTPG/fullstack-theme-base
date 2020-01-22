@@ -13,11 +13,7 @@ const HomePage = () => {
       </Main>
     );
   } else {
-    return (
-      <Main pageName="Homepage">
-        <PageInfo />
-      </Main>
-    );
+    return <Main pageName="Homepage"></Main>;
   }
 };
 
