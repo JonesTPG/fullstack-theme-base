@@ -27,7 +27,7 @@ import Brightness from '@material-ui/icons/Brightness4';
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import { CHANGE_THEME, GET_LOCAL_THEME } from '../../queries/theme';
 
-import { withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 import { logOut } from '../../services/authService';
 import Feedback from '../feedback/Feedback';
@@ -36,6 +36,7 @@ import { ME } from '../../queries/login';
 import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
 import PageInfo from './page-info/PageInfo';
+import ContactForm from '../contact/ContactForm';
 
 const drawerWidth = 240;
 
