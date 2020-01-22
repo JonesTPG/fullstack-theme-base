@@ -10,7 +10,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import useField from '../../hooks/input';
 import { withRouter } from 'react-router-dom';
@@ -44,7 +43,6 @@ const Login = props => {
       const data = cache.readQuery({
         query: GET_LOCAL_THEME
       });
-      console.log(data);
       const dataCopy = { ...data, darkTheme: response.data.login.darkTheme };
       cache.writeQuery({
         query: GET_LOCAL_THEME,

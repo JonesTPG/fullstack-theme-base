@@ -56,14 +56,21 @@ const PageInfo = props => {
               <FeatureCard data={data}></FeatureCard>
             </Grid>
           ))}
-          <Grid item xs={12} >
+          <Grid item xs={12}>
             <Paper className={classes.paper}>
               <h1> Interested to hear more? </h1>
-              <Button variant="contained" onClick={() => props.history.push("/feedback")} color="primary">
+              <Button
+                variant="contained"
+                onClick={() => props.history.push('/feedback')}
+                color="primary"
+              >
                 Give feedback
-              </Button>
-              {" "}
-              <Button variant="contained" onClick={() => props.history.push("/contact-us")} color="primary">
+              </Button>{' '}
+              <Button
+                variant="contained"
+                onClick={() => props.history.push('/contact-us')}
+                color="primary"
+              >
                 Contact us
               </Button>
             </Paper>

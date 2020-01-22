@@ -35,7 +35,7 @@ const Feedback = props => {
     textFeedback.resetState();
   };
 
-  console.log("MOI")
+  console.log('MOI');
 
   return (
     <Container component="main" maxWidth="xs" className={classes.paper}>

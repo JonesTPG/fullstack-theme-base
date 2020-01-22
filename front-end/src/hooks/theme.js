@@ -1,5 +1,4 @@
 import { useMutation } from '@apollo/react-hooks';
-import { useApolloClient } from '@apollo/client';
 
 import { CHANGE_THEME, GET_LOCAL_THEME } from '../queries/theme';
 
@@ -24,11 +23,6 @@ export const useTheme = () => {
       });
     }
   });
-
-  // const changeLocalAppTheme = () => {
-  //   const previous = client.readQuery({ query: GET_LOCAL_THEME });
-  //   console.log(previous);
-  // };
 
   return { changeTheme };
 };

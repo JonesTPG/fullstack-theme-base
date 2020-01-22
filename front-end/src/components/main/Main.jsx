@@ -20,6 +20,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import MailIcon from '@material-ui/icons/Mail';
 import Button from '@material-ui/core/Button';
+import HomeIcon from '@material-ui/icons/Home';
 
 import Brightness from '@material-ui/icons/Brightness4';
 
@@ -35,8 +36,6 @@ import { ME } from '../../queries/login';
 import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
 import PageInfo from './page-info/PageInfo';
-import { Route, Switch } from 'react-router-dom';
-import ContactForm from '../contact/ContactForm';
 
 const drawerWidth = 240;
 
@@ -110,9 +109,7 @@ const Main = props => {
 
   const client = useApolloClient();
   const [changeTheme] = useMutation(CHANGE_THEME, {
-    onCompleted() {
-      console.log('theme changed');
-    },
+    onCompleted() {},
     onError(error) {
       console.log(error);
     },
@@ -121,7 +118,6 @@ const Main = props => {
       const data = cache.readQuery({
         query: GET_LOCAL_THEME
       });
-      console.log(data);
       const dataCopy = { ...data, darkTheme: !data.darkTheme };
       cache.writeQuery({
         query: GET_LOCAL_THEME,
@@ -132,8 +128,6 @@ const Main = props => {
 
   const token = useToken();
   const { data } = useQuery(ME);
-
-  console.log(data);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -147,8 +141,8 @@ const Main = props => {
     await changeTheme();
   };
 
-  const handleAuthClick = event => {
-    token == undefined ? props.history.push('/login') : client.resetStore();
+  const handleAuthClick = () => {
+    token ? props.history.push('/login') : client.resetStore();
     logOut();
     props.history.push('/login');
   };
@@ -191,7 +185,7 @@ const Main = props => {
             <Brightness />
           </IconButton>
           <Button data-cy="logout" onClick={handleAuthClick} color="inherit">
-            {token == undefined ? 'Login' : 'Logout'}
+            {token ? 'Login' : 'Logout'}
           </Button>
         </Toolbar>
       </AppBar>
@@ -220,9 +214,15 @@ const Main = props => {
         <List>
           <ListItem button onClick={() => props.history.push('/')}>
             <ListItemIcon>
-              <MailIcon />
+              <HomeIcon />
             </ListItemIcon>
             <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button onClick={() => props.history.push('/feedback')}>
+            <ListItemIcon>
+              <MailIcon />
+            </ListItemIcon>
+            <ListItemText primary="Give Feedback" />
           </ListItem>
           <ListItem button onClick={() => props.history.push('/contact-us')}>
             <ListItemIcon>
@@ -237,7 +237,8 @@ const Main = props => {
             <ListItemIcon>
               <ExitToAppIcon></ExitToAppIcon>
             </ListItemIcon>
-            <ListItemText primary={token == undefined ? 'Log In' : 'Log Out'} />
+
+            <ListItemText primary={token ? 'Log In' : 'Log Out'} />
           </ListItem>
         </List>
       </Drawer>
@@ -247,7 +248,6 @@ const Main = props => {
           [classes.contentShift]: open
         })}
       >
-        {/* {token ? Content() : <p>you are not logged in</p>} */}
         {Content()}
       </main>
     </div>
