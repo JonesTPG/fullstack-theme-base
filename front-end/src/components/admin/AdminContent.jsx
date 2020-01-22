@@ -2,10 +2,15 @@ import React from 'react';
 import Feed from './feed/Feed';
 import { useRoles } from '../../hooks/auth';
 import { Route } from 'react-router-dom';
+import { ME } from '../../queries/login';
+import { useQuery } from 'react-apollo';
 
 const AdminContent = () => {
-  let roles = useRoles();
-  if (!roles || !roles.includes('ADMIN')) {
+  const { data, loading } = useQuery(ME);
+
+  if (loading) {
+    return <p>loading</p>;
+  } else if (!data.me.roles.includes('ADMIN')) {
     return <p>you do not have permissions to access this page</p>;
   } else {
     return (

@@ -5,6 +5,7 @@ import { FeedbackStyles } from '../AllStyles';
 import { withStyles } from '@material-ui/core/';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Tooltip from "@material-ui/core/Tooltip"
 import IconButton from '@material-ui/core/IconButton';
 import SentimentDissatisfiedRounded from '@material-ui/icons/SentimentDissatisfiedRounded';
 import SentimentSatisfiedRounded from '@material-ui/icons/SentimentSatisfiedRounded';
@@ -47,29 +48,36 @@ const Feedback = props => {
           <h2>Please let us know how you feel</h2>
         </Grid>
         <Grid item>
-          <IconButton className={classes.iconbutton} onClick={handleSadClick}>
-            <SentimentDissatisfiedRounded />
-          </IconButton>
+          <Tooltip title="Bad">
+            <IconButton className={classes.iconbutton} onClick={handleSadClick}>
+              <SentimentDissatisfiedRounded />
+            </IconButton>
+          </Tooltip>
         </Grid>
         <Grid item>
-          <IconButton className={classes.iconbutton} onClick={handleOkClick}>
-            <SentimentSatisfied />
-          </IconButton>
+          <Tooltip title="OK">
+            <IconButton className={classes.iconbutton} onClick={handleOkClick}>
+              <SentimentSatisfied />
+            </IconButton>
+          </Tooltip>
         </Grid>
         <Grid item>
-          <IconButton className={classes.iconbutton} onClick={handleGladClick}>
-            <SentimentSatisfiedRounded />
-          </IconButton>
+          <Tooltip title="Good">
+            <IconButton className={classes.iconbutton} onClick={handleGladClick}>
+              <SentimentSatisfiedRounded />
+            </IconButton>
+          </Tooltip>
         </Grid>
         <Grid item>
-          <TextField
-            id="filled-textarea"
-            label="Feedback"
-            placeholder="Write feedback..."
-            multiline
-            variant="outlined"
-            {...textFeedback.inputprops()}
-          />
+          <Tooltip title="Give written feedback">
+            <TextField
+              id="filled-textarea"
+              placeholder="Write feedback..."
+              multiline
+              variant="outlined"
+              {...textFeedback.inputprops()}
+            />
+          </Tooltip>
         </Grid>
         <Grid item>
           <Button onClick={handleFeedback} className={classes.submit} >Send</Button>

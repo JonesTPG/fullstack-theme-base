@@ -15,6 +15,8 @@ import Link from '@material-ui/core/Link';
 import useField from '../../hooks/input';
 import { withRouter } from 'react-router-dom';
 import { LOGIN } from '../../queries/login';
+import { GET_LOCAL_THEME } from '../../queries/theme';
+
 import { useMutation } from '@apollo/react-hooks';
 import { LoginStyles } from '../AllStyles';
 
@@ -37,6 +39,17 @@ const Login = props => {
       setTimeout(() => {
         setErrorText(null);
       }, 4000);
+    },
+    update: (cache, response) => {
+      const data = cache.readQuery({
+        query: GET_LOCAL_THEME
+      });
+      console.log(data);
+      const dataCopy = { ...data, darkTheme: response.data.login.darkTheme };
+      cache.writeQuery({
+        query: GET_LOCAL_THEME,
+        data: dataCopy
+      });
     }
   });
 

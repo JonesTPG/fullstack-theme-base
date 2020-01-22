@@ -114,7 +114,8 @@ const resolvers = {
       });
       return {
         value: jwt.sign(tokenData, config.JWT_SECRET),
-        roles: user.roles
+        roles: user.roles,
+        darkTheme: user.darkTheme
       };
     },
     deleteUsers: async () => {

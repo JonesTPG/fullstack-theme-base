@@ -1,39 +1,34 @@
-import { useState } from 'react';
-import { mainTheme, darkTheme } from '../AppStyles';
+import { useMutation } from '@apollo/react-hooks';
+import { useApolloClient } from '@apollo/client';
 
-import { useQuery, useMutation } from '@apollo/react-hooks';
-import { ME } from '../queries/login';
-import { CHANGE_THEME } from '../queries/theme';
+import { CHANGE_THEME, GET_LOCAL_THEME } from '../queries/theme';
 
 export const useTheme = () => {
-  let [theme, setTheme] = useState(mainTheme);
-
   const [changeTheme] = useMutation(CHANGE_THEME, {
-    onCompleted({ data }) {
-      console.log(data);
+    onCompleted() {
+      console.log('theme changed');
     },
-    onError() {
-      console.log('error');
+    onError(error) {
+      console.log(error);
     },
-    refetchQueries: [ME]
-  });
 
-  useQuery(ME, {
-    onCompleted(data) {
+    update: cache => {
+      const data = cache.readQuery({
+        query: GET_LOCAL_THEME
+      });
       console.log(data);
-      if (data.me) {
-        data.me.darkTheme === true ? setTheme(darkTheme) : setTheme(mainTheme);
-      } else {
-        setTheme(mainTheme);
-      }
+      const dataCopy = { ...data, darkTheme: !data.darkTheme };
+      cache.writeQuery({
+        query: GET_LOCAL_THEME,
+        data: dataCopy
+      });
     }
   });
 
-  const setMainTheme = () => {
-    setTheme(mainTheme);
-  };
-  const setDarkTheme = () => {
-    setTheme(darkTheme);
-  };
-  return { theme, setMainTheme, setDarkTheme, changeTheme };
+  // const changeLocalAppTheme = () => {
+  //   const previous = client.readQuery({ query: GET_LOCAL_THEME });
+  //   console.log(previous);
+  // };
+
+  return { changeTheme };
 };

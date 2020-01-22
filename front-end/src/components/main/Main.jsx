@@ -21,7 +21,15 @@ import Button from '@material-ui/core/Button';
 
 import Brightness from '@material-ui/icons/Brightness4';
 
+
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { CHANGE_THEME, GET_LOCAL_THEME } from '../../queries/theme';
+
+import { logOut } from '../../services/authService';
+
+
 const drawerWidth = 240;
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -84,7 +92,8 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function PersistentDrawerLeft() {
+
+export default function Main() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -95,6 +104,41 @@ export default function PersistentDrawerLeft() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+
+  const client = useApolloClient();
+  const [changeTheme] = useMutation(CHANGE_THEME, {
+    onCompleted() {
+      console.log('theme changed');
+    },
+    onError(error) {
+      console.log(error);
+    },
+
+    update: cache => {
+      const data = cache.readQuery({
+        query: GET_LOCAL_THEME
+      });
+      console.log(data);
+      const dataCopy = { ...data, darkTheme: !data.darkTheme };
+      cache.writeQuery({
+        query: GET_LOCAL_THEME,
+        data: dataCopy
+      });
+    }
+  });
+
+  const handleThemeChange = async () => {
+    await changeTheme();
+  };
+
+  const handleLogOut = event => {
+    event.preventDefault();
+    console.log('log out');
+    client.resetStore();
+
+    logOut();
+    props.history.push('/login');
+
   };
 
   return (
