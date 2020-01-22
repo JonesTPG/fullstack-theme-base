@@ -16,6 +16,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
 import MailIcon from '@material-ui/icons/Mail';
 import Button from '@material-ui/core/Button';
 
@@ -24,8 +26,14 @@ import Brightness from '@material-ui/icons/Brightness4';
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import { CHANGE_THEME, GET_LOCAL_THEME } from '../../queries/theme';
 
+import { withRouter } from 'react-router-dom';
+
 import { logOut } from '../../services/authService';
 import Feedback from '../feedback/Feedback';
+
+import { ME } from '../../queries/login';
+import { useQuery } from '@apollo/react-hooks';
+import { useToken } from '../../hooks/auth';
 
 const drawerWidth = 240;
 
@@ -92,7 +100,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Main(props) {
+const Main = props => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -119,6 +127,11 @@ export default function Main(props) {
     }
   });
 
+  const token = useToken();
+  const { data } = useQuery(ME);
+
+  console.log(data);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -131,11 +144,8 @@ export default function Main(props) {
     await changeTheme();
   };
 
-  const handleLogOut = event => {
-    event.preventDefault();
-    console.log('log out');
-    client.resetStore();
-
+  const handleAuthClick = event => {
+    token == undefined ? props.history.push('/login') : client.resetStore();
     logOut();
     props.history.push('/login');
   };
@@ -160,12 +170,16 @@ export default function Main(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap className={classes.title}>
-            Hello and welcome!
+            {data === undefined || data.me === null
+              ? 'Welcome'
+              : 'Welcome ' + data.me.username + '!'}
           </Typography>
           <IconButton color="inherit">
             <Brightness />
           </IconButton>
-          <Button color="inherit">Login</Button>
+          <Button onClick={handleAuthClick} color="inherit">
+            {token == undefined ? 'Login' : 'Logout'}
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -191,32 +205,25 @@ export default function Main(props) {
         </div>
         <Divider />
         <List>
-          <ListItem button>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText> Contact us</ListItemText>
-          </ListItem>
+          {['Home', 'Contact Us'].map((text, index) => (
+            <ListItem button key={text}>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItem>
+          ))}
         </List>
         <Divider />
         <List>
           <ListItem button>
             <ListItemIcon>
-              <MailIcon />
+
+              <ExitToAppIcon></ExitToAppIcon>
             </ListItemIcon>
-            <ListItemText> Contact us</ListItemText>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText> Kirjaudu ulos</ListItemText>
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <InboxIcon />
-            </ListItemIcon>
-            <ListItemText> Kirjaudu ulos</ListItemText>
+
+            <ListItemText primary={token == undefined ? 'Log In' : 'Log Out'} />
+
           </ListItem>
         </List>
       </Drawer>
@@ -246,4 +253,7 @@ export default function Main(props) {
       </main>
     </div>
   );
-}
+};
+
+const routedMain = withRouter(Main);
+export default routedMain;

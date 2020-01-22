@@ -1,5 +1,4 @@
 import React from 'react';
-import Feedback from '../../feedback/Feedback';
 import Main from '../Main';
 import { useToken } from '../../../hooks/auth';
 import PageInfo from '../page-info/PageInfo';
