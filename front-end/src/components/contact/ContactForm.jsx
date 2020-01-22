@@ -52,7 +52,7 @@ const ContactForm = () => {
             >
               Please leave a message – we’ll be in touch with you soon! Our
               email addresses follow the format of
-              firstname.lastname@fullstack.fi
+              firstname.lastname@fullstack.com
             </Typography>
           </Container>
           <Grid container spacing={3}>
