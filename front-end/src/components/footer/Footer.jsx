@@ -22,15 +22,12 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    minHeight: '100%'
-  },
-  main: {
+    minHeight: '100%',
     marginTop: theme.spacing(8),
-    marginBottom: theme.spacing(2)
   },
   footer: {
     padding: theme.spacing(3),
-    position: "absolute",
+    display: "block",
     bottom: 0,
     width: "100%",
     alignItems: "center",
