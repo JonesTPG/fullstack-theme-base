@@ -51,7 +51,7 @@ export const frontPage = {
       longDesc: 'TBD'
     },
     {
-      title: 'Remote data is fetched via Apollo Client and GraphQL',
+      title: 'Remote data is fetched via Apollo Client',
       subtitle: 'Data flow',
       img: 'data-flow',
       shortDesc:

@@ -20,6 +20,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import MailIcon from '@material-ui/icons/Mail';
 import Button from '@material-ui/core/Button';
+import HomeIcon from '@material-ui/icons/Home';
 
 import Brightness from '@material-ui/icons/Brightness4';
 
@@ -213,19 +214,17 @@ const Main = props => {
         </div>
         <Divider />
         <List>
-          {/* {['Home', 'Contact Us'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))} */}
           <ListItem button onClick={() => props.history.push('/')}>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button onClick={() => props.history.push('/feedback')}>
             <ListItemIcon>
               <MailIcon />
             </ListItemIcon>
-            <ListItemText primary="Home" />
+            <ListItemText primary="Give Feedback" />
           </ListItem>
           <ListItem button onClick={() => props.history.push('/contact-us')}>
             <ListItemIcon>
@@ -251,7 +250,6 @@ const Main = props => {
           [classes.contentShift]: open
         })}
       >
-        {/* {token ? Content() : <p>you are not logged in</p>} */}
         {Content()}
       </main>
     </div>

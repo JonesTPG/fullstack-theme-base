@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
-  card: { height: '250px' },
+  card: { height: '300px' },
   media: {
     // height: '50%',
     // width: '50%',
