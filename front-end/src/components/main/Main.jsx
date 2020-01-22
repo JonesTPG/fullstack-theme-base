@@ -35,6 +35,7 @@ import { ME } from '../../queries/login';
 import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
 import PageInfo from './page-info/PageInfo';
+import { Route } from "react-router-dom"
 
 const drawerWidth = 240;
 
@@ -232,9 +233,8 @@ const Main = props => {
           [classes.contentShift]: open
         })}
       >
-        <PageInfo />
-
-        <Feedback></Feedback>
+        {token ? <PageInfo /> : <p>you are not logged in</p>}
+        <Route path="/feedback" render={() => <Feedback />} />
       </main>
     </div>
   );

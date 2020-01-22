@@ -4,7 +4,7 @@ import Login from './components/login/Login';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import SignUp from './components/signup/SignUp';
 import { ThemeProvider } from '@material-ui/core/styles';
-import HomePage from './components/main/homepage/HomePage';
+import Main from './components/main/Main';
 import Counter from './components/counter/Counter';
 import Footer from './components/footer/Footer';
 
@@ -27,7 +27,7 @@ const App = () => {
           <Route path="/voivoi" render={() => <h1>Voi Voi</h1>} />
           <Route path="/login" render={() => <Login />} />
           <Route path="/signup" render={() => <SignUp />} />
-          <Route exact path="/" render={() => <HomePage />} />
+          <Route exact path="/" render={() => <Main />} />
           <Route path="/admin" render={() => <AdminLayout />} />
           <Route path="/counter" render={() => <Counter />} />
         </ThemeProvider>
