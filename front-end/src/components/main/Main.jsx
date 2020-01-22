@@ -70,20 +70,19 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-end'
   },
   content: {
-    flexGrow: 2,
+    flexGrow: 1,
     padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
-    }),
-    marginLeft: -drawerWidth
+    })
   },
   contentShift: {
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen
     }),
-    marginLeft: 0
+    marginLeft: drawerWidth
   },
   title: {
     flexGrow: 1
@@ -215,6 +214,7 @@ export default function Main(props) {
           </ListItem>
         </List>
       </Drawer>
+
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open
@@ -235,7 +235,7 @@ export default function Main(props) {
           lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien
           faucibus et molestie ac.
         </Typography>
-        <Typography paragraph>TÄHÄN FEEDI</Typography>
+
         <Feedback></Feedback>
       </main>
     </div>
