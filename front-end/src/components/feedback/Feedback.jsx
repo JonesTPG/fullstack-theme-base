@@ -47,7 +47,7 @@ const Feedback = props => {
         spacing={2}
       >
         <Grid item>
-          <h2>Please let us know how you feel</h2>
+          <h2>Please let us know how you feel!</h2>
         </Grid>
         <Grid item>
           <Tooltip title="Bad">
