@@ -179,7 +179,7 @@ const Main = props => {
           <IconButton onClick={handleThemeChange} color="inherit">
             <Brightness />
           </IconButton>
-          <Button onClick={handleAuthClick} color="inherit">
+          <Button data-cy="logout" onClick={handleAuthClick} color="inherit">
             {token == undefined ? 'Login' : 'Logout'}
           </Button>
         </Toolbar>
