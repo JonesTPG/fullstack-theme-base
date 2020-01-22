@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
-  card: { height: '450px' },
+  card: { height: '250px' },
   media: {
     // height: '50%',
     // width: '50%',
@@ -39,11 +39,7 @@ const FeatureCard = ({ data }) => {
     <>
       <Card className={classes.card}>
         <CardHeader title={data.title} subheader={data.subtitle} />
-        <CardMedia
-          className={classes.media}
-          image={'img/' + data.img}
-          title={data.title}
-        />
+
         <CardContent>
           <Typography variant="body2" color="textPrimary" component="p">
             {data.shortDesc}

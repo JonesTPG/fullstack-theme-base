@@ -5,6 +5,10 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import TechCard from './TechCard';
 import FeatureCard from './FeatureCard';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+
+import { Link } from 'react-router-dom';
 
 import { frontPage } from './pagedata';
 
@@ -53,6 +57,21 @@ const PageInfo = () => {
               <FeatureCard data={data}></FeatureCard>
             </Grid>
           ))}
+          <Grid item xs={12}>
+            <Paper className={classes.paper}>
+              <h1> Interested to hear more? </h1>
+              <Link to="/feedback">
+                <Button variant="contained" color="primary">
+                  Give feedback
+                </Button>
+              </Link>
+              <Link to="/contact-us">
+                <Button variant="contained" color="primary">
+                  Contact us
+                </Button>
+              </Link>
+            </Paper>
+          </Grid>
         </Grid>
       </div>
     </>

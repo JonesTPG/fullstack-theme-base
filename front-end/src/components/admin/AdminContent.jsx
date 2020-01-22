@@ -1,6 +1,5 @@
 import React from 'react';
 import Feed from './feed/Feed';
-import { useRoles } from '../../hooks/auth';
 import { Route } from 'react-router-dom';
 import { ME } from '../../queries/login';
 import { useQuery } from 'react-apollo';
