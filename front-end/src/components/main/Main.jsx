@@ -25,6 +25,7 @@ import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import { CHANGE_THEME, GET_LOCAL_THEME } from '../../queries/theme';
 
 import { logOut } from '../../services/authService';
+import Feedback from '../feedback/Feedback';
 
 const drawerWidth = 240;
 
@@ -227,6 +228,7 @@ export default function Main(props) {
           faucibus et molestie ac.
         </Typography>
         <Typography paragraph>TÄHÄN FEEDI</Typography>
+        <Feedback></Feedback>
       </main>
     </div>
   );

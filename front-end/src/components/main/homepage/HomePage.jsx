@@ -17,7 +17,6 @@ const HomePage = () => {
     return (
       <Main pageName="Homepage">
         <PageInfo />
-        <Feedback />
       </Main>
     );
   }
