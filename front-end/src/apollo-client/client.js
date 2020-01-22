@@ -2,6 +2,7 @@ import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
+import { persistCache } from 'apollo-cache-persist';
 
 import { split } from 'apollo-link';
 import { WebSocketLink } from 'apollo-link-ws';
@@ -44,6 +45,11 @@ const client = new ApolloClient({
   link,
   cache,
   resolvers
+});
+
+persistCache({
+  cache: cache,
+  storage: window.localStorage
 });
 
 const data = {
