@@ -5,8 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
-import Feed from './feed/Feed';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Switch } from 'react-router-dom';
 import { ME } from '../../queries/login';
 import { useQuery } from 'react-apollo';
 
@@ -79,8 +78,6 @@ const AdminContent = props => {
             </Grid>
           </Grid>
         </div>
-
-        <Route path="/admin/feedback" render={() => <Feed />} />
       </>
     );
   }

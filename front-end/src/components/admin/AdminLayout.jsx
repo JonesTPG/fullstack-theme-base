@@ -6,6 +6,8 @@ import Hidden from '@material-ui/core/Hidden';
 import Navigator from './side-nav/Navigator';
 import Header from './header/Header';
 import AdminContent from './AdminContent';
+import { Route, Switch } from 'react-router-dom';
+import Feed from './feed/Feed';
 
 const drawerWidth = 256;
 
@@ -44,29 +46,42 @@ const Admin = props => {
     setMobileOpen(!mobileOpen);
   };
 
+  const Content = () => {
+    return (
+      <>
+        <Switch>
+          <Route path="/admin/feed/feedback" render={() => <Feed />} />
+          <Route path="/admin/feed/contact-us" render={() => <Feed />} />
+          <Route path="/admin/feed/theme-change" render={() => <Feed />} />
+          <Route path="/admin" render={() => <AdminContent />} />
+        </Switch>
+      </>
+    );
+  };
+
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <nav className={classes.drawer}>
-        <Hidden smUp implementation="js">
-          <Navigator
-            PaperProps={{ style: { width: drawerWidth } }}
-            variant="temporary"
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-          />
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Navigator PaperProps={{ style: { width: drawerWidth } }} />
-        </Hidden>
-      </nav>
-      <div className={classes.app}>
-        <Header onDrawerToggle={handleDrawerToggle} />
-        <main className={classes.main}>
-          <AdminContent></AdminContent>
-        </main>
+    <>
+      <div className={classes.root}>
+        <CssBaseline />
+        <nav className={classes.drawer}>
+          <Hidden smUp implementation="js">
+            <Navigator
+              PaperProps={{ style: { width: drawerWidth } }}
+              variant="temporary"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+            />
+          </Hidden>
+          <Hidden xsDown implementation="css">
+            <Navigator PaperProps={{ style: { width: drawerWidth } }} />
+          </Hidden>
+        </nav>
+        <div className={classes.app}>
+          <Header onDrawerToggle={handleDrawerToggle} />
+          <main className={classes.main}>{Content()}</main>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

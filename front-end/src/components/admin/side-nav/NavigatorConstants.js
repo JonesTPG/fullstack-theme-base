@@ -15,18 +15,22 @@ export const categories = [
         id: 'Feedback Feed',
         icon: <StarIcon />,
         active: true,
-        link: '/feedback'
+        link: '/feed/feedback'
       },
-      { id: 'Contact Us Feed', icon: <DnsRoundedIcon />, link: '/contact-us' },
+      {
+        id: 'Contact Us Feed',
+        icon: <DnsRoundedIcon />,
+        link: '/feed/contact-us'
+      },
       {
         id: 'Theme Change Feed',
         icon: <EmailIcon />,
-        link: '/theme-change'
+        link: '/feed/theme-change'
       },
       {
         id: 'User Creation Feed',
         icon: <PeopleIcon />,
-        link: '/user-creation'
+        link: '/feed/user-creation'
       }
     ]
   },

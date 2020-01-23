@@ -79,7 +79,16 @@ const Header = props => {
             </Hidden>
             <Grid item xs />
             <Grid item>
-              <Link to="/">Go to user screen</Link>
+              <Link to="/">
+                <Button
+                  className={classes.button}
+                  variant="outlined"
+                  color="inherit"
+                  size="small"
+                >
+                  Go to user screen
+                </Button>
+              </Link>
             </Grid>
             <Grid item>
               <Tooltip title="Alerts • No alerts">
@@ -87,11 +96,6 @@ const Header = props => {
                   <NotificationsIcon />
                 </IconButton>
               </Tooltip>
-            </Grid>
-            <Grid item>
-              <IconButton color="inherit" className={classes.iconButtonAvatar}>
-                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
-              </IconButton>
             </Grid>
           </Grid>
         </Toolbar>
