@@ -41,8 +41,8 @@ const typeDefs = gql`
   type Mutation {
     createUser(
       username: String!
-      firstName: String!
-      lastName: String!
+      firstName: String
+      lastName: String
       password: String!
     ): User
     createAdminUser(username: String!): User

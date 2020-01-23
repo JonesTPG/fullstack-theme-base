@@ -6,6 +6,7 @@ import { useQuery } from 'react-apollo';
 
 const AdminContent = () => {
   const { data, loading } = useQuery(ME);
+  console.log(data);
 
   if (loading) {
     return <p>loading</p>;
