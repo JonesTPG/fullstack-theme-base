@@ -3,29 +3,62 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
 
 import Button from '@material-ui/core/Button';
+import useField from '../../hooks/input';
+import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles(theme => ({
   heroContent: {
-    padding: theme.spacing(3, 0, 3)
+    padding: theme.spacing(3, 0, 3),
+    alignItems: 'center'
+  },
+  paper: {
+    padding: theme.spacing(2)
   }
 }));
 
 const ContactForm = () => {
   const classes = useStyles();
+  const fName = useField('text');
+  const lName = useField('text');
+  const phone = useField('number');
+  const email = useField('email');
+  const company = useField('text');
+  const message = useField('text');
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    if (!event.target.checkBox.checked) {
+      console.log('Must accept the privacy policy');
+      return null;
+    }
+    const info = {
+      firstName: fName.value,
+      lastName: lName.value,
+      phonenumber: phone.value,
+      email: email.value,
+      company: company.value,
+      message: message.value
+    };
+    console.log('Information', info);
+    fName.resetState();
+    lName.resetState();
+    phone.resetState();
+    email.resetState();
+    message.resetState();
+  };
 
   return (
     <React.Fragment>
-      <Card>
-        <CardContent>
-          <Container maxWidth="xs" className={classes.heroContent}>
-            <div className={classes.paper}>
-              <form className={classes.form} noValidate>
+      <Container component="main" maxWidth="md" className={classes.heroContent}>
+        <Grid container justify="center" spacing={2}>
+          <Grid item xs={8} sm={8} md={8}>
+            <Paper className={classes.paper}>
+              <form onSubmit={handleSubmit}>
                 <Typography
                   component="h1"
                   variant="h4"
@@ -56,6 +89,7 @@ const ContactForm = () => {
                   name="firstName"
                   autoComplete="firstName"
                   autoFocus
+                  {...fName.inputprops()}
                 />
                 <TextField
                   required
@@ -66,6 +100,7 @@ const ContactForm = () => {
                   name="lastName"
                   label="Last name"
                   id="lastName"
+                  {...lName.inputprops()}
                 />
                 <TextField
                   required
@@ -76,6 +111,7 @@ const ContactForm = () => {
                   name="email"
                   label="Email"
                   id="email"
+                  {...email.inputprops()}
                 />
                 <TextField
                   data-cy="phone"
@@ -85,6 +121,7 @@ const ContactForm = () => {
                   name="phone"
                   label="Phone"
                   id="phone"
+                  {...phone.inputprops()}
                 />
                 <TextField
                   data-cy="company"
@@ -94,6 +131,7 @@ const ContactForm = () => {
                   name="company"
                   label="Company"
                   id="company"
+                  {...company.inputprops()}
                 />
                 <TextField
                   data-cy="message"
@@ -104,6 +142,7 @@ const ContactForm = () => {
                   multiline
                   fullWidth
                   variant="outlined"
+                  {...message.inputprops()}
                 />
                 <FormControlLabel
                   control={
@@ -117,18 +156,18 @@ const ContactForm = () => {
                 />
                 <Button
                   data-cy="send"
-                  fullWidth
                   type="submit"
                   variant="contained"
+                  fullWidth
                   color="primary"
                 >
                   Send
                 </Button>
               </form>
-            </div>
-          </Container>
-        </CardContent>
-      </Card>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
     </React.Fragment>
   );
 };

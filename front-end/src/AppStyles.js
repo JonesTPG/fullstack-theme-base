@@ -4,14 +4,15 @@ export const mainTheme = createMuiTheme({
   palette: {
     primary: {
       main: '#009be5',
-      contrastText: '#fff'
+      contrastText: '#FFFFFF',
+      paper: '#009be5'
     },
     secondary: {
       main: '#15AA30',
-      contrastText: '#fff'
+      contrastText: '#FFFFFF'
     },
     background: {
-      contrastText: '#000'
+      contrastText: '#000000'
     }
   },
   typography: {
@@ -38,38 +39,16 @@ export const mainTheme = createMuiTheme({
 
 export const darkTheme = createMuiTheme({
   palette: {
-    common: {
-      black: 'rgba(0, 0, 0, 1)',
-      white: 'rgba(255, 255, 255, 1)'
-    },
-    background: {
-      paper: '#2A2A2A',
-      default: '#1A1A1A',
-      contrastText: '#FFFFFF'
-    },
+    type: 'dark',
     primary: {
-      light: '#47A8E9',
       main: '#3C88C6',
-      dark: '#2D578E',
-      contrastText: '#FFFFFF'
+      paper: '#424242'
     },
     secondary: {
-      light: '#E98847',
-      main: '#C67A3C',
-      dark: '#8E642D',
-      contrastText: '#FFFFFF'
+      main: '#C67A3C'
     },
     error: {
-      light: '#E49CAD',
-      main: '#CF6679',
-      dark: '#B75463',
-      contrastText: '#000000'
-    },
-    text: {
-      primary: 'rgba(255, 255, 255, 1)',
-      secondary: 'rgba(201, 201, 201, 1)',
-      disabled: 'rgba(155, 155, 155, 1)',
-      hint: 'rgba(201, 201, 201, 1)'
+      main: '#D6405B'
     }
   }
 });
