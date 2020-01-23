@@ -16,6 +16,28 @@ export const GET_ALL = gql`
   }
 `;
 
+export const CREATE_CONTACT = gql`
+  mutation createContact(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $phone: String
+    $company: String
+    $message: String
+  ) {
+    createContact(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      phone: $phone
+      company: $company
+      message: $message
+    ) {
+      firstName
+    }
+  }
+`;
+
 export const CONTACT_ADDED = gql`
   subscription {
     contactAdded {

@@ -8,6 +8,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
+import { CREATE_CONTACT } from '../../queries/contact';
+
+import { useMutation } from '@apollo/react-hooks';
 
 import useField from '../../hooks/input';
 
@@ -26,6 +29,8 @@ const ContactForm = () => {
   const phone = useField('phone');
   const company = useField('company');
   const message = useField('message');
+
+  const [addContact] = useMutation(CREATE_CONTACT);
 
   const handleSubmit = async event => {
     event.preventDefault();
