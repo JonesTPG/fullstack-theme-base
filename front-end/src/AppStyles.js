@@ -43,26 +43,27 @@ export const darkTheme = createMuiTheme({
       white: 'rgba(255, 255, 255, 1)'
     },
     background: {
-      paper: 'rgba(74, 74, 74, 1)',
-      default: 'rgba(74, 74, 74, 1)'
+      paper: '#2A2A2A',
+      default: '#1A1A1A',
+      contrastText: '#FFFFFF'
     },
     primary: {
-      light: 'rgba(124, 180, 247, 1)',
-      main: 'rgba(74, 144, 226, 1)',
-      dark: 'rgba(43, 115, 200, 1)',
-      contrastText: '#fff'
+      light: '#47A8E9',
+      main: '#3C88C6',
+      dark: '#2D578E',
+      contrastText: '#FFFFFF'
     },
     secondary: {
-      light: 'rgba(144, 216, 68, 1)',
-      main: 'rgba(126, 211, 33, 1)',
-      dark: 'rgba(96, 167, 18, 1)',
-      contrastText: '#fff'
+      light: '#E98847',
+      main: '#C67A3C',
+      dark: '#8E642D',
+      contrastText: '#FFFFFF'
     },
     error: {
-      light: 'rgba(233, 64, 85, 1)',
-      main: 'rgba(208, 2, 27, 1)',
-      dark: 'rgba(170, 8, 28, 1)',
-      contrastText: '#fff'
+      light: '#E49CAD',
+      main: '#CF6679',
+      dark: '#B75463',
+      contrastText: '#000000'
     },
     text: {
       primary: 'rgba(255, 255, 255, 1)',
