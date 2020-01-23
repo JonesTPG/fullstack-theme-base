@@ -34,6 +34,15 @@ const ContactForm = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
+    await addContact({
+      variables: { firstName, lastName, email, phone, company, message }
+    });
+    firstName.resetState('');
+    lastName.resetState('');
+    email.resetState('');
+    phone.resetState('');
+    company.resetState('');
+    message.resetState('');
   };
 
   return (
@@ -53,7 +62,7 @@ const ContactForm = () => {
                   Contact us
                 </Typography>
                 <Typography
-                  variant="h7"
+                  variant="h6"
                   align="center"
                   color="textSecondary"
                   component="p"
