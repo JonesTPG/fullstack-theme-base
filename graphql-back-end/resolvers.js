@@ -81,7 +81,7 @@ const resolvers = {
     createFeedback: async (root, args, context) => {
       let feedback = new Feedback({
         type: args.type,
-        user: context.currentUser._id
+        user: context.currentUser ? context.currentUser._id : null
       });
 
       await feedback.save().catch(error => {
@@ -105,7 +105,7 @@ const resolvers = {
         phone: args.phone,
         company: args.company,
         message: args.message,
-        user: context.currentUser._id
+        user: context.currentUser ? context.currentUser._id : null
       });
       await contact.save().catch(error => {
         throw new UserInputError(error.message, {

@@ -6,9 +6,8 @@ import { useQuery } from 'react-apollo';
 
 const AdminContent = () => {
   const { data, loading } = useQuery(ME);
-  console.log(data);
 
-  if (loading) {
+  if (loading || data.me === undefined) {
     return <p>loading</p>;
   } else if (!data.me.roles.includes('ADMIN')) {
     return <p>you do not have permissions to access this page</p>;

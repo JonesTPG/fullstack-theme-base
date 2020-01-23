@@ -7,8 +7,9 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-
 import Button from '@material-ui/core/Button';
+
+import useField from '../../hooks/input';
 
 const useStyles = makeStyles(theme => ({
   heroContent: {
@@ -18,6 +19,17 @@ const useStyles = makeStyles(theme => ({
 
 const ContactForm = () => {
   const classes = useStyles();
+
+  const firstName = useField('firstName');
+  const lastName = useField('lastName');
+  const email = useField('email');
+  const phone = useField('phone');
+  const company = useField('company');
+  const message = useField('message');
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+  };
 
   return (
     <React.Fragment>
@@ -56,6 +68,7 @@ const ContactForm = () => {
                   name="firstName"
                   autoComplete="firstName"
                   autoFocus
+                  {...firstName.inputprops()}
                 />
                 <TextField
                   required
@@ -66,6 +79,7 @@ const ContactForm = () => {
                   name="lastName"
                   label="Last name"
                   id="lastName"
+                  {...lastName.inputprops()}
                 />
                 <TextField
                   required
@@ -76,6 +90,7 @@ const ContactForm = () => {
                   name="email"
                   label="Email"
                   id="email"
+                  {...email.inputprops()}
                 />
                 <TextField
                   data-cy="phone"
@@ -85,6 +100,7 @@ const ContactForm = () => {
                   name="phone"
                   label="Phone"
                   id="phone"
+                  {...phone.inputprops()}
                 />
                 <TextField
                   data-cy="company"
@@ -94,6 +110,7 @@ const ContactForm = () => {
                   name="company"
                   label="Company"
                   id="company"
+                  {...company.inputprops()}
                 />
                 <TextField
                   data-cy="message"
@@ -104,6 +121,7 @@ const ContactForm = () => {
                   multiline
                   fullWidth
                   variant="outlined"
+                  {...message.inputprops()}
                 />
                 <FormControlLabel
                   control={
@@ -121,6 +139,7 @@ const ContactForm = () => {
                   type="submit"
                   variant="contained"
                   color="primary"
+                  onClick={handleSubmit}
                 >
                   Send
                 </Button>

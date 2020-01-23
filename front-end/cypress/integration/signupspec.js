@@ -32,7 +32,6 @@ describe('Fullstack-theme-base sign up page ', function() {
         cy.contains('Sign in').click();
         cy.get('[data-cy=signIn]').click();
         cy.url().should('eq', Cypress.env('BASE_URL') + '/');
-        cy.contains('Please let us know how you feel');
       });
     });
     describe('Trying to log in with invalid creadentials', function() {
