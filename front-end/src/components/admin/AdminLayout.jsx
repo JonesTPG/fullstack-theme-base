@@ -3,11 +3,38 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Hidden from '@material-ui/core/Hidden';
-import Navigator from '../side-nav/Navigator';
+import Navigator from './side-nav/Navigator';
 import Header from './header/Header';
-import styles from './AdminStyles';
-import { drawerWidth } from './AdminConstants';
 import AdminContent from './AdminContent';
+
+const drawerWidth = 256;
+
+const styles = theme => ({
+  root: {
+    display: 'flex',
+    minHeight: '100%'
+  },
+  drawer: {
+    [theme.breakpoints.up('sm')]: {
+      width: drawerWidth,
+      flexShrink: 0
+    },
+    backgroundColor: theme.palette.primary.main
+  },
+  app: {
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  main: {
+    flex: 1,
+    padding: theme.spacing(6, 4),
+    background: theme.palette.background.default
+  },
+  footer: {
+    padding: theme.spacing(2)
+  }
+});
 
 const Admin = props => {
   const { classes } = props;
