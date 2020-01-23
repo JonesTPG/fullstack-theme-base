@@ -18,7 +18,7 @@ const typeDefs = gql`
 
   type Feedback {
     type: Int!
-    user: User!
+    user: User
   }
 
   type Contact {
@@ -28,7 +28,7 @@ const typeDefs = gql`
     phone: String
     company: String
     message: String
-    user: User!
+    user: User
   }
 
   type Query {
@@ -41,9 +41,9 @@ const typeDefs = gql`
   type Mutation {
     createUser(
       username: String!
-      firstName: String
-      lastName: String
-      password: String
+      firstName: String!
+      lastName: String!
+      password: String!
     ): User
     createAdminUser(username: String!): User
     createFeedback(type: Int!): Feedback
@@ -54,6 +54,9 @@ const typeDefs = gql`
       firstName: String!
       lastName: String!
       email: String!
+      phone: String
+      company: String
+      message: String
     ): Contact
   }
 

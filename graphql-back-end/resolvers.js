@@ -105,7 +105,6 @@ const resolvers = {
         phone: args.phone,
         company: args.company,
         message: args.message,
-        privacy: args.privacy,
         user: context.currentUser._id
       });
       await contact.save().catch(error => {
