@@ -10,7 +10,6 @@ import SearchIcon from '@material-ui/icons/Search';
 
 const styles = theme => ({
   paper: {
-    maxWidth: 936,
     margin: 'auto',
     overflow: 'hidden'
   },

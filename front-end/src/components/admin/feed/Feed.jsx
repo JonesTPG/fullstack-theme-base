@@ -4,6 +4,7 @@ import { useQuery, useSubscription } from '@apollo/react-hooks';
 import { GET_ALL, FEEDBACK_ADDED } from '../../../queries/feedback';
 import Feedback from './feedback/Feedback';
 import Search from '../search/Search';
+import Grid from '@material-ui/core/Grid';
 
 const Feed = () => {
   const [feedbackList, setFeedbackList] = useState([]);
@@ -29,10 +30,16 @@ const Feed = () => {
 
   return (
     <>
-      <Search></Search>
-      {feedbackList.reverse().map((item, index) => (
-        <Feedback key={index} data={item}></Feedback>
-      ))}
+      <Grid container justify="center" spacing={2} margin>
+        <Grid item xs={10} sm={10} md={10}>
+          <Search />
+        </Grid>
+        {feedbackList.reverse().map((item, index) => (
+          <Grid item key={index} xs={8} sm={8} md={8}>
+            <Feedback key={index} data={item} />
+          </Grid>
+        ))}
+      </Grid>
     </>
   );
 };

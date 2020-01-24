@@ -4,7 +4,8 @@ export const styles = theme => ({
     paddingBottom: theme.spacing(2)
   },
   categoryHeaderPrimary: {
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText
   },
   item: {
     paddingTop: 1,
@@ -39,10 +40,15 @@ export const styles = theme => ({
     marginTop: theme.spacing(2)
   },
   list: {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText
+    backgroundColor: theme.palette.primary.main
   },
   drawer: {
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.background.default
+  },
+  link: {
+    textDecoration: 'none',
+    '&:hover': {
+      color: theme.palette.common.white
+    }
   }
 });

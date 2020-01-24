@@ -21,7 +21,7 @@ const styles = theme => ({
       width: drawerWidth,
       flexShrink: 0
     },
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.paper
   },
   app: {
     flex: 1,

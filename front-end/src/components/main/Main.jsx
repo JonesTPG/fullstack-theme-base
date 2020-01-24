@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme, withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -37,75 +37,9 @@ import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
 import PageInfo from './page-info/PageInfo';
 import ContactForm from '../contact/ContactForm';
+import MainStyles from './MainStyles';
 
-const drawerWidth = 240;
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1
-  },
-  appBar: {
-    backgroundColor: theme.palette.primary.paper,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(['margin', 'width'], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  chevronLeftButton: {
-    color: '#FFFFFF'
-  },
-  menuButton: {
-    marginRight: theme.spacing(2)
-  },
-  hide: {
-    display: 'none'
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0
-  },
-  drawerPaper: {
-    width: drawerWidth,
-    backgroundColor: theme.palette.primary.paper
-  },
-  drawerHeader: {
-    backgroundColor: theme.palette.primary.paper,
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end'
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    }),
-    marginLeft: drawerWidth
-  },
-  title: {
-    flexGrow: 1
-  }
-}));
-
-const Main = props => {
-  const classes = useStyles();
+const Main = ({ classes, ...props }) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -213,7 +147,7 @@ const Main = props => {
           </IconButton>
         </div>
         <Divider />
-        <List>
+        <List disablePadding className={classes.list}>
           <ListItem button onClick={() => props.history.push('/')}>
             <ListItemIcon>
               <HomeIcon />
@@ -232,9 +166,7 @@ const Main = props => {
             </ListItemIcon>
             <ListItemText primary="Contact Us" />
           </ListItem>
-        </List>
-        <Divider />
-        <List>
+          <Divider />
           <ListItem button onClick={handleAuthClick}>
             <ListItemIcon>
               <ExitToAppIcon></ExitToAppIcon>
@@ -256,5 +188,5 @@ const Main = props => {
   );
 };
 
-const routedMain = withRouter(Main);
-export default routedMain;
+const styledMain = withStyles(MainStyles)(Main);
+export default withRouter(styledMain);

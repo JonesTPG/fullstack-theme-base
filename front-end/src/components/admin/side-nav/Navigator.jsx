@@ -25,7 +25,7 @@ const Navigator = props => {
         >
           Paperbase
         </ListItem>
-        <Link to="/admin">
+        <Link to="/admin" className={classes.link}>
           <ListItem className={clsx(classes.item, classes.itemCategory)}>
             <ListItemIcon className={classes.itemIcon}>
               <HomeIcon />
@@ -51,7 +51,7 @@ const Navigator = props => {
               </ListItemText>
             </ListItem>
             {children.map(({ id: childId, icon, active, link }) => (
-              <Link to={'/admin' + link} key={childId}>
+              <Link to={'/admin' + link} key={childId} className={classes.link}>
                 <ListItem
                   button
                   className={clsx(

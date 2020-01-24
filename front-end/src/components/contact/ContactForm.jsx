@@ -160,7 +160,7 @@ const ContactForm = () => {
                   fullWidth
                   type="submit"
                   variant="contained"
-                  color="primary"
+                  color="secondary"
                   onClick={handleSubmit}
                 >
                   Send
