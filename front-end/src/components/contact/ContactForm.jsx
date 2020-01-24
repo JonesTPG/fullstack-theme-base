@@ -41,9 +41,18 @@ const ContactForm = () => {
 
   const handleSubmit = async event => {
     event.preventDefault();
+    console.log(firstName);
 
+    console.log(firstName.value);
     await addContact({
-      variables: { firstName, lastName, email, phone, company, message }
+      variables: {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        email: email.value,
+        phone: phone.value,
+        company: company.value,
+        message: message.value
+      }
     });
     firstName.resetState('');
     lastName.resetState('');
