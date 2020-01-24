@@ -47,7 +47,7 @@ const PageInfo = props => {
               <h1> Features </h1>
               <p>
                 The application comes with some built-in example features,
-                here's a look at the most important features.
+                here&apos;s a look at the most important features.
               </p>
             </Paper>
           </Grid>

@@ -45,6 +45,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   appBar: {
+    backgroundColor: theme.palette.primary.paper,
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -73,10 +74,10 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: theme.palette.background.default
+    backgroundColor: theme.palette.primary.paper
   },
   drawerHeader: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.paper,
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),

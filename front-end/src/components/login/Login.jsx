@@ -141,7 +141,7 @@ const Login = props => {
                   onClick={() => props.history.push('/signup')}
                   color="inherit"
                 >
-                  Don't have an account? Sign Up
+                  Don&apos;t have an account? Sign Up
                 </Link>
               </Typography>
             </Grid>

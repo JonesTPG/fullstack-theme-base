@@ -1,67 +1,68 @@
 import React from 'react';
-import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
-import { withStyles } from '@material-ui/core/';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Tooltip from '@material-ui/core/Tooltip';
 import Paper from '@material-ui/core/Paper';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 
 import useField from '../../hooks/input';
 import { withRouter } from 'react-router-dom';
 
-const labels = {
-  0.5: 'Useless',
-  1: 'Useless+',
-  1.5: 'Poor',
-  2: 'Poor+',
-  2.5: 'Ok',
-  3: 'Ok+',
-  3.5: 'Good',
-  4: 'Good+',
-  4.5: 'Excellent',
-  5: 'Excellent+'
-};
-
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    alignItems: 'center'
   },
-  paper: {
+  headerPaper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.primary
   },
-  rating: {
-    width: 200,
-    display: 'flex',
-    alignItems: 'center'
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    height: '100px',
+    color: theme.palette.text.primary
+  },
+  formPaper: {
+    padding: theme.spacing(2),
+    textAlign: 'center'
+  },
+  form: {
+    width: '100%' // Fix IE 11 issue.
   }
 }));
 
-const Feedback = props => {
+const Feedback = () => {
   const textFeedback = useField('text');
   const classes = useStyles();
-  const [value, setValue] = React.useState(2);
-  const [hover, setHover] = React.useState(-1);
+  const [appGrade, setAppGrade] = React.useState(2);
+  const [uiGrade, setUiGrade] = React.useState(2);
 
   const handleFeedback = event => {
     event.preventDefault();
-    console.log('Feedback', textFeedback.value);
-    // sendFeedback(textFeedback.value)
+    const feedback = {
+      appPerformance: appGrade,
+      UI: uiGrade,
+      writtenFeedback: textFeedback.value
+    };
+    console.log('Feedback', feedback);
+    // sendFeedback(feedback)
+    setAppGrade(2);
+    setUiGrade(2);
     textFeedback.resetState();
   };
 
   return (
-    <>
+    <Container component="main" maxWidth="md">
       <div className={classes.root}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>
+        <Grid container justify="center" spacing={2}>
+          <Grid item xs={12} sm={12} md={12}>
+            <Paper className={classes.headerPaper}>
               <h1> Give us feedback! </h1>
               <p>
                 This application template is still a work in progress, and we
@@ -71,30 +72,57 @@ const Feedback = props => {
             </Paper>
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={8} sm={6} md={3}>
             <Paper className={classes.paper}>
-              <div className={classes.rating}>
-                <p>Application performance</p>
+              <Box component="fieldset" borderColor="transparent">
+                <Typography>Application performance</Typography>
                 <Rating
-                  name="hover-feedback"
-                  value={value}
-                  precision={0.5}
+                  name="appGrade"
+                  value={appGrade}
                   onChange={(event, newValue) => {
-                    setValue(newValue);
-                  }}
-                  onChangeActive={(event, newHover) => {
-                    setHover(newHover);
+                    setAppGrade(newValue);
                   }}
                 />
-                {value !== null && (
-                  <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
-                )}
-              </div>
+              </Box>
             </Paper>
           </Grid>
+          <Grid item xs={8} sm={6} md={3}>
+            <Paper className={classes.paper}>
+              <Box component="fieldset" borderColor="transparent">
+                <Typography>UI</Typography>
+                <Rating
+                  name="uiGrade"
+                  value={uiGrade}
+                  onChange={(event, newValue) => {
+                    setUiGrade(newValue);
+                  }}
+                />
+              </Box>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} sm={12} md={12}>
+            <Paper className={classes.formPaper}>
+              <TextField
+                variant="outlined"
+                name="feedback"
+                label="Feedback"
+                placeholder="Tell us what we could improve"
+                fullWidth
+                {...textFeedback.inputprops()}
+              />
+            </Paper>
+          </Grid>
+          <Button
+            type="button"
+            variant="contained"
+            color="primary"
+            onClick={handleFeedback}
+          >
+            Send feedback
+          </Button>
         </Grid>
       </div>
-    </>
+    </Container>
   );
 };
 
