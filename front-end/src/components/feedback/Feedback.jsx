@@ -115,7 +115,7 @@ const Feedback = () => {
           <Button
             type="button"
             variant="contained"
-            color="primary"
+            color="secondary"
             onClick={handleFeedback}
           >
             Send feedback

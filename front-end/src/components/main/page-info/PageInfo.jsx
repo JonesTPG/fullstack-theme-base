@@ -62,14 +62,14 @@ const PageInfo = props => {
               <Button
                 variant="contained"
                 onClick={() => props.history.push('/feedback')}
-                color="primary"
+                color="secondary"
               >
                 Give feedback
               </Button>{' '}
               <Button
                 variant="contained"
                 onClick={() => props.history.push('/contact-us')}
-                color="primary"
+                color="secondary"
               >
                 Contact us
               </Button>

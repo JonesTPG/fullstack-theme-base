@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
@@ -62,7 +61,7 @@ const Header = props => {
 
   return (
     <React.Fragment>
-      <AppBar color="primary" position="sticky" elevation={0}>
+      <AppBar position="sticky" elevation={0} className={classes.appBar}>
         <Toolbar>
           <Grid container spacing={1} alignItems="center">
             <Hidden smUp>
@@ -79,13 +78,8 @@ const Header = props => {
             </Hidden>
             <Grid item xs />
             <Grid item>
-              <Link to="/">
-                <Button
-                  className={classes.button}
-                  variant="outlined"
-                  color="inherit"
-                  size="small"
-                >
+              <Link to="/" className={classes.link}>
+                <Button className={classes.button} color="inherit" size="small">
                   Go to user screen
                 </Button>
               </Link>
@@ -105,7 +99,6 @@ const Header = props => {
         className={classes.secondaryBar}
         color="primary"
         position="static"
-        elevation={0}
       >
         <Toolbar>
           <Grid container alignItems="center" spacing={1}>
@@ -120,7 +113,6 @@ const Header = props => {
               <Button
                 onClick={handleSignOut}
                 className={classes.button}
-                variant="outlined"
                 color="inherit"
                 size="small"
               >
@@ -132,7 +124,6 @@ const Header = props => {
                 <Button
                   onClick={handleThemeChange}
                   className={classes.button}
-                  variant="outlined"
                   color="inherit"
                   size="small"
                 >
@@ -143,13 +134,6 @@ const Header = props => {
           </Grid>
         </Toolbar>
       </AppBar>
-      <AppBar
-        component="div"
-        className={classes.secondaryBar}
-        color="primary"
-        position="static"
-        elevation={0}
-      ></AppBar>
     </React.Fragment>
   );
 };

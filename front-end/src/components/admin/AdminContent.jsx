@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
-import { Route, withRouter, Switch } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { ME } from '../../queries/login';
 import { useQuery } from 'react-apollo';
 
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
-    color: theme.palette.text.primary
+    backgroundColor: theme.palette.background.paper
   }
 }));
 
@@ -63,14 +63,14 @@ const AdminContent = props => {
                 <Button
                   variant="contained"
                   onClick={() => props.history.push('/feedback')}
-                  color="primary"
+                  color="secondary"
                 >
                   Give feedback
                 </Button>{' '}
                 <Button
                   variant="contained"
                   onClick={() => props.history.push('/contact-us')}
-                  color="primary"
+                  color="secondary"
                 >
                   Contact us
                 </Button>
