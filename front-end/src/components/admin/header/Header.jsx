@@ -8,8 +8,7 @@ import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
+
 import Toolbar from '@material-ui/core/Toolbar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
@@ -17,8 +16,10 @@ import { withStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { useMutation, useApolloClient, useQuery } from '@apollo/react-hooks';
 import { CHANGE_THEME, GET_LOCAL_THEME } from '../../../queries/theme';
+
+import { ME } from '../../../queries/login';
 
 import { styles } from './HeaderStyles';
 import { logOut } from '../../../services/authService';
@@ -39,7 +40,6 @@ const Header = props => {
       const data = cache.readQuery({
         query: GET_LOCAL_THEME
       });
-      console.log(data);
       const dataCopy = { ...data, darkTheme: !data.darkTheme };
       cache.writeQuery({
         query: GET_LOCAL_THEME,
@@ -47,6 +47,8 @@ const Header = props => {
       });
     }
   });
+
+  const { loading, data } = useQuery(ME);
 
   const handleSignOut = () => {
     logOut();
@@ -77,7 +79,16 @@ const Header = props => {
             </Hidden>
             <Grid item xs />
             <Grid item>
-              <Link to="/">Go to user screen</Link>
+              <Link to="/">
+                <Button
+                  className={classes.button}
+                  variant="outlined"
+                  color="inherit"
+                  size="small"
+                >
+                  Go to user screen
+                </Button>
+              </Link>
             </Grid>
             <Grid item>
               <Tooltip title="Alerts • No alerts">
@@ -85,11 +96,6 @@ const Header = props => {
                   <NotificationsIcon />
                 </IconButton>
               </Tooltip>
-            </Grid>
-            <Grid item>
-              <IconButton color="inherit" className={classes.iconButtonAvatar}>
-                <Avatar src="/static/images/avatar/1.jpg" alt="My Avatar" />
-              </IconButton>
             </Grid>
           </Grid>
         </Toolbar>
@@ -105,7 +111,9 @@ const Header = props => {
           <Grid container alignItems="center" spacing={1}>
             <Grid item xs>
               <Typography color="inherit" variant="h5" component="h1">
-                Authentication
+                {!loading && data !== undefined && data.me !== null
+                  ? 'Welcome ' + data.me.username
+                  : 'Welcome'}
               </Typography>
             </Grid>
             <Grid item>
@@ -141,14 +149,7 @@ const Header = props => {
         color="primary"
         position="static"
         elevation={0}
-      >
-        <Tabs value={0} textColor="inherit">
-          <Tab textColor="inherit" label="Users" />
-          <Tab textColor="inherit" label="Sign-in method" />
-          <Tab textColor="inherit" label="Templates" />
-          <Tab textColor="inherit" label="Usage" />
-        </Tabs>
-      </AppBar>
+      ></AppBar>
     </React.Fragment>
   );
 };

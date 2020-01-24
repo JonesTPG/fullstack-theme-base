@@ -3,62 +3,63 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-
-import Button from '@material-ui/core/Button';
-import useField from '../../hooks/input';
-import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import { CREATE_CONTACT } from '../../queries/contact';
+
+import { useMutation } from '@apollo/react-hooks';
+
+import useField from '../../hooks/input';
 
 const useStyles = makeStyles(theme => ({
   heroContent: {
-    padding: theme.spacing(3, 0, 3),
-    alignItems: 'center'
-  },
-  paper: {
-    padding: theme.spacing(2)
+    padding: theme.spacing(3, 0, 3)
   }
 }));
 
 const ContactForm = () => {
   const classes = useStyles();
-  const fName = useField('text');
-  const lName = useField('text');
-  const phone = useField('number');
-  const email = useField('email');
-  const company = useField('text');
-  const message = useField('text');
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    if (!event.target.checkBox.checked) {
-      console.log('Must accept the privacy policy');
-      return null;
+  const firstName = useField('firstName');
+  const lastName = useField('lastName');
+  const email = useField('email');
+  const phone = useField('phone');
+  const company = useField('company');
+  const message = useField('message');
+
+  const [addContact] = useMutation(CREATE_CONTACT, {
+    onCompleted({ data }) {
+      console.log(data);
+    },
+    onError(error) {
+      console.log(error);
     }
-    const info = {
-      firstName: fName.value,
-      lastName: lName.value,
-      phonenumber: phone.value,
-      email: email.value,
-      company: company.value,
-      message: message.value
-    };
-    console.log('Information', info);
-    fName.resetState();
-    lName.resetState();
-    phone.resetState();
-    email.resetState();
-    message.resetState();
+  });
+
+  const handleSubmit = async event => {
+    event.preventDefault();
+
+    await addContact({
+      variables: { firstName, lastName, email, phone, company, message }
+    });
+    firstName.resetState('');
+    lastName.resetState('');
+    email.resetState('');
+    phone.resetState('');
+    company.resetState('');
+    message.resetState('');
   };
 
   return (
     <React.Fragment>
-      <Container component="main" maxWidth="md" className={classes.heroContent}>
-        <Grid container justify="center" spacing={2}>
-          <Grid item xs={8} sm={8} md={8}>
-            <Paper className={classes.paper}>
-              <form onSubmit={handleSubmit}>
+      <Card>
+        <CardContent>
+          <Container maxWidth="xs" className={classes.heroContent}>
+            <div className={classes.paper}>
+              <form className={classes.form} noValidate>
                 <Typography
                   component="h1"
                   variant="h4"
@@ -69,7 +70,7 @@ const ContactForm = () => {
                   Contact us
                 </Typography>
                 <Typography
-                  variant="h7"
+                  variant="h6"
                   align="center"
                   color="textSecondary"
                   component="p"
@@ -89,7 +90,7 @@ const ContactForm = () => {
                   name="firstName"
                   autoComplete="firstName"
                   autoFocus
-                  {...fName.inputprops()}
+                  {...firstName.inputprops()}
                 />
                 <TextField
                   required
@@ -100,7 +101,7 @@ const ContactForm = () => {
                   name="lastName"
                   label="Last name"
                   id="lastName"
-                  {...lName.inputprops()}
+                  {...lastName.inputprops()}
                 />
                 <TextField
                   required
@@ -156,18 +157,19 @@ const ContactForm = () => {
                 />
                 <Button
                   data-cy="send"
+                  fullWidth
                   type="submit"
                   variant="contained"
-                  fullWidth
                   color="primary"
+                  onClick={handleSubmit}
                 >
                   Send
                 </Button>
               </form>
-            </Paper>
-          </Grid>
-        </Grid>
-      </Container>
+            </div>
+          </Container>
+        </CardContent>
+      </Card>
     </React.Fragment>
   );
 };

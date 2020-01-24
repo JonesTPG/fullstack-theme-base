@@ -26,9 +26,6 @@ const schema = new mongoose.Schema({
   message: {
     type: String
   },
-  pricacy: {
-    type: Boolean
-  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'

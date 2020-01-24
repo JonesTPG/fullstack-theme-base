@@ -79,7 +79,7 @@ describe('Fullstack-theme-base ', function() {
       cy.get('[data-cy=username]').type('username');
       cy.get('[data-cy=password]').type('password');
       cy.get('[data-cy=signIn]').click();
-      cy.contains('Please let us know how you feel');
+      cy.url().should('eq', Cypress.env('BASE_URL') + '/');
       cy.get('[data-cy=logout]')
         .click()
         .should(() => {

@@ -38,7 +38,8 @@ const Feedback = ({ data }) => {
         </Typography>
 
         <Typography variant="body2" component="p">
-          {data.user.username} gave the site a grade of {data.type}.
+          {data.user ? data.user.username : 'anonymous user'} gave the site a
+          grade of {data.type}.
           <br />
         </Typography>
       </CardContent>
