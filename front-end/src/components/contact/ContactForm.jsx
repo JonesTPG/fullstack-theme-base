@@ -30,10 +30,18 @@ const ContactForm = () => {
   const company = useField('company');
   const message = useField('message');
 
-  const [addContact] = useMutation(CREATE_CONTACT);
+  const [addContact] = useMutation(CREATE_CONTACT, {
+    onCompleted({ data }) {
+      console.log(data);
+    },
+    onError(error) {
+      console.log(error);
+    }
+  });
 
   const handleSubmit = async event => {
     event.preventDefault();
+
     await addContact({
       variables: { firstName, lastName, email, phone, company, message }
     });
