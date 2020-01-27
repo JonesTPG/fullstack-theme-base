@@ -1,6 +1,5 @@
-1. ekassa renderissä default-teema (ei dark)
-2. loginin yhteydessä kannasta haetaan userin teema, ja laitetaan se lokaaliin tilaan
-3. kun käyttäjä painaa teemanvaihtonappeja, niin:
-    -lokaalin tilan arvo vaihtuu -> app pitäisi tajuta vaihtaa teema themeprovideriin
-    -serverille lähetetään mutaatio, joka vaihtaa arvon tietokantaan
-4. logoutissa lokaali tila resetataan defaulttiin, ja uuden käyttäjän kirjautuessa uudestaan sama homma
+bugit:
+
+admin-näkymä ei rajoita feedi näkymää roolipohjaisesti
+ei-kirjautuneena teema vaihto ei toimi välillä
+

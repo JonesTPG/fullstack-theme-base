@@ -20,7 +20,15 @@ mongoose.connect(mongoUrl, {
   useCreateIndex: true
 });
 
-const server = new ApolloServer({ typeDefs, resolvers, context });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context,
+  cors: {
+    origin: '*',
+    credentials: true
+  }
+});
 
 server.listen().then(({ url, subscriptionsUrl }) => {
   console.log(`Server ready at ${url}`);

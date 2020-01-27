@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Feedback = ({ data }) => {
+const ThemeChange = ({ data }) => {
   const classes = useStyles();
 
   return (
@@ -34,12 +34,12 @@ const Feedback = ({ data }) => {
           color="textSecondary"
           gutterBottom
         >
-          Feedback from the site
+          New theme change
         </Typography>
 
         <Typography variant="body2" component="p">
-          {data.user ? data.user.username : 'anonymous user'} gave the site a
-          grade of {data.type}.
+          {data.username ? data.username : 'anonymous user'} changed the theme
+          to {data.darkTheme ? 'dark' : 'light'}
           <br />
         </Typography>
       </CardContent>
@@ -50,4 +50,4 @@ const Feedback = ({ data }) => {
   );
 };
 
-export default Feedback;
+export default ThemeChange;
