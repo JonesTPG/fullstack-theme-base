@@ -38,7 +38,7 @@ const Login = props => {
     onError() {
       notification.showNotification(
         '*The username or password you entered is incorrect.',
-        'warning'
+        'error'
       );
       return;
     },

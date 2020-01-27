@@ -11,6 +11,8 @@ import Button from '@material-ui/core/Button';
 import { CREATE_CONTACT } from '../../queries/contact';
 
 import { useMutation } from '@apollo/react-hooks';
+import useNotification from '../../hooks/notification';
+import CustomSnackbar from '../notifications/CustomSnackbar';
 
 import useField from '../../hooks/input';
 
@@ -24,7 +26,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ContactForm = () => {
-  const [errorText, setErrorText] = useState('');
+  const notification = useNotification();
+
   const classes = useStyles();
 
   const firstName = useField('firstName');
@@ -41,10 +44,11 @@ const ContactForm = () => {
     },
 
     onError() {
-      setErrorText('*Please fill all the required fields.');
-      setTimeout(() => {
-        setErrorText(null);
-      }, 9000);
+      notification.showNotification(
+        '*Please fill all the required fields.',
+        'info'
+      );
+      return;
     }
   });
 
@@ -78,6 +82,8 @@ const ContactForm = () => {
           <Container maxWidth="xs" className={classes.heroContent}>
             <div className={classes.paper}>
               <form className={classes.form} noValidate>
+                <CustomSnackbar {...notification.notificationProps()} />
+
                 <Typography
                   component="h1"
                   variant="h4"
@@ -170,16 +176,9 @@ const ContactForm = () => {
                   fullWidth
                   variant="outlined"
                   {...message.inputprops()}
-                  helperText={errorText}
                 />
                 <FormControlLabel
-                  control={
-                    <Checkbox
-                      value="remember"
-                      name="checkBox"
-                      className={classes.checkBox}
-                    />
-                  }
+                  control={<Checkbox value="remember" name="checkBox" />}
                   label="I have read the privacy policy*"
                 />
                 <Button
