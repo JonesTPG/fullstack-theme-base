@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ContactForm = () => {
+  const [errorText, setErrorText] = useState('');
   const classes = useStyles();
 
   const firstName = useField('firstName');
@@ -33,17 +34,31 @@ const ContactForm = () => {
   const [addContact] = useMutation(CREATE_CONTACT, {
     onCompleted({ data }) {
       console.log(data);
+      //ohjaus esim etusivulle, tai kiitosviesti
     },
-    onError(error) {
-      console.log(error);
+
+    onError() {
+      setErrorText('*Please fill all the required fields.');
+      setTimeout(() => {
+        setErrorText(null);
+      }, 9000);
     }
   });
 
   const handleSubmit = async event => {
     event.preventDefault();
+    console.log(firstName);
 
+    console.log(firstName.value);
     await addContact({
-      variables: { firstName, lastName, email, phone, company, message }
+      variables: {
+        firstName: firstName.value,
+        lastName: lastName.value,
+        email: email.value,
+        phone: phone.value,
+        company: company.value,
+        message: message.value
+      }
     });
     firstName.resetState('');
     lastName.resetState('');
@@ -144,6 +159,7 @@ const ContactForm = () => {
                   fullWidth
                   variant="outlined"
                   {...message.inputprops()}
+                  helperText={errorText}
                 />
                 <FormControlLabel
                   control={

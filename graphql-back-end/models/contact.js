@@ -17,8 +17,7 @@ const schema = new mongoose.Schema({
     required: true
   },
   phone: {
-    type: String,
-    minlength: 3
+    type: String
   },
   company: {
     type: String
