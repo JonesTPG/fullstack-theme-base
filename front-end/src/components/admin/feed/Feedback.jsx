@@ -5,6 +5,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
   card: {
@@ -27,26 +29,28 @@ const Feedback = ({ data }) => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
-      <CardContent>
-        <Typography
-          className={classes.title}
-          color="textSecondary"
-          gutterBottom
-        >
-          Feedback from the site
-        </Typography>
+    <>
+      <Card className={classes.card}>
+        <CardContent>
+          <Typography
+            className={classes.title}
+            color="textSecondary"
+            gutterBottom
+          >
+            Feedback from the site
+          </Typography>
 
-        <Typography variant="body2" component="p">
-          {data.user ? data.user.username : 'anonymous user'} gave the site a
-          grade of {data.type}.
-          <br />
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Remove feedback</Button>
-      </CardActions>
-    </Card>
+          <Typography variant="body2" component="p">
+            {data.user ? data.user.username : 'anonymous user'} gave the site a
+            grade of {data.type}.
+            <br />
+          </Typography>
+        </CardContent>
+        <CardActions>
+          <Button size="small">Remove feedback</Button>
+        </CardActions>
+      </Card>
+    </>
   );
 };
 

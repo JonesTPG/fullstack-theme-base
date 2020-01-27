@@ -21,9 +21,6 @@ const ThemeChangeFeed = () => {
   return (
     <>
       <Grid container justify="center" spacing={2}>
-        <Grid item xs={10} sm={10} md={10}>
-          <Search />
-        </Grid>
         {themeList.map((item, index) => (
           <Grid item key={index} xs={8} sm={8} md={8}>
             <ThemeChange key={index} data={item} />

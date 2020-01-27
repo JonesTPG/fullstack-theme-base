@@ -23,9 +23,9 @@ const useStyles = makeStyles({
   }
 });
 
-const ThemeChange = ({ data }) => {
+const Contact = ({ data }) => {
   const classes = useStyles();
-
+  console.log(data);
   return (
     <Card className={classes.card}>
       <CardContent>
@@ -34,20 +34,22 @@ const ThemeChange = ({ data }) => {
           color="textSecondary"
           gutterBottom
         >
-          New theme change
+          Contact Request
         </Typography>
-
-        <Typography variant="body2" component="p">
-          {data.username ? data.username : 'anonymous user'} changed the theme
-          to {data.darkTheme ? 'dark' : 'light'}
-          <br />
-        </Typography>
+        <ul>
+          <li>first name: {data.firstName}</li>
+          <li>last name: {data.lastName}</li>
+          <li>email: {data.email}</li>
+          <li>phone: {data.phone}</li>
+          <li>company: {data.company}</li>
+          <li>message: {data.message}</li>
+        </ul>
       </CardContent>
       <CardActions>
-        <Button size="small">Remove feedback</Button>
+        <Button size="small">Remove request</Button>
       </CardActions>
     </Card>
   );
 };
 
-export default ThemeChange;
+export default Contact;
