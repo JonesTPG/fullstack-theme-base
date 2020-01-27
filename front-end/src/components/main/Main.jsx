@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import React from 'react';
 import clsx from 'clsx';
 import { useTheme, withStyles } from '@material-ui/core/styles';
@@ -65,6 +66,8 @@ const Main = ({ classes, ...props }) => {
   const token = useToken();
   const { data } = useQuery(ME);
 
+  console.log(data);
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -78,9 +81,13 @@ const Main = ({ classes, ...props }) => {
   };
 
   const handleAuthClick = () => {
-    token ? props.history.push('/login') : client.resetStore();
+    client.resetStore();
     logOut();
     props.history.push('/login');
+  };
+
+  const handleAdminClick = () => {
+    props.history.push('/admin');
   };
 
   const Content = () => {
@@ -117,6 +124,18 @@ const Main = ({ classes, ...props }) => {
               ? 'Welcome'
               : 'Welcome ' + data.me.username + '!'}
           </Typography>
+          {data !== undefined &&
+            data.me !== null &&
+            data.me.roles.includes('ADMIN') && (
+              <Button
+                data-cy="adminview"
+                onClick={handleAdminClick}
+                color="inherit"
+              >
+                Go to admin view
+              </Button>
+            )}
+
           <IconButton onClick={handleThemeChange} color="inherit">
             <Brightness />
           </IconButton>
