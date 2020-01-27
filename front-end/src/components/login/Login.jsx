@@ -12,18 +12,20 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
 import useField from '../../hooks/input';
+import useNotification from '../../hooks/notification';
+
 import { withRouter } from 'react-router-dom';
 import { LOGIN } from '../../queries/login';
 import { GET_LOCAL_THEME } from '../../queries/theme';
 
 import { useMutation } from '@apollo/react-hooks';
 import { LoginStyles } from '../AllStyles';
+import CustomSnackbar from '../notifications/CustomSnackbar';
 
 const Login = props => {
   const email = useField('email');
   const password = useField('password');
-  const [errorText, setErrorText] = useState('');
-
+  const notification = useNotification();
   const [login] = useMutation(LOGIN, {
     onCompleted({ login }) {
       window.localStorage.setItem('theme-base-token', login.value);
@@ -34,10 +36,11 @@ const Login = props => {
       }
     },
     onError() {
-      setErrorText('*The username or password you entered is incorrect.');
-      setTimeout(() => {
-        setErrorText(null);
-      }, 4000);
+      notification.showNotification(
+        '*The username or password you entered is incorrect.',
+        'warning'
+      );
+      return;
     },
     update: (cache, response) => {
       const data = cache.readQuery({
@@ -73,6 +76,8 @@ const Login = props => {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
+        <CustomSnackbar {...notification.notificationProps()} />
+
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
@@ -102,8 +107,8 @@ const Login = props => {
             id="password"
             autoComplete="current-password"
             {...password.inputprops()}
-            helperText={errorText}
           />
+
           <FormControlLabel
             control={
               <Checkbox
@@ -118,32 +123,30 @@ const Login = props => {
             data-cy="signIn"
             type="submit"
             fullWidth
+            color="primary"
             variant="contained"
             className={classes.submit}
           >
             Sign In
           </Button>
+
           <Grid container>
             <Grid item xs>
-              <Typography className={classes.typography}>
-                <Link
-                  onClick={() => props.history.push('/voivoi')}
-                  color="inherit"
-                >
-                  Forgot password?
-                </Link>
-              </Typography>
+              <Link
+                style={{ cursor: 'pointer' }}
+                onClick={() => props.history.push('/voivoi')}
+              >
+                Forgot password?
+              </Link>
             </Grid>
             <Grid item>
-              <Typography className={classes.typography}>
-                <Link
-                  data-cy="signUp"
-                  onClick={() => props.history.push('/signup')}
-                  color="inherit"
-                >
-                  Don&apos;t have an account? Sign Up
-                </Link>
-              </Typography>
+              <Link
+                style={{ cursor: 'pointer' }}
+                data-cy="signUp"
+                onClick={() => props.history.push('/signup')}
+              >
+                {"Don't have an account? Sign Up"}
+              </Link>
             </Grid>
           </Grid>
         </form>

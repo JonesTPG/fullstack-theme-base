@@ -150,10 +150,11 @@ const SignUp = props => {
             <Grid item>
               <Typography className={classes.typography}>
                 <Link
+                  style={{ cursor: 'pointer' }}
                   data-cy="signIn"
                   onClick={() => props.history.push('/login')}
                   variant="body2"
-                  color="inherit"
+                  color="primary"
                 >
                   Already have an account? Sign in
                 </Link>
