@@ -15,19 +15,11 @@ import { useMutation } from '@apollo/react-hooks';
 import useField from '../../hooks/input';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    '& .MuiInputBase-input:focus': {
-      borderColor: '#f50057'
-    }
-  },
   heroContent: {
     padding: theme.spacing(3, 0, 3)
   },
   submit: {
     margin: theme.spacing(2, 0, 2)
-  },
-  inputFocused: {
-    backgroundColor: '#f0f0f0'
   }
 }));
 
