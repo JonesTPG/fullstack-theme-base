@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 import { useQuery, useSubscription } from '@apollo/react-hooks';
 import { GET_ALL, FEEDBACK_ADDED } from '../../../queries/feedback';
-import Feedback from './feedback/Feedback';
+import Feedback from './Feedback';
 import Search from '../search/Search';
 import Grid from '@material-ui/core/Grid';
 
-const Feed = () => {
+const GeneralFeed = () => {
   const [feedbackList, setFeedbackList] = useState([]);
 
   useQuery(GET_ALL, {
@@ -30,7 +30,7 @@ const Feed = () => {
 
   return (
     <>
-      <Grid container justify="center" spacing={2} margin>
+      <Grid container justify="center" spacing={2}>
         <Grid item xs={10} sm={10} md={10}>
           <Search />
         </Grid>
@@ -44,4 +44,4 @@ const Feed = () => {
   );
 };
 
-export default Feed;
+export default GeneralFeed;

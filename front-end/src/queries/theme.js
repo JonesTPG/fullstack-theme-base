@@ -11,3 +11,14 @@ export const GET_LOCAL_THEME = gql`
     darkTheme @client
   }
 `;
+
+export const THEME_CHANGED = gql`
+  subscription {
+    userChangedTheme {
+      username
+      darkTheme
+      firstName
+      lastName
+    }
+  }
+`;
