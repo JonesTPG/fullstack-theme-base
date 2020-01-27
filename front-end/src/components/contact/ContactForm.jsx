@@ -15,8 +15,19 @@ import { useMutation } from '@apollo/react-hooks';
 import useField from '../../hooks/input';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    '& .MuiInputBase-input:focus': {
+      borderColor: '#f50057'
+    }
+  },
   heroContent: {
     padding: theme.spacing(3, 0, 3)
+  },
+  submit: {
+    margin: theme.spacing(2, 0, 2)
+  },
+  inputFocused: {
+    backgroundColor: '#f0f0f0'
   }
 }));
 
@@ -84,8 +95,8 @@ const ContactForm = () => {
                 >
                   Contact us
                 </Typography>
-                <Typography
-                  variant="h6"
+                <p
+                  variant="h5"
                   align="center"
                   color="textSecondary"
                   component="p"
@@ -93,9 +104,11 @@ const ContactForm = () => {
                   Please leave a message – we’ll be in touch with you soon! Our
                   email addresses follow the format of
                   firstname.lastname@fullstack.com
-                </Typography>
+                </p>
                 <TextField
+                  className={classes.root}
                   required
+                  placeholder="First name*"
                   data-cy="firstName"
                   variant="outlined"
                   margin="normal"
@@ -108,6 +121,7 @@ const ContactForm = () => {
                   {...firstName.inputprops()}
                 />
                 <TextField
+                  placeholder="Last name*"
                   required
                   data-cy="lastName"
                   variant="outlined"
@@ -119,6 +133,7 @@ const ContactForm = () => {
                   {...lastName.inputprops()}
                 />
                 <TextField
+                  placeholder="Email*"
                   required
                   data-cy="email"
                   variant="outlined"
@@ -129,7 +144,9 @@ const ContactForm = () => {
                   id="email"
                   {...email.inputprops()}
                 />
+
                 <TextField
+                  placeholder="Phone"
                   data-cy="phone"
                   variant="outlined"
                   margin="normal"
@@ -141,6 +158,7 @@ const ContactForm = () => {
                 />
                 <TextField
                   data-cy="company"
+                  placeholder="Company"
                   variant="outlined"
                   margin="normal"
                   fullWidth
@@ -150,6 +168,7 @@ const ContactForm = () => {
                   {...company.inputprops()}
                 />
                 <TextField
+                  rows="4"
                   data-cy="message"
                   label="Tell us about your business needs"
                   id="filled-textarea"
@@ -178,6 +197,7 @@ const ContactForm = () => {
                   variant="contained"
                   color="secondary"
                   onClick={handleSubmit}
+                  className={classes.submit}
                 >
                   Send
                 </Button>

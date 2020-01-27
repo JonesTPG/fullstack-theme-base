@@ -66,6 +66,9 @@ const MainStyles = theme => ({
   chevronLeftButton: {
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.primary.contrastText
+  },
+  sidenavIcon: {
+    color: '#e1e1e1'
   }
 });
 

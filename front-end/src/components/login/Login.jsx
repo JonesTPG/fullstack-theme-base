@@ -121,10 +121,10 @@ const Login = props => {
           />
           <Button
             data-cy="signIn"
-            type="submit"
             fullWidth
-            color="primary"
+            type="submit"
             variant="contained"
+            color="secondary"
             className={classes.submit}
           >
             Sign In

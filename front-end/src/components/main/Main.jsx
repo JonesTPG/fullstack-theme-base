@@ -169,26 +169,26 @@ const Main = ({ classes, ...props }) => {
         <List disablePadding className={classes.list}>
           <ListItem button onClick={() => props.history.push('/')}>
             <ListItemIcon>
-              <HomeIcon />
+              <HomeIcon className={classes.sidenavIcon} />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
           <ListItem button onClick={() => props.history.push('/feedback')}>
             <ListItemIcon>
-              <MailIcon />
+              <MailIcon className={classes.sidenavIcon} />
             </ListItemIcon>
             <ListItemText primary="Give Feedback" />
           </ListItem>
           <ListItem button onClick={() => props.history.push('/contact-us')}>
             <ListItemIcon>
-              <InboxIcon />
+              <InboxIcon className={classes.sidenavIcon} />
             </ListItemIcon>
             <ListItemText primary="Contact Us" />
           </ListItem>
           <Divider />
           <ListItem button onClick={handleAuthClick}>
             <ListItemIcon>
-              <ExitToAppIcon></ExitToAppIcon>
+              <ExitToAppIcon className={classes.sidenavIcon} />
             </ListItemIcon>
 
             <ListItemText primary={token ? 'Log Out' : 'Log In'} />
