@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -64,9 +64,8 @@ const ContactForm = props => {
         'Thank you for your message! We will get back to you as soon as possible.',
         'success'
       );
-
-      return;
       props.history.push('/');
+      return;
     },
 
     onError() {
