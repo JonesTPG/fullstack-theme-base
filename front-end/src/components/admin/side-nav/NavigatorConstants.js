@@ -12,23 +12,23 @@ export const categories = [
     id: 'Real-time feeds',
     children: [
       {
-        id: 'Feedback Feed',
+        id: 'Feedback',
         icon: <StarIcon />,
         active: true,
         link: '/feed/feedback'
       },
       {
-        id: 'Contact Us Feed',
+        id: 'Contact Us',
         icon: <DnsRoundedIcon />,
         link: '/feed/contact-us'
       },
       {
-        id: 'Theme Change Feed',
+        id: 'Theme Change',
         icon: <EmailIcon />,
         link: '/feed/theme-change'
       },
       {
-        id: 'User Creation Feed',
+        id: 'User Creation',
         icon: <PeopleIcon />,
         link: '/feed/user-creation'
       }
