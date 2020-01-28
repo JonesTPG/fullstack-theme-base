@@ -1,27 +1,23 @@
-const { ApolloServer } = require('apollo-server-express');
 const http = require('http');
 const app = require('./app');
+const { SubscriptionServer } = require('subscriptions-transport-ws');
+const { execute, subscribe } = require('graphql');
 
-const typeDefs = require('./typeDefs');
-const resolvers = require('./resolvers');
-const context = require('./context');
-
-const server = new ApolloServer({
-  typeDefs,
-  resolvers,
-  context,
-  cors: {
-    origin: '*',
-    credentials: true
-  }
-});
-
-server.applyMiddleware({ app });
+const schema = require('./schema');
 
 const httpServer = http.createServer(app);
 
-httpServer.listen({ port: 4000 }, () =>
-  console.log(
-    `GraphQL server ready at http://localhost:4000${server.graphqlPath}`
-  )
-);
+httpServer.listen({ port: 4000 }, () => {
+  console.log('Server ready at localhost:4000');
+  new SubscriptionServer(
+    {
+      execute,
+      subscribe,
+      schema: schema
+    },
+    {
+      server: httpServer,
+      path: '/graphql'
+    }
+  );
+});
