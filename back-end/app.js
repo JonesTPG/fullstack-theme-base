@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const schema = require('./schema');
 const context = require('./context');
@@ -44,5 +45,10 @@ const apolloServer = new ApolloServer({
 });
 
 apolloServer.applyMiddleware({ app });
+
+// catch-all route (needed because front-end uses react router)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/build/index.html'));
+});
 
 module.exports = app;
