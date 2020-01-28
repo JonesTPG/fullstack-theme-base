@@ -1,24 +1,10 @@
-const { ApolloServer } = require('apollo-server');
-const mongoose = require('mongoose');
+const { ApolloServer } = require('apollo-server-express');
+const http = require('http');
+const app = require('./app');
 
 const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
 const context = require('./context');
-
-const config = require('./utils/config');
-
-let mongoUrl = config.MONGODB_URI;
-
-if (process.env.NODE_ENV === 'test') {
-  mongoUrl = config.MONGODB_TEST_URI;
-}
-
-mongoose.connect(mongoUrl, {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
-  useCreateIndex: true
-});
 
 const server = new ApolloServer({
   typeDefs,
@@ -30,7 +16,12 @@ const server = new ApolloServer({
   }
 });
 
-server.listen().then(({ url, subscriptionsUrl }) => {
-  console.log(`Server ready at ${url}`);
-  console.log(`Subscriptions ready at ${subscriptionsUrl}`);
-});
+server.applyMiddleware({ app });
+
+const httpServer = http.createServer(app);
+
+httpServer.listen({ port: 4000 }, () =>
+  console.log(
+    `GraphQL server ready at http://localhost:4000${server.graphqlPath}`
+  )
+);
