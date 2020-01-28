@@ -22,6 +22,25 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(2, 0, 2)
+  },
+  root: {
+    '& label.Mui-focused': {
+      color: 'white'
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white'
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white'
+      },
+      '&:hover fieldset': {
+        borderColor: 'white'
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white'
+      }
+    }
   }
 }));
 
@@ -106,7 +125,6 @@ const ContactForm = () => {
                 <TextField
                   className={classes.root}
                   required
-                  placeholder="First name*"
                   data-cy="firstName"
                   variant="outlined"
                   margin="normal"
@@ -119,7 +137,7 @@ const ContactForm = () => {
                   {...firstName.inputprops()}
                 />
                 <TextField
-                  placeholder="Last name*"
+                  className={classes.root}
                   required
                   data-cy="lastName"
                   variant="outlined"
@@ -131,7 +149,7 @@ const ContactForm = () => {
                   {...lastName.inputprops()}
                 />
                 <TextField
-                  placeholder="Email*"
+                  className={classes.root}
                   required
                   data-cy="email"
                   variant="outlined"
@@ -144,6 +162,7 @@ const ContactForm = () => {
                 />
 
                 <TextField
+                  className={classes.root}
                   placeholder="Phone"
                   data-cy="phone"
                   variant="outlined"
@@ -155,8 +174,8 @@ const ContactForm = () => {
                   {...phone.inputprops()}
                 />
                 <TextField
+                  className={classes.root}
                   data-cy="company"
-                  placeholder="Company"
                   variant="outlined"
                   margin="normal"
                   fullWidth
@@ -166,11 +185,11 @@ const ContactForm = () => {
                   {...company.inputprops()}
                 />
                 <TextField
+                  className={classes.root}
                   rows="4"
                   data-cy="message"
                   label="Tell us about your business needs"
                   id="filled-textarea"
-                  placeholder="Message"
                   margin="normal"
                   multiline
                   fullWidth

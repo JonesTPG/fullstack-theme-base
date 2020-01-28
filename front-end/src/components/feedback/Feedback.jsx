@@ -34,6 +34,25 @@ const useStyles = makeStyles(theme => ({
   },
   form: {
     width: '100%' // Fix IE 11 issue.
+  },
+  root: {
+    '& label.Mui-focused': {
+      color: 'white'
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'white'
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white'
+      },
+      '&:hover fieldset': {
+        borderColor: 'white'
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white'
+      }
+    }
   }
 }));
 
@@ -103,6 +122,7 @@ const Feedback = () => {
           <Grid item xs={12} sm={12} md={12}>
             <Paper className={classes.formPaper}>
               <TextField
+                className={classes.root}
                 variant="outlined"
                 name="feedback"
                 label="Feedback"
