@@ -6,7 +6,7 @@ export const mainTheme = createMuiTheme({
       main: '#009be5'
     },
     secondary: {
-      main: '#15AA30'
+      main: '#e5004c'
     }
   },
   typography: {

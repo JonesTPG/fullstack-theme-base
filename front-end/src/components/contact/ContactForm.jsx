@@ -9,6 +9,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import { CREATE_CONTACT } from '../../queries/contact';
+import { withRouter } from 'react-router-dom';
 
 import { useMutation } from '@apollo/react-hooks';
 import useNotification from '../../hooks/notification';
@@ -25,26 +26,26 @@ const useStyles = makeStyles(theme => ({
   },
   root: {
     '& label.Mui-focused': {
-      color: 'white'
+      color: '#009be5'
     },
     '& .MuiInput-underline:after': {
-      borderBottomColor: 'white'
+      borderBottomColor: '#009be5'
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: 'white'
+        borderColor: '#009be5'
       },
       '&:hover fieldset': {
-        borderColor: 'white'
+        borderColor: '#009be5'
       },
       '&.Mui-focused fieldset': {
-        borderColor: 'white'
+        borderColor: '#009be5'
       }
     }
   }
 }));
 
-const ContactForm = () => {
+const ContactForm = props => {
   const notification = useNotification();
 
   const classes = useStyles();
@@ -59,7 +60,13 @@ const ContactForm = () => {
   const [addContact] = useMutation(CREATE_CONTACT, {
     onCompleted({ data }) {
       console.log(data);
-      //ohjaus esim etusivulle, tai kiitosviesti
+      notification.showNotification(
+        'Thank you for your message! We will get back to you as soon as possible.',
+        'success'
+      );
+
+      return;
+      props.history.push('/');
     },
 
     onError() {
@@ -219,4 +226,5 @@ const ContactForm = () => {
     </React.Fragment>
   );
 };
-export default ContactForm;
+
+export default withRouter(ContactForm);
