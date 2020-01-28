@@ -90,6 +90,11 @@ const Main = ({ classes, ...props }) => {
     props.history.push('/admin');
   };
 
+  const handleSideNavClick = route => {
+    props.history.push(route);
+    setOpen(false);
+  };
+
   const Content = () => {
     return (
       <Switch>
@@ -167,19 +172,19 @@ const Main = ({ classes, ...props }) => {
         </div>
         <Divider />
         <List disablePadding className={classes.list}>
-          <ListItem button onClick={() => props.history.push('/')}>
+          <ListItem button onClick={() => handleSideNavClick('/')}>
             <ListItemIcon>
               <HomeIcon className={classes.sidenavIcon} />
             </ListItemIcon>
             <ListItemText primary="Home" />
           </ListItem>
-          <ListItem button onClick={() => props.history.push('/feedback')}>
+          <ListItem button onClick={() => handleSideNavClick('/feedback')}>
             <ListItemIcon>
               <MailIcon className={classes.sidenavIcon} />
             </ListItemIcon>
             <ListItemText primary="Give Feedback" />
           </ListItem>
-          <ListItem button onClick={() => props.history.push('/contact-us')}>
+          <ListItem button onClick={() => handleSideNavClick('/contact-us')}>
             <ListItemIcon>
               <InboxIcon className={classes.sidenavIcon} />
             </ListItemIcon>
