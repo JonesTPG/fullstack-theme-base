@@ -1,7 +1,7 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const bodyParser = require('body-parser');
-const app = express();
+
 const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -12,6 +12,8 @@ const context = require('./context');
 const config = require('./utils/config');
 
 let mongoUrl = config.MONGODB_URI;
+
+const app = express();
 
 if (process.env.NODE_ENV === 'test') {
   mongoUrl = config.MONGODB_TEST_URI;
@@ -31,11 +33,7 @@ mongoose
     console.log('error connecting to mongodb: ', error.message);
   });
 
-app.use(
-  cors({
-    origin: 'http://localhost:3000'
-  })
-);
+app.use(cors());
 app.use(express.static('build'));
 app.use(bodyParser.json());
 
