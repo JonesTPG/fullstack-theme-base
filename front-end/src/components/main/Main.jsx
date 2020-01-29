@@ -18,6 +18,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import RestaurantIcon from '@material-ui/icons/RestaurantMenu';
 
 import MailIcon from '@material-ui/icons/Mail';
 import Button from '@material-ui/core/Button';
@@ -38,6 +39,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
 import PageInfo from './page-info/PageInfo';
 import ContactForm from '../contact/ContactForm';
+import RestaurantList from '../restaurant/RestaurantList';
 import MainStyles from './MainStyles';
 
 const Main = ({ classes, ...props }) => {
@@ -100,6 +102,7 @@ const Main = ({ classes, ...props }) => {
       <Switch>
         <Route path="/feedback" render={() => <Feedback />} />
         <Route path="/contact-us" render={() => <ContactForm />} />
+        <Route path="/restaurants" render={() => <RestaurantList />} />
         <Route path="/" render={() => <PageInfo />} />
       </Switch>
     );
@@ -189,6 +192,12 @@ const Main = ({ classes, ...props }) => {
               <InboxIcon className={classes.sidenavIcon} />
             </ListItemIcon>
             <ListItemText primary="Contact Us" />
+          </ListItem>
+          <ListItem button onClick={() => handleSideNavClick('/restaurants')}>
+            <ListItemIcon>
+              <RestaurantIcon className={classes.sidenavIcon} />
+            </ListItemIcon>
+            <ListItemText primary="Restaurants" />
           </ListItem>
           <Divider />
           <ListItem button onClick={handleAuthClick}>
