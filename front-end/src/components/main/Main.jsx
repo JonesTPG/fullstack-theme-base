@@ -116,6 +116,7 @@ const Main = ({ classes, ...props }) => {
       >
         <Toolbar>
           <IconButton
+            data-cy="menu"
             color="inherit"
             aria-label="open drawer"
             onClick={handleDrawerOpen}
@@ -184,7 +185,11 @@ const Main = ({ classes, ...props }) => {
             </ListItemIcon>
             <ListItemText primary="Give Feedback" />
           </ListItem>
-          <ListItem button onClick={() => handleSideNavClick('/contact-us')}>
+          <ListItem
+            data-cy="contactUs"
+            button
+            onClick={() => handleSideNavClick('/contact-us')}
+          >
             <ListItemIcon>
               <InboxIcon className={classes.sidenavIcon} />
             </ListItemIcon>

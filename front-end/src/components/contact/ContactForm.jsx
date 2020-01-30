@@ -129,13 +129,13 @@ const ContactForm = props => {
                   firstname.lastname@fullstack.com
                 </p>
                 <TextField
+                  data-cy="firstName"
                   className={classes.root}
                   required
                   data-cy="firstName"
                   variant="outlined"
                   margin="normal"
                   fullWidth
-                  id="firstName"
                   label="First name"
                   name="firstName"
                   autoComplete="firstName"
@@ -143,6 +143,7 @@ const ContactForm = props => {
                   {...firstName.inputprops()}
                 />
                 <TextField
+                  data-cy="lastName"
                   className={classes.root}
                   required
                   data-cy="lastName"
@@ -155,6 +156,7 @@ const ContactForm = props => {
                   {...lastName.inputprops()}
                 />
                 <TextField
+                  data-cy="email"
                   className={classes.root}
                   required
                   data-cy="email"
@@ -168,6 +170,7 @@ const ContactForm = props => {
                 />
 
                 <TextField
+                  data-cy="phone"
                   className={classes.root}
                   placeholder="Phone"
                   data-cy="phone"
@@ -180,6 +183,7 @@ const ContactForm = props => {
                   {...phone.inputprops()}
                 />
                 <TextField
+                  data-cy="company"
                   className={classes.root}
                   data-cy="company"
                   variant="outlined"
@@ -191,6 +195,7 @@ const ContactForm = props => {
                   {...company.inputprops()}
                 />
                 <TextField
+                  data-cy="message"
                   className={classes.root}
                   rows="4"
                   data-cy="message"
