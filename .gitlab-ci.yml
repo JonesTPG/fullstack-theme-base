@@ -11,7 +11,7 @@ build:
   stage: build
   script:
     - docker build -t theme-base .
-    - docker run -p 4000:4000 -d theme-base --name theme-base
+    - docker run -d -p 4000:4000 --name theme-base -e MONGODB_URI=$MONGODB_URI theme-base
   artifacts:
     paths:
       - back-end/node_modules/
