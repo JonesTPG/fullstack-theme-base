@@ -9,8 +9,7 @@ cache:
 build:
   stage: build
   script:
-    - cat $NODE_ENV
-    - echo $NODE_ENV
+    - echo $MONGODB_URI
     - echo $CI_JOB_STAGE
     - cd back-end
     - npm install
