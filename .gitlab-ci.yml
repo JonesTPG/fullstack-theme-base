@@ -1,64 +1,21 @@
-stages:
-    - build
-    # - unit_test
-    # - containerize
-    # - e2e_test
-    # - publish_container
-    # - deploy_to_production
-  
-  build:
-    stage: build
-    script:
-      - pwd
-      - whoami
-      - ls
-  
-#   unit_test:
-#     stage: unit_test
-#     variables:
-#       GIT_STRATEGY: none
-#     script:
-#       - cd catalog-service; mvn test; cd ..
-#       - cd detail-service; mvn test; cd ..
-  
-#   containerize:
-#     stage: containerize
-#     variables:
-#       GIT_STRATEGY: none
-#     script:
-#       - docker build -t catalog-service catalog-service/
-#       - docker build -t detail-service detail-service/
-#       - docker build -t zuul-service zuul-gateway-service/
-#       - docker build -t ui-service ui-service/
-  
-#   e2e_test:
-#     stage: e2e_test
-#     variables:
-#       GIT_STRATEGY: none
-#     script:
-#       - echo "testing container communication"
-  
-#   publish_containers:
-#     stage: publish_containers
-#     variables:
-#       GIT_STRATEGY: none
-#     script:
-#       - whoami
-#       - docker login -u jonestpg -p B!pvz9I#2hW%K72xmCqlY13tq
-#       - docker tag catalog-service jonestpg/catalog-service
-#       - docker tag detail-service jonestpg/detail-service
-#       - docker tag zuul-service jonestpg/zuul-service
-#       - docker tag ui-service jonestpg/ui-service
-#       - docker push jonestpg/catalog-service
-#       - docker push jonestpg/detail-service
-#       - docker push jonestpg/zuul-service
-#       - docker push jonestpg/ui-service
+image: node:latest
 
-#   deploy_to_production:
-#     stage: deploy_to_production
-#     variables:
-#         GIT_STRATEGY: none
-#     script:
-#         - AWS EC2 DEPLOY WITH DOCKER SCRIPT HERE
-  
-  
+    stages:
+      - build
+      - test
+
+    cache:
+      paths:
+        - node_modules/
+
+    install_dependencies:
+      stage: build
+      script:
+        - npm install
+      artifacts:
+        paths:
+          - node_modules/
+
+    testing_testing:
+      stage: test
+      script: npm test
