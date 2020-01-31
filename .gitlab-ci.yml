@@ -2,6 +2,10 @@ stages:
   - build
   - start
 
+cache:
+paths:
+  - back-end/node_modules/
+
 build:
   stage: build
   script:
@@ -10,6 +14,10 @@ build:
     - whoami
     - cd back-end
     - npm install
+artifacts:
+  paths:
+    - back-end/node_modules/
+
 start:
   stage: start
   script:
