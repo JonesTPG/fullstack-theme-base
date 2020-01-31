@@ -1,26 +1,25 @@
 stages:
-    - build
-    - start
-  
-  cache:
+  - build
+  - start
+
+cache:
+  paths:
+    - back-end/node_modules/
+
+build:
+  stage: build
+  script:
+    - pwd
+    - ls
+    - whoami
+    - cd back-end
+    - npm install
+  artifacts:
     paths:
       - back-end/node_modules/
-  
-  build:
-    stage: build
-    script:
-      - pwd
-      - ls
-      - whoami
-      - cd back-end
-      - npm install
-    artifacts:
-      paths:
-        - back-end/node_modules/
-  
-  start:
-    stage: start
-    script:
-      - cd back-end
-      - node index.js
-  
+
+start:
+  stage: start
+  script:
+    - cd back-end
+    - node index.js
