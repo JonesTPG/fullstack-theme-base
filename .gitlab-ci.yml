@@ -2,13 +2,8 @@ image: node:latest
 
 stages:
   - build
-  - test
 
-cache:
-  paths:
-    - back-end/node_modules/
-
-install_dependencies:
+build:
   stage: build
   script:
     - pwd
@@ -18,8 +13,4 @@ install_dependencies:
     - npm install
   artifacts:
     paths:
-      - node_modules/
-
-testing_testing:
-  stage: test
-  script: echo "test"
+      - back-end/node_modules
