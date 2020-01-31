@@ -6,11 +6,15 @@ stages:
 
 cache:
   paths:
-    - node_modules/
+    - back-end/node_modules/
 
 install_dependencies:
   stage: build
   script:
+    - pwd
+    - ls
+    - whoami
+    - cd back-end
     - npm install
   artifacts:
     paths:
@@ -18,4 +22,4 @@ install_dependencies:
 
 testing_testing:
   stage: test
-  script: npm test
+  script: echo "test"
