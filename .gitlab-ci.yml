@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
   - start
 
 cache:
@@ -9,16 +10,19 @@ cache:
 build:
   stage: build
   script:
-    - echo $MONGODB_URI
-    - echo $JWT_SECRET
-    - cd back-end
-    - npm install
+    - docker build -t theme-base .
+    - docker run -p 4000:4000 -d theme-base --name theme-base
+    - curl localhost:4000
   artifacts:
     paths:
       - back-end/node_modules/
 
+test:
+  stage: test
+  script:
+    - echo "test"
+
 start:
   stage: start
   script:
-    - cd back-end
-    - node index.js
+    - echo "start"
