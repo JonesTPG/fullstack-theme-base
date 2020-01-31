@@ -10,6 +10,8 @@ build:
   stage: build
   script:
     - cat $NODE_ENV
+    - echo $NODE_ENV
+    - echo $CI_JOB_STAGE
     - cd back-end
     - npm install
   artifacts:
