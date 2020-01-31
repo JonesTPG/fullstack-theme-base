@@ -1,5 +1,6 @@
 stages:
   - build
+  - start
 
 build:
   stage: build
@@ -9,6 +10,8 @@ build:
     - whoami
     - cd back-end
     - npm install
-  artifacts:
-    paths:
-      - back-end/node_modules
+start:
+  stage: start
+  script:
+    - pwd
+    - node index.js
