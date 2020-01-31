@@ -10,7 +10,7 @@ build:
   stage: build
   script:
     - echo $MONGODB_URI
-    - echo $CI_JOB_STAGE
+    - echo $JWT_SECRET
     - cd back-end
     - npm install
   artifacts:
