@@ -13,5 +13,5 @@ build:
 start:
   stage: start
   script:
-    - pwd
+    - cd back-end
     - node index.js
