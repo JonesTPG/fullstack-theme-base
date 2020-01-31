@@ -9,9 +9,7 @@ cache:
 build:
   stage: build
   script:
-    - pwd
-    - ls
-    - whoami
+    - cat $NODE_ENV
     - cd back-end
     - npm install
   artifacts:
