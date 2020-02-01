@@ -3,6 +3,12 @@ Application backend:
 -Separate the websocket server to a separate route eg. localhost:4000/subscriptions.
  This way the nginx proxy can be set up to a single url route.
 
+    *different env variable files -> done
+    *Node test SSL server -> done
+    *Create secure websocket server
+    *Change the subscriptions URL
+    *Test websocket server with react app
+
 Nginx reverse proxy:
 
 -Make a reverse proxy conf also to demo.janetta.fi
