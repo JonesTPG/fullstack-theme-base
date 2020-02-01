@@ -13,10 +13,6 @@ import useField from '../../hooks/input';
 import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    alignItems: 'center'
-  },
   headerPaper: {
     padding: theme.spacing(2),
     textAlign: 'center',
@@ -35,6 +31,8 @@ const useStyles = makeStyles(theme => ({
     width: '100%' // Fix IE 11 issue.
   },
   root: {
+    flexGrow: 1,
+    alignItems: 'center',
     '& label.Mui-focused': {
       color: '#009be5'
     },

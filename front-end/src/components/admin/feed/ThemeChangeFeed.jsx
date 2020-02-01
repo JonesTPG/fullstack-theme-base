@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useSubscription } from '@apollo/react-hooks';
 import { THEME_CHANGED } from '../../../queries/theme';
 
-import Search from '../search/Search';
 import Grid from '@material-ui/core/Grid';
 import ThemeChange from './ThemeChange';
 
