@@ -1,0 +1,15 @@
+Application backend:
+
+-Separate the websocket server to a separate route eg. localhost:4000/subscriptions.
+ This way the nginx proxy can be set up to a single url route.
+
+Nginx reverse proxy:
+
+-Make a reverse proxy for websocket connections
+-Redirect all requests to https once the websocket connection is secure
+
+CI/CD pipeline:
+
+-Include the application build process (npm run build:ui in front-end folder) so that the Docker image will have the latest front-end code.
+-Include cypress tests in the pipeline
+-Remove Node.js and PM2 from AWS EC2 server once the Docker pipeline works correctly. Update the prod-environment.md document accordingly.

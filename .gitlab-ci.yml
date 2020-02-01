@@ -1,0 +1,30 @@
+stages:
+  - build
+  - test
+  - start
+
+cache:
+  paths:
+    - back-end/node_modules/
+
+build:
+  stage: build
+  script:
+    # TODO: run the npm run build:ui to get the newest front-end code to back-end
+    - docker system prune -a -f #remove previous docker stuff
+    - docker build -t theme-base .
+    # PROD DATABASE: - docker run -d -p 4000:4000 --name theme-base -e MONGODB_URI=$MONGODB_URI theme-base
+    - docker run -d -p 4000:4000 --name theme-base -e MONGODB_TEST_URI=$MONGODB_TEST_URI theme-base
+  artifacts:
+    paths:
+      - back-end/node_modules/
+
+test:
+  stage: test
+  script:
+    - echo "test"
+
+start:
+  stage: start
+  script:
+    - echo "start"
