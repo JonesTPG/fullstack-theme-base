@@ -8,13 +8,12 @@ sudo apt install nginx
 sudo systemctl status nginx
 sudo systemctl enable nginx
 sudo systemctl status nginx
-Sudo ufw status
+sudo ufw status
 
 if ufw status is active:
 
 sudo ufw allow 80/tcp (← http port)
 sudo ufw allow 443/tcp (← https port)
-sudo ufw allow 5000/tcp (← node app port)
 sudo ufw reload
 
 Virtual host config:
