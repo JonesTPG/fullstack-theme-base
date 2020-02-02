@@ -39,7 +39,8 @@ app.use(bodyParser.json());
 
 const apolloServer = new ApolloServer({
   schema,
-  context
+  context,
+  playground: {}
 });
 
 apolloServer.applyMiddleware({ app });

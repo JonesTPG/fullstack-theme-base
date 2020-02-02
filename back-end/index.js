@@ -28,7 +28,7 @@ if (process.env.NODE_ENV === 'development') {
       },
       {
         server: localSslServer,
-        path: '/graphql'
+        path: '/subscriptions'
       }
     );
   });
