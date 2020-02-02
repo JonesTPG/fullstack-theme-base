@@ -5,9 +5,9 @@ Application backend:
 
     *different env variable files -> done
     *Node test SSL server -> done
-    *Create secure websocket server
-    *Change the subscriptions URL
-    *Test websocket server with react app
+    *Create secure websocket server -> done
+    *Change the subscriptions URL -> done
+    *Test websocket server with react app -> done
 
 Nginx reverse proxy:
 

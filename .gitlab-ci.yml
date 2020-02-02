@@ -10,7 +10,12 @@ cache:
 build:
   stage: build
   script:
-    # TODO: run the npm run build:ui to get the newest front-end code to back-end
+    - pwd
+    - ls
+    - cd front-end
+    - npm run build:ui
+    - cd ..
+    - ls
     - docker system prune -a -f #remove previous docker stuff
     - docker build -t theme-base .
     # PROD DATABASE: - docker run -d -p 4000:4000 --name theme-base -e MONGODB_URI=$MONGODB_URI theme-base
