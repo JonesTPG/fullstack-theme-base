@@ -20,6 +20,7 @@ CI/CD pipeline:
 -Include the application build process (npm run build:ui in front-end folder) so that the Docker image will have the latest front-end code.-> done
 -Optimize resource usage:
     *don't delete node 10 image on every pipeline run
+    *can dependencies be ready in the pipeline (no need to npm install cypress, other front-end packages?)
 -On successfull pipeline run:
     *delete unnecessary docker resources
 -Include cypress tests in the pipeline
