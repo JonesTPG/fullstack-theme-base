@@ -40,7 +40,10 @@ app.use(bodyParser.json());
 const apolloServer = new ApolloServer({
   schema,
   context,
-  playground: {}
+  playground: {
+    endpoint: config.GRAPHQL_ENDPOINT,
+    subscriptionEndpoint: config.GRAPHQL_SUBSCRIPTION_ENDPOINT
+  }
 });
 
 apolloServer.applyMiddleware({ app });

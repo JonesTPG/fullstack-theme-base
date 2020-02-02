@@ -6,6 +6,7 @@ const { SubscriptionServer } = require('subscriptions-transport-ws');
 const { execute, subscribe } = require('graphql');
 
 const schema = require('./schema');
+const config = require('./utils/config');
 
 /* Local SSL server to test out the secure websocket connections. */
 if (process.env.NODE_ENV === 'development') {
@@ -18,7 +19,7 @@ if (process.env.NODE_ENV === 'development') {
     app
   );
 
-  localSslServer.listen({ port: 4001 }, () => {
+  localSslServer.listen({ port: config.SSL_PORT }, () => {
     console.log('Local SSL server ready at localhost:4001');
     new SubscriptionServer(
       {
@@ -35,7 +36,7 @@ if (process.env.NODE_ENV === 'development') {
 } else {
   const webServer = http.createServer(app);
 
-  webServer.listen({ port: 4000 }, () => {
+  webServer.listen({ port: config.PORT }, () => {
     console.log('Server ready at localhost:4000');
     new SubscriptionServer(
       {
@@ -45,7 +46,7 @@ if (process.env.NODE_ENV === 'development') {
       },
       {
         server: webServer,
-        path: '/graphql'
+        path: '/subscriptions'
       }
     );
   });

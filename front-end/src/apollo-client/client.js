@@ -16,7 +16,7 @@ console.log('websocket url:' + process.env.REACT_APP_WEBSOCKET_URL);
 console.log('api url: ' + process.env.REACT_APP_API_URL);
 
 const wsLink = new WebSocketLink({
-  uri: process.env.REACT_APP_WEBSOCKET_URL + 'graphql',
+  uri: process.env.REACT_APP_WEBSOCKET_URL + 'subscriptions',
   options: { reconnect: true }
 });
 
