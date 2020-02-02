@@ -13,6 +13,7 @@ build:
     - pwd
     - ls
     - cd front-end
+    - npm install
     - npm run build:ui
     - cd ..
     - ls
