@@ -7,11 +7,9 @@ const { execute, subscribe } = require('graphql');
 
 const schema = require('./schema');
 
-let localSslServer;
-
 /* Local SSL server to test out the secure websocket connections. */
 if (process.env.NODE_ENV === 'development') {
-  localSslServer = https.createServer(
+  const localSslServer = https.createServer(
     {
       key: fs.readFileSync('./key.pem'),
       cert: fs.readFileSync('./cert.pem'),
@@ -34,21 +32,21 @@ if (process.env.NODE_ENV === 'development') {
       }
     );
   });
+} else {
+  const webServer = http.createServer(app);
+
+  webServer.listen({ port: 4000 }, () => {
+    console.log('Server ready at localhost:4000');
+    new SubscriptionServer(
+      {
+        execute,
+        subscribe,
+        schema: schema
+      },
+      {
+        server: webServer,
+        path: '/graphql'
+      }
+    );
+  });
 }
-
-const webServer = http.createServer(app);
-
-webServer.listen({ port: 4000 }, () => {
-  console.log('Server ready at localhost:4000');
-  new SubscriptionServer(
-    {
-      execute,
-      subscribe,
-      schema: schema
-    },
-    {
-      server: webServer,
-      path: '/graphql'
-    }
-  );
-});

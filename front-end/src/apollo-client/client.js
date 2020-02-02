@@ -11,7 +11,10 @@ import { getMainDefinition } from 'apollo-utilities';
 import { useToken } from '../hooks/auth';
 import { resolvers } from './resolvers';
 
-console.log(process.env.REACT_APP_WEBSOCKET_URL);
+console.log('envinroment variables:');
+console.log('websocket url:' + process.env.REACT_APP_WEBSOCKET_URL);
+console.log('api url: ' + process.env.REACT_APP_API_URL);
+
 const wsLink = new WebSocketLink({
   uri: process.env.REACT_APP_WEBSOCKET_URL + 'graphql',
   options: { reconnect: true }

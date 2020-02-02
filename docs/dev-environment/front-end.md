@@ -19,3 +19,7 @@ REACT_APP_WEBSOCKET_URL=ws://localhost:4000/
 More information [here](https://create-react-app.dev/docs/adding-custom-environment-variables/).
 
 The "normal" .env FILE is a "fallback" file that should not be needed in different environments.
+
+### Running front-end with SSL (generally not needed)
+
+Start the back-end server with command **npm run ssl**. This starts the SSL server to port 4001. Remember to change the front-end env variables accordingly!
