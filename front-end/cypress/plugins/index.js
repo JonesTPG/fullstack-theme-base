@@ -11,7 +11,18 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+const fs = require('fs');
+const path = require('path');
+
+const getConfigurationByFile = file => {
+  const pathToConfigFile = path.resolve('.', 'cypress/config', `${file}.json`);
+  const rawData = fs.readFileSync(pathToConfigFile);
+  return JSON.parse(rawData);
+};
+
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
-}
+  const file = config.env.configFile || 'development';
+  return getConfigurationByFile(file);
+};
