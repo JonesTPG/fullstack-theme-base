@@ -13,7 +13,7 @@ import Collapse from '@material-ui/core/Collapse';
 import { Blurhash } from 'react-blurhash';
 import FoodIcon from '@material-ui/icons/Fastfood';
 import RoomIcon from '@material-ui/icons/Room';
-
+import RestaurantIcon from '@material-ui/icons/Restaurant';
 import clsx from 'clsx';
 const useStyles = makeStyles(theme => ({
   card: {
@@ -125,7 +125,7 @@ const Restaurant = ({ data }) => {
         <CardContent className={classes.contet}>
           <Typography paragraph>
             {' '}
-            <FoodIcon className={classes.foodIcon} fontSize="small" />
+            <RestaurantIcon className={classes.foodIcon} fontSize="small" />
             {data.description}
           </Typography>
           <Typography paragraph>
