@@ -88,8 +88,6 @@ const RestaurantList = () => {
           id="filter-demo"
           value={restaurants}
           onChange={() => console.log('filter')}
-          options={options}
-          getOptionLabel={options => options.name}
           style={{ width: 132 }}
           renderInput={params => (
             <TextField
@@ -101,26 +99,8 @@ const RestaurantList = () => {
           )}
         />
       </Grid>
+
       <Grid container justify="center">
-        <FormControl className={classes.formControl}>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={restaurants}
-            onChange={handleChange}
-            options={options}
-            getOptionLabel={options => options.name}
-          >
-            <MenuItem value="">
-              <em></em>
-            </MenuItem>
-            <MenuItem value="AtoZ">A to Ö</MenuItem>
-            <MenuItem value="ZtoA">Ö to A</MenuItem>
-            <MenuItem value="LtoH">Price: Low to High</MenuItem>
-          </Select>
-        </FormControl>
-      </Grid>
-      {/*       <Grid container justify="center">
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel id="demo-simple-select-helper-label">Sort by:</InputLabel>
 
@@ -139,7 +119,7 @@ const RestaurantList = () => {
             <MenuItem value={20}>Price: High to Low</MenuItem>
           </Select>
         </FormControl>
-      </Grid> */}
+      </Grid>
 
       <Grid container justify="center" spacing={2}>
         {restaurants.map((restaurant, index) => (
