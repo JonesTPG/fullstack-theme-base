@@ -18,7 +18,6 @@ export const styles = theme => ({
       color: theme.palette.common.white
     }
   },
-  button: {},
   appBar: {
     backgroundColor: theme.palette.primary.main
   }

@@ -13,10 +13,6 @@ import useField from '../../hooks/input';
 import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    alignItems: 'center'
-  },
   headerPaper: {
     padding: theme.spacing(2),
     textAlign: 'center',
@@ -25,7 +21,6 @@ const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
-    height: '100px',
     color: theme.palette.text.primary
   },
   formPaper: {
@@ -36,21 +31,23 @@ const useStyles = makeStyles(theme => ({
     width: '100%' // Fix IE 11 issue.
   },
   root: {
+    flexGrow: 1,
+    alignItems: 'center',
     '& label.Mui-focused': {
-      color: 'white'
+      color: '#009be5'
     },
     '& .MuiInput-underline:after': {
-      borderBottomColor: 'white'
+      borderBottomColor: '#009be5'
     },
     '& .MuiOutlinedInput-root': {
       '& fieldset': {
-        borderColor: 'white'
+        borderColor: '#009be5'
       },
       '&:hover fieldset': {
-        borderColor: 'white'
+        borderColor: '#009be5'
       },
       '&.Mui-focused fieldset': {
-        borderColor: 'white'
+        borderColor: '#009be5'
       }
     }
   }
@@ -122,6 +119,8 @@ const Feedback = () => {
           <Grid item xs={12} sm={12} md={12}>
             <Paper className={classes.formPaper}>
               <TextField
+                multiline
+                rows="3"
                 className={classes.root}
                 variant="outlined"
                 name="feedback"

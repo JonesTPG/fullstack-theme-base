@@ -66,8 +66,6 @@ const Main = ({ classes, ...props }) => {
   const token = useToken();
   const { data } = useQuery(ME);
 
-  console.log(data);
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };

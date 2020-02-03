@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { useQuery, useSubscription } from '@apollo/react-hooks';
 import { GET_ALL, CONTACT_ADDED } from '../../../queries/contact';
 
-import Search from '../search/Search';
 import Grid from '@material-ui/core/Grid';
 import Contact from './Contact';
 
