@@ -5,9 +5,9 @@ Application backend:
 
     *different env variable files -> done
     *Node test SSL server -> done
-    *Create secure websocket server
-    *Change the subscriptions URL
-    *Test websocket server with react app
+    *Create secure websocket server -> done
+    *Change the subscriptions URL -> done
+    *Test websocket server with react app -> done
 
 Nginx reverse proxy:
 
@@ -17,6 +17,11 @@ Nginx reverse proxy:
 
 CI/CD pipeline:
 
--Include the application build process (npm run build:ui in front-end folder) so that the Docker image will have the latest front-end code.
+-Include the application build process (npm run build:ui in front-end folder) so that the Docker image will have the latest front-end code.-> done
+-Optimize resource usage:
+    *don't delete node 10 image on every pipeline run
+    *can dependencies be ready in the pipeline (no need to npm install cypress, other front-end packages?)
+-On successfull pipeline run:
+    *delete unnecessary docker resources
 -Include cypress tests in the pipeline
 -Remove Node.js and PM2 from AWS EC2 server once the Docker pipeline works correctly. Update the prod-environment.md document accordingly.
