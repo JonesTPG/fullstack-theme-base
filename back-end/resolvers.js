@@ -144,9 +144,11 @@ const resolvers = {
         darkTheme: user.darkTheme
       };
     },
-    deleteUsers: async () => {
+    resetDatabase: async () => {
       if (process.env.NODE_ENV === 'test') {
         await User.deleteMany({});
+        await Contact.deleteMany({});
+        await Feedback.deleteMany({});
         return true;
       } else {
         throw new Error('user deleting prohibited in production');

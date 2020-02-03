@@ -1,5 +1,5 @@
-const deleteUsers = {
-  query: 'mutation {deleteUsers}'
+const resetDatabase = {
+  query: 'mutation {resetDatabase}'
 };
 
 describe('Fullstack-theme-base sign up page ', function() {
@@ -9,7 +9,7 @@ describe('Fullstack-theme-base sign up page ', function() {
         cy.request({
           method: 'POST',
           url: 'http://localhost:4000/graphql/',
-          body: deleteUsers
+          body: resetDatabase
         });
         cy.visit(Cypress.env('BASE_URL') + '/login');
         cy.contains("Don't have an account? Sign Up");

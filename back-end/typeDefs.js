@@ -47,7 +47,7 @@ const typeDefs = gql`
     ): User
     createAdminUser(username: String!): User
     createFeedback(type: Int!): Feedback
-    deleteUsers: Boolean!
+    resetDatabase: Boolean!
     login(username: String!, password: String!): UserData
     changeTheme: Boolean!
     createContact(
