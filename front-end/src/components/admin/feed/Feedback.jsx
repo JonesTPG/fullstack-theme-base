@@ -5,12 +5,12 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const useStyles = makeStyles({
   card: {
-    minWidth: 275
+    minWidth: 275,
+    minHeight: 100
   },
   bullet: {
     display: 'inline-block',
@@ -27,7 +27,6 @@ const useStyles = makeStyles({
 
 const Feedback = ({ data }) => {
   const classes = useStyles();
-
   return (
     <>
       <Card className={classes.card}>

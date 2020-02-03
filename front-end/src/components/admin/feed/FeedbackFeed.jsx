@@ -4,11 +4,12 @@ import { useQuery, useSubscription } from '@apollo/react-hooks';
 import { GET_ALL, FEEDBACK_ADDED } from '../../../queries/feedback';
 import Feedback from './Feedback';
 import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const FeedbackFeed = () => {
   const [feedbackList, setFeedbackList] = useState([]);
 
-  useQuery(GET_ALL, {
+  const { loading } = useQuery(GET_ALL, {
     onCompleted: data => {
       if (data.feedback) {
         setFeedbackList(data.feedback);
@@ -28,15 +29,20 @@ const FeedbackFeed = () => {
   });
 
   return (
-    <>
-      <Grid container justify="center" spacing={2}>
-        {feedbackList.reverse().map((item, index) => (
-          <Grid item key={index} xs={8} sm={8} md={8}>
-            <Feedback key={index} data={item} />
-          </Grid>
-        ))}
-      </Grid>
-    </>
+    <Grid container justify="center" spacing={2}>
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        feedbackList
+          .slice()
+          .reverse()
+          .map((item, index) => (
+            <Grid item key={index} xs={8} sm={8} md={8}>
+              <Feedback key={index} data={item} />
+            </Grid>
+          ))
+      )}
+    </Grid>
   );
 };
 
