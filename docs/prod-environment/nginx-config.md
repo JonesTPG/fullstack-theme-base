@@ -24,17 +24,48 @@ Paste in the following config:
 
 ```
 server {
- listen 80;
- listen [::]:80;
 
-server_name {NEW_DOMAIN_NAME};
+        server_name {NEW_DOMAIN};
 
-location / {
+        location /subscriptions {
 
-proxy_set_header X-Forwarded-For $remote_addr;
-                proxy_set_header   Host $http_host;
- proxy_pass http://localhost:{NODE_APP_PORT};
- }
+                proxy_http_version 1.1;
+
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection "upgrade";
+
+                proxy_pass      http://localhost:{NODE_PORT}/subscriptions;
+
+        }
+
+        location / {
+
+
+                proxy_pass         http://localhost:{NODE_PORT};
+        }
+
+
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/demo.kooditaiturit.fi/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/demo.kooditaiturit.fi/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+server {
+    if ($host = {NEW_DOMAIN}) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+        listen 80;
+        listen [::]:80;
+
+        server_name {NEW_DOMAIN};
+        return 404; # managed by Certbot
 
 }
 

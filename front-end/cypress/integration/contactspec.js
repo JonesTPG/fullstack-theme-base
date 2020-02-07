@@ -15,29 +15,29 @@ describe('Fullstack-theme-base ', function() {
     beforeEach(function() {
       cy.request({
         method: 'POST',
-        url: 'http://localhost:4000/graphql/',
+        url: Cypress.env('BASE_SERVER_URL') + '/graphql/',
         body: resetDatabase
       });
       cy.request({
         method: 'POST',
-        url: 'http://localhost:4000/graphql/',
+        url: Cypress.env('BASE_SERVER_URL') + '/graphql/',
         body: createUser
       });
       cy.request({
         method: 'POST',
-        url: 'http://localhost:4000/graphql/',
+        url: Cypress.env('BASE_SERVER_URL') + '/graphql/',
         body: createAdminUser
       });
     });
 
     it('Front page can be opened', function() {
-      cy.visit(Cypress.env('BASE_URL') + '/login');
+      cy.visit(Cypress.env('BASE_REACT_URL') + '/login');
       cy.contains('Sign in');
       cy.get('[data-cy=username]').type('username');
       cy.get('[data-cy=password]').type('password');
       cy.contains('Sign in').click();
       cy.get('[data-cy=signIn]').click();
-      cy.url().should('eq', Cypress.env('BASE_URL') + '/');
+      cy.url().should('eq', Cypress.env('BASE_REACT_URL') + '/');
     });
 
     it('After success login user can navigate to Contact Us -page and leave a contact request', function() {
@@ -53,11 +53,11 @@ describe('Fullstack-theme-base ', function() {
         'What’s the best Wi-Fi name you’ve seen?'
       );
       cy.get('[data-cy=send]').click();
-      cy.url().should('eq', Cypress.env('BASE_URL') + '/');
+      cy.url().should('eq', Cypress.env('BASE_REACT_URL') + '/');
     });
     /*     it('Theme-base-token can be found in local storage after login', function() {
       cy.clearLocalStorage('theme-base-token');
-      cy.visit(Cypress.env('BASE_URL') + '/login');
+      cy.visit(Cypress.env('BASE_REACT_URL') + '/login');
       cy.contains('Sign in');
       cy.get('[data-cy=username]').type('username');
       cy.get('[data-cy=password]').type('password');
@@ -70,12 +70,12 @@ describe('Fullstack-theme-base ', function() {
     }); */
     /*     it('Theme-base-token will be deleted after logout', function() {
       cy.clearLocalStorage('theme-base-token');
-      cy.visit(Cypress.env('BASE_URL') + '/login');
+      cy.visit(Cypress.env('BASE_REACT_URL') + '/login');
       cy.contains('Sign in');
       cy.get('[data-cy=username]').type('username');
       cy.get('[data-cy=password]').type('password');
       cy.get('[data-cy=signIn]').click();
-      cy.url().should('eq', Cypress.env('BASE_URL') + '/');
+      cy.url().should('eq', Cypress.env('BASE_REACT_URL') + '/');
       cy.get('[data-cy=logout]')
         .click()
         .should(() => {
