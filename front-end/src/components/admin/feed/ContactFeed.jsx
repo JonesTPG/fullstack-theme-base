@@ -29,8 +29,6 @@ const ContactFeed = () => {
     }
   });
 
-  console.log(loading);
-
   return (
     <Grid container justify="center" spacing={2}>
       {loading ? (
