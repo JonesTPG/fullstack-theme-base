@@ -4,7 +4,7 @@ Nginx reverse proxy:
 
 CI/CD pipeline:
 
--Include the application build process (npm run build:ui in front-end folder) so that the Docker image will have the latest front-end code.-> done
+-Use cypress Docker image to test application (should the app also run in a container!?, maybe docker compose?)
 -Optimize resource usage:
     *don't delete node 10 image on every pipeline run
     *can dependencies be ready in the pipeline (no need to npm install cypress, other front-end packages?)
