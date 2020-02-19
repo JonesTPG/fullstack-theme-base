@@ -44,7 +44,21 @@ server {
                 proxy_pass         http://localhost:{NODE_PORT};
         }
 
+}
 
+```
+
+sudo ln -s /etc/nginx/sites-available/{NEW_DOMAIN} /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl restart nginx
+
+sudo certbot --nginx -d {DOMAIN_NAME}
+
+When asked about redirects, select redirect all **if the application fully supports https**. (also websocket connection needs to be secure!)
+
+Below is an example config that the certbot will create in the site configuration.
+
+```
 
     listen [::]:443 ssl ipv6only=on; # managed by Certbot
     listen 443 ssl; # managed by Certbot
@@ -70,7 +84,3 @@ server {
 }
 
 ```
-
-sudo ln -s /etc/nginx/sites-available/{NEW_DOMAIN} /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl restart nginx

@@ -17,9 +17,8 @@ build:
     - cd front-end
     - npm install
     - npm run build:ui
-    - cd ../back-end
-    - npm install
-    - ls
+    - cd ..
+    - docker build -t theme-base .
 
     #remove all docker containers: docker rm $(docker ps -a -q) --force
     # - docker system prune -a -f #remove previous docker stuff
@@ -30,7 +29,7 @@ build:
 test:
   stage: test
   script:
-    - echo "test"
+    - curl localhost:4000
 
 deploy:
   stage: deploy
