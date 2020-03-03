@@ -22,6 +22,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import MailIcon from '@material-ui/icons/Mail';
 import Button from '@material-ui/core/Button';
 import HomeIcon from '@material-ui/icons/Home';
+import MapRoundedIcon from '@material-ui/icons/MapRounded';
+import ScheduleRoundedIcon from '@material-ui/icons/ScheduleRounded';
 
 import Brightness from '@material-ui/icons/Brightness4';
 
@@ -32,6 +34,8 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 
 import { logOut } from '../../services/authService';
 import Feedback from '../feedback/Feedback';
+import InteractiveMap from '../timetables/InteractiveMap';
+import Timetable from '../timetables/Timetable';
 
 import { ME } from '../../queries/login';
 import { useQuery } from '@apollo/react-hooks';
@@ -98,6 +102,8 @@ const Main = ({ classes, ...props }) => {
       <Switch>
         <Route path="/feedback" render={() => <Feedback />} />
         <Route path="/contact-us" render={() => <ContactForm />} />
+        <Route path="/timetables" render={() => <Timetable />} />
+        <Route path="/map" render={() => <InteractiveMap />} />
         <Route path="/" render={() => <PageInfo />} />
       </Switch>
     );
@@ -192,6 +198,18 @@ const Main = ({ classes, ...props }) => {
               <InboxIcon className={classes.sidenavIcon} />
             </ListItemIcon>
             <ListItemText primary="Contact Us" />
+          </ListItem>
+          <ListItem button onClick={() => handleSideNavClick('/timetables')}>
+            <ListItemIcon>
+              <ScheduleRoundedIcon className={classes.sidenavIcon} />
+            </ListItemIcon>
+            <ListItemText primary="Timetables" />
+          </ListItem>
+          <ListItem button onClick={() => handleSideNavClick('/map')}>
+            <ListItemIcon>
+              <MapRoundedIcon className={classes.sidenavIcon} />
+            </ListItemIcon>
+            <ListItemText primary="Map" />
           </ListItem>
           <Divider />
           <ListItem button onClick={handleAuthClick}>

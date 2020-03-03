@@ -11,8 +11,6 @@ import { useQuery } from '@apollo/react-hooks';
 import { GET_LOCAL_THEME } from './queries/theme';
 
 import { mainTheme, darkTheme } from './AppStyles';
-import InteractiveMap from './components/timetables/InteractiveMap';
-import Timetable from './components/timetables/Timetable';
 
 const App = () => {
   const { data } = useQuery(GET_LOCAL_THEME, {
@@ -29,8 +27,6 @@ const App = () => {
             <Route path="/signup" render={() => <SignUp />} />
             <Route path="/admin" render={() => <AdminLayout />} />
             <Route path="/counter" render={() => <Counter />} />
-            <Route path="/timetables" render={() => <Timetable />} />
-            <Route path="/map" render={() => <InteractiveMap />} />
             <Route path="/" render={() => <Main />} />
           </Switch>
         </ThemeProvider>
