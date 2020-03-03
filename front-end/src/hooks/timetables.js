@@ -1,10 +1,6 @@
 import { PLAN_ROUTE } from '../queries/route';
-import { useState, useEffect } from 'react';
-import { createApolloFetch } from 'apollo-fetch';
-
-const fetch = createApolloFetch({
-  uri: 'https://api.digitransit.fi/routing/v1/routers/finland/index/graphql'
-});
+import { useQuery } from '@apollo/react-hooks';
+import { useState } from 'react';
 
 /**
  * @description Hook for getting a timetable between two points. Offers methods for swapping direction and refreshing the timetable.
@@ -22,8 +18,6 @@ export const useTimetables = (pointA, pointB) => {
   const [places, setPlaces] = useState([pointA, pointB]);
   const [placeNames, setPlaceNames] = useState(['Eficode HQ', 'TUT']);
   const [now, setNow] = useState(new Date());
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState(null);
 
   const from = places[0];
   const to = places[1];
@@ -33,8 +27,25 @@ export const useTimetables = (pointA, pointB) => {
     now.getMinutes() * 60 +
     now.getSeconds()}`;
 
-  useEffect(() => {
-    setLoading(true);
+  // Query that fetches data from the API endpoint
+  const { loading, error, data, refetch } = useQuery(PLAN_ROUTE, {
+    variables: {
+      fromLat: from.lat,
+      fromLon: from.lon,
+      toLat: to.lat,
+      toLon: to.lon,
+      date,
+      time
+    },
+    context: {
+      uri: 'https://api.digitransit.fi/routing/v1/routers/finland/index/graphql'
+    }
+  });
+
+  // Changes the destination point
+  const changeDestination = (newCoords, newName) => {
+    setPlaces([pointA, newCoords]);
+    setPlaceNames(['Eficode HQ', newName]);
     refetch({
       variables: {
         fromLat: from.lat,
@@ -45,43 +56,43 @@ export const useTimetables = (pointA, pointB) => {
         time
       }
     });
-  }, [from, to, date, time]);
-
-  // Query that fetches data from the API endpoint
-  const refetch = variables => {
-    fetch(PLAN_ROUTE, variables)
-      .then(res => {
-        console.log('Response', res.data);
-        setData(res.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.log(error);
-        setData(null);
-        setLoading(false);
-      });
-  };
-
-  // Changes the destination point
-  const changeDestination = (newCoords, newName) => {
-    setPlaces([pointA, newCoords]);
-    setPlaceNames(['Eficode HQ', newName]);
   };
 
   // Fetches fresh itineraries
   const refresh = () => {
     setNow(new Date());
+    refetch({
+      variables: {
+        fromLat: from.lat,
+        fromLon: from.lon,
+        toLat: to.lat,
+        toLon: to.lon,
+        date,
+        time
+      }
+    });
   };
 
   // Changes the order in state variables
   const switchDirection = () => {
     setPlaces([to, from]);
     setPlaceNames([placeNames[1], placeNames[0]]);
+    refetch({
+      variables: {
+        fromLat: from.lat,
+        fromLon: from.lon,
+        toLat: to.lat,
+        toLon: to.lon,
+        date,
+        time
+      }
+    });
   };
 
   return {
     loading,
     data,
+    error,
     changeDestination,
     switchDirection,
     refresh,
