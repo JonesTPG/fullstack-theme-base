@@ -100,6 +100,7 @@ const typeDefs = gql`
     contactAdded: Contact!
     projectAdded: Project!
     featureAdded: Feature!
+    newParticipation: Project!
   }
 `;
 

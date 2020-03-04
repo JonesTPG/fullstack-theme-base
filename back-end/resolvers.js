@@ -27,7 +27,7 @@ const resolvers = {
       return Contact.find({}).populate('user');
     },
     project: () => {
-      return Project.find({}).populate('feature');
+      return Project.find({}).populate('features');
     },
     feature: () => {
       return Feature.find({});
@@ -172,6 +172,54 @@ const resolvers = {
       });
 
       return user.darkTheme;
+    },
+    createProject: async (root, args) => {
+      const project = new Project({
+        name: args.name,
+        description: args.description,
+        features: args.features,
+        price: args.price,
+        endTime: args.endTime
+      });
+      await project.save().catch(error => {
+        throw new UserInputError(error.message, {
+          invalidArgs: args
+        });
+      });
+
+      await Project.populate(project, 'features');
+      pubsub.publish('PROJECT_ADDED', {
+        projectAdded: project
+      });
+      return project;
+    },
+    createFeature: async (root, args) => {
+      const feature = new Feature({
+        name: args.name,
+        description: args.description,
+        imgUrl: args.imgUrl
+      });
+      await feature.save().catch(error => {
+        throw new UserInputError(error.message, {
+          invalidArgs: args
+        });
+      });
+      pubsub.publish('FEATURE_ADDED', {
+        featureAdded: feature
+      });
+      return feature;
+    },
+    participate: async (root, args) => {
+      let project = await Project.findById(args.projectId);
+      project = await project.update({
+        ...project,
+        participants: project.participants + 1
+      });
+      await Project.populate(project, 'features');
+      pubsub.publish('NEW_PARTICIPANT', {
+        newParticipation: project
+      });
+      return project;
     }
   },
   Subscription: {
@@ -195,6 +243,9 @@ const resolvers = {
     },
     featureAdded: {
       subscribe: () => pubsub.asyncIterator(['FEATURE_ADDED'])
+    },
+    newParticipation: {
+      subscribe: () => pubsub.asyncIterator(['NEW_PARTICIPANT'])
     }
   }
 };
