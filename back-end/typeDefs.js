@@ -35,18 +35,15 @@ const typeDefs = gql`
     name: String!
     description: String!
     features: [Feature]!
-    startingPrice: Int!
-    currentPrice: Int!
+    price: Int!
     participants: Int!
     endTime: Int!
-    id: ID!
   }
 
   type Feature {
     name: String!
     description: String!
     imgUrl: String!
-    id: ID!
   }
 
   type Query {

@@ -179,6 +179,7 @@ const resolvers = {
         description: args.description,
         features: args.features,
         price: args.price,
+        participants: 0,
         endTime: args.endTime
       });
       await project.save().catch(error => {

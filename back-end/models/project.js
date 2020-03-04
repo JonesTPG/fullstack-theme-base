@@ -15,11 +15,7 @@ const schema = new mongoose.Schema({
       ref: 'Feature'
     }
   ],
-  startingPrice: {
-    type: Number,
-    required: true
-  },
-  currentPrice: {
+  price: {
     type: Number,
     required: true
   },
