@@ -35,10 +35,10 @@ const typeDefs = gql`
     name: String!
     description: String!
     features: [Feature]!
-    startingPrice: Number!
-    currentPrice: Number!
-    participants: Number!
-    endTime: Number!
+    startingPrice: Int!
+    currentPrice: Int!
+    participants: Int!
+    endTime: Int!
     id: ID!
   }
 
@@ -81,15 +81,12 @@ const typeDefs = gql`
     createProject(
       name: String!
       description: String!
-      features: [Feature]!
-      price: Number!
-      endTime: Number!
+      features: [String]!
+      price: Int!
+      endTime: Int!
     ): Project
     createFeature(name: String!, description: String!, imgUrl: String!): Feature
-    participate(
-      name: String!
-      projectId: String!
-    )
+    participate(name: String!, projectId: String!): Project
   }
 
   type Subscription {
