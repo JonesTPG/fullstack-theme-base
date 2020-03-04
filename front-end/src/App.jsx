@@ -13,14 +13,15 @@ import { GET_LOCAL_THEME } from './queries/theme';
 import { mainTheme, darkTheme } from './AppStyles';
 
 const App = () => {
-  const { data } = useQuery(GET_LOCAL_THEME, {
-    onCompleted(data) {}
-  });
+  const { data } = useQuery(GET_LOCAL_THEME);
+  console.log(data);
 
   return (
     <>
       <Router>
-        <ThemeProvider theme={data.darkTheme === false ? mainTheme : darkTheme}>
+        <ThemeProvider
+          theme={data && data.darkTheme === true ? darkTheme : mainTheme}
+        >
           <Switch>
             <Route path="/voivoi" render={() => <h1>Voi Voi</h1>} />
             <Route path="/login" render={() => <Login />} />

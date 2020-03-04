@@ -79,6 +79,7 @@ const Main = ({ classes, ...props }) => {
   };
 
   const handleThemeChange = async () => {
+    console.log('Change theme');
     await changeTheme();
   };
 

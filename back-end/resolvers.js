@@ -163,6 +163,12 @@ const resolvers = {
       }
     },
     changeTheme: async (root, args, context) => {
+      if (!context.currentUser) {
+        pubsub.publish('USER_CHANGED_THEME', {
+          userChangedTheme: null
+        });
+        return null;
+      }
       const user = await User.findById(context.currentUser._id);
       user.darkTheme = !user.darkTheme;
       await user.save();

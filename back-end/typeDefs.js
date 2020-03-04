@@ -66,7 +66,7 @@ const typeDefs = gql`
     createFeedback(type: Int!): Feedback
     resetDatabase: Boolean!
     login(username: String!, password: String!): UserData
-    changeTheme: Boolean!
+    changeTheme: Boolean
     createContact(
       firstName: String!
       lastName: String!
@@ -90,7 +90,7 @@ const typeDefs = gql`
     userAdded: User!
     feedbackAdded: Feedback!
     userLoggedIn: User!
-    userChangedTheme: User!
+    userChangedTheme: User
     contactAdded: Contact!
     projectAdded: Project!
     featureAdded: Feature!

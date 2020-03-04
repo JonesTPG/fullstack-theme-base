@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -60,8 +61,6 @@ const data = {
   feedbackList: [],
   darkTheme: false
 };
-
-cache.writeData({ data });
 
 client.onResetStore(() => cache.writeData({ data }));
 
