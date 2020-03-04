@@ -5,6 +5,8 @@ const bcrypt = require('bcryptjs');
 const User = require('./models/user');
 const Feedback = require('./models/feedback');
 const Contact = require('./models/contact');
+const Project = require('./models/project');
+const Feature = require('./models/feature');
 
 const config = require('./utils/config');
 
@@ -23,6 +25,12 @@ const resolvers = {
     },
     contact: () => {
       return Contact.find({}).populate('user');
+    },
+    project: () => {
+      return Project.find({}).populate('feature');
+    },
+    feature: () => {
+      return Feature.find({});
     }
   },
   Mutation: {
@@ -181,6 +189,12 @@ const resolvers = {
     },
     contactAdded: {
       subscribe: () => pubsub.asyncIterator(['CONTACT_ADDED'])
+    },
+    projectAdded: {
+      subscribe: () => pubsub.asyncIterator(['PROJECT_ADDED'])
+    },
+    featureAdded: {
+      subscribe: () => pubsub.asyncIterator(['FEATURE_ADDED'])
     }
   }
 };
