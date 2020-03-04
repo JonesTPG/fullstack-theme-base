@@ -14,7 +14,6 @@ import { mainTheme, darkTheme } from './AppStyles';
 
 const App = () => {
   const { data } = useQuery(GET_LOCAL_THEME);
-  console.log(data);
 
   return (
     <>
