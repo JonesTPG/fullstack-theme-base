@@ -86,7 +86,6 @@ const FeatureSlider = () => {
         <Grid item xs={12}>
           <Paper className={classes.paper}>Ominaisuudet</Paper>
         </Grid>
-
         <Slider {...settings}>
           {frontPage.techcards.map(data => (
             <Grid key={data.title} className={classes.card}>
