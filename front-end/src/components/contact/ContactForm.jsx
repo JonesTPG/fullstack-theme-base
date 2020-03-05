@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -132,7 +133,6 @@ const ContactForm = props => {
                   data-cy="firstName"
                   className={classes.root}
                   required
-                  data-cy="firstName"
                   variant="outlined"
                   margin="normal"
                   fullWidth
@@ -146,7 +146,6 @@ const ContactForm = props => {
                   data-cy="lastName"
                   className={classes.root}
                   required
-                  data-cy="lastName"
                   variant="outlined"
                   margin="normal"
                   fullWidth
@@ -159,7 +158,6 @@ const ContactForm = props => {
                   data-cy="email"
                   className={classes.root}
                   required
-                  data-cy="email"
                   variant="outlined"
                   margin="normal"
                   fullWidth
@@ -173,7 +171,6 @@ const ContactForm = props => {
                   data-cy="phone"
                   className={classes.root}
                   placeholder="Phone"
-                  data-cy="phone"
                   variant="outlined"
                   margin="normal"
                   fullWidth
@@ -185,7 +182,6 @@ const ContactForm = props => {
                 <TextField
                   data-cy="company"
                   className={classes.root}
-                  data-cy="company"
                   variant="outlined"
                   margin="normal"
                   fullWidth
@@ -198,7 +194,6 @@ const ContactForm = props => {
                   data-cy="message"
                   className={classes.root}
                   rows="4"
-                  data-cy="message"
                   label="Tell us about your business needs"
                   id="filled-textarea"
                   margin="normal"

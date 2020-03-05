@@ -1,0 +1,24 @@
+{
+  "projects": [
+    {
+      "name": "Project 1",
+      "description": "A SFTP Software that allows to easily handle complex file moving tasks.",
+      "features": [
+        {
+          "name": "Authentication",
+          "description": "Easy-to-use and robust authentication system.",
+          "imgUrl": "authentication.jpg"
+        },
+        {
+          "name": "Notifications",
+          "description": "Get email notifications about important events",
+          "imgUrl": "notification.jpg" //PUT IMAGES INTO PUBLIC/IMG FOLDER
+        }
+      ],
+      "startingPrice": 600,
+      "currentPrice": 400,
+      "participants": 5,
+      "endTime": 30000
+    }
+  ]
+}
