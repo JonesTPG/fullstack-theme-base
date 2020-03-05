@@ -28,9 +28,7 @@ const Header = props => {
 
   const client = useApolloClient();
   const [changeTheme] = useMutation(CHANGE_THEME, {
-    onCompleted() {
-      console.log('theme changed');
-    },
+    onCompleted() {},
     onError(error) {
       console.log(error);
     },

@@ -11,6 +11,7 @@ import { getMainDefinition } from 'apollo-utilities';
 
 import { useToken } from '../hooks/auth';
 import { resolvers } from './resolvers';
+import { GET_LOCAL_THEME } from '../queries/theme';
 
 console.log('envinroment variables:');
 console.log('websocket url:' + process.env.REACT_APP_WEBSOCKET_URL);
@@ -61,6 +62,11 @@ const data = {
   feedbackList: [],
   darkTheme: false
 };
+
+cache.writeQuery({
+  query: GET_LOCAL_THEME,
+  data
+});
 
 client.onResetStore(() => cache.writeData({ data }));
 
