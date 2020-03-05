@@ -7,10 +7,10 @@ import Navigator from './side-nav/Navigator';
 import Header from './header/Header';
 import AdminContent from './AdminContent';
 import { Route, Switch } from 'react-router-dom';
-import FeedbackFeed from './feed/FeedbackFeed';
+import FeedbackView from './feed/FeedbackView';
 import ThemeChangeFeed from './feed/ThemeChangeFeed';
 import ContactFeed from './feed/ContactFeed';
-import UserCreationFeed from './feed/UserCreationFeed';
+import UserView from './feed/UserView';
 
 const drawerWidth = 256;
 
@@ -53,16 +53,13 @@ const Admin = props => {
     return (
       <>
         <Switch>
-          <Route path="/admin/feed/feedback" render={() => <FeedbackFeed />} />
+          <Route path="/admin/feed/feedback" render={() => <FeedbackView />} />
           <Route path="/admin/feed/contact-us" render={() => <ContactFeed />} />
           <Route
             path="/admin/feed/theme-change"
             render={() => <ThemeChangeFeed />}
           />
-          <Route
-            path="/admin/feed/user-creation"
-            render={() => <UserCreationFeed />}
-          />
+          <Route path="/admin/feed/user-creation" render={() => <UserView />} />
           <Route path="/admin" render={() => <AdminContent />} />
         </Switch>
       </>

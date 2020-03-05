@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useQuery, useSubscription } from '@apollo/react-hooks';
 import { GET_ALL, FEEDBACK_ADDED } from '../../../queries/feedback';
 import { withStyles } from '@material-ui/core/styles';
-import Feedback from './Feedback';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -41,7 +40,13 @@ const FeedbackFeed = props => {
   });
 
   if (loading) {
-    return <CircularProgress />;
+    return (
+      <Grid container justify="center">
+        <Grid item>
+          <CircularProgress />
+        </Grid>
+      </Grid>
+    );
   }
   return (
     <Grid container justify="center" spacing={2}>
@@ -56,16 +61,6 @@ const FeedbackFeed = props => {
           <FeedbackChart data={feedbackList} />
         </Grid>
       </Paper>
-      <Grid container justify="center" alignItems="center" spacing={2}>
-        {feedbackList
-          .splice()
-          .reverse()
-          .map((item, index) => (
-            <Grid item key={index} xs={8}>
-              <Feedback data={item} />
-            </Grid>
-          ))}
-      </Grid>
     </Grid>
   );
 };

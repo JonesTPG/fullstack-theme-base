@@ -10,6 +10,9 @@ import { withStyles } from '@material-ui/core/styles';
 import StarRoundedIcon from '@material-ui/icons/StarRounded';
 
 const Bar1 = withStyles({
+  root: {
+    height: 10
+  },
   colorPrimary: {
     backgroundColor: '#E9A2AA'
   },
@@ -18,6 +21,9 @@ const Bar1 = withStyles({
   }
 })(LinearProgress);
 const Bar2 = withStyles({
+  root: {
+    height: 10
+  },
   colorPrimary: {
     backgroundColor: '#EED3A8'
   },
@@ -26,6 +32,9 @@ const Bar2 = withStyles({
   }
 })(LinearProgress);
 const Bar3 = withStyles({
+  root: {
+    height: 10
+  },
   colorPrimary: {
     backgroundColor: '#DDE097'
   },
@@ -34,6 +43,9 @@ const Bar3 = withStyles({
   }
 })(LinearProgress);
 const Bar4 = withStyles({
+  root: {
+    height: 10
+  },
   colorPrimary: {
     backgroundColor: '#C6CF9B'
   },
@@ -42,6 +54,9 @@ const Bar4 = withStyles({
   }
 })(LinearProgress);
 const Bar5 = withStyles({
+  root: {
+    height: 10
+  },
   colorPrimary: {
     backgroundColor: '#B6E59E'
   },

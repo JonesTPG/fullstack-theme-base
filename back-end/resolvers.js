@@ -31,6 +31,9 @@ const resolvers = {
     },
     feature: () => {
       return Feature.find({});
+    },
+    user: () => {
+      return User.find({});
     }
   },
   Mutation: {
