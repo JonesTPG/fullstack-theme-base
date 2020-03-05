@@ -8,8 +8,8 @@ import Button from '@material-ui/core/Button';
 
 import { withRouter } from 'react-router-dom';
 
-import { frontPage } from './home-page-data';
 import Hero from './Hero';
+import ShowCase from './Showcase';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,6 +19,9 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.primary
+  },
+  content: {
+    display: 'none'
   }
 }));
 
@@ -28,6 +31,7 @@ const HomePage = props => {
   return (
     <>
       <Hero />
+      <ShowCase />
     </>
   );
 };

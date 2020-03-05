@@ -13,7 +13,8 @@ import { frontPage } from './pagedata';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    padding: theme.spacing(3)
   },
   paper: {
     padding: theme.spacing(2),
