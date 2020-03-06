@@ -67,6 +67,39 @@ const resolvers = {
       pubsub.publish('USER_ADDED', { userAdded: user });
       return user;
     },
+    updateUser: async (root, args) => {
+      const user = await User.findById(args.id);
+      const updatedUser = {
+        username: args.username || user.username,
+        roles: args.roles || user.roles,
+        darkTheme: args.darkTheme || user.darkTheme,
+        firstName: args.firstName || user.firstName,
+        lastName: args.lastName || user.lastName,
+        id: user._id,
+        __v: user.__v
+      };
+      await user.updateOne(updatedUser).catch(error => {
+        throw new UserInputError(error.message, {
+          invalidArgs: args
+        });
+      });
+      console.log({ updatedUser, args, user });
+      pubsub.publish('USER_UPDATED', {
+        userUpdated: updatedUser
+      });
+      return updatedUser;
+    },
+    removeUser: async (root, args) => {
+      const user = await User.findByIdAndRemove(args.id).catch(error => {
+        throw new UserInputError(error.message, {
+          invalidArgs: args
+        });
+      });
+      pubsub.publish('USER_DELETED', {
+        userDeleted: user
+      });
+      return user;
+    },
     createAdminUser: async (root, args) => {
       if (process.env.NODE_ENV === 'test') {
         const ADMIN_PASSWORD = 'admin';
@@ -300,6 +333,12 @@ const resolvers = {
   Subscription: {
     userAdded: {
       subscribe: () => pubsub.asyncIterator(['USER_ADDED'])
+    },
+    userUpdated: {
+      subscribe: () => pubsub.asyncIterator(['USER_UPDATED'])
+    },
+    userDeleted: {
+      subscribe: () => pubsub.asyncIterator(['USER_DELETED'])
     },
     feedbackAdded: {
       subscribe: () => pubsub.asyncIterator(['FEEDBACK_ADDED'])
