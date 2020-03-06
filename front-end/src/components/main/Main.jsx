@@ -18,6 +18,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
+import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+
 import WavesIcon from '@material-ui/icons/Waves';
 
 import MailIcon from '@material-ui/icons/Mail';
@@ -44,6 +47,7 @@ import { useToken } from '../../hooks/auth';
 import PageInfo from './page-info/PageInfo';
 import ContactForm from '../contact/ContactForm';
 import MainStyles from './MainStyles';
+import HomePage from '../flow/home/HomePage';
 
 const Main = ({ classes, ...props }) => {
   const theme = useTheme();
@@ -105,7 +109,11 @@ const Main = ({ classes, ...props }) => {
         <Route path="/contact-us" render={() => <ContactForm />} />
         <Route path="/timetables" render={() => <Timetable />} />
         <Route path="/map" render={() => <InteractiveMap />} />
-        <Route path="/flow" render={() => <FeatureSlider />} />
+
+        <Route path="/flow" render={() => <HomePage />} />
+
+        <Route path="/flow-detail" render={() => <FeatureSlider />} />
+
         <Route path="/" render={() => <PageInfo />} />
       </Switch>
     );
@@ -184,6 +192,12 @@ const Main = ({ classes, ...props }) => {
               <HomeIcon className={classes.sidenavIcon} />
             </ListItemIcon>
             <ListItemText primary="Home" />
+          </ListItem>
+          <ListItem button onClick={() => handleSideNavClick('/flow')}>
+            <ListItemIcon>
+              <DoubleArrowIcon className={classes.sidenavIcon} />
+            </ListItemIcon>
+            <ListItemText primary="Flow" />
           </ListItem>
           <ListItem button onClick={() => handleSideNavClick('/feedback')}>
             <ListItemIcon>
