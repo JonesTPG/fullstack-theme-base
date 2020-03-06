@@ -11,6 +11,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import { frontPage } from './featuredata';
+import CommitButton from '../participation/CommitButton';
+import CommitForm from '../participation/CommitForm';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -22,6 +24,9 @@ const useStyles = makeStyles(theme => ({
   card: {
     padding: '5px',
     paddingTop: '15px'
+  },
+  content: {
+    padding: theme.spacing(3)
   }
 }));
 
@@ -81,7 +86,7 @@ const FeatureSlider = () => {
   };
   const classes = useStyles();
   return (
-    <>
+    <div className={classes.content}>
       <div className={classes.root}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>Ominaisuudet</Paper>
@@ -94,7 +99,8 @@ const FeatureSlider = () => {
           ))}
         </Slider>
       </div>
-    </>
+      <CommitForm />
+    </div>
   );
 };
 

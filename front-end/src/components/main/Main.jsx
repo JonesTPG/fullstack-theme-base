@@ -40,7 +40,7 @@ import { logOut } from '../../services/authService';
 import Feedback from '../feedback/Feedback';
 import InteractiveMap from '../timetables/InteractiveMap';
 import Timetable from '../timetables/Timetable';
-import FeatureSlider from '../flow/detail/FeatureSlider';
+import FeatureSlider from '../flow/detail//feature/FeatureSlider';
 import { ME } from '../../queries/login';
 import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
