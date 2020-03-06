@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost';
 
-export const GET_ALL = gql`
+export const GET_ALL_PROJECTS = gql`
   query {
     project {
       name
@@ -12,7 +12,17 @@ export const GET_ALL = gql`
         id
       }
       price
-      participants
+      participants {
+        name
+        email
+        phone
+        projects {
+          name
+        }
+        company
+        information
+        id
+      }
       endTime
       id
     }

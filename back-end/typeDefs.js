@@ -36,8 +36,18 @@ const typeDefs = gql`
     description: String!
     features: [Feature]!
     price: Int!
-    participants: Int!
+    participants: [Customer]!
     endTime: Int!
+    id: ID!
+  }
+
+  type Customer {
+    name: String!
+    email: String!
+    phone: String
+    projects: [Project]!
+    company: String
+    information: String
     id: ID!
   }
 

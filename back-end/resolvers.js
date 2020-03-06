@@ -186,9 +186,9 @@ const resolvers = {
       const project = new Project({
         name: args.name,
         description: args.description,
-        features: args.features,
+        features: args.features || [],
         price: args.price,
-        participants: 0,
+        participants: [],
         endTime: args.endTime
       });
       await project.save().catch(error => {
@@ -197,7 +197,10 @@ const resolvers = {
         });
       });
 
-      await Project.populate(project, 'features');
+      await Project.populate(project, 'features').populate(
+        project,
+        'customers'
+      );
       pubsub.publish('PROJECT_ADDED', {
         projectAdded: project
       });
@@ -221,11 +224,15 @@ const resolvers = {
     },
     participate: async (root, args) => {
       let project = await Project.findById(args.projectId);
+      const customer = await customer.findById(args.customerId);
       project = await project.update({
         ...project,
-        participants: project.participants + 1
+        participants: project.participants.push(customer)
       });
-      await Project.populate(project, 'features');
+      await Project.populate(project, 'features').populate(
+        project,
+        'customers'
+      );
       pubsub.publish('NEW_PARTICIPANT', {
         newParticipation: project
       });

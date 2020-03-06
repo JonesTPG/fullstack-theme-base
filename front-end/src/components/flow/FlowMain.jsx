@@ -4,11 +4,11 @@ import { Route, Switch } from 'react-router-dom';
 import HomePage from './home/HomePage';
 import FeatureSlider from './detail/FeatureSlider';
 import { useQuery, useSubscription } from '@apollo/react-hooks';
-import { GET_ALL, PROJECT_ADDED } from '../../queries/project';
+import { GET_ALL_PROJECTS, PROJECT_ADDED } from '../../queries/project';
 
 const FlowMain = () => {
   const [projects, setProjects] = useState([]);
-  const { loading } = useQuery(GET_ALL, {
+  const { loading } = useQuery(GET_ALL_PROJECTS, {
     onCompleted: data => {
       if (data.project) {
         setProjects(data.project);
