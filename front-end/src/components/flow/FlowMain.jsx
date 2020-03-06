@@ -29,7 +29,6 @@ const FlowMain = () => {
 
   return (
     <>
-      <p>flow main</p>
       <Switch>
         <Route
           exact
