@@ -17,7 +17,8 @@
       ],
       "startingPrice": 600,
       "currentPrice": 400,
-      "commited": 5
+      "participants": 5,
+      "endTime": 30000
     }
   ]
 }

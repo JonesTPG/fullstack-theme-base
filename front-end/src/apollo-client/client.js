@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -10,6 +11,7 @@ import { getMainDefinition } from 'apollo-utilities';
 
 import { useToken } from '../hooks/auth';
 import { resolvers } from './resolvers';
+import { GET_LOCAL_THEME } from '../queries/theme';
 
 console.log('envinroment variables:');
 console.log('websocket url:' + process.env.REACT_APP_WEBSOCKET_URL);
@@ -61,7 +63,10 @@ const data = {
   darkTheme: false
 };
 
-cache.writeData({ data });
+cache.writeQuery({
+  query: GET_LOCAL_THEME,
+  data
+});
 
 client.onResetStore(() => cache.writeData({ data }));
 

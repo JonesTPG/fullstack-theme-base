@@ -31,11 +31,29 @@ const typeDefs = gql`
     user: User
   }
 
+  type Project {
+    name: String!
+    description: String!
+    features: [Feature]!
+    price: Int!
+    participants: Int!
+    endTime: Int!
+  }
+
+  type Feature {
+    name: String!
+    description: String!
+    imgUrl: String!
+  }
+
   type Query {
     me: User
     hello: String
     feedback: [Feedback]
     contact: [Contact]
+    project: [Project]
+    feature: [Feature]
+    user: [User]
   }
 
   type Mutation {
@@ -49,7 +67,7 @@ const typeDefs = gql`
     createFeedback(type: Int!): Feedback
     resetDatabase: Boolean!
     login(username: String!, password: String!): UserData
-    changeTheme: Boolean!
+    changeTheme: Boolean
     createContact(
       firstName: String!
       lastName: String!
@@ -58,14 +76,26 @@ const typeDefs = gql`
       company: String
       message: String
     ): Contact
+    createProject(
+      name: String!
+      description: String!
+      features: [String]!
+      price: Int!
+      endTime: Int!
+    ): Project
+    createFeature(name: String!, description: String!, imgUrl: String!): Feature
+    participate(name: String!, projectId: String!): Project
   }
 
   type Subscription {
     userAdded: User!
     feedbackAdded: Feedback!
     userLoggedIn: User!
-    userChangedTheme: User!
+    userChangedTheme: User
     contactAdded: Contact!
+    projectAdded: Project!
+    featureAdded: Feature!
+    newParticipation: Project!
   }
 `;
 

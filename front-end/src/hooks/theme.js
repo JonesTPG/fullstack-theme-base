@@ -4,9 +4,7 @@ import { CHANGE_THEME, GET_LOCAL_THEME } from '../queries/theme';
 
 export const useTheme = () => {
   const [changeTheme] = useMutation(CHANGE_THEME, {
-    onCompleted() {
-      console.log('theme changed');
-    },
+    onCompleted() {},
     onError(error) {
       console.log(error);
     },

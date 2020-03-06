@@ -18,7 +18,10 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+
+import WavesIcon from '@material-ui/icons/Waves';
 
 import MailIcon from '@material-ui/icons/Mail';
 import Button from '@material-ui/core/Button';
@@ -37,7 +40,7 @@ import { logOut } from '../../services/authService';
 import Feedback from '../feedback/Feedback';
 import InteractiveMap from '../timetables/InteractiveMap';
 import Timetable from '../timetables/Timetable';
-
+import FeatureSlider from '../flow/detail/FeatureSlider';
 import { ME } from '../../queries/login';
 import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
@@ -106,7 +109,11 @@ const Main = ({ classes, ...props }) => {
         <Route path="/contact-us" render={() => <ContactForm />} />
         <Route path="/timetables" render={() => <Timetable />} />
         <Route path="/map" render={() => <InteractiveMap />} />
+
         <Route path="/flow" render={() => <HomePage />} />
+
+        <Route path="/flow-detail" render={() => <FeatureSlider />} />
+
         <Route path="/" render={() => <PageInfo />} />
       </Switch>
     );
@@ -219,6 +226,12 @@ const Main = ({ classes, ...props }) => {
               <MapRoundedIcon className={classes.sidenavIcon} />
             </ListItemIcon>
             <ListItemText primary="Map" />
+          </ListItem>
+          <ListItem button onClick={() => handleSideNavClick('/flow')}>
+            <ListItemIcon>
+              <WavesIcon className={classes.sidenavIcon} />
+            </ListItemIcon>
+            <ListItemText primary="Flow" />
           </ListItem>
           <Divider />
           <ListItem button onClick={handleAuthClick}>
