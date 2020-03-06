@@ -28,7 +28,9 @@ const resolvers = {
       return Contact.find({}).populate('user');
     },
     project: () => {
-      return Project.find({}).populate('features');
+      return Project.find({})
+        .populate('features')
+        .populate('participants');
     },
     feature: () => {
       return Feature.find({});
@@ -261,19 +263,33 @@ const resolvers = {
     },
     participate: async (root, args) => {
       let project = await Project.findById(args.projectId);
-      const customer = await customer.findById(args.customerId);
-      project = await project.update({
-        ...project,
-        participants: project.participants.push(customer)
+      const customer = new Customer({
+        name: args.name,
+        email: args.email,
+        phone: args.phone || '',
+        projects: args.projects || [],
+        company: args.company || '',
+        information: args.information || ''
       });
-      await Project.populate(project, 'features').populate(
-        project,
-        'customers'
-      );
+
+      project.participants = project.participants.concat(customer._id);
+
+      await customer.save().catch(error => {
+        throw new UserInputError(error.message, {
+          invalidArgs: args
+        });
+      });
+
+      await project.save().catch(error => {
+        throw new UserInputError(error.message, {
+          invalidArgs: args
+        });
+      });
+
       pubsub.publish('NEW_PARTICIPANT', {
-        newParticipation: project
+        newParticipation: customer
       });
-      return project;
+      return customer;
     },
     createCustomer: async (root, args) => {
       const customer = new Customer({

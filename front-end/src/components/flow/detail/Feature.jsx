@@ -25,7 +25,7 @@ const Feature = ({ data }) => {
   return (
     <div>
       <Card className={classes.card}>
-        <CardMedia className={classes.media} image={'img/' + data.img} />
+        <CardMedia className={classes.media} image={'/img/' + data.img} />
         <CardHeader subheader={data.subtitle} />
       </Card>
     </div>

@@ -35,7 +35,8 @@ const typeDefs = gql`
     name: String!
     description: String!
     features: [Feature]!
-    price: Int!
+    price: String
+    currentPrice: String
     participants: [Customer]!
     endTime: Int!
     id: ID!
@@ -125,7 +126,14 @@ const typeDefs = gql`
     ): Customer
     removeCustomer(id: ID!): Customer
     createFeature(name: String!, description: String!, imgUrl: String!): Feature
-    participate(customerId: String!, projectId: String!): Project
+    participate(
+      projectId: String!
+      name: String!
+      email: String!
+      phone: String!
+      company: String
+      information: String
+    ): Customer
   }
 
   type Subscription {
@@ -141,7 +149,7 @@ const typeDefs = gql`
     customerAdded: Customer!
     customerUpdated: Customer!
     customerDeleted: Customer!
-    newParticipation: Project!
+    newParticipation: Customer!
   }
 `;
 
