@@ -17,12 +17,10 @@ const schema = new mongoose.Schema({
     default: false
   },
   firstName: {
-    type: String,
-    minlength: 3
+    type: String
   },
   lastName: {
-    type: String,
-    minlength: 3
+    type: String
   },
   passwordHash: {
     type: String

@@ -69,6 +69,39 @@ const resolvers = {
       pubsub.publish('USER_ADDED', { userAdded: user });
       return user;
     },
+    updateUser: async (root, args) => {
+      const user = await User.findById(args.id);
+      const updatedUser = {
+        username: args.username || user.username,
+        roles: args.roles || user.roles,
+        darkTheme: args.darkTheme || user.darkTheme,
+        firstName: args.firstName || user.firstName,
+        lastName: args.lastName || user.lastName,
+        id: user._id,
+        __v: user.__v
+      };
+      await user.updateOne(updatedUser).catch(error => {
+        throw new UserInputError(error.message, {
+          invalidArgs: args
+        });
+      });
+      console.log({ updatedUser, args, user });
+      pubsub.publish('USER_UPDATED', {
+        userUpdated: updatedUser
+      });
+      return updatedUser;
+    },
+    removeUser: async (root, args) => {
+      const user = await User.findByIdAndRemove(args.id).catch(error => {
+        throw new UserInputError(error.message, {
+          invalidArgs: args
+        });
+      });
+      pubsub.publish('USER_DELETED', {
+        userDeleted: user
+      });
+      return user;
+    },
     createAdminUser: async (root, args) => {
       if (process.env.NODE_ENV === 'test') {
         const ADMIN_PASSWORD = 'admin';
@@ -267,7 +300,6 @@ const resolvers = {
         company: args.company || '',
         information: args.information || ''
       });
-      console.log(customer);
       await customer.save().catch(error => {
         throw new UserInputError(error.message, {
           invalidArgs: args
@@ -281,23 +313,24 @@ const resolvers = {
     updateCustomer: async (root, args) => {
       const customer = await Customer.findById(args.id);
       const updatedCustomer = {
-        name: args.name,
-        email: args.email,
-        phone: args.phone,
-        company: args.company,
-        information: customer.information,
-        _id: customer._id
+        name: args.name || customer.name || '',
+        email: args.email || customer.email || '',
+        phone: args.phone || customer.phone || '',
+        company: args.company || customer.company || '',
+        information: customer.information || '',
+        projects: customer.projects || [],
+        id: customer._id,
+        __v: customer.__v
       };
-      console.log(updatedCustomer);
       await customer.updateOne(updatedCustomer).catch(error => {
         throw new UserInputError(error.message, {
           invalidArgs: args
         });
       });
       pubsub.publish('CUSTOMER_UPDATED', {
-        customerUpdated: customer
+        customerUpdated: updatedCustomer
       });
-      return customer;
+      return updatedCustomer;
     },
     removeCustomer: async (root, args) => {
       const customer = await Customer.findByIdAndRemove(args.id).catch(
@@ -317,6 +350,12 @@ const resolvers = {
     userAdded: {
       subscribe: () => pubsub.asyncIterator(['USER_ADDED'])
     },
+    userUpdated: {
+      subscribe: () => pubsub.asyncIterator(['USER_UPDATED'])
+    },
+    userDeleted: {
+      subscribe: () => pubsub.asyncIterator(['USER_DELETED'])
+    },
     feedbackAdded: {
       subscribe: () => pubsub.asyncIterator(['FEEDBACK_ADDED'])
     },
@@ -335,13 +374,14 @@ const resolvers = {
     featureAdded: {
       subscribe: () => pubsub.asyncIterator(['FEATURE_ADDED'])
     },
-    customerSubscription: {
-      subscribe: () =>
-        pubsub.asyncIterator([
-          'CUSTOMER_ADDED',
-          'CUSTOMER_UPDATED',
-          'CUSTOMER_DELETED'
-        ])
+    customerAdded: {
+      subscribe: () => pubsub.asyncIterator(['CUSTOMER_ADDED'])
+    },
+    customerUpdated: {
+      subscribe: () => pubsub.asyncIterator(['CUSTOMER_UPDATED'])
+    },
+    customerDeleted: {
+      subscribe: () => pubsub.asyncIterator(['CUSTOMER_DELETED'])
     },
     newParticipation: {
       subscribe: () => pubsub.asyncIterator(['NEW_PARTICIPANT'])

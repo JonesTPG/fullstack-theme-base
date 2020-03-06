@@ -43,10 +43,10 @@ const typeDefs = gql`
   }
 
   type Customer {
-    name: String!
-    email: String!
+    name: String
+    email: String
     phone: String
-    projects: [Project]!
+    projects: [Project]
     company: String
     information: String
     id: ID!
@@ -77,6 +77,16 @@ const typeDefs = gql`
       lastName: String
       password: String!
     ): User
+    updateUser(
+      id: ID!
+      username: String
+      firstName: String
+      lastName: String
+      password: String
+      darkTheme: Boolean
+      roles: [String]
+    ): User
+    removeUser(id: ID!): User
     createAdminUser(username: String!): User
     createFeedback(type: Int!): Feedback
     resetDatabase: Boolean!
@@ -128,13 +138,17 @@ const typeDefs = gql`
 
   type Subscription {
     userAdded: User!
+    userUpdated: User!
+    userDeleted: User!
     feedbackAdded: Feedback!
     userLoggedIn: User!
     userChangedTheme: User
     contactAdded: Contact!
     projectAdded: Project!
     featureAdded: Feature!
-    customerSubscription: Customer!
+    customerAdded: Customer!
+    customerUpdated: Customer!
+    customerDeleted: Customer!
     newParticipation: Customer!
   }
 `;

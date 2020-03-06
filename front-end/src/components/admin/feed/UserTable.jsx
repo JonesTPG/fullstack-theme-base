@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React, { forwardRef, useEffect } from 'react';
+import React, { forwardRef } from 'react';
 import MaterialTable from 'material-table';
 
 import AddBox from '@material-ui/icons/AddBox';
@@ -17,6 +17,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+import PasswordDialog from './PasswordDialog';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -44,31 +45,54 @@ const tableIcons = {
 
 const columns = [
   { title: 'Email / Username', field: 'username' },
-  { title: 'Roles', field: 'roles' },
-  { title: 'Dark Theme', field: 'darkTheme' },
   { title: 'Name', field: 'firstName' },
-  { title: 'Surname', field: 'lastName' }
+  { title: 'Surname', field: 'lastName' },
+  { title: 'Dark Theme', field: 'darkTheme' },
+  { title: 'Roles', field: 'roles' }
 ];
 
-const UserTable = ({ users }) => {
-  const [data, setData] = React.useState(users);
-  useEffect(() => {
-    setData(users);
-  }, [users]);
-
+const UserTable = ({ users, addUser, editUser, removeUser }) => {
+  const [open, setOpen] = React.useState(false);
+  const [data, setData] = React.useState(null);
+  const handleClose = e => {
+    e.preventDefault();
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleSign = value => {
+    addUser({
+      variables: {
+        ...data,
+        password: value,
+        darkTheme: data.darkTheme === 'true' ? true : false
+      }
+    });
+    setData(null);
+    setOpen(false);
+  };
   return (
     <div style={{ maxWidth: '100%' }}>
+      {open && (
+        <PasswordDialog
+          open={open}
+          handleSign={handleSign}
+          handleClose={handleClose}
+        />
+      )}
       <MaterialTable
         icons={tableIcons}
         title="Registered Users"
         columns={columns}
-        data={data}
+        data={users}
         editable={{
           onRowAdd: newData =>
             new Promise(resolve => {
+              handleOpen();
+              setData(newData);
               setTimeout(() => {
                 resolve();
-                setData(data.concat(newData));
               }, 600);
             }),
           onRowUpdate: (newData, oldData) =>
@@ -76,10 +100,8 @@ const UserTable = ({ users }) => {
               setTimeout(() => {
                 resolve();
                 if (oldData) {
-                  setData(prevData => {
-                    let copy = [...prevData];
-                    copy[copy.indexOf(oldData)] = newData;
-                    return copy;
+                  editUser({
+                    variables: { ...newData }
                   });
                 }
               }, 600);
@@ -88,10 +110,8 @@ const UserTable = ({ users }) => {
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                setData(prevData => {
-                  let copy = [...prevData];
-                  copy.splice(copy.indexOf(oldData), 1);
-                  return copy;
+                removeUser({
+                  variables: { ...oldData }
                 });
               }, 600);
             })

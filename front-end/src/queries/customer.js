@@ -17,7 +17,7 @@ export const GET_ALL_CUSTOMERS = gql`
   }
 `;
 
-export const CUSTOMER_SUBSCRIPTION = gql`
+export const CUSTOMER_ADDED = gql`
   subscription {
     customerAdded {
       name
@@ -30,6 +30,10 @@ export const CUSTOMER_SUBSCRIPTION = gql`
       information
       id
     }
+  }
+`;
+export const CUSTOMER_UPDATED = gql`
+  subscription {
     customerUpdated {
       name
       email
@@ -41,9 +45,20 @@ export const CUSTOMER_SUBSCRIPTION = gql`
       information
       id
     }
+  }
+`;
+export const CUSTOMER_DELETED = gql`
+  subscription {
     customerDeleted {
       name
       email
+      phone
+      projects {
+        name
+      }
+      company
+      information
+      id
     }
   }
 `;
