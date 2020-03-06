@@ -53,6 +53,7 @@ const typeDefs = gql`
     contact: [Contact]
     project: [Project]
     feature: [Feature]
+    user: [User]
   }
 
   type Mutation {

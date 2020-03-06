@@ -25,7 +25,6 @@ const useStyles = makeStyles({
 
 const Contact = ({ data }) => {
   const classes = useStyles();
-  console.log(data);
   return (
     <Card className={classes.card}>
       <CardContent>
