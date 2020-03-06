@@ -12,8 +12,6 @@ import { red } from '@material-ui/core/colors';
 const useStyles = makeStyles(theme => ({
   card: { height: '300px' },
   media: {
-    // height: '50%',
-    // width: '50%',
     paddingTop: '50%'
   },
   expand: {
@@ -31,16 +29,17 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProjectCard = ({ data }) => {
+const ProjectCard = ({ project }) => {
   const classes = useStyles();
-
+  console.log(project);
   return (
     <>
+      <p>testi</p>
       <Card className={classes.card}>
-        <CardHeader title={data.title} subheader={data.subtitle} />
+        <CardHeader title={project.name} subheader={project.description} />
         <CardContent>
           <Typography variant="body2" color="textPrimary" component="p">
-            {data.shortDesc}
+            {project.price}
           </Typography>
         </CardContent>
       </Card>

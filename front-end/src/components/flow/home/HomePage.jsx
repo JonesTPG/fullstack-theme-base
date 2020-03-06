@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { withRouter } from 'react-router-dom';
 
 import Hero from './Hero';
-import ShowCase from './Showcase';
+import ProjectCard from './ProjectCard';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -21,13 +21,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const HomePage = props => {
+const HomePage = ({ projects }) => {
   const classes = useStyles();
-
+  console.log(projects);
   return (
     <>
       <Hero />
-      <ShowCase />
+      {projects.map(project => (
+        <ProjectCard key={project.id} project={project}></ProjectCard>
+      ))}
     </>
   );
 };
