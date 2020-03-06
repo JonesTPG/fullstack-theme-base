@@ -35,9 +35,20 @@ const typeDefs = gql`
     name: String!
     description: String!
     features: [Feature]!
-    price: Int!
-    participants: Int!
+    price: String
+    currentPrice: String
+    participants: [Customer]!
     endTime: Int!
+    id: ID!
+  }
+
+  type Customer {
+    name: String!
+    email: String!
+    phone: String
+    projects: [Project]!
+    company: String
+    information: String
     id: ID!
   }
 
@@ -56,6 +67,7 @@ const typeDefs = gql`
     project: [Project]
     feature: [Feature]
     user: [User]
+    customer: [Customer]
   }
 
   type Mutation {
@@ -85,8 +97,33 @@ const typeDefs = gql`
       price: Int!
       endTime: Int!
     ): Project
+    createCustomer(
+      name: String!
+      email: String!
+      phone: String
+      projects: [ID]
+      company: String
+      information: String
+    ): Customer
+    updateCustomer(
+      id: ID!
+      name: String
+      email: String
+      phone: String
+      projects: [ID]
+      company: String
+      information: String
+    ): Customer
+    removeCustomer(id: ID!): Customer
     createFeature(name: String!, description: String!, imgUrl: String!): Feature
-    participate(name: String!, projectId: String!): Project
+    participate(
+      projectId: String!
+      name: String!
+      email: String!
+      phone: String!
+      company: String
+      information: String
+    ): Customer
   }
 
   type Subscription {
@@ -97,7 +134,8 @@ const typeDefs = gql`
     contactAdded: Contact!
     projectAdded: Project!
     featureAdded: Feature!
-    newParticipation: Project!
+    customerSubscription: Customer!
+    newParticipation: Customer!
   }
 `;
 

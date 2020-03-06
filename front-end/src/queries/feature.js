@@ -21,3 +21,18 @@ export const FEATURE_ADDED = gql`
     }
   }
 `;
+
+export const CREATE_FEATURE = gql`
+  mutation createFeature(
+    $name: String!
+    $description: String!
+    $imgUrl: String!
+  ) {
+    createFeature(name: $name, description: $description, imgUrl: $imgUrl) {
+      name
+      description
+      imgUrl
+      id
+    }
+  }
+`;

@@ -1,0 +1,14 @@
+query {
+  project {
+    name
+    price
+    currentPrice
+    participants {
+      name
+      email
+      company
+      id
+    }
+    id
+  }
+}

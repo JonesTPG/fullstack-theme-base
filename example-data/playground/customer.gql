@@ -1,0 +1,39 @@
+query {
+  customer {
+    name
+    email
+    phone
+    projects {
+      name
+      description
+      endTime
+      currentPrice
+      price
+    }
+    id
+  }
+}
+
+mutation {
+  updateCustomer(name: "sdfss", id: "5e623abc8f37e80f7840ae58") {
+    name
+  }
+}
+
+mutation {
+  createCustomer(name: "joonas", email: "joonas@gmail.com", phone: "sdfsgdfg") {
+    name
+  }
+}
+
+mutation {
+  removeCustomer(id: "5e623abc8f37e80f7840ae58") {
+    name
+  }
+}
+
+subscription {
+  customerSubscription {
+    name
+  }
+}

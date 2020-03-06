@@ -19,10 +19,16 @@ const schema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  participants: {
+  currentPrice: {
     type: Number,
     required: true
   },
+  participants: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Customer'
+    }
+  ],
   endTime: {
     type: Number,
     required: true
