@@ -1,10 +1,6 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import ProjectCard from './ProjectCard';
-import Button from '@material-ui/core/Button';
 
 import { withRouter } from 'react-router-dom';
 
