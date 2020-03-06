@@ -9,8 +9,8 @@ const FlowMain = () => {
     <>
       <p>flow main</p>
       <Switch>
-        <Route path="/" render={() => <HomePage />} />
-        <Route exact path="/:id" render={() => <FeatureSlider />} />
+        <Route exact path="/flow" render={() => <HomePage />} />
+        <Route path="/flow/:id" render={() => <FeatureSlider />} />
       </Switch>
     </>
   );
