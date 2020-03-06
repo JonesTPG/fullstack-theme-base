@@ -24,6 +24,7 @@
     "graphql-tools": "^4.0.7",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.3",
+    "nodemailer": "^6.4.4",
     "subscriptions-transport-ws": "^0.9.16"
   },
   "devDependencies": {
