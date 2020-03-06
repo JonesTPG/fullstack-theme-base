@@ -23,3 +23,26 @@ export const USER_ADDED = gql`
     }
   }
 `;
+
+export const CREATE_USER = gql`
+  mutation createUser(
+    $username: String!
+    $firstName: String!
+    $lastName: String!
+    $password: String!
+  ) {
+    createUser(
+      username: $username
+      firstName: $firstName
+      lastName: $lastName
+      password: $password
+    ) {
+      username
+      firstName
+      lastName
+      roles
+      darkTheme
+      id
+    }
+  }
+`;

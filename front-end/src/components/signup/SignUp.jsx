@@ -15,7 +15,7 @@ import useField from '../../hooks/input';
 import { withRouter } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { SignUpStyles } from '../AllStyles';
-import { SIGNUP } from '../../queries/signup';
+import { CREATE_USER } from '../../queries/user';
 
 const SignUp = props => {
   const fname = useField('text');
@@ -24,7 +24,7 @@ const SignUp = props => {
   const password = useField('password');
   const { classes } = props;
 
-  const [signup] = useMutation(SIGNUP, {
+  const [signup] = useMutation(CREATE_USER, {
     onCompleted() {
       props.history.push('/login');
     },

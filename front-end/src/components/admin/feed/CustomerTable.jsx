@@ -49,25 +49,27 @@ const columns = [
   { title: 'Company', field: 'company' }
 ];
 
-const CustomerTable = ({ customers }) => {
-  const [data, setData] = React.useState(customers);
-  useEffect(() => {
-    setData(customers);
-  }, [customers]);
-
+const CustomerTable = ({
+  customers,
+  addCustomer,
+  editCustomer,
+  removeCustomer
+}) => {
   return (
     <div style={{ maxWidth: '100%' }}>
       <MaterialTable
         icons={tableIcons}
         title="Customers"
         columns={columns}
-        data={data}
+        data={customers}
         editable={{
           onRowAdd: newData =>
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                setData(data.concat(newData));
+                addCustomer({
+                  variables: { ...newData, projects: [], information: '' }
+                });
               }, 600);
             }),
           onRowUpdate: (newData, oldData) =>
@@ -75,10 +77,8 @@ const CustomerTable = ({ customers }) => {
               setTimeout(() => {
                 resolve();
                 if (oldData) {
-                  setData(prevData => {
-                    let copy = [...prevData];
-                    copy[copy.indexOf(oldData)] = newData;
-                    return copy;
+                  editCustomer({
+                    variables: { ...newData }
                   });
                 }
               }, 600);
@@ -87,11 +87,11 @@ const CustomerTable = ({ customers }) => {
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                setData(prevData => {
-                  let copy = [...prevData];
-                  copy.splice(copy.indexOf(oldData), 1);
-                  return copy;
-                });
+                if (oldData) {
+                  removeCustomer({
+                    variables: { id: oldData.id }
+                  });
+                }
               }, 600);
             })
         }}

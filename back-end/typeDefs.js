@@ -100,8 +100,20 @@ const typeDefs = gql`
       name: String!
       email: String!
       phone: String
+      projects: [ID]
+      company: String
       information: String
     ): Customer
+    updateCustomer(
+      id: ID!
+      name: String
+      email: String
+      phone: String
+      projects: [ID]
+      company: String
+      information: String
+    ): Customer
+    removeCustomer(id: ID!): Customer
     createFeature(name: String!, description: String!, imgUrl: String!): Feature
     participate(customerId: String!, projectId: String!): Project
   }
@@ -114,7 +126,7 @@ const typeDefs = gql`
     contactAdded: Contact!
     projectAdded: Project!
     featureAdded: Feature!
-    customerAdded: Customer!
+    customerSubscription: Customer!
     newParticipation: Project!
   }
 `;

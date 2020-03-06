@@ -42,3 +42,29 @@ export const PROJECT_ADDED = gql`
     }
   }
 `;
+
+export const CREATE_PROJECT = gql`
+  mutation createProject(
+    $name: String!
+    $description: String!
+    $features: [Feature]!
+    $price: Int!
+    $endTime: Int!
+  ) {
+    createProject(
+      name: $name
+      description: $description
+      features: $features
+      price: $price
+      endTime: $endTime
+    ) {
+      name
+      description
+      features
+      price
+      participants
+      endTime
+      id
+    }
+  }
+`;
