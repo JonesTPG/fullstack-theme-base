@@ -7,6 +7,7 @@ const Feedback = require('./models/feedback');
 const Contact = require('./models/contact');
 const Project = require('./models/project');
 const Feature = require('./models/feature');
+const Customer = require('./models/customer');
 
 const config = require('./utils/config');
 
@@ -237,6 +238,25 @@ const resolvers = {
         newParticipation: project
       });
       return project;
+    },
+    createCustomer: async (root, args) => {
+      const customer = new Customer({
+        name: args.name,
+        email: args.email,
+        phone: args.phone || '',
+        projects: args.projects || [],
+        company: args.company || '',
+        information: args.information || ''
+      });
+      await customer.save().catch(error => {
+        throw new UserInputError(error.message, {
+          invalidArgs: args
+        });
+      });
+      pubsub.publish('CUSTOMER_ADDED', {
+        customerAdded: customer
+      });
+      return customer;
     }
   },
   Subscription: {
@@ -260,6 +280,9 @@ const resolvers = {
     },
     featureAdded: {
       subscribe: () => pubsub.asyncIterator(['FEATURE_ADDED'])
+    },
+    customerAdded: {
+      subscribe: () => pubsub.asyncIterator(['CUSTOMER_ADDED'])
     },
     newParticipation: {
       subscribe: () => pubsub.asyncIterator(['NEW_PARTICIPANT'])

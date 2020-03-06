@@ -11,7 +11,6 @@ const ContactFeed = () => {
 
   const { loading } = useQuery(GET_ALL, {
     onCompleted: data => {
-      console.log(data);
       if (data.contact) {
         setContactList(data.contact);
       }
