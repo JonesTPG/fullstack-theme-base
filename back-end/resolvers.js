@@ -9,9 +9,13 @@ const Project = require('./models/project');
 const Feature = require('./models/feature');
 const Customer = require('./models/customer');
 
+const userMutations = require('./mutations/user');
+const customerMutations = require('./mutations/customer');
+const projectMutations = require('./mutations/project');
+
 const config = require('./utils/config');
 
-const pubsub = new PubSub();
+const pubsub = require('./services/pubsub');
 
 const resolvers = {
   Query: {
@@ -43,91 +47,6 @@ const resolvers = {
     }
   },
   Mutation: {
-    createUser: async (root, args) => {
-      let password = args.password;
-      if (args.password == undefined) {
-        password = 'secret';
-      }
-
-      const saltRounds = 10;
-      const passwordHash = await bcrypt.hash(password, saltRounds);
-      const user = new User({
-        username: args.username,
-        roles: ['DEFAULT'],
-        darkTheme: false,
-        passwordHash: passwordHash,
-        firstName: args.firstName,
-        lastName: args.lastName
-      });
-
-      await user.save().catch(error => {
-        throw new UserInputError(error.message, {
-          invalidArgs: args
-        });
-      });
-
-      pubsub.publish('USER_ADDED', { userAdded: user });
-      return user;
-    },
-    updateUser: async (root, args) => {
-      const user = await User.findById(args.id);
-      const updatedUser = {
-        username: args.username || user.username,
-        roles: args.roles || user.roles,
-        darkTheme: args.darkTheme || user.darkTheme,
-        firstName: args.firstName || user.firstName,
-        lastName: args.lastName || user.lastName,
-        id: user._id,
-        __v: user.__v
-      };
-      await user.updateOne(updatedUser).catch(error => {
-        throw new UserInputError(error.message, {
-          invalidArgs: args
-        });
-      });
-      console.log({ updatedUser, args, user });
-      pubsub.publish('USER_UPDATED', {
-        userUpdated: updatedUser
-      });
-      return updatedUser;
-    },
-    removeUser: async (root, args) => {
-      const user = await User.findByIdAndRemove(args.id).catch(error => {
-        throw new UserInputError(error.message, {
-          invalidArgs: args
-        });
-      });
-      pubsub.publish('USER_DELETED', {
-        userDeleted: user
-      });
-      return user;
-    },
-    createAdminUser: async (root, args) => {
-      if (process.env.NODE_ENV === 'test') {
-        const ADMIN_PASSWORD = 'admin';
-
-        const saltRounds = 10;
-        const passwordHash = await bcrypt.hash(ADMIN_PASSWORD, saltRounds);
-
-        const adminUser = new User({
-          username: args.username,
-          roles: ['ADMIN'],
-          darkTheme: false,
-          passwordHash: passwordHash
-        });
-
-        await adminUser.save().catch(error => {
-          throw new UserInputError(error.message, {
-            invalidArgs: args
-          });
-        });
-
-        pubsub.publish('USER_ADDED', { userAdded: adminUser });
-        return adminUser;
-      } else {
-        throw new Error('Admin user cannot be created in production.');
-      }
-    },
     createFeedback: async (root, args, context) => {
       let feedback = new Feedback({
         type: args.type,
@@ -221,130 +140,9 @@ const resolvers = {
 
       return user.darkTheme;
     },
-    createProject: async (root, args) => {
-      const project = new Project({
-        name: args.name,
-        description: args.description,
-        features: args.features || [],
-        price: args.price,
-        participants: [],
-        endTime: args.endTime
-      });
-      await project.save().catch(error => {
-        throw new UserInputError(error.message, {
-          invalidArgs: args
-        });
-      });
-
-      await Project.populate(project, 'features').populate(
-        project,
-        'customers'
-      );
-      pubsub.publish('PROJECT_ADDED', {
-        projectAdded: project
-      });
-      return project;
-    },
-    createFeature: async (root, args) => {
-      const feature = new Feature({
-        name: args.name,
-        description: args.description,
-        imgUrl: args.imgUrl
-      });
-      await feature.save().catch(error => {
-        throw new UserInputError(error.message, {
-          invalidArgs: args
-        });
-      });
-      pubsub.publish('FEATURE_ADDED', {
-        featureAdded: feature
-      });
-      return feature;
-    },
-    participate: async (root, args) => {
-      let project = await Project.findById(args.projectId);
-      const customer = new Customer({
-        name: args.name,
-        email: args.email,
-        phone: args.phone || '',
-        projects: args.projects || [],
-        company: args.company || '',
-        information: args.information || ''
-      });
-
-      project.participants = project.participants.concat(customer._id);
-
-      await customer.save().catch(error => {
-        throw new UserInputError(error.message, {
-          invalidArgs: args
-        });
-      });
-
-      await project.save().catch(error => {
-        throw new UserInputError(error.message, {
-          invalidArgs: args
-        });
-      });
-
-      pubsub.publish('NEW_PARTICIPANT', {
-        newParticipation: customer
-      });
-      return customer;
-    },
-    createCustomer: async (root, args) => {
-      const customer = new Customer({
-        name: args.name,
-        email: args.email,
-        phone: args.phone || '',
-        projects: args.projects || [],
-        company: args.company || '',
-        information: args.information || ''
-      });
-      await customer.save().catch(error => {
-        throw new UserInputError(error.message, {
-          invalidArgs: args
-        });
-      });
-      pubsub.publish('CUSTOMER_ADDED', {
-        customerAdded: customer
-      });
-      return customer;
-    },
-    updateCustomer: async (root, args) => {
-      const customer = await Customer.findById(args.id);
-      const updatedCustomer = {
-        name: args.name || customer.name || '',
-        email: args.email || customer.email || '',
-        phone: args.phone || customer.phone || '',
-        company: args.company || customer.company || '',
-        information: customer.information || '',
-        projects: customer.projects || [],
-        id: customer._id,
-        __v: customer.__v
-      };
-      await customer.updateOne(updatedCustomer).catch(error => {
-        throw new UserInputError(error.message, {
-          invalidArgs: args
-        });
-      });
-      pubsub.publish('CUSTOMER_UPDATED', {
-        customerUpdated: updatedCustomer
-      });
-      return updatedCustomer;
-    },
-    removeCustomer: async (root, args) => {
-      const customer = await Customer.findByIdAndRemove(args.id).catch(
-        error => {
-          throw new UserInputError(error.message, {
-            invalidArgs: args
-          });
-        }
-      );
-      pubsub.publish('CUSTOMER_DELETED', {
-        customerDeleted: customer
-      });
-      return customer;
-    }
+    ...userMutations,
+    ...customerMutations,
+    ...projectMutations
   },
   Subscription: {
     userAdded: {

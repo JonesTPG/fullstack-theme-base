@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require('./node_modules/nodemailer');
 const config = require('../utils/config');
 
 const from = '"Flow IT" <info@kooditaiturit.fi>';
