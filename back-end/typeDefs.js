@@ -42,10 +42,10 @@ const typeDefs = gql`
   }
 
   type Customer {
-    name: String!
-    email: String!
+    name: String
+    email: String
     phone: String
-    projects: [Project]!
+    projects: [Project]
     company: String
     information: String
     id: ID!
@@ -126,7 +126,9 @@ const typeDefs = gql`
     contactAdded: Contact!
     projectAdded: Project!
     featureAdded: Feature!
-    customerSubscription: Customer!
+    customerAdded: Customer!
+    customerUpdated: Customer!
+    customerDeleted: Customer!
     newParticipation: Project!
   }
 `;

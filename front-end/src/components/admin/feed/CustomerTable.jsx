@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-import React, { forwardRef, useEffect } from 'react';
+import React, { forwardRef } from 'react';
 import MaterialTable from 'material-table';
 
 import AddBox from '@material-ui/icons/AddBox';

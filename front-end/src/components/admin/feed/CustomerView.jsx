@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { useQuery, useMutation, useSubscription } from '@apollo/react-hooks';
 import {
   GET_ALL_CUSTOMERS,
-  CUSTOMER_SUBSCRIPTION,
+  CUSTOMER_ADDED,
+  CUSTOMER_UPDATED,
+  CUSTOMER_DELETED,
   CREATE_CUSTOMER,
   UPDATE_CUSTOMER,
   REMOVE_CUSTOMER
@@ -11,7 +13,7 @@ import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CustomerTable from './CustomerTable';
 
-const UserCreationFeed = () => {
+const CustomerView = () => {
   const [customerList, setCustomerList] = useState([]);
 
   const { loading } = useQuery(GET_ALL_CUSTOMERS, {
@@ -24,57 +26,45 @@ const UserCreationFeed = () => {
   });
 
   const [addCustomer] = useMutation(CREATE_CUSTOMER, {
-    onCompleted: data => {
-      console.log(data);
-      setCustomerList([...customerList, data.createCustomer]);
-    },
     onError(error) {
       console.log(error);
     }
   });
   const [editCustomer] = useMutation(UPDATE_CUSTOMER, {
-    onCompleted: data => {
-      console.log(data);
-      setCustomerList(
-        customerList.map(c => {
-          console.log(data.updateCustomer.id, c.id);
-          return c.id === data.updateCustomer.id ? data.updateCustomer : c;
-        })
-      );
-    },
-    onError(error) {
-      console.log(error);
-    }
-  });
-  const [removeCustomer] = useMutation(REMOVE_CUSTOMER, {
-    onCompleted: data => {
-      console.log(data);
-      setCustomerList(
-        customerList.filter(c => c.id !== data.removeCustomer.id)
-      );
-    },
     onError(error) {
       console.log(error);
     }
   });
 
-  useSubscription(CUSTOMER_SUBSCRIPTION, {
+  const [removeCustomer] = useMutation(REMOVE_CUSTOMER, {
+    onError(error) {
+      console.log(error);
+    }
+  });
+
+  useSubscription(CUSTOMER_ADDED, {
     onSubscriptionData: ({ subscriptionData }) => {
-      console.log(subscriptionData);
-      const newData = subscriptionData.data;
-      if (newData.customerAdded) {
-        setCustomerList(customerList.concat(newData.customerAdded));
-      } else if (newData.customerUpdated) {
-        setCustomerList(
-          customerList.map(c =>
-            c.id === newData.customerUpdated.id ? newData.customerUpdated : c
-          )
-        );
-      } else if (newData.customerDeleted) {
-        setCustomerList(
-          customerList.filter(c => c.id !== newData.customerDeleted.id)
-        );
-      }
+      console.log('Subscription add', subscriptionData);
+      const newItem = subscriptionData.data.customerAdded;
+      setCustomerList([...customerList, newItem]);
+    }
+  });
+
+  useSubscription(CUSTOMER_UPDATED, {
+    onSubscriptionData: ({ subscriptionData }) => {
+      console.log('Subscription update', subscriptionData);
+      const newItem = subscriptionData.data.customerUpdated;
+      setCustomerList(
+        customerList.map(c => (c.id === newItem.id ? newItem : c))
+      );
+    }
+  });
+
+  useSubscription(CUSTOMER_DELETED, {
+    onSubscriptionData: ({ subscriptionData }) => {
+      console.log('Subscription delete', subscriptionData);
+      const newItem = subscriptionData.data.customerDeleted;
+      setCustomerList(customerList.filter(c => c.id !== newItem.id));
     }
   });
 
@@ -101,4 +91,4 @@ const UserCreationFeed = () => {
   );
 };
 
-export default UserCreationFeed;
+export default CustomerView;

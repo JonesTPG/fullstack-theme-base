@@ -251,7 +251,6 @@ const resolvers = {
         company: args.company || '',
         information: args.information || ''
       });
-      console.log(customer);
       await customer.save().catch(error => {
         throw new UserInputError(error.message, {
           invalidArgs: args
@@ -265,23 +264,24 @@ const resolvers = {
     updateCustomer: async (root, args) => {
       const customer = await Customer.findById(args.id);
       const updatedCustomer = {
-        name: args.name,
-        email: args.email,
-        phone: args.phone,
-        company: args.company,
-        information: customer.information,
-        _id: customer._id
+        name: args.name || customer.name || '',
+        email: args.email || customer.email || '',
+        phone: args.phone || customer.phone || '',
+        company: args.company || customer.company || '',
+        information: customer.information || '',
+        projects: customer.projects || [],
+        id: customer._id,
+        __v: customer.__v
       };
-      console.log(updatedCustomer);
       await customer.updateOne(updatedCustomer).catch(error => {
         throw new UserInputError(error.message, {
           invalidArgs: args
         });
       });
       pubsub.publish('CUSTOMER_UPDATED', {
-        customerUpdated: customer
+        customerUpdated: updatedCustomer
       });
-      return customer;
+      return updatedCustomer;
     },
     removeCustomer: async (root, args) => {
       const customer = await Customer.findByIdAndRemove(args.id).catch(
@@ -319,13 +319,14 @@ const resolvers = {
     featureAdded: {
       subscribe: () => pubsub.asyncIterator(['FEATURE_ADDED'])
     },
-    customerSubscription: {
-      subscribe: () =>
-        pubsub.asyncIterator([
-          'CUSTOMER_ADDED',
-          'CUSTOMER_UPDATED',
-          'CUSTOMER_DELETED'
-        ])
+    customerAdded: {
+      subscribe: () => pubsub.asyncIterator(['CUSTOMER_ADDED'])
+    },
+    customerUpdated: {
+      subscribe: () => pubsub.asyncIterator(['CUSTOMER_UPDATED'])
+    },
+    customerDeleted: {
+      subscribe: () => pubsub.asyncIterator(['CUSTOMER_DELETED'])
     },
     newParticipation: {
       subscribe: () => pubsub.asyncIterator(['NEW_PARTICIPANT'])
