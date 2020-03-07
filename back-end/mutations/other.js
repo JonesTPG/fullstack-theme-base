@@ -9,19 +9,15 @@ const Feedback = require('../models/feedback');
 const Contact = require('../models/contact');
 
 const otherMutations = {
-  createFeedback: async (root, args, context) => {
-    let feedback = new Feedback({
-      type: args.type,
-      user: context.currentUser ? context.currentUser._id : null
-    });
+  createFeedback: async (root, args) => {
+    console.log(args);
+    let feedback = new Feedback({ ...args });
 
     await feedback.save().catch(error => {
       throw new UserInputError(error.message, {
         invalidArgs: args
       });
     });
-
-    await Feedback.populate(feedback, 'user');
 
     pubsub.publish('FEEDBACK_ADDED', {
       feedbackAdded: feedback

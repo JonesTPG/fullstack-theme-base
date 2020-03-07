@@ -17,8 +17,9 @@ const typeDefs = gql`
   }
 
   type Feedback {
-    type: Int!
-    user: User
+    uiGrade: Int!
+    appGrade: Int!
+    textFeedback: String
   }
 
   type Contact {
@@ -88,7 +89,11 @@ const typeDefs = gql`
     ): User
     removeUser(id: ID!): User
     createAdminUser(username: String!): User
-    createFeedback(type: Int!): Feedback
+    createFeedback(
+      uiGrade: Int!
+      appGrade: Int!
+      textFeedback: String
+    ): Feedback
     resetDatabase: Boolean!
     login(username: String!, password: String!): UserData
     changeTheme: Boolean

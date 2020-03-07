@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useQuery, useSubscription } from '@apollo/react-hooks';
-import { GET_ALL, FEEDBACK_ADDED } from '../../../queries/feedback';
+import { FEEDBACK_ADDED, GET_ALL_FEEDBACKS } from '../../../queries/feedback';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import FeedbackChart from './FeedbackChart';
 
@@ -16,15 +17,11 @@ const styles = theme => ({
 
 const FeedbackFeed = props => {
   const [feedbackList, setFeedbackList] = useState([]);
-
   const { classes } = props;
 
-  const { loading } = useQuery(GET_ALL, {
+  const { loading } = useQuery(GET_ALL_FEEDBACKS, {
     onCompleted: data => {
-      if (data.feedback) {
-        let feedbackData = data.feedback;
-        setFeedbackList(feedbackData);
-      }
+      setFeedbackList(data.feedback);
     },
     onError: error => {
       console.log(error);
@@ -33,9 +30,9 @@ const FeedbackFeed = props => {
 
   useSubscription(FEEDBACK_ADDED, {
     onSubscriptionData: ({ subscriptionData }) => {
-      console.log(subscriptionData);
+      console.log('Feedback subscription ', subscriptionData);
       const newItem = subscriptionData.data.feedbackAdded;
-      setFeedbackList(feedbackList.concat(newItem));
+      setFeedbackList([...feedbackList, newItem]);
     }
   });
 
@@ -50,17 +47,46 @@ const FeedbackFeed = props => {
   }
   return (
     <Grid container justify="center" spacing={2}>
-      <Paper className={classes.paper}>
-        <Grid
-          container
-          direction="row"
-          justify="center"
-          alignItems="center"
-          spacing={2}
-        >
-          <FeedbackChart data={feedbackList} />
-        </Grid>
-      </Paper>
+      <Grid item xs={12}>
+        <Paper className={classes.paper}>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            spacing={2}
+          >
+            <FeedbackChart
+              feedbackGrades={feedbackList.map(item => item.appGrade)}
+            />
+          </Grid>
+        </Paper>
+      </Grid>
+      <Grid item xs={12}>
+        <Paper className={classes.paper}>
+          <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            spacing={2}
+          >
+            <FeedbackChart
+              feedbackGrades={feedbackList.map(item => item.uiGrade)}
+            />
+          </Grid>
+        </Paper>
+      </Grid>
+      {feedbackList.map((item, index) => {
+        if (item.textFeedback === '') {
+          return null;
+        }
+        return (
+          <Grid item key={index}>
+            <Typography>&quot;{item.textFeedback}&quot;</Typography>
+          </Grid>
+        );
+      })}
     </Grid>
   );
 };

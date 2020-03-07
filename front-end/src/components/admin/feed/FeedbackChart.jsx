@@ -65,8 +65,7 @@ const Bar5 = withStyles({
   }
 })(LinearProgress);
 
-const FeedbackChart = ({ data }) => {
-  const feedbackGrades = data.map(f => f.type);
+const FeedbackChart = ({ feedbackGrades }) => {
   let grades = [0, 0, 0, 0, 0];
   let total = 0;
   for (let i = 0; i < feedbackGrades.length; i++) {
