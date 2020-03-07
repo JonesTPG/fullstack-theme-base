@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { Route, Switch } from 'react-router-dom';
 import HomePage from './home/HomePage';
-import FeatureSlider from './detail/FeatureSlider';
+import FeatureSlider from './detail/feature/FeatureSlider';
 import { useQuery, useSubscription } from '@apollo/react-hooks';
 import { GET_ALL_PROJECTS, PROJECT_ADDED } from '../../queries/project';
 
