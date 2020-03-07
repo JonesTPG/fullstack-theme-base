@@ -19,8 +19,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
-
 import WavesIcon from '@material-ui/icons/Waves';
 
 import MailIcon from '@material-ui/icons/Mail';
@@ -40,14 +38,12 @@ import { logOut } from '../../services/authService';
 import Feedback from '../feedback/Feedback';
 import InteractiveMap from '../timetables/InteractiveMap';
 import Timetable from '../timetables/Timetable';
-import FeatureSlider from '../flow/detail/FeatureSlider';
 import { ME } from '../../queries/login';
 import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
 import PageInfo from './page-info/PageInfo';
 import ContactForm from '../contact/ContactForm';
 import MainStyles from './MainStyles';
-import HomePage from '../flow/home/HomePage';
 import FlowMain from '../flow/FlowMain';
 
 const Main = ({ classes, ...props }) => {

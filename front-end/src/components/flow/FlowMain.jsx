@@ -33,7 +33,7 @@ const FlowMain = () => {
         <Route
           exact
           path="/flow"
-          render={() => <HomePage data={projects} loading={loading} />}
+          render={() => <HomePage projects={projects} loading={loading} />}
         />
         <Route path="/flow/:id" render={() => <FeatureSlider />} />
       </Switch>
