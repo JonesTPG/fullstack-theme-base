@@ -5,9 +5,15 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Button from '@material-ui/core/Button';
 
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
+
+import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   media: {
@@ -25,21 +31,49 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, history }) => {
   const classes = useStyles();
   console.log(project);
   return (
     <>
-      <Card className={classes.card}>
-        <CardHeader title={project.name} subheader={project.description} />
-        <CardContent>
-          <Typography variant="body2" color="textPrimary" component="p">
-            {project.price}
-          </Typography>
-        </CardContent>
-      </Card>
+      <Grid item xs={12} sm container>
+        <Grid item xs container direction="column" spacing={2}>
+          <Grid item xs>
+            <Typography gutterBottom variant="h4">
+              {project.name}
+            </Typography>
+            <img
+              width="200"
+              className={classes.img}
+              alt="complex"
+              src="/img/deal.jpg"
+            />
+            <Typography variant="body2" gutterBottom>
+              {project.description}
+            </Typography>
+            <Typography variant="body2" color="textSecondary">
+              {project.id}
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="subtitle1">
+              Starting Price: {project.price} €
+            </Typography>
+            <Typography variant="subtitle1">
+              Current Price: {project.currentPrice} €
+            </Typography>
+            <Button
+              onClick={() => history.push('/flow/' + project.id)}
+              variant="contained"
+              color="primary"
+            >
+              Lisätietoja
+            </Button>
+          </Grid>
+        </Grid>
+      </Grid>
     </>
   );
 };
 
-export default ProjectCard;
+export default withRouter(ProjectCard);

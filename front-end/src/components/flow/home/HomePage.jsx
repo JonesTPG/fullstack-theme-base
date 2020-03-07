@@ -2,6 +2,9 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 import { withRouter } from 'react-router-dom';
 
@@ -13,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     textAlign: 'center',
     color: theme.palette.text.primary
   },
@@ -29,12 +32,14 @@ const HomePage = ({ projects }) => {
     <>
       <Hero />
 
-      <div className={classes.projects}>
-        {projects.map(project => (
-          <Grid key={project.id} item xs={12} sm={6} md={3}>
-            <ProjectCard project={project}></ProjectCard>
+      <div className={classes.root}>
+        <Paper className={classes.paper}>
+          <Grid container spacing={2}>
+            {projects.map(project => (
+              <ProjectCard key={project.id} project={project}></ProjectCard>
+            ))}
           </Grid>
-        ))}
+        </Paper>
       </div>
     </>
   );

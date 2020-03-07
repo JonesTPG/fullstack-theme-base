@@ -12,6 +12,7 @@ export const GET_ALL_PROJECTS = gql`
         id
       }
       price
+      currentPrice
       participants {
         name
         email
