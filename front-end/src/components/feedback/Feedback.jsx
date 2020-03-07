@@ -21,9 +21,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.primary
   },
   paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.primary
+    padding: theme.spacing(2)
   },
   formPaper: {
     padding: theme.spacing(2),
@@ -79,74 +77,76 @@ const Feedback = () => {
   };
 
   return (
-    <Container component="main" maxWidth="md">
-      <div className={classes.root}>
-        <Grid container justify="center" spacing={2}>
-          <Grid item xs={12} sm={12} md={12}>
-            <Paper className={classes.headerPaper}>
-              <h1> Give us feedback! </h1>
-              <p>
-                This application template is still a work in progress, and we
-                would love some feedback about the application features and
-                layout.
-              </p>
-            </Paper>
-          </Grid>
+    <div className={classes.paper}>
+      <Container component="main" maxWidth="md">
+        <div className={classes.root}>
+          <Grid container justify="center" spacing={2}>
+            <Grid item xs={12} sm={12} md={12}>
+              <Paper className={classes.headerPaper}>
+                <h1> Give us feedback! </h1>
+                <p>
+                  This application template is still a work in progress, and we
+                  would love some feedback about the application features and
+                  layout.
+                </p>
+              </Paper>
+            </Grid>
 
-          <Grid item xs={8} sm={6} md={3}>
-            <Paper className={classes.paper}>
-              <Box component="fieldset" borderColor="transparent">
-                <Typography>Application performance</Typography>
-                <Rating
-                  name="appGrade"
-                  value={appGrade}
-                  onChange={(event, newValue) => {
-                    setAppGrade(newValue);
-                  }}
+            <Grid item xs={8} sm={6} md={3}>
+              <Paper className={classes.paper}>
+                <Box component="fieldset" borderColor="transparent">
+                  <Typography>Application performance</Typography>
+                  <Rating
+                    name="appGrade"
+                    value={appGrade}
+                    onChange={(event, newValue) => {
+                      setAppGrade(newValue);
+                    }}
+                  />
+                </Box>
+              </Paper>
+            </Grid>
+            <Grid item xs={8} sm={6} md={3}>
+              <Paper className={classes.paper}>
+                <Box component="fieldset" borderColor="transparent">
+                  <Typography>UI</Typography>
+                  <Rating
+                    name="uiGrade"
+                    value={uiGrade}
+                    onChange={(event, newValue) => {
+                      setUiGrade(newValue);
+                    }}
+                  />
+                </Box>
+              </Paper>
+            </Grid>
+            <Grid item xs={12} sm={12} md={12}>
+              <Paper className={classes.formPaper}>
+                <TextField
+                  multiline
+                  rows="3"
+                  className={classes.root}
+                  variant="outlined"
+                  name="feedback"
+                  label="Feedback"
+                  placeholder="Tell us what we could improve"
+                  fullWidth
+                  {...textFeedback.inputprops()}
                 />
-              </Box>
-            </Paper>
+              </Paper>
+            </Grid>
+            <Button
+              type="button"
+              variant="contained"
+              color="secondary"
+              onClick={handleFeedback}
+            >
+              Send feedback
+            </Button>
           </Grid>
-          <Grid item xs={8} sm={6} md={3}>
-            <Paper className={classes.paper}>
-              <Box component="fieldset" borderColor="transparent">
-                <Typography>UI</Typography>
-                <Rating
-                  name="uiGrade"
-                  value={uiGrade}
-                  onChange={(event, newValue) => {
-                    setUiGrade(newValue);
-                  }}
-                />
-              </Box>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} sm={12} md={12}>
-            <Paper className={classes.formPaper}>
-              <TextField
-                multiline
-                rows="3"
-                className={classes.root}
-                variant="outlined"
-                name="feedback"
-                label="Feedback"
-                placeholder="Tell us what we could improve"
-                fullWidth
-                {...textFeedback.inputprops()}
-              />
-            </Paper>
-          </Grid>
-          <Button
-            type="button"
-            variant="contained"
-            color="secondary"
-            onClick={handleFeedback}
-          >
-            Send feedback
-          </Button>
-        </Grid>
-      </div>
-    </Container>
+        </div>
+      </Container>
+    </div>
   );
 };
 
