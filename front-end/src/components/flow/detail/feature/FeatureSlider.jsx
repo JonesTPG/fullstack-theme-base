@@ -11,7 +11,6 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 import { frontPage } from './featuredata';
-import CommitButton from '../participation/CommitButton';
 import CommitForm from '../participation/CommitForm';
 
 const useStyles = makeStyles(theme => ({
