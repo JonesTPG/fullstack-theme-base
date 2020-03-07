@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
-  card: { height: '300px' },
   media: {
     paddingTop: '50%'
   },
@@ -23,9 +22,6 @@ const useStyles = makeStyles(theme => ({
   },
   expandOpen: {
     transform: 'rotate(180deg)'
-  },
-  avatar: {
-    backgroundColor: red[500]
   }
 }));
 
@@ -34,7 +30,6 @@ const ProjectCard = ({ project }) => {
   console.log(project);
   return (
     <>
-      <p>testi</p>
       <Card className={classes.card}>
         <CardHeader title={project.name} subheader={project.description} />
         <CardContent>

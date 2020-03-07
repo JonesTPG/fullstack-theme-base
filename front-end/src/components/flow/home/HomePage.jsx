@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
 import { withRouter } from 'react-router-dom';
 
@@ -16,8 +17,8 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     color: theme.palette.text.primary
   },
-  content: {
-    display: 'none'
+  projects: {
+    padding: theme.spacing(3)
   }
 }));
 
@@ -27,9 +28,14 @@ const HomePage = ({ projects }) => {
   return (
     <>
       <Hero />
-      {projects.map(project => (
-        <ProjectCard key={project.id} project={project}></ProjectCard>
-      ))}
+
+      <div className={classes.projects}>
+        {projects.map(project => (
+          <Grid key={project.id} item xs={12} sm={6} md={3}>
+            <ProjectCard project={project}></ProjectCard>
+          </Grid>
+        ))}
+      </div>
     </>
   );
 };
