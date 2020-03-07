@@ -11,6 +11,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import useField from '../../hooks/input';
 import { withRouter } from 'react-router-dom';
+import { useMutation } from 'react-apollo';
+import { CREATE_FEEDBACK } from '../../queries/feedback';
 
 const useStyles = makeStyles(theme => ({
   headerPaper: {
@@ -58,16 +60,19 @@ const Feedback = () => {
   const classes = useStyles();
   const [appGrade, setAppGrade] = React.useState(2);
   const [uiGrade, setUiGrade] = React.useState(2);
+  const [addFeedback] = useMutation(CREATE_FEEDBACK, {});
 
   const handleFeedback = event => {
     event.preventDefault();
     const feedback = {
-      appPerformance: appGrade,
-      UI: uiGrade,
-      writtenFeedback: textFeedback.value
+      appGrade,
+      uiGrade,
+      textFeedback: textFeedback.value
     };
     console.log('Feedback', feedback);
-    // sendFeedback(feedback)
+    addFeedback({
+      variables: { ...feedback }
+    });
     setAppGrade(2);
     setUiGrade(2);
     textFeedback.resetState();
