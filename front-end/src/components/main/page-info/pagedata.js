@@ -43,7 +43,7 @@ export const frontPage = {
       subtitle: 'User authentication',
       img: 'role-based-login',
       shortDesc:
-        'Modern web applications need scalable to easy-to-use authentication system. This application template comes with a built-in role-based authentication.',
+        'Modern web applications need a scalable to easy-to-use authentication system. This application template comes with a built-in role-based authentication.',
       longDesc: 'TBD'
     },
     {
@@ -67,7 +67,7 @@ export const frontPage = {
       subtitle: 'User experience',
       img: 'user-experience',
       shortDesc:
-        'Modern web applications need scalable to easy-to-use authentication system. This application template comes with a built-in role-based authentication.',
+        'This application has been built with mobile devices in mind. Most of the views are fully responsive and a breeze to use with screens of all sizes.',
       longDesc: 'TBD'
     }
   ]
