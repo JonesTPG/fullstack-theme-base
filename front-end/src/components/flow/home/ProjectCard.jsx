@@ -2,16 +2,11 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import ButtonBase from '@material-ui/core/ButtonBase';
+
 import Button from '@material-ui/core/Button';
 
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 
 import { withRouter } from 'react-router-dom';
 
@@ -33,7 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 const ProjectCard = ({ project, history }) => {
   const classes = useStyles();
-  console.log(project);
+
   return (
     <>
       <Grid item xs={12} sm container>
