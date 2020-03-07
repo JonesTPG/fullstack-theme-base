@@ -126,8 +126,8 @@ const ContactForm = props => {
                   component="p"
                 >
                   Please leave a message – we’ll be in touch with you soon! Our
-                  email addresses follow the format of
-                  firstname.lastname@fullstack.com
+                  email addresses are joonas.ryynanen1@gmail.com,
+                  markus.roman@hotmail.fi, janetta.huoponen@gmail.com
                 </p>
                 <TextField
                   data-cy="firstName"

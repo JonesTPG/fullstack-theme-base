@@ -19,8 +19,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
-
 import WavesIcon from '@material-ui/icons/Waves';
 
 import MailIcon from '@material-ui/icons/Mail';
@@ -40,14 +38,14 @@ import { logOut } from '../../services/authService';
 import Feedback from '../feedback/Feedback';
 import InteractiveMap from '../timetables/InteractiveMap';
 import Timetable from '../timetables/Timetable';
-import FeatureSlider from '../flow/detail//feature/FeatureSlider';
+
 import { ME } from '../../queries/login';
 import { useQuery } from '@apollo/react-hooks';
 import { useToken } from '../../hooks/auth';
 import PageInfo from './page-info/PageInfo';
 import ContactForm from '../contact/ContactForm';
 import MainStyles from './MainStyles';
-import HomePage from '../flow/home/HomePage';
+import FlowMain from '../flow/FlowMain';
 
 const Main = ({ classes, ...props }) => {
   const theme = useTheme();
@@ -109,11 +107,7 @@ const Main = ({ classes, ...props }) => {
         <Route path="/contact-us" render={() => <ContactForm />} />
         <Route path="/timetables" render={() => <Timetable />} />
         <Route path="/map" render={() => <InteractiveMap />} />
-
-        <Route path="/flow" render={() => <HomePage />} />
-
-        <Route path="/flow-detail" render={() => <FeatureSlider />} />
-
+        <Route path="/flow" render={() => <FlowMain />} />
         <Route path="/" render={() => <PageInfo />} />
       </Switch>
     );
@@ -192,12 +186,6 @@ const Main = ({ classes, ...props }) => {
               <HomeIcon className={classes.sidenavIcon} />
             </ListItemIcon>
             <ListItemText primary="Home" />
-          </ListItem>
-          <ListItem button onClick={() => handleSideNavClick('/flow')}>
-            <ListItemIcon>
-              <DoubleArrowIcon className={classes.sidenavIcon} />
-            </ListItemIcon>
-            <ListItemText primary="Flow" />
           </ListItem>
           <ListItem button onClick={() => handleSideNavClick('/feedback')}>
             <ListItemIcon>

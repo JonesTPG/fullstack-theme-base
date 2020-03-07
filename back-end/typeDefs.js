@@ -17,8 +17,9 @@ const typeDefs = gql`
   }
 
   type Feedback {
-    type: Int!
-    user: User
+    uiGrade: Int!
+    appGrade: Int!
+    textFeedback: String
   }
 
   type Contact {
@@ -35,15 +36,28 @@ const typeDefs = gql`
     name: String!
     description: String!
     features: [Feature]!
-    price: Int!
-    participants: Int!
+    price: String
+    currentPrice: String
+    participants: [Customer]!
     endTime: Int!
+    id: ID!
+  }
+
+  type Customer {
+    name: String
+    email: String
+    phone: String
+    projects: [Project]
+    company: String
+    information: String
+    id: ID!
   }
 
   type Feature {
     name: String!
     description: String!
     imgUrl: String!
+    id: ID!
   }
 
   type Query {
@@ -54,6 +68,7 @@ const typeDefs = gql`
     project: [Project]
     feature: [Feature]
     user: [User]
+    customer: [Customer]
   }
 
   type Mutation {
@@ -63,8 +78,22 @@ const typeDefs = gql`
       lastName: String
       password: String!
     ): User
+    updateUser(
+      id: ID!
+      username: String
+      firstName: String
+      lastName: String
+      password: String
+      darkTheme: Boolean
+      roles: [String]
+    ): User
+    removeUser(id: ID!): User
     createAdminUser(username: String!): User
-    createFeedback(type: Int!): Feedback
+    createFeedback(
+      uiGrade: Int!
+      appGrade: Int!
+      textFeedback: String
+    ): Feedback
     resetDatabase: Boolean!
     login(username: String!, password: String!): UserData
     changeTheme: Boolean
@@ -83,19 +112,49 @@ const typeDefs = gql`
       price: Int!
       endTime: Int!
     ): Project
+    createCustomer(
+      name: String!
+      email: String!
+      phone: String
+      projects: [ID]
+      company: String
+      information: String
+    ): Customer
+    updateCustomer(
+      id: ID!
+      name: String
+      email: String
+      phone: String
+      projects: [ID]
+      company: String
+      information: String
+    ): Customer
+    removeCustomer(id: ID!): Customer
     createFeature(name: String!, description: String!, imgUrl: String!): Feature
-    participate(name: String!, projectId: String!): Project
+    participate(
+      projectId: String!
+      name: String!
+      email: String!
+      phone: String!
+      company: String
+      information: String
+    ): Customer
   }
 
   type Subscription {
     userAdded: User!
+    userUpdated: User!
+    userDeleted: User!
     feedbackAdded: Feedback!
     userLoggedIn: User!
     userChangedTheme: User
     contactAdded: Contact!
     projectAdded: Project!
     featureAdded: Feature!
-    newParticipation: Project!
+    customerAdded: Customer!
+    customerUpdated: Customer!
+    customerDeleted: Customer!
+    newParticipation: Customer!
   }
 `;
 

@@ -15,7 +15,11 @@ const Hero = () => {
 
   return (
     <>
-      <img src="img/banner.png" className={classes.heroImage}></img>
+      <img
+        src="img/banner.png"
+        className={classes.heroImage}
+        alt="FlowIT banner"
+      ></img>
     </>
   );
 };

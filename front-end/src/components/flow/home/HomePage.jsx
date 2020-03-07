@@ -1,37 +1,44 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import ProjectCard from './ProjectCard';
-import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
 
 import { withRouter } from 'react-router-dom';
 
 import Hero from './Hero';
-import ShowCase from './Showcase';
+import ProjectCard from './ProjectCard';
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
     textAlign: 'center',
     color: theme.palette.text.primary
   },
-  content: {
-    display: 'none'
+  projects: {
+    padding: theme.spacing(3)
   }
 }));
 
-const HomePage = props => {
+const HomePage = ({ projects }) => {
   const classes = useStyles();
 
   return (
     <>
       <Hero />
-      <ShowCase />
+
+      <div className={classes.root}>
+        <Paper className={classes.paper}>
+          <Grid container spacing={2}>
+            {projects.map(project => (
+              <ProjectCard key={project.id} project={project}></ProjectCard>
+            ))}
+          </Grid>
+        </Paper>
+      </div>
     </>
   );
 };

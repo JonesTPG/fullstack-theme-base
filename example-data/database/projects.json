@@ -1,0 +1,40 @@
+{
+  "name": "CrushFTP",
+  "description": "Robust SFTP Server for Enterprise needs",
+  "features": [],
+  "price": "1000",
+  "currentPrice": "1000",
+  "participants": ["5e625acaa428c761fc9b33b5"],
+  "endTime": 1583999027
+},
+
+{
+  "name": "Buddy.works",
+  "description": "The simplest CI/CD tool ever made
+  recommended by top developers worldwide.",
+  "features": [],
+  "price": "300",
+  "currentPrice": "300",
+  "participants": ["5e625acaa428c761fc9b33b5"],
+  "endTime": 1583999027
+},
+
+{
+  "name": "Studio 3T",
+  "description": "Studio 3T is the professional GUI, IDE & client for MongoDB available for Windows, Mac, and Linux.",
+  "features": [],
+  "price": "600",
+  "currentPrice": "600",
+  "participants": ["5e625acaa428c761fc9b33b5"],
+  "endTime": 1583999027
+},
+
+{
+  "name": "F-Secure Key",
+  "description": "F‑Secure KEY protects and remembers all your pass­words and pin codes",
+  "features": [],
+  "price": "100",
+  "currentPrice": "100",
+  "participants": ["5e625acaa428c761fc9b33b5"],
+  "endTime": 1583999027
+}

@@ -1,0 +1,20 @@
+mutation {
+  participate(
+    projectId: "5e6250215ec4d07cb8a326b8"
+    name: "jones2"
+    phone: "sdf"
+    email: "joonas@gmail.com"
+    company: "codemasters"
+  ) {
+    name
+  }
+}
+
+subscription {
+  newParticipation {
+    name
+    projects {
+      name
+    }
+  }
+}

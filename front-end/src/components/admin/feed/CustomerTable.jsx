@@ -17,7 +17,6 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
-import PasswordDialog from './PasswordDialog';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -44,55 +43,33 @@ const tableIcons = {
 };
 
 const columns = [
-  { title: 'Email / Username', field: 'username' },
-  { title: 'Name', field: 'firstName' },
-  { title: 'Surname', field: 'lastName' },
-  { title: 'Dark Theme', field: 'darkTheme' },
-  { title: 'Roles', field: 'roles' }
+  { title: 'Name', field: 'name' },
+  { title: 'Email', field: 'email' },
+  { title: 'Phone', field: 'phone' },
+  { title: 'Company', field: 'company' }
 ];
 
-const UserTable = ({ users, addUser, editUser, removeUser }) => {
-  const [open, setOpen] = React.useState(false);
-  const [data, setData] = React.useState(null);
-  const handleClose = e => {
-    e.preventDefault();
-    setOpen(false);
-  };
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  const handleSign = value => {
-    addUser({
-      variables: {
-        ...data,
-        password: value,
-        darkTheme: data.darkTheme === 'true' ? true : false
-      }
-    });
-    setData(null);
-    setOpen(false);
-  };
+const CustomerTable = ({
+  customers,
+  addCustomer,
+  editCustomer,
+  removeCustomer
+}) => {
   return (
     <div style={{ maxWidth: '100%' }}>
-      {open && (
-        <PasswordDialog
-          open={open}
-          handleSign={handleSign}
-          handleClose={handleClose}
-        />
-      )}
       <MaterialTable
         icons={tableIcons}
-        title="Registered Users"
+        title="Customers"
         columns={columns}
-        data={users}
+        data={customers}
         editable={{
           onRowAdd: newData =>
             new Promise(resolve => {
-              handleOpen();
-              setData(newData);
               setTimeout(() => {
                 resolve();
+                addCustomer({
+                  variables: { ...newData, projects: [], information: '' }
+                });
               }, 600);
             }),
           onRowUpdate: (newData, oldData) =>
@@ -100,7 +77,7 @@ const UserTable = ({ users, addUser, editUser, removeUser }) => {
               setTimeout(() => {
                 resolve();
                 if (oldData) {
-                  editUser({
+                  editCustomer({
                     variables: { ...newData }
                   });
                 }
@@ -110,9 +87,11 @@ const UserTable = ({ users, addUser, editUser, removeUser }) => {
             new Promise(resolve => {
               setTimeout(() => {
                 resolve();
-                removeUser({
-                  variables: { ...oldData }
-                });
+                if (oldData) {
+                  removeCustomer({
+                    variables: { id: oldData.id }
+                  });
+                }
               }, 600);
             })
         }}
@@ -121,4 +100,4 @@ const UserTable = ({ users, addUser, editUser, removeUser }) => {
   );
 };
 
-export default UserTable;
+export default CustomerTable;

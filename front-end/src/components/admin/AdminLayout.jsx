@@ -11,6 +11,7 @@ import FeedbackView from './feed/FeedbackView';
 import ThemeChangeFeed from './feed/ThemeChangeFeed';
 import ContactFeed from './feed/ContactFeed';
 import UserView from './feed/UserView';
+import CustomerView from './feed/CustomerView';
 
 const drawerWidth = 256;
 
@@ -59,7 +60,8 @@ const Admin = props => {
             path="/admin/feed/theme-change"
             render={() => <ThemeChangeFeed />}
           />
-          <Route path="/admin/feed/user-creation" render={() => <UserView />} />
+          <Route path="/admin/feed/users" render={() => <UserView />} />
+          <Route path="/admin/feed/customers" render={() => <CustomerView />} />
           <Route path="/admin" render={() => <AdminContent />} />
         </Switch>
       </>
