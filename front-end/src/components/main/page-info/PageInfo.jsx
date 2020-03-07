@@ -6,10 +6,12 @@ import Grid from '@material-ui/core/Grid';
 import TechCard from './TechCard';
 import FeatureCard from './FeatureCard';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 import { withRouter } from 'react-router-dom';
 
 import { frontPage } from './pagedata';
+import Team from './team/Team';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,6 +22,9 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.primary
+  },
+  heading: {
+    textAlign: 'center'
   }
 }));
 
@@ -34,8 +39,16 @@ const PageInfo = props => {
             <Paper className={classes.paper}>
               <h1> Full Stack Theme Base</h1>
               <p>A ready-to-use full stack web application template.</p>
-              <h3>Technologies used:</h3>
+              <p>
+                Built as a part of Full Stack Open 2019 course and LUTes Forward
+                start-up competition.
+              </p>
+              <Team />
             </Paper>
+            <br />
+            <Typography className={classes.heading} variant="h5">
+              Technologies used:
+            </Typography>
           </Grid>
 
           {frontPage.techcards.map(data => (
