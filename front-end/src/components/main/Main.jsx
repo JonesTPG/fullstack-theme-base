@@ -6,6 +6,7 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import Feedback from '../feedback/Feedback';
 import InteractiveMap from '../timetables/InteractiveMap';
 import Timetable from '../timetables/Timetable';
+
 import PageInfo from './page-info/PageInfo';
 import ContactForm from '../contact/ContactForm';
 import MainStyles from './MainStyles';

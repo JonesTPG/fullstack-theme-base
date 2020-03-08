@@ -19,6 +19,9 @@ import CustomSnackbar from '../notifications/CustomSnackbar';
 import useField from '../../hooks/input';
 
 const useStyles = makeStyles(theme => ({
+  paper: {
+    padding: theme.spacing(2)
+  },
   heroContent: {
     padding: theme.spacing(3, 0, 3)
   },
@@ -102,127 +105,129 @@ const ContactForm = props => {
   };
 
   return (
-    <React.Fragment>
-      <Card>
-        <CardContent>
-          <Container maxWidth="xs" className={classes.heroContent}>
-            <div className={classes.paper}>
-              <form className={classes.form} noValidate>
-                <CustomSnackbar {...notification.notificationProps()} />
+    <div className={classes.paper}>
+      <React.Fragment>
+        <Card>
+          <CardContent>
+            <Container maxWidth="xs" className={classes.heroContent}>
+              <div>
+                <form noValidate>
+                  <CustomSnackbar {...notification.notificationProps()} />
 
-                <Typography
-                  component="h1"
-                  variant="h4"
-                  align="center"
-                  color="textPrimary"
-                  gutterBottom
-                >
-                  Contact us
-                </Typography>
-                <p
-                  variant="h5"
-                  align="center"
-                  color="textSecondary"
-                  component="p"
-                >
-                  Please leave a message – we’ll be in touch with you soon! Our
-                  email addresses are joonas.ryynanen1@gmail.com,
-                  markus.roman@hotmail.fi, janetta.huoponen@gmail.com
-                </p>
-                <TextField
-                  data-cy="firstName"
-                  className={classes.root}
-                  required
-                  variant="outlined"
-                  margin="normal"
-                  fullWidth
-                  label="First name"
-                  name="firstName"
-                  autoComplete="firstName"
-                  autoFocus
-                  {...firstName.inputprops()}
-                />
-                <TextField
-                  data-cy="lastName"
-                  className={classes.root}
-                  required
-                  variant="outlined"
-                  margin="normal"
-                  fullWidth
-                  name="lastName"
-                  label="Last name"
-                  id="lastName"
-                  {...lastName.inputprops()}
-                />
-                <TextField
-                  data-cy="email"
-                  className={classes.root}
-                  required
-                  variant="outlined"
-                  margin="normal"
-                  fullWidth
-                  name="email"
-                  label="Email"
-                  id="email"
-                  {...email.inputprops()}
-                />
+                  <Typography
+                    component="h1"
+                    variant="h4"
+                    align="center"
+                    color="textPrimary"
+                    gutterBottom
+                  >
+                    Contact us
+                  </Typography>
+                  <p
+                    variant="h5"
+                    align="center"
+                    color="textSecondary"
+                    component="p"
+                  >
+                    Please leave a message – we’ll be in touch with you soon!
+                    Our email addresses are joonas.ryynanen1@gmail.com,
+                    markus.roman@hotmail.fi, janetta.huoponen@gmail.com
+                  </p>
+                  <TextField
+                    data-cy="firstName"
+                    className={classes.root}
+                    required
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    label="First name"
+                    name="firstName"
+                    autoComplete="firstName"
+                    autoFocus
+                    {...firstName.inputprops()}
+                  />
+                  <TextField
+                    data-cy="lastName"
+                    className={classes.root}
+                    required
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    name="lastName"
+                    label="Last name"
+                    id="lastName"
+                    {...lastName.inputprops()}
+                  />
+                  <TextField
+                    data-cy="email"
+                    className={classes.root}
+                    required
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    name="email"
+                    label="Email"
+                    id="email"
+                    {...email.inputprops()}
+                  />
 
-                <TextField
-                  data-cy="phone"
-                  className={classes.root}
-                  placeholder="Phone"
-                  variant="outlined"
-                  margin="normal"
-                  fullWidth
-                  name="phone"
-                  label="Phone"
-                  id="phone"
-                  {...phone.inputprops()}
-                />
-                <TextField
-                  data-cy="company"
-                  className={classes.root}
-                  variant="outlined"
-                  margin="normal"
-                  fullWidth
-                  name="company"
-                  label="Company"
-                  id="company"
-                  {...company.inputprops()}
-                />
-                <TextField
-                  data-cy="message"
-                  className={classes.root}
-                  rows="4"
-                  label="Tell us about your business needs"
-                  id="filled-textarea"
-                  margin="normal"
-                  multiline
-                  fullWidth
-                  variant="outlined"
-                  {...message.inputprops()}
-                />
-                <FormControlLabel
-                  control={<Checkbox value="remember" name="checkBox" />}
-                  label="I have read the privacy policy*"
-                />
-                <Button
-                  data-cy="send"
-                  fullWidth
-                  type="submit"
-                  variant="contained"
-                  color="secondary"
-                  onClick={handleSubmit}
-                  className={classes.submit}
-                >
-                  Send
-                </Button>
-              </form>
-            </div>
-          </Container>
-        </CardContent>
-      </Card>
-    </React.Fragment>
+                  <TextField
+                    data-cy="phone"
+                    className={classes.root}
+                    placeholder="Phone"
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    name="phone"
+                    label="Phone"
+                    id="phone"
+                    {...phone.inputprops()}
+                  />
+                  <TextField
+                    data-cy="company"
+                    className={classes.root}
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                    name="company"
+                    label="Company"
+                    id="company"
+                    {...company.inputprops()}
+                  />
+                  <TextField
+                    data-cy="message"
+                    className={classes.root}
+                    rows="4"
+                    label="Tell us about your business needs"
+                    id="filled-textarea"
+                    margin="normal"
+                    multiline
+                    fullWidth
+                    variant="outlined"
+                    {...message.inputprops()}
+                  />
+                  <FormControlLabel
+                    control={<Checkbox value="remember" name="checkBox" />}
+                    label="I have read the privacy policy*"
+                  />
+                  <Button
+                    data-cy="send"
+                    fullWidth
+                    type="submit"
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleSubmit}
+                    className={classes.submit}
+                  >
+                    Send
+                  </Button>
+                </form>
+              </div>
+            </Container>
+          </CardContent>
+        </Card>
+      </React.Fragment>
+    </div>
   );
 };
 

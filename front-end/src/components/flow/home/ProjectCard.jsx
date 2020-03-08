@@ -60,7 +60,7 @@ const ProjectCard = ({ project, history }) => {
             <Button
               onClick={() => history.push('/flow/' + project.id)}
               variant="contained"
-              color="primary"
+              color="secondary"
             >
               Lisätietoja
             </Button>
