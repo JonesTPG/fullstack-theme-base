@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom';
 
 import Hero from './Hero';
 import ProjectCard from './ProjectCard';
+import DataStepper from '../stepper/DataStepper';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,19 +26,47 @@ const useStyles = makeStyles(theme => ({
 
 const HomePage = ({ projects }) => {
   const classes = useStyles();
+  const [isStepperShown, setIsStepperShown] = React.useState(true);
+  const [stepperData, setStepperData] = React.useState(null);
+
+  const isEmpty = obj => {
+    for (const prop in obj) {
+      return false;
+    }
+    return true;
+  };
+
+  const handleSubmit = data => {
+    setStepperData(isEmpty(data) ? null : data);
+    setIsStepperShown(false);
+  };
+
+  const applyDataFilters = () => {
+    if (!isStepperShown && stepperData) {
+      console.log('Do some filtering', stepperData);
+    }
+    return projects;
+  };
 
   return (
     <>
       <Hero />
-
       <div className={classes.root}>
-        <Paper className={classes.paper}>
-          <Grid container spacing={2}>
-            {projects.map(project => (
-              <ProjectCard key={project.id} project={project}></ProjectCard>
-            ))}
-          </Grid>
-        </Paper>
+        <Grid container justify="center" spacing={2}>
+          {isStepperShown ? (
+            <Grid item xs={12} md={10} lg={8}>
+              <Paper className={classes.paper}>
+                <DataStepper handleSubmit={handleSubmit} />
+              </Paper>
+            </Grid>
+          ) : (
+            applyDataFilters().map(project => (
+              <Paper key={project.id} className={classes.paper}>
+                <ProjectCard project={project} />
+              </Paper>
+            ))
+          )}
+        </Grid>
       </div>
     </>
   );
