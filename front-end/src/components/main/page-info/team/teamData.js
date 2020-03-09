@@ -6,7 +6,7 @@ export const teamData = [
   },
   {
     name: 'Markus Röman',
-    email: 'markus.roman@tuni.fi',
+    email: 'markus.roman@hotmail.fi',
     description: 'Full Stack development (React.js, Node.js and GraphQL Server)'
   },
   {
