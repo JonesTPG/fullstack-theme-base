@@ -15,18 +15,18 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   paper: {
-    padding: theme.spacing(3),
     textAlign: 'center',
-    color: theme.palette.text.primary
+    color: theme.palette.text.primary,
+    width: '450px',
+    padding: theme.spacing(3),
+    margin: theme.spacing(3)
   },
-  projects: {
-    padding: theme.spacing(3)
-  }
+  projects: {}
 }));
 
 const HomePage = ({ projects }) => {
   const classes = useStyles();
-  const [isStepperShown, setIsStepperShown] = React.useState(true);
+  const [isStepperShown, setIsStepperShown] = React.useState(false);
   const [stepperData, setStepperData] = React.useState(null);
 
   const isEmpty = obj => {
@@ -38,21 +38,15 @@ const HomePage = ({ projects }) => {
 
   const handleSubmit = data => {
     setStepperData(isEmpty(data) ? null : data);
+    console.log(data);
     setIsStepperShown(false);
-  };
-
-  const applyDataFilters = () => {
-    if (!isStepperShown && stepperData) {
-      console.log('Do some filtering', stepperData);
-    }
-    return projects;
   };
 
   return (
     <>
       <Hero />
       <div className={classes.root}>
-        <Grid container justify="center" spacing={2}>
+        <Grid justify="center" container>
           {isStepperShown ? (
             <Grid item xs={12} md={10} lg={8}>
               <Paper className={classes.paper}>
@@ -60,7 +54,7 @@ const HomePage = ({ projects }) => {
               </Paper>
             </Grid>
           ) : (
-            applyDataFilters().map(project => (
+            projects.map(project => (
               <Paper key={project.id} className={classes.paper}>
                 <ProjectCard project={project} />
               </Paper>
