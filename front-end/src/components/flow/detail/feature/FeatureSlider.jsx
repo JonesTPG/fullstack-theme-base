@@ -29,41 +29,13 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const SampleNextArrow = props => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        display: 'block',
-        right: '-15px'
-      }}
-      onClick={onClick}
-    />
-  );
-};
-
-const SamplePrevArrow = props => {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: 'block', left: '-15px' }}
-      onClick={onClick}
-    />
-  );
-};
-
 const FeatureSlider = () => {
   let settings = {
     infinite: true,
     speed: 1000,
-    arrows: true,
+    arrows: false,
     slidesToShow: 5,
     slidesToScroll: 2,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
 
     responsive: [
       {
@@ -97,6 +69,7 @@ const FeatureSlider = () => {
           ))}
         </Slider>
       </div>
+      <br /> <br />
       <CommitForm />
     </div>
   );

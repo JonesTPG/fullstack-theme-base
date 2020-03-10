@@ -11,19 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import { withRouter } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
-  media: {
-    paddingTop: '50%'
-  },
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest
-    })
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)'
-  }
+  media: {},
+  expand: {},
+  expandOpen: {}
 }));
 
 const ProjectCard = ({ project, history }) => {

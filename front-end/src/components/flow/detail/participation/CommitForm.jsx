@@ -16,8 +16,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2)
   },
   form: {
-    paddingBottom: '30px',
-    paddingRight: '30px'
+    paddingBottom: '30px'
   },
   root: {
     flexGrow: 1,
@@ -39,6 +38,10 @@ const useStyles = makeStyles(theme => ({
         borderColor: '#009be5'
       }
     }
+  },
+  actionbuttons: {
+    paddingRight: '30px',
+    paddingBottom: '30px'
   }
 }));
 
@@ -152,7 +155,7 @@ const CommitForm = () => {
             label="Ilmoittautuminen on sitova *"
           />
         </DialogContent>
-        <DialogActions className={classes.form}>
+        <DialogActions className={classes.actionbuttons}>
           <Button onClick={handleClose}>Peruuta</Button>
           <Button onClick={handleClose} variant="outlined">
             Sitoudu
