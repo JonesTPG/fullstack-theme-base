@@ -1,12 +1,13 @@
 import http from 'http';
 import https from 'https';
-import fs from 'fs';
+import fs from 'file-system';
+
 import app from './app.js';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { execute, subscribe } from 'graphql';
 
-import schema from './schema';
-import config from './utils/config';
+import schema from './schema.js';
+import config from './utils/config.js';
 
 /* Local SSL server to test out the secure websocket connections. */
 if (process.env.NODE_ENV === 'development') {

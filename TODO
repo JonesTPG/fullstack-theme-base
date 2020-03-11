@@ -1,14 +1,5 @@
-Nginx reverse proxy:
+Server Side Rendering Problems:
 
--Make a reverse proxy conf also to demo.janetta.fi
-
-CI/CD pipeline:
-
--Use cypress Docker image to test application (should the app also run in a container!?, maybe docker compose?)
--Optimize resource usage:
-    *don't delete node 10 image on every pipeline run
-    *can dependencies be ready in the pipeline (no need to npm install cypress, other front-end packages?)
--On successfull pipeline run:
-    *delete unnecessary docker resources
--Include cypress tests in the pipeline
--Remove Node.js and PM2 from AWS EC2 server once the Docker pipeline works correctly. Update the prod-environment.md document accordingly.
+- Back-End apparently would need to use ES6 modules instead of CommonJS imports.
+- This branch has changed imports and exports to the ES6 syntax, but for some reason the app wouldn't compile
+- Package.json option "type": "module" has been put into place, but that didn't help for the app to compile
