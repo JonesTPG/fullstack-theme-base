@@ -11,18 +11,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 const useStyles = makeStyles(theme => ({
-  menuButton: {
-    padding: theme.spacing(2)
-  },
-  title: {
-    flexGrow: 1
-  },
   app: {
     backgroundColor: '#f0f0f0'
   },
-  appBar: {
-    backgroundColor: '#009be5'
-  },
+
   root: {
     paddingTop: '10px'
   },
@@ -38,7 +30,7 @@ const RestaurantList = () => {
   const [value, setValue] = useState('');
   const [restaurants, setRestaurants] = useState('');
 
-  const { data, loading } = useQuery(GET_ALL_RESTAURANTS, {
+  const { data } = useQuery(GET_ALL_RESTAURANTS, {
     onCompleted: data => {
       if (data.restaurant) {
         setRestaurants(data.restaurant);
@@ -71,7 +63,7 @@ const RestaurantList = () => {
 
   return (
     <div className={classes.app}>
-      <Grid container justify="center" spacing={2}>
+      <Grid container justify="center">
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
             Sort by
@@ -93,23 +85,21 @@ const RestaurantList = () => {
           </Select>
         </FormControl>
       </Grid>
-      <Grid container justify="center" spacing={2}>
-        {restaurants ? (
-          <Grid container justify="center" spacing={2} className={classes.root}>
-            {restaurants.map((restaurant, index) => (
-              <Grid item key={index}>
-                <Restaurant key={index} data={restaurant} />
-              </Grid>
-            ))}
-          </Grid>
-        ) : (
-          data.restaurant.map((restaurant, index) => (
-            <Grid item key={index} xs={8} sm={8} md={8}>
+      {restaurants ? (
+        <Grid container justify="center" spacing={2} className={classes.root}>
+          {restaurants.map((restaurant, index) => (
+            <Grid item key={index}>
               <Restaurant key={index} data={restaurant} />
             </Grid>
-          ))
-        )}
-      </Grid>
+          ))}
+        </Grid>
+      ) : (
+        data.restaurant.map((restaurant, index) => (
+          <Grid item key={index}>
+            <Restaurant key={index} data={restaurant} />
+          </Grid>
+        ))
+      )}
     </div>
   );
 };
