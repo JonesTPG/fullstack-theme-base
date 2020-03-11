@@ -4,6 +4,7 @@ const Contact = require('./models/contact');
 const Project = require('./models/project');
 const Feature = require('./models/feature');
 const Customer = require('./models/customer');
+const Restaurant = require('./models/restaurant');
 
 const userMutations = require('./mutations/user');
 const customerMutations = require('./mutations/customer');
@@ -39,6 +40,9 @@ const resolvers = {
     },
     customer: () => {
       return Customer.find({}).populate('projects');
+    },
+    restaurant: () => {
+      return Restaurant.find({});
     }
   },
   Mutation: {

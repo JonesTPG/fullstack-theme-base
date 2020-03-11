@@ -57,7 +57,6 @@ const SamplePrevArrow = props => {
 
 const FeatureSlider = () => {
   let settings = {
-    dots: true,
     infinite: true,
     speed: 1000,
     arrows: true,

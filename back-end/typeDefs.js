@@ -60,6 +60,20 @@ const typeDefs = gql`
     id: ID!
   }
 
+  type Restaurant {
+    id: ID
+    name: String
+    blurhash: String
+    city: String
+    currency: String
+    delivery_price: Int
+    description: String
+    image: String
+    location: [String]
+    online: Boolean
+    tags: [String]
+  }
+
   type Query {
     me: User
     hello: String
@@ -69,6 +83,7 @@ const typeDefs = gql`
     feature: [Feature]
     user: [User]
     customer: [Customer]
+    restaurant: [Restaurant]
   }
 
   type Mutation {
