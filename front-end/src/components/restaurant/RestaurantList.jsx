@@ -19,8 +19,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex'
   },
   formControl: {
-    marginTop: '25px',
-    marginBottom: '15px'
+    marginTop: '20px'
+  },
+  card: {
+    padding: theme.spacing(1)
   }
 }));
 
@@ -90,9 +92,9 @@ const RestaurantList = () => {
           <CircularProgress />
         </Grid>
       ) : (
-        <Grid container justify="center" spacing={2}>
+        <Grid container justify="center" className={classes.card}>
           {restaurants.map((restaurant, index) => (
-            <Grid item key={index}>
+            <Grid item key={index} className={classes.card}>
               <Restaurant key={index} data={restaurant} />
             </Grid>
           ))}
