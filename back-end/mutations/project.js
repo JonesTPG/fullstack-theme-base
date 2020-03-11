@@ -1,7 +1,9 @@
-const { UserInputError } = require('apollo-server');
-const Project = require('../models/project');
-const Feature = require('../models/feature');
-const pubsub = require('../services/pubsub');
+import { UserInputError } from 'apollo-server';
+
+import pubsub from '../services/pubsub';
+
+import Project from './models/project';
+import Feature from './models/feature';
 
 const projectMutations = {
   createProject: async (root, args) => {
@@ -43,4 +45,4 @@ const projectMutations = {
   }
 };
 
-module.exports = projectMutations;
+export default projectMutations;

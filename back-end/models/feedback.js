@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-
+import mongoose from 'mongoose';
 const schema = new mongoose.Schema({
   appGrade: {
     type: Number,
@@ -14,4 +13,4 @@ const schema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Feedback', schema);
+export default mongoose.model('Feedback', schema);

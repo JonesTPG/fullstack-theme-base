@@ -1,4 +1,6 @@
-require('dotenv').config();
+import { config } from 'dotenv';
+
+config();
 
 let PORT = process.env.PORT || 4000;
 let SSL_PORT = process.env.SSL_PORT || 4001;
@@ -11,7 +13,7 @@ let GRAPHQL_SUBSCRIPTION_ENDPOINT =
   process.env.GRAPHQL_SUBSCRIPTION_ENDPOINT ||
   'wss://localhost:4000/subscriptions';
 
-module.exports = {
+export default {
   MONGODB_URI,
   MONGODB_TEST_URI,
   PORT,

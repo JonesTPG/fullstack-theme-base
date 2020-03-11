@@ -1,7 +1,8 @@
-const { UserInputError } = require('apollo-server');
-const bcrypt = require('bcryptjs');
-const pubsub = require('../services/pubsub');
-const User = require('../models/user');
+import { UserInputError } from 'apollo-server';
+import bcrypt from 'bcryptjs';
+import pubsub from '../services/pubsub';
+
+import User from './models/user';
 
 const userMutations = {
   createUser: async (root, args) => {
@@ -90,4 +91,4 @@ const userMutations = {
   }
 };
 
-module.exports = userMutations;
+export default userMutations;

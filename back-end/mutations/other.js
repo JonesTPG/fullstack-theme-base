@@ -1,12 +1,15 @@
-const { UserInputError } = require('apollo-server');
-const pubsub = require('../services/pubsub');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
+import { UserInputError } from 'apollo-server';
 
-const config = require('../utils/config');
-const User = require('../models/user');
-const Feedback = require('../models/feedback');
-const Contact = require('../models/contact');
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+
+import config from '../utils/config';
+
+import User from './models/user';
+import Feedback from './models/feedback';
+import Contact from './models/contact';
+
+import pubsub from './services/pubsub';
 
 const otherMutations = {
   createFeedback: async (root, args) => {
@@ -100,4 +103,4 @@ const otherMutations = {
   }
 };
 
-module.exports = otherMutations;
+export default otherMutations;

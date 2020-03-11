@@ -1,19 +1,19 @@
-const http = require('http');
-const https = require('https');
-const fs = require('fs');
-const app = require('./app');
-const { SubscriptionServer } = require('subscriptions-transport-ws');
-const { execute, subscribe } = require('graphql');
+import http from 'http';
+import https from 'https';
+import fs from 'fs';
+import app from './app.js';
+import { SubscriptionServer } from 'subscriptions-transport-ws';
+import { execute, subscribe } from 'graphql';
 
-const schema = require('./schema');
-const config = require('./utils/config');
+import schema from './schema';
+import config from './utils/config';
 
 /* Local SSL server to test out the secure websocket connections. */
 if (process.env.NODE_ENV === 'development') {
   const localSslServer = https.createServer(
     {
-      key: fs.readFileSync('./key.pem'),
-      cert: fs.readFileSync('./cert.pem'),
+      key: fs.readFileSync('./utils/key.pem'),
+      cert: fs.readFileSync('./utils/cert.pem'),
       passphrase: 'nakkikostaja'
     },
     app

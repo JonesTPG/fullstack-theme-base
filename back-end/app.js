@@ -1,15 +1,15 @@
-const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import bodyParser from 'body-parser';
 
-const cors = require('cors');
-const mongoose = require('mongoose');
-const path = require('path');
+import cors from 'cors';
+import mongoose from 'mongoose';
+import path from 'path';
 
-const schema = require('./schema');
-const context = require('./context');
+import schema from './schema';
+import context from './context';
 
-const config = require('./utils/config');
+import config from './utils/config';
 
 let mongoUrl = config.MONGODB_URI;
 
@@ -53,4 +53,4 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/build/index.html'));
 });
 
-module.exports = app;
+export default app;

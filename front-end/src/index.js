@@ -7,7 +7,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import client from './apollo-client/client';
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <ApolloProvider client={client}>
     <App />
   </ApolloProvider>,

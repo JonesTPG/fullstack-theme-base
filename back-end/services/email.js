@@ -1,5 +1,5 @@
-const nodemailer = require('./node_modules/nodemailer');
-const config = require('../utils/config');
+import nodemailer from './node_modules/nodemailer';
+import config from '../utils/config';
 
 const from = '"Flow IT" <info@kooditaiturit.fi>';
 let transporter = nodemailer.createTransport({

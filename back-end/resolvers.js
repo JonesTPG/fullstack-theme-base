@@ -1,16 +1,16 @@
-const User = require('./models/user');
-const Feedback = require('./models/feedback');
-const Contact = require('./models/contact');
-const Project = require('./models/project');
-const Feature = require('./models/feature');
-const Customer = require('./models/customer');
+import User from './models/user';
+import Feedback from './models/feedback';
+import Contact from './models/contact';
+import Project from './models/project';
+import Feature from './models/feature';
+import Customer from './models/customer';
 
-const userMutations = require('./mutations/user');
-const customerMutations = require('./mutations/customer');
-const projectMutations = require('./mutations/project');
-const otherMutations = require('./mutations/other');
+import userMutations from './mutations/user';
+import customerMutations from './mutations/customer';
+import projectMutations from './mutations/project';
+import otherMutations from './mutations/other';
 
-const pubsub = require('./services/pubsub');
+import pubsub from './services/pubsub';
 
 const resolvers = {
   Query: {
@@ -90,4 +90,4 @@ const resolvers = {
   }
 };
 
-module.exports = resolvers;
+export default resolvers;

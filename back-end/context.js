@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
-const config = require('./utils/config');
-const User = require('./models/user');
+import jwt from 'jsonwebtoken';
+import config from './utils/config';
+import User from './models/user';
 
 const context = async ({ req }) => {
   const auth = req ? req.headers.authorization : null;
@@ -12,4 +12,4 @@ const context = async ({ req }) => {
   return null;
 };
 
-module.exports = context;
+export default context;

@@ -1,7 +1,8 @@
-const { UserInputError } = require('apollo-server');
-const Project = require('../models/project');
-const Customer = require('../models/customer');
-const pubsub = require('../services/pubsub');
+import { UserInputError } from 'apollo-server';
+import Project from './models/project';
+import pubsub from './services/pubsub';
+
+import Customer from './models/customer';
 
 const customerMutations = {
   participate: async (root, args) => {
@@ -88,4 +89,4 @@ const customerMutations = {
   }
 };
 
-module.exports = customerMutations;
+export default customerMutations;
