@@ -103,12 +103,10 @@ const Restaurant = ({ data }) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           <Typography paragraph>
-            {' '}
             <RestaurantIcon className={classes.foodIcon} fontSize="small" />
             {data.description}
           </Typography>
           <Typography paragraph>
-            {' '}
             <RoomIcon className={classes.foodIcon} fontSize="small" />
             {data.city}
           </Typography>
