@@ -12,6 +12,7 @@ import ContactForm from '../contact/ContactForm';
 import MainStyles from './MainStyles';
 import FlowMain from '../flow/FlowMain';
 import HeaderSidebar from './page-parts/HeaderSidebar';
+import RestaurantList from '../restaurant/RestaurantList';
 
 const Main = ({ classes }) => {
   const [open, setOpen] = React.useState(false);
@@ -31,6 +32,7 @@ const Main = ({ classes }) => {
           <Route path="/timetables" render={() => <Timetable />} />
           <Route path="/map" render={() => <InteractiveMap />} />
           <Route path="/flow" render={() => <FlowMain />} />
+          <Route path="/restaurants" render={() => <RestaurantList />} />
           <Route path="/" render={() => <PageInfo />} />
         </Switch>
       </main>

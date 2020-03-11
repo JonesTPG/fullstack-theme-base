@@ -31,6 +31,7 @@ import Brightness from '@material-ui/icons/Brightness4';
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import { CHANGE_THEME, GET_LOCAL_THEME } from '../../../queries/theme';
 import { withRouter } from 'react-router-dom';
+import RestaurantIcon from '@material-ui/icons/RestaurantMenu';
 
 const HeaderSidebar = ({ classes, open, setOpen, ...props }) => {
   const theme = useTheme();
@@ -190,6 +191,12 @@ const HeaderSidebar = ({ classes, open, setOpen, ...props }) => {
               <WavesIcon className={classes.sidenavIcon} />
             </ListItemIcon>
             <ListItemText primary="Flow" />
+          </ListItem>
+          <ListItem button onClick={() => handleSideNavClick('/restaurants')}>
+            <ListItemIcon>
+              <RestaurantIcon className={classes.sidenavIcon} />
+            </ListItemIcon>
+            <ListItemText primary="Restaurants" />
           </ListItem>
           <Divider />
           <ListItem button onClick={handleAuthClick}>
