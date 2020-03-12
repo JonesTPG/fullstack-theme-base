@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -50,6 +51,10 @@ const HomePage = ({ projects }) => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>FlowIT - Home Page</title>
+      </Helmet>
       <Hero />
       <div className={classes.root}>
         <Grid container justify="center" spacing={2}>
