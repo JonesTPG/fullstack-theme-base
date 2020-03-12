@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -38,6 +39,9 @@ const AdminContent = props => {
   } else {
     return (
       <>
+        <Helmet>
+          <title>Theme Base - Admin View</title>
+        </Helmet>
         <div className={classes.root}>
           <Grid container spacing={3}>
             <Grid item xs={12}>

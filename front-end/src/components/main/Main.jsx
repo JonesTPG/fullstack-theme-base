@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,25 +19,30 @@ const Main = ({ classes }) => {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <HeaderSidebar open={open} setOpen={setOpen} classes={classes} />
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open
-        })}
-      >
-        <Switch>
-          <Route path="/feedback" render={() => <Feedback />} />
-          <Route path="/contact-us" render={() => <ContactForm />} />
-          <Route path="/timetables" render={() => <Timetable />} />
-          <Route path="/map" render={() => <InteractiveMap />} />
-          <Route path="/flow" render={() => <FlowMain />} />
-          <Route path="/restaurants" render={() => <RestaurantList />} />
-          <Route path="/" render={() => <PageInfo />} />
-        </Switch>
-      </main>
-    </div>
+    <>
+      <Helmet>
+        <title>Theme Base - Main View</title>
+      </Helmet>
+      <div className={classes.root}>
+        <CssBaseline />
+        <HeaderSidebar open={open} setOpen={setOpen} classes={classes} />
+        <main
+          className={clsx(classes.content, {
+            [classes.contentShift]: open
+          })}
+        >
+          <Switch>
+            <Route path="/feedback" render={() => <Feedback />} />
+            <Route path="/contact-us" render={() => <ContactForm />} />
+            <Route path="/timetables" render={() => <Timetable />} />
+            <Route path="/map" render={() => <InteractiveMap />} />
+            <Route path="/flow" render={() => <FlowMain />} />
+            <Route path="/restaurants" render={() => <RestaurantList />} />
+            <Route path="/" render={() => <PageInfo />} />
+          </Switch>
+        </main>
+      </div>
+    </>
   );
 };
 
