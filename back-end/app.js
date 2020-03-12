@@ -2,6 +2,7 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const bodyParser = require('body-parser');
 
+const helmet = require('helmet');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const path = require('path');
@@ -33,6 +34,7 @@ mongoose
     console.log('error connecting to mongodb: ', error.message);
   });
 
+app.use(helmet());
 app.use(cors());
 app.use(express.static('build'));
 app.use(bodyParser.json());
