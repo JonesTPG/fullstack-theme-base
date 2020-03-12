@@ -9,18 +9,20 @@ import InputLabel from '@material-ui/core/InputLabel';
 
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
   app: {
     backgroundColor: '#f0f0f0'
   },
-
   root: {
-    paddingTop: '10px'
+    display: 'flex'
   },
   formControl: {
-    marginTop: '25px',
-    marginBottom: '15px'
+    marginTop: '20px'
+  },
+  card: {
+    padding: theme.spacing(1)
   }
 }));
 
@@ -28,9 +30,9 @@ const RestaurantList = () => {
   const classes = useStyles();
   const [labelWidth, setLabelWidth] = useState(0);
   const [value, setValue] = useState('');
-  const [restaurants, setRestaurants] = useState('');
+  const [restaurants, setRestaurants] = useState([]);
 
-  const { data } = useQuery(GET_ALL_RESTAURANTS, {
+  const { loading } = useQuery(GET_ALL_RESTAURANTS, {
     onCompleted: data => {
       if (data.restaurant) {
         setRestaurants(data.restaurant);
@@ -85,20 +87,18 @@ const RestaurantList = () => {
           </Select>
         </FormControl>
       </Grid>
-      {restaurants ? (
-        <Grid container justify="center" spacing={2} className={classes.root}>
+      {loading ? (
+        <Grid container justify="center" className={classes.root}>
+          <CircularProgress />
+        </Grid>
+      ) : (
+        <Grid container justify="center" className={classes.card}>
           {restaurants.map((restaurant, index) => (
-            <Grid item key={index}>
+            <Grid item key={index} className={classes.card}>
               <Restaurant key={index} data={restaurant} />
             </Grid>
           ))}
         </Grid>
-      ) : (
-        data.restaurant.map((restaurant, index) => (
-          <Grid item key={index}>
-            <Restaurant key={index} data={restaurant} />
-          </Grid>
-        ))
       )}
     </div>
   );
