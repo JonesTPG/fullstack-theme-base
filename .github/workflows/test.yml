@@ -19,7 +19,6 @@ jobs:
         node-version: '12.x'
     - name: Make a build
       run: |
-        cd front-end
         npm ci
         npm run build:ui
 
@@ -36,6 +35,8 @@ jobs:
       uses: cypress-io/github-action@v1.16.1
       with:
         config-file: cypress.json
+        start: npm run start:ci
+        wait-on: 'http://localhost:8080'
 
   deploy:
     name: Deploy
