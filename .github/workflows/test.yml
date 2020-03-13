@@ -45,7 +45,7 @@ jobs:
       run: |
         rm -rf ./back-end/build
         mv build ./back-end
-        printf "${{ secrets.MONGODB_TEST_URI }}\n${{ secrets.JWT_SECRET }}\n" > back-end/.env
+        printf "MONGODB_TEST_URI=${{ secrets.MONGODB_TEST_URI }}\nJWT_SECRET=${{ secrets.JWT_SECRET }}\n" > back-end/.env
     - name: Setup Cypress
       uses: cypress-io/github-action@v1.16.1
       with:
