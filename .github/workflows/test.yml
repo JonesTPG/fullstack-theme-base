@@ -18,11 +18,10 @@ jobs:
       with:
         node-version: '12.x'
     - name: Move to front-end
-      run: cd front-end
-    - name: Install Dependencies
-      run: npm install
-    - name: Create a build
-      run: npm run build
+      run: |
+        cd front-end
+        npm install
+        npm run build
 
   test:
     name: Test
