@@ -22,7 +22,9 @@ jobs:
         pwd
         whoami
         cd front-end
+      shell: bash
         
+     
    
   test:
     name: Test
