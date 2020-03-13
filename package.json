@@ -51,7 +51,7 @@
     "ci:back": "cd back-end && npm run start:test",
     "ci:front": "cd front-end && npm start",
     "start:ci": "npm-run-all --parallel ci:*",
-    "build:ui": "cd front-end && rm -rf build && npm run build:ui --prod && cp -r build ../back-end/"
+    "build:ui": "cd front-end && rm -rf build && npm run build:ci"
   },
   "eslintConfig": {
     "extends": "react-app"

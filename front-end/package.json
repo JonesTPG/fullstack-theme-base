@@ -38,6 +38,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "build:ui": "rm -rf build && npm run build --prod && cp -r build ../back-end/",
+    "build:ci": "rm -rf build && npm run build --prod",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "cypress:open": "cypress open",
