@@ -4,62 +4,13 @@
   "private": true,
   "main": "back-end/index.js",
   "dependencies": {
-    "@apollo/client": "^3.0.0-beta.39",
-    "@material-ui/core": "^4.9.5",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.45",
-    "@testing-library/jest-dom": "^5.1.1",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^10.0.0",
-    "apollo-boost": "^0.4.3",
-    "apollo-cache-persist": "^0.1.1",
-    "apollo-fetch": "^0.7.0",
-    "apollo-link": "^1.2.13",
-    "apollo-link-context": "^1.0.19",
-    "apollo-link-http": "^1.5.16",
-    "apollo-link-ws": "^1.0.19",
-    "blurhash": "^1.1.3",
-    "date-fns": "^2.10.0",
-    "graphql": "^14.6.0",
-    "leaflet": "^1.6.0",
-    "material-table": "^1.57.2",
-    "react": "^16.13.0",
-    "react-apollo": "^3.0.0-beta.2",
-    "react-blurhash": "^0.1.2",
-    "react-dom": "^16.13.0",
-    "react-helmet": "^5.2.1",
-    "react-leaflet": "^2.6.1",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0",
-    "react-slick": "^0.25.2",
-    "slick-carousel": "^1.8.1",
-    "subscriptions-transport-ws": "^0.9.16",
-    "apollo-server": "^2.11.0",
-    "apollo-server-express": "^2.11.0",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "graphql-tools": "^4.0.7",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.3",
-    "nodemailer": "^6.4.4"
+    "npm-run-all": "^4.1.5"
   },
   "scripts": {
-    "start:back": "cross-env NODE_ENV=production node back-end/index.js",
-    "start:front": "react-scripts start",
-    "build": "react-scripts build",
-    "build:ui": "rm -rf build && npm run build --prod && cp -r build ../back-end/",
-    "test": "react-scripts test",
-    "ssl": "cross-env NODE_ENV=development node index.js",
-    "watch": "nodemon index.js",
-    "start:test": "cross-env NODE_ENV=test node index.js ",
-    "eject": "react-scripts eject",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
-    "cypress:ci": "cypress run --env configFile=production",
-    "lint": "eslint ."
+    "ci:back": "cd back-end && npm run start:test",
+    "ci:front": "cd front-end && npm start",
+    "start:ci": "npm-run-all --parallel ci:*",
+    "build:ui": "cd front-end && rm -rf build && npm run build --prod && cp -r build ../back-end/"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -75,14 +26,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "apollo": "^2.25.0",
-    "cypress": "^4.1.0",
-    "eslint-plugin-jest": "^23.8.2",
-    "cross-env": "^7.0.1",
-    "eslint": "^6.8.0",
-    "nodemon": "^2.0.2",
-    "prettier": "^1.19.1"
   }
 }
