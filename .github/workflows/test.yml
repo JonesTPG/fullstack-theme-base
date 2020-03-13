@@ -17,7 +17,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - name: Move to front-end
+    - name: Make a build
       run: |
         cd front-end
         npm ci
@@ -35,7 +35,7 @@ jobs:
     - name: Setup Cypress
       uses: cypress-io/github-action@v1.16.1
       with:
-        config-file: development.json
+        config-file: front-end/cypress.json
     - name: Start program and run Cypress
       run: |
         cd back-end
