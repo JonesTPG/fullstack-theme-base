@@ -12,9 +12,6 @@ import Select from '@material-ui/core/Select';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
-  app: {
-    backgroundColor: '#f0f0f0'
-  },
   root: {
     display: 'flex'
   },
@@ -64,7 +61,7 @@ const RestaurantList = () => {
   };
 
   return (
-    <div className={classes.app}>
+    <div>
       <Grid container justify="center">
         <FormControl variant="outlined" className={classes.formControl}>
           <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
