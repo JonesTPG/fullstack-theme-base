@@ -45,7 +45,7 @@ const SecondStep = ({ handleCheck }) => {
                 value="startBusiness"
               />
             }
-            label="Start New Business"
+            label="Yes"
           />
           <FormControlLabel
             control={
@@ -55,17 +55,7 @@ const SecondStep = ({ handleCheck }) => {
                 value="developBusiness"
               />
             }
-            label="Develop Business"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={discoverBusiness}
-                onChange={handleChange('discoverBusiness')}
-                value="discoverBusiness"
-              />
-            }
-            label="Discover Business"
+            label="No"
           />
         </FormGroup>
       </FormControl>
