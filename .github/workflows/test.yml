@@ -21,9 +21,15 @@ jobs:
       run: |
         npm ci
         npm run build:ui
+    - name: Upload build
+      uses: actions/upload-artifact@v1
+      with:
+        name: build
+        path: .
 
   test:
     name: Test
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -31,12 +37,18 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
+    - name: Download build
+      uses: actions/download-artifact@v1
+      with:
+        name: build
+    - name: Move build
+      run: mv build ./back-end
     - name: Setup Cypress
       uses: cypress-io/github-action@v1.16.1
       with:
         config-file: cypress.json
-        start: npm run start:ci
-        wait-on: 'http://localhost:3000'
+        start: npm run ci:back
+        wait-on: 'http://localhost:4000'
 
   deploy:
     name: Deploy
