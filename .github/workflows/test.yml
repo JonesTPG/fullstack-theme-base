@@ -20,13 +20,12 @@ jobs:
     - name: Move to front-end
       run: |
         cd front-end
-        npm install
+        npm ci
         npm run build:ui
 
   test:
     name: Test
-    needs: [build]
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - name: Setup Node
@@ -43,6 +42,7 @@ jobs:
         npm install
         node index.js
         cd ../front-end
+        npm start
         npm run cypress:run
 
   deploy:
