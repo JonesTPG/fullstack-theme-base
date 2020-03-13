@@ -17,7 +17,7 @@ const FourthStep = ({ handleCheck }) => {
   return (
     <div>
       <Typography id="range-slider" gutterBottom>
-        Price Range
+        Price Range (€/month)
       </Typography>
       <Slider
         value={value}

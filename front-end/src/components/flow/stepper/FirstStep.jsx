@@ -18,8 +18,7 @@ const FirstStep = ({ handleCheck }) => {
   const classes = useStyles();
   const [state, setState] = React.useState({
     onlineShop: false,
-    choice2: false,
-    choice3: false
+    choice2: false
   });
 
   const handleChange = item => event => {
@@ -31,7 +30,7 @@ const FirstStep = ({ handleCheck }) => {
     handleCheck(tempState);
   };
 
-  const { onlineShop, choice2, choice3 } = state;
+  const { onlineShop, choice2 } = state;
 
   return (
     <div className={classes.root}>
@@ -45,7 +44,7 @@ const FirstStep = ({ handleCheck }) => {
                 value="onlineShop"
               />
             }
-            label="Online Shop"
+            label="B2B online store"
           />
           <FormControlLabel
             control={
@@ -55,17 +54,7 @@ const FirstStep = ({ handleCheck }) => {
                 value="choice2"
               />
             }
-            label="Another One"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={choice3}
-                onChange={handleChange('choice3')}
-                value="choice3"
-              />
-            }
-            label="One More"
+            label="B2C online store"
           />
         </FormGroup>
       </FormControl>
