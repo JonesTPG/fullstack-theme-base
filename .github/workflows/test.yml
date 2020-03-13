@@ -49,7 +49,7 @@ jobs:
     - name: Setup Cypress
       uses: cypress-io/github-action@v1.16.1
       with:
-        config-file: cypress.json
+        config-file: ./cypress/config/production.json
         start: npm run ci:back
         wait-on: 'http://localhost:4000'
 
