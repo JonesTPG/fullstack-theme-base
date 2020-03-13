@@ -52,6 +52,8 @@ jobs:
         config-file: ./cypress/config/production.json
         start: npm run ci:back
         wait-on: 'http://localhost:4000'
+        env: 
+          configFile=production
 
   deploy:
     name: Deploy
