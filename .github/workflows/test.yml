@@ -35,15 +35,7 @@ jobs:
     - name: Setup Cypress
       uses: cypress-io/github-action@v1.16.1
       with:
-        config-file: front-end/cypress.json
-    - name: Start program and run Cypress
-      run: |
-        cd back-end
-        npm install
-        node index.js
-        cd ../front-end
-        npm start
-        npm run cypress:run
+        config-file: cypress.json
 
   deploy:
     name: Deploy
