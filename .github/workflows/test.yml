@@ -21,17 +21,29 @@ jobs:
       run: |
         cd front-end
         npm install
-        npm run build
+        npm run build:ui
 
   test:
     name: Test
     needs: [build]
     runs-on: [ubuntu-latest]
     steps:
-      - name: Cypress.io
-        uses: cypress-io/github-action@v1.16.1
-        with:
-          config-file: development.json
+    - uses: actions/checkout@v1
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Setup Cypress
+      uses: cypress-io/github-action@v1.16.1
+      with:
+        config-file: development.json
+    - name: Start program and run Cypress
+      run: |
+        cd back-end
+        npm install
+        node index.js
+        cd ../front-end
+        npm run cypress:run
 
   deploy:
     name: Deploy
