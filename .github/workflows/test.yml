@@ -36,7 +36,7 @@ jobs:
       with:
         config-file: cypress.json
         start: npm run start:ci
-        wait-on: 'http://localhost:8080'
+        wait-on: 'http://localhost:3000'
 
   deploy:
     name: Deploy
