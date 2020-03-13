@@ -49,7 +49,7 @@ jobs:
       uses: cypress-io/github-action@v1.16.1
       with:
         config-file: cypress.json
-        start: npm run ci:back
+        start: MONGODB_TEST_URI=${{ secrets.MONGODB_TEST_URI }} JWT_SECRET=${{ secrets.JWT_SECRET}} npm run ci:back
         wait-on: 'http://localhost:4000'
 
   deploy:
