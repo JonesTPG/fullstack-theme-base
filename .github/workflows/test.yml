@@ -42,7 +42,9 @@ jobs:
       with:
         name: build
     - name: Move build
-      run: mv build ./back-end
+      run: |
+        rm -rf ./back-end/build
+        mv build ./back-end
     - name: Setup Cypress
       uses: cypress-io/github-action@v1.16.1
       with:
