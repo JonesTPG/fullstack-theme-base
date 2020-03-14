@@ -58,7 +58,7 @@ jobs:
           config-file: ./cypress/config/production.json
           start: npm run ci:back
           wait-on: 'http://localhost:4000'
-          env: configFile=production'
+          env: configFile=production
       - name: If tests fail, upload snapshots as an artifact
         uses: actions/upload-artifact@v1
         if: failure()
