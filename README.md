@@ -2,10 +2,10 @@
 
 ## Project Participants
 
-| Name             | Student Number |                                                      Role |
-| ---------------- | :------------: | --------------------------------------------------------: |
-| Janetta Huoponen |   015168157    |         Front-End Development, UI/UX desgins, E2E testing |
-| Joonas Ryynänen  |   015167242    |        Full Stack Development, AWS Production Environment |
+| Name             | Student Number | Role                                                      |
+| ---------------- | :------------: | :-------------------------------------------------------- |
+| Janetta Huoponen |   015168157    | Front-End Development, UI/UX desgins, E2E testing         |
+| Joonas Ryynänen  |   015167242    | Full Stack Development, AWS Production Environment        |
 | Markus Röman     |   015226659    | Full Stack Development, CI / CD pipeline (Github actions) |
 
 ## Live Demo of Application
