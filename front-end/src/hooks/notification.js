@@ -8,7 +8,6 @@ const useNotification = () => {
   const showNotification = (msg, type) => {
     setMessage(msg);
     setSeverity(type);
-    console.log(open);
     setOpen(true);
     setTimeout(() => {
       setOpen(false);

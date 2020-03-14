@@ -17,7 +17,7 @@ describe('Fullstack-theme-base sign up page ', function() {
         cy.contains('Sign up');
         cy.get('[data-cy=firstName]').type('First name');
         cy.get('[data-cy=lastName]').type('Last name');
-        cy.get('[data-cy=email]').type('testUser');
+        cy.get('[data-cy=email]').type('username');
         cy.get('[data-cy=password]').type('password');
         cy.get('[data-cy=signUp]').click();
         cy.url().should('include', '/login');
@@ -27,7 +27,7 @@ describe('Fullstack-theme-base sign up page ', function() {
       it('User can create a new account in sign up page', function() {
         cy.visit(Cypress.env('BASE_REACT_URL') + '/login');
         cy.contains('Sign in');
-        cy.get('[data-cy=username]').type('testUser');
+        cy.get('[data-cy=username]').type('username');
         cy.get('[data-cy=password]').type('password');
         cy.contains('Sign in').click();
         cy.get('[data-cy=signIn]').click();
