@@ -12,93 +12,101 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Setup Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-    - name: Make a build
-      run: |
-        npm ci
-        npm run build:ui
-    - name: Upload build
-      uses: actions/upload-artifact@v1
-      with:
-        name: build
-        path: ./front-end/build
+      - uses: actions/checkout@v1
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Make a build
+        run: |
+          npm ci
+          npm run build:ui
+      - name: Upload build
+        uses: actions/upload-artifact@v1
+        with:
+          name: build
+          path: ./front-end/build
 
   test:
     name: Test
     needs: [build]
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
+        machines: [1, 2, 3]
+    runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v1
-    - name: Setup Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-    - name: Download build
-      uses: actions/download-artifact@v1
-      with:
-        name: build
-    - name: Move build
-      run: |
-        rm -rf ./back-end/build
-        mv build ./back-end
-        printf "MONGODB_TEST_URI=${{ secrets.MONGODB_TEST_URI }}\nJWT_SECRET=${{ secrets.JWT_SECRET }}\n" > back-end/.env
-    - name: Setup Cypress
-      uses: cypress-io/github-action@v1.16.1
-      with:
-        config-file: ./cypress/config/production.json
-        start: npm run ci:back
-        wait-on: 'http://localhost:4000'
-        env: 
-          configFile=production
+      - uses: actions/checkout@v1
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Download build
+        uses: actions/download-artifact@v1
+        with:
+          name: build
+      - name: Move build
+        run: |
+          rm -rf ./back-end/build
+          mv build ./back-end
+          printf "MONGODB_TEST_URI=${{ secrets.MONGODB_TEST_URI }}\nJWT_SECRET=${{ secrets.JWT_SECRET }}\n" > back-end/.env
+      - name: Setup Cypress
+        uses: cypress-io/github-action@v1.16.1
+        timeout-minutes: 10
+        with:
+          record: true
+          parallel: true
+          group: Parallel 3x on ${{ matrix.os }}
+          config-file: ./cypress/config/production.json
+          start: npm run ci:back
+          wait-on: 'http://localhost:4000'
+          env: configFile=production
 
   deploy:
     name: Deploy
     needs: [build, test]
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
 
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: eu-north-1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-north-1
 
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Build, tag, and push image to Amazon ECR
-      id: build-image
-      env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-        ECR_REPOSITORY: my-ecr-repo
-        IMAGE_TAG: ${{ github.sha }}
-      run: |
-        # Build a docker container and
-        # push it to ECR so that it can
-        # be deployed to ECS.
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
-    - name: Fill in the new image ID in the Amazon ECS task definition
-      id: task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: task-definition.json
-        container-name: sample-app
-        image: ${{ steps.build-image.outputs.image }}
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: my-ecr-repo
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          # Build a docker container and
+          # push it to ECR so that it can
+          # be deployed to ECS.
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition.json
+          container-name: sample-app
+          image: ${{ steps.build-image.outputs.image }}
 
-    - name: Deploy Amazon ECS task definition
-      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-      with:
-        task-definition: ${{ steps.task-def.outputs.task-definition }}
-        service: sample-app-service
-        cluster: default
-        wait-for-service-stability: true
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: sample-app-service
+          cluster: default
+          wait-for-service-stability: true
