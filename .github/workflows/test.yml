@@ -34,7 +34,6 @@ jobs:
       fail-fast: false
       matrix:
         os: ['ubuntu-latest', 'windows-latest', 'macos-latest']
-        machines: [1, 2, 3]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v1
@@ -51,17 +50,21 @@ jobs:
           rm -rf ./back-end/build
           mv build ./back-end
           printf "MONGODB_TEST_URI=${{ secrets.MONGODB_TEST_URI }}\nJWT_SECRET=${{ secrets.JWT_SECRET }}\n" > back-end/.env
-      - name: Setup Cypress
+      - name: Setup and run Cypress
         uses: cypress-io/github-action@v1.16.1
         timeout-minutes: 10
         with:
-          record: true
           parallel: true
-          group: Parallel 3x on ${{ matrix.os }}
+          group: Tests on ${{ matrix.os }}
           config-file: ./cypress/config/production.json
           start: npm run ci:back
           wait-on: 'http://localhost:4000'
           env: configFile=production
+        - uses: actions/upload-artifact@v1
+          if: failure()
+          with:
+            name: cypress-screenshots
+            path: cypress/screenshots
 
   deploy:
     name: Deploy
