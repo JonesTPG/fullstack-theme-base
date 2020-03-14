@@ -25,8 +25,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const steps = [
-  'What kind of solution are you looking for?',
-  'What is your end goal?',
+  'What kind of eCommerce solution are you looking for?',
+  'Do you already have an eCommerce platform?',
   'Basic info',
   'How much can you invest in the solution?'
 ];

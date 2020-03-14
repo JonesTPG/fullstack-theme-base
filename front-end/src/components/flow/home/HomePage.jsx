@@ -22,12 +22,18 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3),
     margin: theme.spacing(3)
   },
+  stepper: {
+    textAlign: 'center',
+    color: theme.palette.text.primary,
+    padding: theme.spacing(3),
+    margin: theme.spacing(3)
+  },
   projects: {}
 }));
 
 const HomePage = ({ projects }) => {
   const classes = useStyles();
-  const [isStepperShown, setIsStepperShown] = React.useState(false);
+  const [isStepperShown, setIsStepperShown] = React.useState(true);
   const [stepperData, setStepperData] = React.useState(null);
 
   const isEmpty = obj => {
@@ -38,8 +44,9 @@ const HomePage = ({ projects }) => {
   };
 
   const handleSubmit = data => {
-    setStepperData(isEmpty(data) ? null : data);
-    console.log(data);
+    if (!isEmpty(data)) {
+      setStepperData(data);
+    }
     setIsStepperShown(false);
   };
 
@@ -54,7 +61,7 @@ const HomePage = ({ projects }) => {
         <Grid justify="center" container>
           {isStepperShown ? (
             <Grid item xs={12} md={10} lg={8}>
-              <Paper className={classes.paper}>
+              <Paper className={classes.stepper}>
                 <DataStepper handleSubmit={handleSubmit} />
               </Paper>
             </Grid>
