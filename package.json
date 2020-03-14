@@ -1,7 +1,8 @@
 {
-  "name": "front-end",
-  "version": "0.1.0",
+  "name": "app-dependencies",
+  "version": "1.0.0",
   "private": true,
+  "main": "back-end/index.js",
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.39",
     "@material-ui/core": "^4.9.5",
@@ -32,16 +33,28 @@
     "react-scripts": "3.4.0",
     "react-slick": "^0.25.2",
     "slick-carousel": "^1.8.1",
-    "subscriptions-transport-ws": "^0.9.16"
+    "subscriptions-transport-ws": "^0.9.16",
+    "apollo-server": "^2.11.0",
+    "apollo-server-express": "^2.11.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "graphql-tools": "^4.0.7",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.3",
+    "nodemailer": "^6.4.4",
+    "npm-run-all": "^4.1.5"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "build:ui": "rm -rf build && npm run build --prod && cp -r build ../back-end/",
-    "build:ci": "rm -rf build && npm run build --prod",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "lint": "eslint ."
+    "ci:back": "cd back-end && npm run start:test",
+    "ci:front": "cd front-end && npm start",
+    "start:ci": "npm-run-all --parallel ci:*",
+    "build:ui": "cd front-end && npm run build:ci",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:ci": "cypress run --env configFile=production"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -60,7 +73,11 @@
   },
   "devDependencies": {
     "apollo": "^2.25.0",
+    "cypress": "^4.1.0",
     "eslint-plugin-jest": "^23.8.2",
-    "prettier": "1.19.1"
+    "cross-env": "^7.0.1",
+    "eslint": "^6.8.0",
+    "nodemon": "^2.0.2",
+    "prettier": "^1.19.1"
   }
 }
