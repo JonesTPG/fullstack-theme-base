@@ -7,6 +7,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import FeedbackChart from './FeedbackChart';
+import CustomSnackbar from '../../notifications/CustomSnackbar';
+import useNotification from '../../../hooks/notification';
 
 const styles = theme => ({
   paper: {
@@ -18,6 +20,7 @@ const styles = theme => ({
 const FeedbackFeed = props => {
   const [feedbackList, setFeedbackList] = useState([]);
   const { classes } = props;
+  const notification = useNotification();
 
   const { loading } = useQuery(GET_ALL_FEEDBACKS, {
     onCompleted: data => {
@@ -25,6 +28,7 @@ const FeedbackFeed = props => {
     },
     onError: error => {
       console.log(error);
+      notification.showNotification('Error in fetching data', 'error');
     }
   });
 
@@ -33,6 +37,7 @@ const FeedbackFeed = props => {
       console.log('Feedback subscription ', subscriptionData);
       const newItem = subscriptionData.data.feedbackAdded;
       setFeedbackList([...feedbackList, newItem]);
+      notification.showNotification('Someone gave feedback!', 'success');
     }
   });
 
@@ -87,6 +92,7 @@ const FeedbackFeed = props => {
           </Grid>
         );
       })}
+      <CustomSnackbar {...notification.notificationProps()} />
     </Grid>
   );
 };

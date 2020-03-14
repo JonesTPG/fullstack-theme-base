@@ -12,9 +12,12 @@ import {
 import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import CustomerTable from './CustomerTable';
+import CustomSnackbar from '../../notifications/CustomSnackbar';
+import useNotification from '../../../hooks/notification';
 
 const CustomerView = () => {
   const [customerList, setCustomerList] = useState([]);
+  const notification = useNotification();
 
   const { loading } = useQuery(GET_ALL_CUSTOMERS, {
     onCompleted: data => {
@@ -22,23 +25,27 @@ const CustomerView = () => {
     },
     onError: error => {
       console.log(error);
+      notification.showNotification('Error in fetching data', 'error');
     }
   });
 
   const [addCustomer] = useMutation(CREATE_CUSTOMER, {
     onError(error) {
       console.log(error);
+      notification.showNotification('Error in adding a customer', 'error');
     }
   });
   const [editCustomer] = useMutation(UPDATE_CUSTOMER, {
     onError(error) {
       console.log(error);
+      notification.showNotification('Error in editing a customer', 'error');
     }
   });
 
   const [removeCustomer] = useMutation(REMOVE_CUSTOMER, {
     onError(error) {
       console.log(error);
+      notification.showNotification('Error in removing a customer', 'error');
     }
   });
 
@@ -47,6 +54,7 @@ const CustomerView = () => {
       console.log('Subscription add', subscriptionData);
       const newItem = subscriptionData.data.customerAdded;
       setCustomerList([...customerList, newItem]);
+      notification.showNotification('Someone added a new customer!', 'success');
     }
   });
 
@@ -57,6 +65,7 @@ const CustomerView = () => {
       setCustomerList(
         customerList.map(c => (c.id === newItem.id ? newItem : c))
       );
+      notification.showNotification('Someone edited a customer!', 'success');
     }
   });
 
@@ -65,6 +74,7 @@ const CustomerView = () => {
       console.log('Subscription delete', subscriptionData);
       const newItem = subscriptionData.data.customerDeleted;
       setCustomerList(customerList.filter(c => c.id !== newItem.id));
+      notification.showNotification('Someone removed a customer!', 'success');
     }
   });
 
@@ -87,6 +97,7 @@ const CustomerView = () => {
           removeCustomer={removeCustomer}
         />
       </Grid>
+      <CustomSnackbar {...notification.notificationProps()} />
     </Grid>
   );
 };

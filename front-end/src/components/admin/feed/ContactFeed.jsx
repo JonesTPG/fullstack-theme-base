@@ -5,9 +5,12 @@ import { GET_ALL, CONTACT_ADDED } from '../../../queries/contact';
 import Grid from '@material-ui/core/Grid';
 import Contact from './Contact';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import CustomSnackbar from '../../notifications/CustomSnackbar';
+import useNotification from '../../../hooks/notification';
 
 const ContactFeed = () => {
   const [contactList, setContactList] = useState([]);
+  const notification = useNotification();
 
   const { loading } = useQuery(GET_ALL, {
     onCompleted: data => {
@@ -17,6 +20,7 @@ const ContactFeed = () => {
     },
     onError: error => {
       console.log(error);
+      notification.showNotification('Error in fetching data', 'error');
     }
   });
 
@@ -25,6 +29,10 @@ const ContactFeed = () => {
       console.log(subscriptionData);
       const newItem = subscriptionData.data.contactAdded;
       setContactList(contactList.concat(newItem));
+      notification.showNotification(
+        'Someone sent a contact request!',
+        'success'
+      );
     }
   });
 
@@ -42,6 +50,7 @@ const ContactFeed = () => {
             </Grid>
           ))
       )}
+      <CustomSnackbar {...notification.notificationProps()} />
     </Grid>
   );
 };

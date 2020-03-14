@@ -44,8 +44,9 @@ const HomePage = ({ projects }) => {
   };
 
   const handleSubmit = data => {
-    setStepperData(isEmpty(data) ? null : data);
-    console.log(data);
+    if (!isEmpty(data)) {
+      setStepperData(data);
+    }
     setIsStepperShown(false);
   };
 
