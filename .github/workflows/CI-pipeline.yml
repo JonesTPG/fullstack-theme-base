@@ -1,0 +1,54 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Node 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Make a build
+        run: |
+          npm ci
+          npm run build:ui
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: build
+          path: ./front-end/build
+
+  test:
+    name: Test
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Node 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Download build artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: build
+      - name: Move build and create .env
+        run: |
+          rm -rf ./back-end/build
+          mv build ./back-end
+          printf "MONGODB_TEST_URI=${{ secrets.MONGODB_TEST_URI }}\nJWT_SECRET=${{ secrets.JWT_SECRET }}\n" > back-end/.env
+      - name: Setup and run Cypress
+        uses: cypress-io/github-action@v1.16.1
+        with:
+          config-file: ./cypress/config/production.json
+          start: npm run ci:back
+          wait-on: 'http://localhost:4000'
+          env: configFile=production
