@@ -52,3 +52,9 @@ jobs:
           start: npm run ci:back
           wait-on: 'http://localhost:4000'
           env: configFile=production
+      - name: Cypress videos
+        uses: actions/upload-artifact@v1
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos 
