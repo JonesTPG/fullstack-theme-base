@@ -66,14 +66,14 @@ const userMutations = {
     if (process.env.NODE_ENV === 'test') {
       const ADMIN_PASSWORD = 'admin';
 
-      const saltRounds = 10;
-      const passwordHash = await bcrypt.hash(ADMIN_PASSWORD, saltRounds);
+      //const saltRounds = 10;
+      //const passwordHash = await bcrypt.hash(ADMIN_PASSWORD, saltRounds);
 
       const adminUser = new User({
         username: args.username,
         roles: ['ADMIN'],
         darkTheme: false,
-        passwordHash: passwordHash
+        passwordHash: ADMIN_PASSWORD
       });
 
       await adminUser.save().catch(error => {
