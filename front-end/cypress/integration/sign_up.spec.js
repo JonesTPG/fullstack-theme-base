@@ -1,7 +1,7 @@
 const resetDatabase = {
   query: 'mutation {resetDatabase}'
 };
-describe('Creating a new account:', function() {
+describe('Creating a new account', function() {
   it('User can create a new account in sign up page', function() {
     cy.request({
       method: 'POST',
