@@ -141,8 +141,8 @@ const Login = props => {
             </Grid>
             <Grid item>
               <Link
+                data-cy="create"
                 style={{ cursor: 'pointer' }}
-                data-cy="createAccount"
                 onClick={() => props.history.push('/signup')}
               >
                 {"Don't have an account? Sign Up"}
