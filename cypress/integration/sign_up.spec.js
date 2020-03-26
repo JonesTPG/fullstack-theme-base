@@ -2,7 +2,7 @@ const resetDatabase = {
   query: "mutation {resetDatabase}"
 };
 describe("Creating a new account:", function() {
-  it("User can create a new account in sign up page", function() {
+  /*   it("User can create a new account in sign up page", function() {
     cy.request({
       method: "POST",
       url: Cypress.env("BASE_SERVER_URL") + "/graphql/",
@@ -18,7 +18,7 @@ describe("Creating a new account:", function() {
     cy.get("[data-cy=signUp]").click();
     //cy.url().should("include", "/login");
     cy.url().should("eq", Cypress.env("BASE_REACT_URL") + "/login");
-  });
+  }); */
 });
 describe("Logging in to the application", function() {
   it("User can log in with created creadentials", function() {
