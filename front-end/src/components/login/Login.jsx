@@ -132,21 +132,17 @@ const Login = props => {
 
           <Grid container>
             <Grid item xs>
-              <Link
-                style={{ cursor: 'pointer' }}
-                onClick={() => props.history.push('/voivoi')}
-              >
+              <Button onClick={() => props.history.push('/voivoi')}>
                 Forgot password?
-              </Link>
+              </Button>
             </Grid>
             <Grid item>
-              <Link
+              <Button
                 data-cy="create"
-                style={{ cursor: 'pointer' }}
                 onClick={() => props.history.push('/signup')}
               >
-                {"Don't have an account? Sign Up"}
-              </Link>
+                Create account
+              </Button>
             </Grid>
           </Grid>
         </form>

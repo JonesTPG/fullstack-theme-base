@@ -7,8 +7,7 @@ const createUser = {
     'mutation {createUser(username:"username@gmail.com", password:"password"){username}}'
 };
 const createAdminUser = {
-  query:
-    'mutation {createAdminUser(username:"admin@gmail.com", password:"admin"){username}}'
+  query: 'mutation {createAdminUser(username:"admin@gmail.com"){username}}'
 };
 
 describe("Full-stack-theme-base login:", function() {
