@@ -9,7 +9,6 @@ describe("Creating a new account:", function() {
       body: resetDatabase
     });
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
-    cy.contains("Don't have an account? Sign Up");
     cy.get("[data-cy=create]").click();
     cy.contains("Sign up");
     cy.get("[data-cy=firstName]").type("First name");
