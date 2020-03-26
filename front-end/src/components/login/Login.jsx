@@ -83,7 +83,7 @@ const Login = props => {
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <TextField
-            data-cy="username"
+            data-cy="email"
             variant="outlined"
             margin="normal"
             required
@@ -142,7 +142,7 @@ const Login = props => {
             <Grid item>
               <Link
                 style={{ cursor: 'pointer' }}
-                data-cy="signUp"
+                data-cy="createAccount"
                 onClick={() => props.history.push('/signup')}
               >
                 {"Don't have an account? Sign Up"}
