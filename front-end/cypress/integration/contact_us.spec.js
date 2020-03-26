@@ -10,7 +10,7 @@ const createAdminUser = {
   query: 'mutation {createAdminUser(username:"admin"){username}}'
 };
 
-describe('Fullstack-theme-base ', function() {
+describe('Fullstack-theme-base:', function() {
   describe('Fullstack app login', function() {
     beforeEach(function() {
       cy.request({
