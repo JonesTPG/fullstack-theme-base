@@ -74,7 +74,7 @@ const ContactForm = (props) => {
 
     onError() {
       notification.showNotification(
-        '*Please fill all the required fields',
+        '*Please fill all the required fields.',
         'info'
       );
       return;
