@@ -31,6 +31,7 @@ const SecondStep = ({ handleCheck }) => {
     handleCheck(tempState);
   };
 
+  // eslint-disable-next-line no-unused-vars
   const { startBusiness, developBusiness, discoverBusiness } = state;
 
   return (

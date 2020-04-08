@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
 const HomePage = ({ projects }) => {
   const classes = useStyles();
   const [isStepperShown, setIsStepperShown] = React.useState(true);
+  // eslint-disable-next-line no-unused-vars
   const [stepperData, setStepperData] = React.useState(null);
 
   const isEmpty = obj => {
