@@ -121,7 +121,7 @@ const ContactForm = props => {
                     color="textPrimary"
                     gutterBottom
                   >
-                    Contact us!
+                    Contact us
                   </Typography>
                   <p
                     variant="h5"
