@@ -18,7 +18,7 @@ import CustomSnackbar from '../notifications/CustomSnackbar';
 
 import useField from '../../hooks/input';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2)
   },
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const ContactForm = props => {
+const ContactForm = (props) => {
   const notification = useNotification();
 
   const classes = useStyles();
@@ -74,14 +74,14 @@ const ContactForm = props => {
 
     onError() {
       notification.showNotification(
-        '*Please fill all the required fields.',
+        '*Please fill all the required fields',
         'info'
       );
       return;
     }
   });
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     console.log(firstName);
 
