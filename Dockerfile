@@ -1,13 +1,13 @@
 FROM node:10
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY back-end/package*.json ./
+COPY . .
 
-RUN npm install
+RUN cd front-end && npm install && npm run build:ui && cd ..
 
-COPY back-end .
+RUN cd back-end && npm install
 
 EXPOSE 4000
 
-CMD [ "npm", "run", "start:test" ]
+CMD [ "npm", "run", "start:docker" ]
