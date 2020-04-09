@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node 12.x
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: "12.x"
       - name: Make a build
         run: |
           npm ci
@@ -35,7 +35,7 @@ jobs:
       - name: Setup Node 12.x
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: "12.x"
       - name: Download build artifact
         uses: actions/download-artifact@v1
         with:
@@ -50,11 +50,39 @@ jobs:
         with:
           config-file: ./cypress/config/production.json
           start: npm run ci:back
-          wait-on: 'http://localhost:4000'
+          wait-on: "http://localhost:4000"
           env: configFile=production
       - name: Cypress videos
         uses: actions/upload-artifact@v1
         if: failure()
         with:
           name: cypress-videos
-          path: cypress/videos 
+          path: cypress/videos
+
+  deploy:
+    name: Push docker image and deploy to production
+    needs: [test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Setup Node 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+      - name: Download build artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: build
+      - name: Move build and create .env
+        run: |
+          rm -rf ./back-end/build
+          mv build ./back-end
+          printf "MONGODB_TEST_URI=${{ secrets.MONGODB_TEST_URI }}\nJWT_SECRET=${{ secrets.JWT_SECRET }}\n" > back-end/.env
+
+      - name: Build Docker Image
+        run: docker build -t theme-base .
+
+      - name: Push docker image to Docker Hub
+        run: |
+          echo {{ secrets.DOCKER_ACCESS_TOKEN }} | docker login --username jonestpg --password-stdin
+          docker push jonestpg/theme-base
