@@ -1,0 +1,12 @@
+.github
+cypress
+docs
+example-data
+terraform
+työaikakirjanpito
+UI-design
+.git
+.gitignore
+TODO
+front-end/node_modules
+back-end/node_modules
