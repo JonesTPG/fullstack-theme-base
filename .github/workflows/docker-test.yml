@@ -16,7 +16,7 @@ jobs:
 
   deploy:
     name: Push docker image and deploy to production
-    needs: [docker-test]
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
