@@ -8,8 +8,11 @@ on:
 jobs:
   test:
     name: test docker login
-    run: |
-      echo {{ secrets.DOCKER_ACCESS_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: test docker login
+        run: |
+          echo {{ secrets.DOCKER_ACCESS_TOKEN }}
 
   deploy:
     name: Push docker image and deploy to production
