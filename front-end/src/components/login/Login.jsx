@@ -21,7 +21,7 @@ import { useMutation } from '@apollo/react-hooks';
 import { LoginStyles } from '../AllStyles';
 import CustomSnackbar from '../notifications/CustomSnackbar';
 
-const Login = props => {
+const Login = (props) => {
   const email = useField('email');
   const password = useField('password');
   const notification = useNotification();
@@ -55,7 +55,7 @@ const Login = props => {
 
   const { classes } = props;
 
-  const handleSubmit = async event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     await login({
@@ -80,6 +80,11 @@ const Login = props => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
+        <br></br>
+        <p>Credentials for login:</p>
+        <p>Admin user: admin/admin</p>
+        <p>Normal user: joonas/joonas</p>
+
         <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <TextField
             data-cy="email"
