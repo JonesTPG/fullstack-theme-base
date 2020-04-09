@@ -6,7 +6,7 @@ on:
     branches:
       - ci_docker
 
-  docker:
+  test:
     name: test docker login
     run: |
       echo {{ secrets.DOCKER_ACCESS_TOKEN }}
