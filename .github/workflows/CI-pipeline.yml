@@ -85,4 +85,5 @@ jobs:
       - name: Push docker image to Docker Hub
         run: |
           echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login --username jonestpg --password-stdin
+          docker tag theme-base jonestpg/theme-base
           docker push jonestpg/theme-base
