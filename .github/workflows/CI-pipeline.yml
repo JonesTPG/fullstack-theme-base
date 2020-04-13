@@ -58,32 +58,3 @@ jobs:
         with:
           name: cypress-videos
           path: cypress/videos
-
-  deploy:
-    name: Push docker image and deploy to production
-    needs: [test]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Setup Node 12.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: "12.x"
-      - name: Download build artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: build
-      - name: Move build and create .env
-        run: |
-          rm -rf ./back-end/build
-          mv build ./back-end
-          printf "MONGODB_TEST_URI=${{ secrets.MONGODB_TEST_URI }}\nJWT_SECRET=${{ secrets.JWT_SECRET }}\n" > back-end/.env
-
-      - name: Build Docker Image
-        run: docker build -t theme-base .
-
-      - name: Push docker image to Docker Hub
-        run: |
-          echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login --username jonestpg --password-stdin
-          docker tag theme-base jonestpg/theme-base
-          docker push jonestpg/theme-base
