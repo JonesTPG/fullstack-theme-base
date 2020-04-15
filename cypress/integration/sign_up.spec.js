@@ -16,7 +16,7 @@ describe("Creating a new account:", function () {
     cy.get("[data-cy=email]").type("username@gmail.com");
     cy.get("[data-cy=password]").type("password");
     cy.get("[data-cy=signUp]").click();
-    cy.url().should("eq", Cypress.env("BASE_REACT_URL") + "/login");
+    cy.url().should("eq", Cypress.env("BASE_REACT_URL") + "/signup");
   });
   it("User can log in with created creadentials", function () {
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
