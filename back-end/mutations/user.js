@@ -6,7 +6,7 @@ const User = require('../models/user');
 const userMutations = {
   createUser: async (root, args) => {
     let password = args.password;
-    if (args.password == undefined) {
+    if (args.password === undefined) {
       password = 'secret';
     }
 
@@ -21,7 +21,7 @@ const userMutations = {
       lastName: args.lastName
     });
 
-    await user.save().catch(error => {
+    await user.save().catch((error) => {
       throw new UserInputError(error.message, {
         invalidArgs: args
       });
@@ -41,7 +41,7 @@ const userMutations = {
       id: user._id,
       __v: user.__v
     };
-    await user.updateOne(updatedUser).catch(error => {
+    await user.updateOne(updatedUser).catch((error) => {
       throw new UserInputError(error.message, {
         invalidArgs: args
       });
@@ -52,7 +52,7 @@ const userMutations = {
     return updatedUser;
   },
   removeUser: async (root, args) => {
-    const user = await User.findByIdAndRemove(args.id).catch(error => {
+    const user = await User.findByIdAndRemove(args.id).catch((error) => {
       throw new UserInputError(error.message, {
         invalidArgs: args
       });
@@ -76,7 +76,7 @@ const userMutations = {
         passwordHash: ADMIN_PASSWORD
       });
 
-      await adminUser.save().catch(error => {
+      await adminUser.save().catch((error) => {
         throw new UserInputError(error.message, {
           invalidArgs: args
         });
