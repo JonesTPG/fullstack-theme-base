@@ -80,10 +80,6 @@ const Login = (props) => {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        {/*         <br></br>
-        <p>Credentials for login:</p>
-        <p>Admin user: admin/admin</p>
-        <p>Normal user: joonas/joonas</p> */}
 
         <form className={classes.form} onSubmit={handleSubmit} noValidate>
           <TextField
