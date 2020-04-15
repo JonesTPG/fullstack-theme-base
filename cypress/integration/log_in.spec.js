@@ -28,15 +28,6 @@ describe("Full-stack-theme-base login:", function () {
       body: createAdminUser,
     });
   });
-  it("Admin page will be opened when logging in as a admin", function () {
-    cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
-    cy.contains("Sign in");
-    cy.get("[data-cy=email]").type("admin@gmail.com");
-    cy.get("[data-cy=password]").type("admin");
-    cy.contains("Sign in").click();
-    cy.get("[data-cy=signIn]").click();
-    cy.url().should("eq", Cypress.env("BASE_REACT_URL") + "/admin");
-  });
 
   it("User can't login with invalid credentials", function () {
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
