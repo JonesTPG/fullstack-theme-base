@@ -1,34 +1,34 @@
 const resetDatabase = {
-  query: "mutation {resetDatabase}"
+  query: "mutation {resetDatabase}",
 };
 
 const createUser = {
   query:
-    'mutation {createUser(username:"username@gmail.com", password:"password"){username}}'
+    'mutation {createUser(username:"username@gmail.com", password:"password"){username}}',
 };
 const createAdminUser = {
-  query: 'mutation {createAdminUser(username:"admin@gmail.com"){username}}'
+  query: 'mutation {createAdminUser(username:"admin@gmail.com"){username}}',
 };
 
-describe("Full-stack-theme-base login:", function() {
-  beforeEach(function() {
+describe("Full-stack-theme-base login:", function () {
+  beforeEach(function () {
     cy.request({
       method: "POST",
       url: Cypress.env("BASE_SERVER_URL") + "/graphql/",
-      body: resetDatabase
+      body: resetDatabase,
     });
     cy.request({
       method: "POST",
       url: Cypress.env("BASE_SERVER_URL") + "/graphql/",
-      body: createUser
+      body: createUser,
     });
     cy.request({
       method: "POST",
       url: Cypress.env("BASE_SERVER_URL") + "/graphql/",
-      body: createAdminUser
+      body: createAdminUser,
     });
   });
-  /*   it("Admin page will be opened when logging in as a admin", function() {
+  it("Admin page will be opened when logging in as a admin", function () {
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
     cy.contains("Sign in");
     cy.get("[data-cy=email]").type("admin@gmail.com");
@@ -36,9 +36,9 @@ describe("Full-stack-theme-base login:", function() {
     cy.contains("Sign in").click();
     cy.get("[data-cy=signIn]").click();
     cy.url().should("eq", Cypress.env("BASE_REACT_URL") + "/admin");
-  }); */
+  });
 
-  it("User can't login with invalid credentials", function() {
+  it("User can't login with invalid credentials", function () {
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
     cy.contains("Sign in");
     cy.get("[data-cy=email]").type("innvalidEmail@gmail.com");
@@ -49,7 +49,7 @@ describe("Full-stack-theme-base login:", function() {
     cy.url().should("eq", Cypress.env("BASE_REACT_URL") + "/login");
   });
 
-  it("Front page can be opened", function() {
+  it("Front page can be opened", function () {
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
     cy.contains("Sign in");
     cy.get("[data-cy=email]").type("username@gmail.com");
@@ -59,7 +59,7 @@ describe("Full-stack-theme-base login:", function() {
     cy.url().should("eq", Cypress.env("BASE_REACT_URL") + "/");
   });
 
-  it("Theme-base-token can be found in local storage after login", function() {
+  it("Theme-base-token can be found in local storage after login", function () {
     cy.clearLocalStorage("theme-base-token");
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
     cy.contains("Sign in");
@@ -72,7 +72,7 @@ describe("Full-stack-theme-base login:", function() {
         expect(localStorage.getItem("theme-base-token")).to.include("ey");
       });
   });
-  it("Theme-base-token will be deleted after logout", function() {
+  it("Theme-base-token will be deleted after logout", function () {
     cy.clearLocalStorage("theme-base-token");
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
     cy.contains("Sign in");
