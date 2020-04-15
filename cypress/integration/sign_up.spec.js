@@ -1,12 +1,12 @@
 const resetDatabase = {
-  query: "mutation {resetDatabase}"
+  query: "mutation {resetDatabase}",
 };
-describe("Creating a new account:", function() {
-  /*   it("User can create a new account in sign up page", function() {
+describe("Creating a new account:", function () {
+  it("User can create a new account in sign up page", function () {
     cy.request({
       method: "POST",
       url: Cypress.env("BASE_SERVER_URL") + "/graphql/",
-      body: resetDatabase
+      body: resetDatabase,
     });
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
     cy.get("[data-cy=create]").click();
@@ -18,10 +18,10 @@ describe("Creating a new account:", function() {
     cy.get("[data-cy=signUp]").click();
     //cy.url().should("include", "/login");
     cy.url().should("eq", Cypress.env("BASE_REACT_URL") + "/login");
-  }); */
+  });
 });
-describe("Logging in to the application", function() {
-  it("User can log in with created creadentials", function() {
+describe("Logging in to the application", function () {
+  it("User can log in with created creadentials", function () {
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
     cy.contains("Sign in");
     cy.get("[data-cy=email]").type("username@gmail.com");
@@ -31,8 +31,8 @@ describe("Logging in to the application", function() {
     cy.url().should("eq", Cypress.env("BASE_REACT_URL") + "/");
   });
 });
-describe("Trying to log in with invalid credentials", function() {
-  it("User can't log in with non-existing credentials", function() {
+describe("Trying to log in with invalid credentials", function () {
+  it("User can't log in with non-existing credentials", function () {
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
     cy.contains("Sign in");
     cy.get("[data-cy=email]").type("non-existingUsername@gmail.com");
