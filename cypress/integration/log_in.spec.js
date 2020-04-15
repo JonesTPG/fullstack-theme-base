@@ -50,7 +50,7 @@ describe("Full-stack-theme-base login:", function () {
     cy.url().should("eq", Cypress.env("BASE_REACT_URL") + "/");
   });
 
-  it("Theme-base-token can be found in local storage after login", function () {
+  it("Theme-base-token can be found in local storage after login:", function () {
     cy.clearLocalStorage("theme-base-token");
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
     cy.contains("Sign in");
