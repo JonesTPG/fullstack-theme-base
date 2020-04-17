@@ -29,7 +29,7 @@ describe("Full-stack-theme-base login:", function () {
     });
   });
 
-  it("User can't login with invalid credentials", function () {
+  it("User can't login with invalid credentials:", function () {
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
     cy.contains("Sign in");
     cy.get("[data-cy=email]").type("innvalidEmail@gmail.com");
