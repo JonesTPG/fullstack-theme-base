@@ -9,6 +9,7 @@ describe("Creating a new account:", function () {
       body: resetDatabase,
     });
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
+    cy.contains("Create account");
     cy.get("[data-cy=create]").click();
     cy.contains("Sign up");
     cy.get("[data-cy=firstName]").type("First name");
@@ -17,15 +18,6 @@ describe("Creating a new account:", function () {
     cy.get("[data-cy=password]").type("password");
     cy.get("[data-cy=signUp]").click();
     cy.url().should("eq", Cypress.env("BASE_REACT_URL") + "/signup");
-  });
-  it("User can log in with created creadentials", function () {
-    cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
-    cy.contains("Sign in");
-    cy.get("[data-cy=email]").type("username@gmail.com");
-    cy.get("[data-cy=password]").type("password");
-    cy.contains("Sign in").click();
-    cy.get("[data-cy=signIn]").click();
-    cy.url().should("eq", Cypress.env("BASE_REACT_URL") + "/");
   });
 });
 describe("Trying to log in with invalid credentials", function () {
