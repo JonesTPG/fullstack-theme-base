@@ -20,7 +20,7 @@ describe("Creating a new account:", function () {
     cy.url().should("eq", Cypress.env("BASE_REACT_URL") + "/signup");
   });
 });
-describe("Trying to log in with invalid credentials:", function () {
+describe("Trying to log in with invalid credentials", function () {
   it("User can't log in with non-existing credentials", function () {
     cy.visit(Cypress.env("BASE_REACT_URL") + "/login");
     cy.contains("Sign in");
