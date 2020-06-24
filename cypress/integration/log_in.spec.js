@@ -10,7 +10,7 @@ const createAdminUser = {
   query: 'mutation {createAdminUser(username:"admin@gmail.com"){username}}',
 };
 
-describe("Full-stack-theme-base login", function () {
+describe("Full-stack-theme-base login:", function () {
   beforeEach(function () {
     cy.request({
       method: "POST",
