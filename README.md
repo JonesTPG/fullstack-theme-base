@@ -10,7 +10,7 @@
 
 ## Live Demo of Application
 
-The application is running at [https://demo.kooditaiturit.fi](https://demo.kooditaiturit.fi)
+The application is running at [https://theme-base.munjutut.live/](https://theme-base.munjutut.live/)
 
 **Credentials for login:**
 
