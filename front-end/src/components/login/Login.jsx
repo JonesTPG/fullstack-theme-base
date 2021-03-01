@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -67,6 +67,16 @@ const Login = (props) => {
     email.resetState();
     password.resetState();
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      notification.showNotification(
+        "If you don't have your own credentials, try admin/admin or joonas/joonas",
+        'info'
+      );
+    }, 2000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Container component="main" maxWidth="xs">
